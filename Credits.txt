@@ -1,0 +1,22 @@
+Ideas & code credits:
+
+"Simone Chifari" <simone (-at-) emulab (-dot-) it>
+* USBasp frequency selection
+* Auto detect MCU
+* Fuse selector
+* AVRDUDE version shown in window title
+* New AVRDUDE conf parse code
+* Buttons to separately write/read/verify the flash/EEPROM
+
+"Uwe Tanger" <u.tanger (-at-) arcor (-dot-) de>
+* Specifying preset to load via command line
+* Remove popup for saving and deleting presets
+* Console in main window instead of separate window
+* New AVRDUDE conf parse code
+
+"neptune"
+* Sticky presets
+
+"Dean"
+* Console in main window instead of separate window
+* Buttons to separately write/read the fuses/locks

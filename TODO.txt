@@ -1,0 +1,3 @@
+Add: Preset manager (rename, export, import etc)
+Add: Better support for ATxmega devices (They have fuses 0-5 instead of low/high/extended and a few other things)
+Fix: High verbosity level resulting in slow programming caused by slow console output

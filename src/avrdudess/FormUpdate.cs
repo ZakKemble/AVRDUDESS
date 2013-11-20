@@ -14,17 +14,17 @@ namespace avrdudess
     public partial class FormUpdate : Form
     {
         private string address;
-        private UpdateCheck updater;
+        private Action skipVersion;
 
         public FormUpdate()
         {
             InitializeComponent();
 
-            Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            Icon = AssemblyData.icon;
             Text = "Update available";
         }
 
-        public void doUpdateMsg(string currentVersion, string newVersion, string msg, string address, UpdateCheck updater)
+        public void doUpdateMsg(string currentVersion, string newVersion, string msg, string address, Action skipVersion)
         {
             // Make sure end lines are in the correct format
             msg = msg.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
@@ -34,7 +34,7 @@ namespace avrdudess
             txtUpdateInfo.Text = msg;
 
             this.address = address;
-            this.updater = updater;
+            this.skipVersion = skipVersion;
 
             ShowDialog();
         }
@@ -52,7 +52,8 @@ namespace avrdudess
 
         private void btnSkip_Click(object sender, EventArgs e)
         {
-            updater.skipVersion();
+            if(skipVersion != null)
+                skipVersion();
             Close();
         }
     }

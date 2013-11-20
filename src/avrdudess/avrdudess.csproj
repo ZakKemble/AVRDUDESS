@@ -85,6 +85,7 @@
     <Compile Include="XmlFile.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFuseSelector.resx">
       <DependentUpon>FormFuseSelector.cs</DependentUpon>

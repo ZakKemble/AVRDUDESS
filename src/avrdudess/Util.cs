@@ -7,6 +7,8 @@
  */
 
 using System;
+using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 
 // http://stackoverflow.com/questions/2367718/automating-the-invokerequired-code-pattern
@@ -39,5 +41,45 @@ namespace avrdudess
 
             }
         }
+    }
+
+    public static class MsgBox
+    {
+        public static void error(string msg, Exception ex)
+        {
+            error(msg + Environment.NewLine + ex.Message);
+        }
+
+        public static void error(string msg)
+        {
+            MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static void warning(string msg)
+        {
+            MessageBox.Show(msg, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        public static void notice(string msg)
+        {
+            MessageBox.Show(msg, "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+    }
+
+    static class AssemblyData
+    {
+        private static readonly Assembly assembly = Assembly.GetExecutingAssembly();
+
+        public static readonly string title = ((AssemblyTitleAttribute)Attribute.GetCustomAttribute(
+                assembly, typeof(AssemblyTitleAttribute), false))
+                .Title;
+
+        public static readonly string copyright = ((AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(
+                assembly, typeof(AssemblyCopyrightAttribute), false))
+                .Copyright;
+
+        public static readonly Version version = assembly.GetName().Version;
+
+        public static readonly Icon icon = Icon.ExtractAssociatedIcon(assembly.Location);
     }
 }

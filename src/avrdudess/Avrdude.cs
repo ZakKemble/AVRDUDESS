@@ -123,7 +123,7 @@ namespace avrdudess
             binary = searchForBinary();
 
             if (binary == null)
-                MessageBox.Show(FILE_AVRDUDE + " is missing!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.error(FILE_AVRDUDE + " is missing!");
 
             Thread t = new Thread(new ThreadStart(tConsoleUpdate));
             t.IsBackground = true;
@@ -235,7 +235,7 @@ namespace avrdudess
                 // Config file not found
                 if (!File.Exists(conf_loc))
                 {
-                    MessageBox.Show(FILE_AVRDUDECONF + " is missing!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MsgBox.error(FILE_AVRDUDECONF + " is missing!");
                     return;
                 }
             }
@@ -246,9 +246,9 @@ namespace avrdudess
             {
                 lines = File.ReadAllLines(conf_loc);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error reading " + FILE_AVRDUDECONF, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.error("Error reading " + FILE_AVRDUDECONF, ex);
                 return;
             }
 
@@ -387,7 +387,7 @@ namespace avrdudess
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.error("Error starting AVRDUDE", ex);
                 return;
             }
 

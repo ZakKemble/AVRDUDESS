@@ -15,7 +15,7 @@ using System.Xml;
 
 namespace avrdudess
 {
-    public class UpdateCheck
+    class UpdateCheck
     {
         private const string UPDATE_ADDR = "http://versions.zakkemble.co.uk/avrdudess.xml";
 
@@ -43,7 +43,7 @@ namespace avrdudess
             t.Start();
         }
 
-        public void skipVersion()
+        private void skipVersion()
         {
             if(newVersion != null)
                 config.skipVersion = newVersion;
@@ -60,22 +60,23 @@ namespace avrdudess
 
             try
             {
-                Version currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                Version currentVersion = new Version(AssemblyData.version.Major, AssemblyData.version.Minor);
 
                 int major = 0;
                 int minor = 0;
-                int build = 0;
-                int revision = 0;
+                //int build = 0;
+                //int revision = 0;
                 long date = 0;
                 string updateAddr = "";
                 string updateInfo = "";
 
                 // Setup web request
                 var request         = (HttpWebRequest)WebRequest.Create(UPDATE_ADDR);
-                request.UserAgent = "Mozilla/5.0 (compatible; AVRDUDESS VERSION CHECKER " + currentVersion.ToString() + ")";
+                request.UserAgent = "Mozilla/5.0 (compatible; AVRDUDESS VERSION CHECKER " + AssemblyData.version.ToString() + ")";
                 request.ReadWriteTimeout = 30000;
                 request.Timeout = 30000;
                 request.KeepAlive = false;
+                request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
                 //request.Proxy = null;
 
                 // Do request
@@ -98,12 +99,12 @@ namespace avrdudess
                                     case "minor":
                                         minor = reader.ReadContentAsInt();
                                         break;
-                                    case "build":
+                                    /*case "build":
                                         build = reader.ReadContentAsInt();
                                         break;
                                     case "revision":
                                         revision = reader.ReadContentAsInt();
-                                        break;
+                                        break;*/
                                     case "date":
                                         date = reader.ReadContentAsLong();
                                         break;
@@ -121,21 +122,21 @@ namespace avrdudess
                     }
                 }
 
-                newVersion = new Version(major, minor, build, revision);
+                newVersion = new Version(major, minor);
+
+                saveTime();
 
                 // Notify of new update
                 if (config.skipVersion != newVersion && currentVersion.CompareTo(newVersion) < 0)
                 {
                     string newVersionStr = newVersion.ToString() + " (" + new DateTime(1970, 1, 1).AddSeconds(date).ToLocalTime().ToShortDateString() + ")";
 
-                    mainForm.BeginInvoke(new MethodInvoker(() =>
+                    mainForm.Invoke(new MethodInvoker(() =>
                     {
                         FormUpdate f = new FormUpdate();
-                        f.doUpdateMsg(currentVersion.ToString(), newVersionStr, updateInfo, updateAddr, this);
+                        f.doUpdateMsg(currentVersion.ToString(), newVersionStr, updateInfo, updateAddr, skipVersion);
                     }));
                 }
-
-                saveTime();
             }
             catch (Exception)
             {

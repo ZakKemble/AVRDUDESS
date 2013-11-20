@@ -12,7 +12,6 @@ using System.Drawing;
 using System.IO;
 using System.IO.Ports;
 using System.Media;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace avrdudess
@@ -46,7 +45,7 @@ namespace avrdudess
                 if(p != null)
                     cmbProg.SelectedItem = p;
                 else
-                    MessageBox.Show("Preset programmer not found (" + value + ")", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MsgBox.warning("Preset programmer not found (" + value + ")");
             }
         }
 
@@ -59,7 +58,7 @@ namespace avrdudess
                 if (m != null)
                     cmbMCU.SelectedItem = m;
                 else
-                    MessageBox.Show("Preset MCU not found (" + value + ")", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MsgBox.warning("Preset MCU not found (" + value + ")");
             }
         }
 
@@ -235,16 +234,8 @@ namespace avrdudess
             if (args.Length > 0)
                 presetToLoad = args[0];
 
-            Assembly assembly = Assembly.GetExecutingAssembly();
-
-            Version version = assembly.GetName().Version;
-
-            string title = ((AssemblyTitleAttribute)Attribute.GetCustomAttribute(
-                assembly, typeof(AssemblyTitleAttribute), false))
-                .Title;
-
-            Icon = Icon.ExtractAssociatedIcon(assembly.Location);
-            Text = String.Format("{0} v{1}.{2}", title, version.Major, version.Minor);
+            Icon = AssemblyData.icon;
+            Text = String.Format("{0} v{1}.{2}", AssemblyData.title, AssemblyData.version.Major, AssemblyData.version.Minor);
 
             // Make sure console is the right size
             Form1_Resize(null, null);
@@ -649,7 +640,7 @@ namespace avrdudess
                 return;
             else if (name == "Default")
             {
-                MessageBox.Show("Can't change 'Default'", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MsgBox.notice("Can't change 'Default'");
                 return;
             }
 
@@ -681,7 +672,7 @@ namespace avrdudess
                 // Make sure its not the default preset
                 if (((PresetData)cmbPresets.SelectedItem).name == "Default")
                 {
-                    MessageBox.Show("Can't remove 'Default'", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MsgBox.notice("Can't remove 'Default'");
                     return;
                 }
 
@@ -782,7 +773,7 @@ namespace avrdudess
                 else
                     c = txtEFuse;
 
-                BeginInvoke(new MethodInvoker(() =>
+                Invoke(new MethodInvoker(() =>
                 {
                     c.Text = fuse;
                 }));
@@ -814,7 +805,7 @@ namespace avrdudess
                 File.Delete(lockFile);
             }
 
-            BeginInvoke(new MethodInvoker(() =>
+            Invoke(new MethodInvoker(() =>
             {
                 txtLock.Text = fuse;
             }));
@@ -883,7 +874,7 @@ namespace avrdudess
 
                         if (m != null) // Found
                         {
-                            BeginInvoke(new MethodInvoker(() =>
+                            Invoke(new MethodInvoker(() =>
                             {
                                 // Select the MCU that was found
                                 cmbMCU.SelectedItem = m;
@@ -947,22 +938,10 @@ namespace avrdudess
         // About
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-
-            Version version = assembly.GetName().Version;
-
-            string copyright = ((AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(
-                assembly, typeof(AssemblyCopyrightAttribute), false))
-                .Copyright;
-
-            string title = ((AssemblyTitleAttribute)Attribute.GetCustomAttribute(
-                assembly, typeof(AssemblyTitleAttribute), false))
-                .Title;
-
             string about = "";
-            about += title + Environment.NewLine;
-            about += "Version " + version.ToString() + Environment.NewLine;
-            about += copyright + Environment.NewLine;
+            about += AssemblyData.title + Environment.NewLine;
+            about += "Version " + AssemblyData.version.ToString() + Environment.NewLine;
+            about += AssemblyData.copyright + Environment.NewLine;
             about += Environment.NewLine;
             about += "zakkemble.co.uk";
 

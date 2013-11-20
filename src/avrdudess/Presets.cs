@@ -14,24 +14,30 @@ using System.Xml.Serialization;
 
 namespace avrdudess
 {
-    public class Presets
+    class Presets : XmlFile<List<PresetData>>
     {
         private const string FILE_PRESETS = "presets.xml";
 
         private Form1 mainForm;
         private List<PresetData> presetList;
-        private XmlFile xmlFile;
 
+        protected override object data
+        {
+            get { return presetList; }
+            set { presetList = (List<PresetData>)value; }
+        }
+        
+        // This should return a readonly list...
         public List<PresetData> presets
         {
             get { return presetList; }
         }
-
+        
         public Presets(Form1 mainForm)
+            : base(FILE_PRESETS, "presets")
         {
             this.mainForm = mainForm;
             presetList = new List<PresetData>();
-            xmlFile = new XmlFile(FILE_PRESETS, "presets");
         }
 
         public void setDataSource(ComboBox cb, EventHandler handler)
@@ -80,21 +86,21 @@ namespace avrdudess
         // Save presets
         public void save()
         {
-            xmlFile.save(presets);
+            write();
         }
 
         // Load presets
         public void load()
         {
             // If file doesn't exist then make it
-            if (!File.Exists(xmlFile.fileLoc))
+            if (!File.Exists(fileLocation))
             {
                 add("Default");
                 save();
             }
 
             // Load presets from XML
-            presetList = xmlFile.load<List<PresetData>>();
+            read();
             if (presetList == null)
                 presetList = new List<PresetData>();
         }

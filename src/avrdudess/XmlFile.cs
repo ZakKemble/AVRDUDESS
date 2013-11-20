@@ -13,42 +13,86 @@ using System.Windows.Forms;
 
 namespace avrdudess
 {
-    class XmlFile
+    abstract class XmlFile<T>
     {
-        private string fileLocation;
+        protected string fileLocation { get; private set; }
         private string name;
-
-        public string fileLoc
-        {
-            get { return fileLocation; }
-        }
+        abstract protected object data { get; set; }
 
         public XmlFile(string fileName, string name)
         {
-            fileLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
             this.name = name;
+
+            // Where the file should be
+            fileLocation = makePath(Environment.SpecialFolder.ApplicationData, fileName);
+            
+            // File exists, don't need to copy template
+            if (File.Exists(fileLocation))
+                return;
+
+            // Copy template if found
+
+            string[] locations = new string[]
+            {
+                makePath(Environment.SpecialFolder.CommonApplicationData, fileName), // CommonAppData
+                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName) // Program .exe directory
+            };
+
+            foreach (string location in locations)
+            {
+                if (File.Exists(location))
+                {
+                    copyTemplate(location);
+                    break;
+                }
+            }
+
+            // If template wasn't found then a new file will be created later
         }
 
-        public void save(object data)
+        private string makePath(Environment.SpecialFolder folder, string fileName)
+        {
+            string path = Path.Combine(Environment.GetFolderPath(folder), AssemblyData.title);
+            path = Path.Combine(path, fileName);
+            return path;
+        }
+
+        private void copyTemplate(string source)
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(fileLocation));
+                File.Copy(source, fileLocation);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.error("Failed to copy " + name + " template to AppData", ex);
+            }
+        }
+
+        protected void write()
         {
             TextWriter tw = null;
             try
             {
+                // Make sure directory exists
+                Directory.CreateDirectory(Path.GetDirectoryName(fileLocation));
+
                 tw = new StreamWriter(fileLocation, false);
                 new XmlSerializer(data.GetType()).Serialize(tw, data);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occored trying to save " + name + Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.error("An error occurred trying to save " + name, ex);
             }
 
             if (tw != null)
                 tw.Close();
         }
 
-        public T load<T>()
+        protected void read()
         {
-            T data = default(T);
+            data = default(T);
             TextReader tr = null;
             try
             {
@@ -57,13 +101,11 @@ namespace avrdudess
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occored trying to load " + name + Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.error("An error occurred trying to load " + name, ex);
             }
 
             if (tr != null)
                 tr.Close();
-
-            return data;
         }
     }
 }

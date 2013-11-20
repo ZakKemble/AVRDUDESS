@@ -12,12 +12,17 @@ using System.Windows.Forms;
 
 namespace avrdudess
 {
-    public class Config
+    class Config : XmlFile<ConfigData>
     {
         private const string FILE_CONFIG = "config.xml";
 
         private ConfigData config;
-        private XmlFile xmlFile;
+
+        protected override object data
+        {
+            get { return config; }
+            set { config = (ConfigData)value; }
+        }
 
         #region Getters and setters
 
@@ -35,13 +40,13 @@ namespace avrdudess
 
         public Version skipVersion
         {
-            get { return new Version(config.skipVersion.Major, config.skipVersion.Minor, config.skipVersion.Build, config.skipVersion.Revision); }
+            get { return new Version(config.skipVersion.Major, config.skipVersion.Minor); }//, config.skipVersion.Build, config.skipVersion.Revision); }
             set
             {
                 config.skipVersion.Major = value.Major;
                 config.skipVersion.Minor = value.Minor;
-                config.skipVersion.Build = value.Build;
-                config.skipVersion.Revision = value.Revision;
+                //config.skipVersion.Build = value.Build;
+                //config.skipVersion.Revision = value.Revision;
             }
         }
 
@@ -54,65 +59,65 @@ namespace avrdudess
         #endregion
 
         public Config()
+            : base(FILE_CONFIG, "configuration")
         {
             config = new ConfigData();
-            xmlFile = new XmlFile(FILE_CONFIG, "configuration");
         }
 
         // Save config
         public void save()
         {
-            xmlFile.save(config);
+            write();
         }
 
         // Load config
         public void load()
         {
             // If file doesn't exist then make it
-            if (!File.Exists(xmlFile.fileLoc))
+            if (!File.Exists(fileLocation))
                 save();
 
             // Load config from XML
-            config = xmlFile.load<ConfigData>();
+            read();
             if (config == null)
                 config = new ConfigData();
 
             // Check config file version
             if (config.configVersion > ConfigData.CONFIG_VERSION)
-                MessageBox.Show(String.Format("Configuration file version ({0}) is newer than expected ({1}), things might not work properly...", config.configVersion, ConfigData.CONFIG_VERSION), "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MsgBox.warning(String.Format("Configuration file version ({0}) is newer than expected ({1}), things might not work properly...", config.configVersion, ConfigData.CONFIG_VERSION));
         }
+    }
 
-        [Serializable]
-        public class ConfigData
+    [Serializable]
+    public class ConfigData
+    {
+        public const uint CONFIG_VERSION = 1;
+
+        // Version isn't serializable so use this struct instead
+        public struct SkipVersion
         {
-            public const uint CONFIG_VERSION = 1;
+            public int Major;
+            public int Minor;
+            //public int Build;
+            //public int Revision;
+        };
 
-            // Version isn't serializable so use this struct instead
-            public struct SkipVersion
-            {
-                public int Major;
-                public int Minor;
-                public int Build;
-                public int Revision;
-            };
+        public uint configVersion;  // Config file version
+        public string preset;       // Last preset used
+        public long updateCheck;    // Time of last update check
+        public SkipVersion skipVersion; // Version to skip
+        public bool toolTips;       // Tool tips enabled
 
-            public uint configVersion;  // Config file version
-            public string preset;       // Last preset used
-            public long updateCheck;    // Time of last update check
-            public SkipVersion skipVersion; // Version to skip
-            public bool toolTips;       // Tool tips enabled
-
-            public ConfigData()
-            {
-                configVersion = CONFIG_VERSION;
-                preset = "Default";
-                updateCheck = 0;
-                skipVersion.Major = 0;
-                skipVersion.Minor = 0;
-                skipVersion.Build = 0;
-                skipVersion.Revision = 0;
-                toolTips = true;
-            }
+        public ConfigData()
+        {
+            configVersion = CONFIG_VERSION;
+            preset = "Default";
+            updateCheck = 0;
+            skipVersion.Major = 0;
+            skipVersion.Minor = 0;
+            //skipVersion.Build = 0;
+            //skipVersion.Revision = 0;
+            toolTips = true;
         }
     }
 }

@@ -33,8 +33,7 @@ namespace avrdudess
         {
             InitializeComponent();
 
-            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            Icon = Icon.ExtractAssociatedIcon(assembly.Location);
+            Icon = AssemblyData.icon;
         }
 
         private void FormFusesAndLocks_Load(object sender, EventArgs e)

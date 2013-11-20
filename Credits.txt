@@ -17,6 +17,6 @@ Ideas & code credits:
 "neptune"
 * Sticky presets
 
-"Dean"
+"Dean Canafranca" <deanc338 (-at-) yahoo (-dot-) com (-dot-) sg>
 * Console in main window instead of separate window
 * Buttons to separately write/read the fuses/locks

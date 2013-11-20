@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "AVRDUDESS"
-#define MyAppVersion "2.0"
+#define MyAppVersion "2.1"
 #define MyAppPublisher "Zak Kemble"
 #define MyAppURL "http://zakkemble.co.uk/"
 #define MyAppExeName "avrdudess.exe"
@@ -12,7 +12,8 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
-; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
+; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)  
+PrivilegesRequired=admin
 AppId={{B6EAF03F-3DB3-4170-A4B0-B7007AAD6D0C}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
@@ -52,8 +53,8 @@ Source: "Credits.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "License.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Readme.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "TODO.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "config.xml"; DestDir: "{app}"; Flags: ignoreversion confirmoverwrite
-Source: "presets.xml"; DestDir: "{app}"; Flags: ignoreversion confirmoverwrite
+Source: "config.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "presets.xml"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -65,4 +66,3 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Fil
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-

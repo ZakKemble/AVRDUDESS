@@ -19,14 +19,12 @@ namespace avrdudess
     {
         private const string UPDATE_ADDR = "http://versions.zakkemble.co.uk/avrdudess.xml";
 
-        private Form1 mainForm;
         private Config config;
         private long now;
         private Version newVersion;
 
-        public UpdateCheck(Form1 mainForm, Config config)
+        public UpdateCheck(Config config)
         {
-            this.mainForm = mainForm;
             this.config = config;
 
             now = (long)((DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds);
@@ -71,13 +69,15 @@ namespace avrdudess
                 string updateInfo = "";
 
                 // Setup web request
-                var request         = (HttpWebRequest)WebRequest.Create(UPDATE_ADDR);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(UPDATE_ADDR);
                 request.UserAgent = "Mozilla/5.0 (compatible; AVRDUDESS VERSION CHECKER " + AssemblyData.version.ToString() + ")";
                 request.ReadWriteTimeout = 30000;
                 request.Timeout = 30000;
                 request.KeepAlive = false;
                 request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-                //request.Proxy = null;
+#if DEBUG // Getting proxy info is slow, so don't use proxy in debug
+                request.Proxy = null;
+#endif
 
                 // Do request
                 using (var responseStream = request.GetResponse().GetResponseStream())
@@ -131,7 +131,7 @@ namespace avrdudess
                 {
                     string newVersionStr = newVersion.ToString() + " (" + new DateTime(1970, 1, 1).AddSeconds(date).ToLocalTime().ToShortDateString() + ")";
 
-                    mainForm.Invoke(new MethodInvoker(() =>
+                    Util.UI.Invoke(new MethodInvoker(() =>
                     {
                         FormUpdate f = new FormUpdate();
                         f.doUpdateMsg(currentVersion.ToString(), newVersionStr, updateInfo, updateAddr, skipVersion);

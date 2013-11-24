@@ -24,8 +24,11 @@ namespace avrdudess
     // Action without parameters doesn't seem to be a thing in .NET 2.0
     public delegate void Action();
 
-    public static class Util
+    static class Util
     {
+        // No Dispatcher stuff in .NET 2.0, make a static reference to our main form
+        public static Form UI;
+
         public static void InvokeIfRequired<T>(this T c, Action<T> action)
             where T : Control
         {
@@ -43,7 +46,7 @@ namespace avrdudess
         }
     }
 
-    public static class MsgBox
+    static class MsgBox
     {
         public static void error(string msg, Exception ex)
         {

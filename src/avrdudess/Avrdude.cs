@@ -19,10 +19,10 @@ namespace avrdudess
         public class UsbAspFreq
         {
             public string name { get; private set; }
-            public double bitClock { get; private set; }
+            public string bitClock { get; private set; }
             public int freq { get; private set; }
 
-            public UsbAspFreq(string name, double bitClock, int freq)
+            public UsbAspFreq(string name, string bitClock, int freq)
             {
                 this.name       = name;
                 this.bitClock   = bitClock;
@@ -42,18 +42,18 @@ namespace avrdudess
         public static readonly List<UsbAspFreq> USBaspFreqs = new List<UsbAspFreq>()
         {
             // Must be in order from highest to lowest
-            new UsbAspFreq("1.5 MHz", 0.5, 1500000),
-            new UsbAspFreq("750 KHz", 1.0, 750000),
-            new UsbAspFreq("375 KHz", 2.0, 375000),
-            new UsbAspFreq("187.5 KHz", 4.0, 187500),
-            new UsbAspFreq("93.75 KHz", 8.0, 93750),
-            new UsbAspFreq("32 KHz", 20.96, 32000),
-            new UsbAspFreq("16 KHz", 46.88, 16000),
-            new UsbAspFreq("8 KHz", 93.75, 8000),
-            new UsbAspFreq("4 KHz", 187.5, 4000),
-            new UsbAspFreq("2 KHz", 375.0, 2000),
-            new UsbAspFreq("1 KHz", 750.0, 1000),
-            new UsbAspFreq("500 Hz", 1500.0, 500),
+            new UsbAspFreq("1.5 MHz", "0.5", 1500000),
+            new UsbAspFreq("750 KHz", "1.0", 750000),
+            new UsbAspFreq("375 KHz", "2.0", 375000),
+            new UsbAspFreq("187.5 KHz", "4.0", 187500),
+            new UsbAspFreq("93.75 KHz", "8.0", 93750),
+            new UsbAspFreq("32 KHz", "20.96", 32000),
+            new UsbAspFreq("16 KHz", "46.88", 16000),
+            new UsbAspFreq("8 KHz", "93.75", 8000),
+            new UsbAspFreq("4 KHz", "187.5", 4000),
+            new UsbAspFreq("2 KHz", "375.0", 2000),
+            new UsbAspFreq("1 KHz", "750.0", 1000),
+            new UsbAspFreq("500 Hz", "1500.0", 500),
         };
 
         public static readonly List<FileFormat> fileFormats = new List<FileFormat>()

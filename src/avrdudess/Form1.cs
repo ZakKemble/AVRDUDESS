@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.IO.Ports;
 using System.Media;
@@ -712,20 +713,25 @@ namespace avrdudess
 
                         // String to double
                         double bitClock;
-                        if (!double.TryParse(bitClockStr, out bitClock))
+                        if (!double.TryParse(bitClockStr,
+                            NumberStyles.Float | NumberStyles.AllowThousands,
+                            CultureInfo.InvariantCulture, // Bit clock is saved with a '.', we don't want it to try and parse it expecting a ',' or something else
+                            out bitClock))
                         {
                             cmbUSBaspFreq.SelectedIndex = 0;
                             return;
                         }
 
-                        // Make sure bit clock is between min and max
-                        if (bitClock < Avrdude.USBaspFreqs[0].bitClock)
-                            bitClock = Avrdude.USBaspFreqs[0].bitClock;
-                        else if (bitClock > Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].bitClock)
-                            bitClock = Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].bitClock;
+                        int freq = (int)(1 / (bitClock * 0.000001));
+
+                        // Make sure frequency is between min and max
+                        if (freq > Avrdude.USBaspFreqs[0].freq)
+                            freq = Avrdude.USBaspFreqs[0].freq;
+                        else if (freq < Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].freq)
+                            freq = Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].freq;
 
                         // Show frequency
-                        cmbUSBaspFreq.SelectedItem = Avrdude.USBaspFreqs.Find(s => bitClock <= s.bitClock); 
+                        cmbUSBaspFreq.SelectedItem = Avrdude.USBaspFreqs.Find(s => freq >= s.freq - 1);
                     }
                 }
             }
@@ -934,7 +940,7 @@ namespace avrdudess
         {
             Avrdude.UsbAspFreq freq = ((Avrdude.UsbAspFreq)((ComboBox)sender).SelectedItem);
             if (cmbUSBaspFreq.Visible && freq != null)
-                txtBitClock.Text = freq.bitClock.ToString();
+                txtBitClock.Text = freq.bitClock;
         }
 
         // About

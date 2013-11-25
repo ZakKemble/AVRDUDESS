@@ -7,6 +7,7 @@ Ideas & code credits:
 * AVRDUDE version shown in window title
 * New AVRDUDE conf parse code
 * Buttons to separately write/read/verify the flash/EEPROM
+* Fixing USBasp frequency failing to load from preset because some countries use something other than a '.' for the decimal separator
 
 "Uwe Tanger" <u.tanger (-at-) arcor (-dot-) de>
 * Specifying preset to load via command line

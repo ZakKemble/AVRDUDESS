@@ -325,14 +325,14 @@ namespace avrdudess
             signature="1e950f"; // ATmega328P
             lockbits.Add(signature, "LB1,LB2,BLB01,BLB02,BLB11,BLB12,,");
             fusebitslo.Add(signature, "CKSEL0,CKSEL1,CKSEL2,CKSEL3,SUT0,SUT1,CKOUT,CKDIV8");
-            fusebitshi.Add(signature, "BODLEVEL0,BODLEVEL1,BODLEVEL2,EESAVE,WDTON,,DWEN,RSTDISBL");
-            fusebitsext.Add(signature, "BOOTRST,BOOTSZ0,BOOTSZ1,,,,,");
+            fusebitshi.Add(signature, "BOOTRST,BOOTSZ0,BOOTSZ1,EESAVE,WDTON,,DWEN,RSTDISBL");
+            fusebitsext.Add(signature, "BODLEVEL0,BODLEVEL1,BODLEVEL2,,,,,");
 
             signature = "1e9514"; // ATmega328
             lockbits.Add(signature, "LB1,LB2,BLB01,BLB02,BLB11,BLB12,,");
             fusebitslo.Add(signature, "CKSEL0,CKSEL1,CKSEL2,CKSEL3,SUT0,SUT1,CKOUT,CKDIV8");
-            fusebitshi.Add(signature, "BODLEVEL0,BODLEVEL1,BODLEVEL2,EESAVE,WDTON,,DWEN,RSTDISBL");
-            fusebitsext.Add(signature, "BOOTRST,BOOTSZ0,BOOTSZ1,,,,,");
+            fusebitshi.Add(signature, "BOOTRST,BOOTSZ0,BOOTSZ1,EESAVE,WDTON,,DWEN,RSTDISBL");
+            fusebitsext.Add(signature, "BODLEVEL0,BODLEVEL1,BODLEVEL2,,,,,");
 
             signature="1e9602"; // ATmega64
             lockbits.Add(signature, "LB1,LB2,BLB01,BLB02,BLB11,BLB12,,");

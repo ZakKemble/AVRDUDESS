@@ -8,6 +8,7 @@
 
 using System;
 using System.Drawing;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -29,6 +30,8 @@ namespace avrdudess
         // No Dispatcher stuff in .NET 2.0, make a static reference to our main form
         public static Form UI;
 
+        private static TextBox console;
+
         public static void InvokeIfRequired<T>(this T c, Action<T> action)
             where T : Control
         {
@@ -43,6 +46,44 @@ namespace avrdudess
             {
 
             }
+        }
+
+        public static void consoleSet(TextBox textBox)
+        {
+            console = textBox;
+        }
+
+        // Write to console
+        public static void consoleWrite(string text)
+        {
+            // Credits:
+            // Uwe Tanger (Console in main window instead of separate window)
+            // Dean (Console in main window instead of separate window)
+
+            if(console != null)
+                console.InvokeIfRequired(c => { ((TextBox)c).AppendText(text); });
+        }
+
+        // Clear console
+        public static void consoleClear()
+        {
+            if(console != null)
+                console.InvokeIfRequired(c => { ((TextBox)c).Clear(); });
+        }
+
+        public static string fileSizeFormat(int value)
+        {
+            string[] sizes = { "B", "KB", "MB", "GB" };
+            float len = value;
+            int order = 0;
+            while (len >= 1024 && order + 1 < sizes.Length)
+            {
+                order++;
+                len /= 1024;
+            }
+
+            string result = String.Format("{0:0} {1}", (int)len, sizes[order]);
+            return result;
         }
     }
 
@@ -71,7 +112,7 @@ namespace avrdudess
 
     static class AssemblyData
     {
-        private static readonly Assembly assembly = Assembly.GetExecutingAssembly();
+        private static readonly Assembly assembly = Assembly.GetEntryAssembly();
 
         public static readonly string title = ((AssemblyTitleAttribute)Attribute.GetCustomAttribute(
                 assembly, typeof(AssemblyTitleAttribute), false))
@@ -84,5 +125,7 @@ namespace avrdudess
         public static readonly Version version = assembly.GetName().Version;
 
         public static readonly Icon icon = Icon.ExtractAssociatedIcon(assembly.Location);
+
+        public static readonly string directory = Path.GetDirectoryName(assembly.CodeBase);
     }
 }

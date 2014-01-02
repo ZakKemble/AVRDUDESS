@@ -43,14 +43,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.DirectoryServices" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppConfig.cs" />
+    <Compile Include="Avr-size.cs" />
     <Compile Include="Avrdude.cs" />
     <Compile Include="CmdLine.cs" />
     <Compile Include="Config.cs" />
@@ -67,6 +66,12 @@
     <Compile Include="FormFuseSelector.Designer.cs">
       <DependentUpon>FormFuseSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOptions.Designer.cs">
+      <DependentUpon>FormOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,11 +80,13 @@
     </Compile>
     <Compile Include="FusesAndLocks.cs" />
     <Compile Include="MCU.cs" />
+    <Compile Include="MemTypeFile.cs" />
     <Compile Include="Part.cs" />
     <Compile Include="Presets.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Programmer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Executable.cs" />
     <Compile Include="UpdateCheck.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="XmlFile.cs" />
@@ -89,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFuseSelector.resx">
       <DependentUpon>FormFuseSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOptions.resx">
+      <DependentUpon>FormOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpdate.resx">
       <DependentUpon>FormUpdate.cs</DependentUpon>
@@ -120,12 +130,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="avr-size.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="avrdude.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icon.ico" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

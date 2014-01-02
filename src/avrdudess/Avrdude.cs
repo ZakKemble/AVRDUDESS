@@ -8,13 +8,22 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Globalization;
 using System.IO;
-using System.Threading;
 
 namespace avrdudess
 {
-    class Avrdude
+    class DetectedMCUEventArgs : EventArgs
+    {
+        public MCU mcu { get; set; }
+
+        public DetectedMCUEventArgs(MCU m)
+        {
+            mcu = m;
+        }
+    }
+
+    class Avrdude : Executable
     {
         public class UsbAspFreq
         {
@@ -32,12 +41,6 @@ namespace avrdudess
 
         private const string FILE_AVRDUDE = "avrdude";
         private const string FILE_AVRDUDECONF = "avrdude.conf";
-
-        public enum OutputTo
-        {
-            Log,
-            Console
-        }
 
         public static readonly List<UsbAspFreq> USBaspFreqs = new List<UsbAspFreq>()
         {
@@ -67,21 +70,19 @@ namespace avrdudess
             new FileFormat("b", "Binary (reading only)")
         };
 
+        private enum ParseMemType
+        {
+            None,
+            Flash,
+            Eeprom
+        }
+
         private readonly List<Programmer> _programmers;
         private readonly List<MCU> _mcus;
-        private Process p;
-        private Action<object> onFinish;
-        private readonly Action<string> consoleWriteFunc;
-        private readonly Action consoleClearFunc;
-        private readonly Action processStartFunc;
-        private readonly Action processEndFunc;
-        private object param;
-        private readonly string binary;
-        private string _version;
-        private string outputLog;
-        private bool enableConsoleUpdate;
-        private bool processOutputStreamOpen;
-
+        public string version { get; private set; }
+        public event EventHandler OnVersionChange;
+        public event EventHandler<DetectedMCUEventArgs> OnDetectedMCU;
+        
         #region Getters and setters
 
         public List<Programmer> programmers
@@ -94,11 +95,6 @@ namespace avrdudess
             get { return _mcus; }
         }
 
-        public string version
-        {
-            get { return _version; }
-        }
-
         public string log
         {
             get { return outputLog; }
@@ -107,41 +103,22 @@ namespace avrdudess
         #endregion
 
         public Avrdude()
-            : this(null, null, null, null)
         {
-        }
-
-        public Avrdude(Action<string> consoleWriteFunc, Action consoleClearFunc, Action processStartFunc, Action processEndFunc)
-        {
-            // Maybe these Actions should be EventHandler things?
-            this.consoleWriteFunc = consoleWriteFunc;
-            this.consoleClearFunc = consoleClearFunc;
-            this.processStartFunc = processStartFunc;
-            this.processEndFunc = processEndFunc;
-
-            binary = searchForBinary();
-
-            if (binary == null)
-                MsgBox.error(FILE_AVRDUDE + " is missing!");
-
-            Thread t = new Thread(new ThreadStart(tConsoleUpdate));
-            t.IsBackground = true;
-            t.Start();
-
             _programmers    = new List<Programmer>();
             _mcus           = new List<MCU>();
-
-            load();
+            version         = "";
         }
 
-        private void load()
+        public void load()
         {
+            base.load(FILE_AVRDUDE, Config.Prop.avrdudeLoc);
+
             getVersion();
 
             _programmers.Clear();
             _mcus.Clear();
-            
-            loadConfig();
+
+            loadConfig(Config.Prop.avrdudeConfLoc);
 
             // Sort alphabetically
             _programmers.Sort();
@@ -149,49 +126,7 @@ namespace avrdudess
 
             // Add default
             _programmers.Insert(0, new Programmer("", "Select a programmer..."));
-            _mcus.Insert(0, new MCU("", "Select an MCU...", ""));
-        }
-
-        private string searchForBinary()
-        {
-            char pathSplit;
-            string binaryName = FILE_AVRDUDE;
-
-            // Get char that is used to split PATH entries
-            switch (Environment.OSVersion.Platform)
-            {
-                case PlatformID.Unix:
-                case PlatformID.MacOSX:
-                    pathSplit = ':';
-                    break;
-                case PlatformID.Win32NT:
-                case PlatformID.Win32S:
-                case PlatformID.Win32Windows:
-                case PlatformID.WinCE:
-                case PlatformID.Xbox:
-                    pathSplit = ';';
-                    binaryName += ".exe";
-                    break;
-                default:
-                    pathSplit = ';';
-                    break;
-            }
-
-            // File exists in application directory (mainly for Windows)
-            string app = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, binaryName);
-            if (File.Exists(app))
-                return app;
-
-            // Search PATHs
-            var paths = Environment.GetEnvironmentVariable("PATH");
-            foreach (var path in paths.Split(new char[] {pathSplit}, StringSplitOptions.RemoveEmptyEntries))
-            {
-                var fullPath = Path.Combine(path, binaryName);
-                if (File.Exists(fullPath))
-                    return fullPath;
-            }
-
-            return null;
+            _mcus.Insert(0, new MCU("", "Select an MCU..."));
         }
 
         // Get AVRDUDE version
@@ -199,44 +134,61 @@ namespace avrdudess
         // Simone Chifari (Getting AVRDUDE version and displaying in window title)
         private void getVersion()
         {
+            version = "";
+
             launch("", OutputTo.Log);
             waitForExit();
 
-            if (outputLog == null)
-                return;
-
-            string log = outputLog;
-            int pos = log.IndexOf("avrdude version");
-            if (pos > -1)
+            if (outputLog != null)
             {
-                log = log.Substring(pos);
-                _version = log.Substring(0, log.IndexOf(','));
+                string log = outputLog;
+                int pos = log.IndexOf("avrdude version");
+                if (pos > -1)
+                {
+                    log = log.Substring(pos);
+                    version = log.Substring(0, log.IndexOf(','));
+                }
             }
+
+            if (OnVersionChange != null)
+                OnVersionChange(this, EventArgs.Empty);
         }
 
         // Basic parsing of avrdude.conf to get programmers & MCUs
-        private void loadConfig()
+        private void loadConfig(string confLoc)
         {
             string conf_loc = null;
-            
-            // If on Unix check /etc/ first
-            if (Environment.OSVersion.Platform == PlatformID.Unix)
+
+            if (!String.IsNullOrEmpty(confLoc))
+                conf_loc = Path.Combine(confLoc, FILE_AVRDUDECONF);
+            else
             {
-                conf_loc = "/etc/" + FILE_AVRDUDECONF;
-                if (!File.Exists(conf_loc))
-                    conf_loc = null;
+                // If on Unix check /etc/ and /usr/local/etc/ first
+                if (Environment.OSVersion.Platform == PlatformID.Unix)
+                {
+                    conf_loc = "/etc/" + FILE_AVRDUDECONF;
+                    if (!File.Exists(conf_loc))
+                    {
+                        conf_loc = "/usr/local/etc/" + FILE_AVRDUDECONF;
+                        if (!File.Exists(conf_loc))
+                            conf_loc = null;
+                    }
+                }
+
+                if (conf_loc == null)
+                {
+                    conf_loc = Path.Combine(AssemblyData.directory, FILE_AVRDUDECONF);
+                    if (!File.Exists(conf_loc))
+                        conf_loc = Path.Combine(Directory.GetCurrentDirectory(), FILE_AVRDUDECONF);
+                }
             }
 
-            if (conf_loc == null)
+            // Config file not found
+            if (String.IsNullOrEmpty(conf_loc) || !File.Exists(conf_loc))
             {
-                conf_loc = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FILE_AVRDUDECONF);
-
-                // Config file not found
-                if (!File.Exists(conf_loc))
-                {
-                    MsgBox.error(FILE_AVRDUDECONF + " is missing!");
-                    return;
-                }
+                MsgBox.error(FILE_AVRDUDECONF + " is missing!");
+                //throw new System.IO.FileNotFoundException("File is missing", FILE_AVRDUDECONF);
+                return;
             }
 
             // Load config
@@ -262,8 +214,18 @@ namespace avrdudess
                 string s = lines[i].Trim();
 
                 bool isProgrammer = s.StartsWith("programmer");
-                if (!s.StartsWith("part") && !isProgrammer)
+                bool isPart = s.StartsWith("part");
+                if (!isPart && !isProgrammer)
                     continue;
+
+                // Get parent ID
+                string partentId = null;
+                if (isPart && s.Contains("parent"))
+                {
+                    string[] parts = s.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (parts.Length > 2)
+                        partentId = parts[2].Trim(trimChars);
+                }
 
                 i++; // next line
                 // Does line have id key?
@@ -296,12 +258,15 @@ namespace avrdudess
                 if (id.StartsWith(".") || desc.StartsWith("deprecated"))
                     continue;
 
-                // Here we get the MCU signature
+                // Here we get the MCU signature, flash and EEPROM sizes
 
                 string signature = "";
-
-                // Loop through lines looking for "signature"
-                // Abort if "part" or "programmer" is found, "signature" is probably missing for this MCU
+                int flash = -1;
+                int eeprom = -1;
+                ParseMemType memType = ParseMemType.None;
+                
+                // Loop through lines looking for "signature" and "memory"
+                // Abort if "part" or "programmer" is found
                 for (; i < lines.Length; i++)
                 {
                     s = lines[i].Trim();
@@ -313,6 +278,48 @@ namespace avrdudess
                         break;
                     }
 
+                    // Found memory section
+                    if (s.StartsWith("memory"))
+                    {
+                        pos = lines[i].IndexOf('"');
+                        if (pos > -1)
+                        {
+                            // What type of memory is this?
+                            string mem = lines[i].Substring(pos - 1).Trim(trimChars).ToLower();
+                            if (mem == "flash")
+                                memType = ParseMemType.Flash;
+                            else if (mem == "eeprom")
+                                memType = ParseMemType.Eeprom;
+                        }
+                    }
+                    else if (memType != ParseMemType.None)
+                    {
+                        // See if this line defines the memory size
+                        pos = lines[i].IndexOf('=');
+                        if (pos > -1 && lines[i].Substring(1, pos - 1).Trim() == "size")
+                        {
+                            // Get size value
+                            string memStr = lines[i].Substring(pos + 1).Trim(trimChars);
+
+                            // Parse to int
+                            int memTmp = 0;
+                            if (!int.TryParse(memStr, out memTmp))
+                            {
+                                // Probably hex
+                                if(memStr.StartsWith("0x"))
+                                    memStr = memStr.Substring(2); // Remove 0x
+                                int.TryParse(memStr, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out memTmp);
+                            }
+
+                            if (memType == ParseMemType.Flash)
+                                flash = memTmp;
+                            else if (memType == ParseMemType.Eeprom)
+                                eeprom = memTmp;
+
+                            memType = ParseMemType.None;
+                        }
+                    }
+
                     // Does line have signature key?
                     pos = lines[i].IndexOf('=');
                     if (pos > -1 && lines[i].Substring(1, pos - 1).Trim() == "signature")
@@ -322,172 +329,98 @@ namespace avrdudess
 
                         // Remove 0x and spaces from signature (0xAA 0xAA 0xAA -> AAAAAA)
                         signature = signature.Replace("0x", "").Replace(" ", "");
-
-                        break;
                     }
                 }
 
                 // Some formatting
                 desc = desc.ToUpper().Replace("XMEGA", "xmega").Replace("MEGA", "mega").Replace("TINY", "tiny");
 
+                // Find parent
+                MCU parent = null;
+                if (partentId != null)
+                    parent = _mcus.Find(m => m.name == partentId);
+
                 // Add to MCUs
-                _mcus.Add(new MCU(id, desc, signature));
+                _mcus.Add(new MCU(id, desc, signature, flash, eeprom, parent));
             }
         }
 
-        public void launch(string arg, Action<object> onFinish, object param, OutputTo outputTo = OutputTo.Console)
+        public new void launch(string args, Action<object> onFinish, object param, OutputTo outputTo = OutputTo.Console)
         {
-            if (isActive()) // Another process is active
-                return;
-            this.onFinish = onFinish;
-            this.param = param;
-            launch(arg, outputTo);
+            if (args.Trim().Length > 0)
+            {
+                // Add -u to command line (disables safe mode)
+                args = "-u " + args;
+
+                // Set conf file to use
+                string confLoc = Config.Prop.avrdudeConfLoc;
+                if (confLoc != "")
+                    args = "-C " + Path.Combine(confLoc, FILE_AVRDUDECONF) + " " + args;
+            }
+
+            if (outputTo == OutputTo.Console)
+                Util.consoleWrite("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ " + Environment.NewLine);
+
+            base.launch(args, onFinish, param, outputTo);
         }
 
         public void launch(string args, OutputTo outputTo = OutputTo.Console)
         {
-            if (isActive()) // Another process is active
-                return;
-            else if (!File.Exists(binary)) // avrdude is missing
-            {
-                consoleWrite(FILE_AVRDUDE + " is missing!" + Environment.NewLine);
-                return;
-            }
-
-            // Clear log
-            outputLog = "";
-            //consoleClear();
-
-            if (outputTo == OutputTo.Console)
-                consoleWrite("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ " + Environment.NewLine);
-
-            // Add -u to command line (disables safe mode)
-            if (args.Trim().Length > 0)
-                args = "-u " + args;
-
-            Process tmp = new Process();
-            tmp.StartInfo.FileName = binary;
-            tmp.StartInfo.Arguments = args;
-            tmp.StartInfo.CreateNoWindow = true;
-            tmp.StartInfo.UseShellExecute = false;
-            tmp.StartInfo.RedirectStandardOutput = true;
-            tmp.StartInfo.RedirectStandardError = true;
-            tmp.EnableRaisingEvents = true;
-            if (outputTo == OutputTo.Log)
-            {
-                //tmp.OutputDataReceived += new DataReceivedEventHandler(outputLogHandler);
-                tmp.ErrorDataReceived += new DataReceivedEventHandler(outputLogHandler);
-            }
-            tmp.Exited += new EventHandler(p_Exited);
-
-            try
-            {
-                tmp.Start();
-            }
-            catch (Exception ex)
-            {
-                MsgBox.error("Error starting AVRDUDE", ex);
-                return;
-            }
-
-            if (processStartFunc != null)
-                processStartFunc();
-
-            enableConsoleUpdate = (outputTo == OutputTo.Console);
-            p = tmp;
-
-            if (outputTo == OutputTo.Log)
-            {
-                processOutputStreamOpen = true;
-                //p.BeginOutputReadLine();
-                p.BeginErrorReadLine();
-            }
-            else
-                processOutputStreamOpen = false;
+            launch(args, null, null, outputTo);
         }
 
-        private void p_Exited(object sender, EventArgs e)
+        public void detectMCU(string args)
         {
-            if (processEndFunc != null)
-                processEndFunc();
-
-            if (onFinish != null)
-                onFinish(param);
-            onFinish = null;
+            launch(args, detectComplete, null, OutputTo.Log);
         }
 
-        // Progress bars don't work using async output, since it only fires when a new line is received
-        // Problem: Slow if the process outputs a lot of text
-        private void tConsoleUpdate()
+        // Got MCU info
+        private void detectComplete(object param)
         {
-            while (true)
+            string log = outputLog.ToLower();
+
+            // Look for string
+            int pos = log.IndexOf("device signature");
+            if (pos > -1)
             {
-                Thread.Sleep(25);
-                if (!enableConsoleUpdate)
-                    continue;
-                try
+                // Cut out line
+                log = log.Substring(pos);
+                log = log.Substring(0, log.IndexOf(Environment.NewLine));
+
+                // Split by =
+                string[] signature = log.Split(new char[] { '=' }, StringSplitOptions.RemoveEmptyEntries);
+
+                // Check split result
+                if (signature.Length == 2 && signature[0].Trim() == "device signature")
                 {
-                    if (p != null)
+                    // Remove 0x and spaces from signature
+                    string detectedSignature = signature[1].Trim(new char[] { ' ', '"', ';' }).Replace("0x", "").Replace(" ", "");
+
+                    // Found something
+                    if (detectedSignature != "")
                     {
-                        char[] buff = new char[256];
-                        if (p.StandardError.Read(buff, 0, buff.Length) > 0)
+                        // Look for MCU with same signature
+                        MCU m = mcus.Find(s => s.signature == detectedSignature);
+
+                        if (m != null) // Found
                         {
-                            string s = new string(buff);
-                            consoleWrite(s);
+                            if (OnDetectedMCU != null)
+                                OnDetectedMCU(this, new DetectedMCUEventArgs(m));
                         }
+                        else // Not found
+                        {
+                            // TODO: dont write to console here
+                            //m = new MCU(null, null, detectedSignature);
+                            Util.consoleWrite("Unknown signature " + detectedSignature + Environment.NewLine);
+                        }
+
+                        return;
                     }
                 }
-                catch (Exception)
-                {
-
-                }
             }
-        }
 
-        // This method is needed to properly capture the process output for logging
-        private void outputLogHandler(object sender, DataReceivedEventArgs e)
-        {
-            string s = e.Data;
-            if (s != null)
-                outputLog += s.Replace("\0", String.Empty) + Environment.NewLine;
-            else // A null is sent when the stream is closed
-                processOutputStreamOpen = false;
-        }
-
-        private bool isActive()
-        {
-            return (p != null && !p.HasExited);
-        }
-        
-        public void kill()
-        {
-            if (p != null && !p.HasExited)
-            {
-                p.Kill();
-                consoleWrite(Environment.NewLine + "AVRDUDE killed" + Environment.NewLine);
-            }
-        }
-
-        public void waitForExit()
-        {
-            if (p != null && !p.HasExited)
-                p.WaitForExit();
-
-            // There might still be data in a buffer somewhere that needs to be read by the output handler even after the process has ended
-            while (processOutputStreamOpen)
-                Thread.Sleep(20);
-        }
-
-        private void consoleWrite(string text)
-        {
-            if (consoleWriteFunc != null)
-                consoleWriteFunc(text);
-        }
-
-        private void consoleClear()
-        {
-            if (consoleClearFunc != null)
-                consoleClearFunc();
+            if (OnDetectedMCU != null)
+                OnDetectedMCU(this, new DetectedMCUEventArgs(null));
         }
     }
 }

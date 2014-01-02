@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 
 namespace avrdudess
 {
-    abstract class XmlFile<T>
+    public abstract class XmlFile<T>
     {
         protected string fileLocation { get; private set; }
         private string name;
@@ -34,7 +34,8 @@ namespace avrdudess
             string[] locations = new string[]
             {
                 makePath(Environment.SpecialFolder.CommonApplicationData, fileName), // CommonAppData
-                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName) // Program .exe directory
+                Path.Combine(AssemblyData.directory, fileName), // Program .exe directory
+                Path.Combine(Directory.GetCurrentDirectory(), fileName) // Working directory
             };
 
             foreach (string location in locations)
@@ -72,6 +73,8 @@ namespace avrdudess
         protected void write()
         {
             TextWriter tw = null;
+
+            // TODO: move these try-catches somewhere outside this class?
             try
             {
                 // Make sure directory exists

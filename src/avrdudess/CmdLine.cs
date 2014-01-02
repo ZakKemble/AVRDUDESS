@@ -12,6 +12,7 @@ using System.Text;
 namespace avrdudess
 {
 	// Move this class to Avrdude class or somthing instead of it being on its own?
+    // Maybe have stuff like setMCU("m328") in Avrdude class and do away with this one?
     // TODO: Improve this class
     class CmdLine
     {
@@ -29,11 +30,11 @@ namespace avrdudess
             sb.Length = 0;
             sb.Capacity = 0;
 
-            if (mainForm.prog.Length > 0)
-                cmdLineOption("c", mainForm.prog);
+            if (mainForm.prog != null && mainForm.prog.name.Length > 0)
+                cmdLineOption("c", mainForm.prog.name);
 
-            if (mainForm.mcu.Length > 0 && addMCU)
-                cmdLineOption("p", mainForm.mcu);
+            if (mainForm.mcu != null && mainForm.mcu.name.Length > 0 && addMCU)
+                cmdLineOption("p", mainForm.mcu.name);
 
             if (mainForm.port.Length > 0)
                 cmdLineOption("P", mainForm.port);
@@ -58,6 +59,7 @@ namespace avrdudess
             if (mainForm.additionalSettings.Length > 0)
                 sb.Append(mainForm.additionalSettings + " ");
 
+            // AVRDUDE needs -p defined to work, so just set m8
             cmdLineOption("p", "m8");
 
             return sb.ToString();

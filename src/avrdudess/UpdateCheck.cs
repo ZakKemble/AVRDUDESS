@@ -15,41 +15,38 @@ using System.Xml;
 
 namespace avrdudess
 {
-    class UpdateCheck
+    sealed class UpdateCheck
     {
         private const string UPDATE_ADDR = "http://versions.zakkemble.co.uk/avrdudess.xml";
 
-        private Config config;
+        public static readonly UpdateCheck check = new UpdateCheck();
         private long now;
         private Version newVersion;
 
-        public UpdateCheck(Config config)
-        {
-            this.config = config;
+        private UpdateCheck() { }
 
+        public void checkNow()
+        {
             now = (long)((DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds);
 
             // Check once a day
-            if (now - config.updateCheck > TimeSpan.FromDays(1).TotalSeconds)
-                checkNow();
-        }
-
-        private void checkNow()
-        {
-            Thread t = new Thread(new ThreadStart(tUpdate));
-            t.IsBackground = true;
-            t.Start();
+            if (now - Config.Prop.updateCheck > TimeSpan.FromDays(1).TotalSeconds)
+            {
+                Thread t = new Thread(new ThreadStart(tUpdate));
+                t.IsBackground = true;
+                t.Start();
+            }
         }
 
         private void skipVersion()
         {
             if(newVersion != null)
-                config.skipVersion = newVersion;
+                Config.Prop.skipVersion = newVersion;
         }
 
         private void saveTime()
         {
-            config.updateCheck = now;
+            Config.Prop.updateCheck = now;
         }
 
         private void tUpdate()
@@ -127,7 +124,7 @@ namespace avrdudess
                 saveTime();
 
                 // Notify of new update
-                if (config.skipVersion != newVersion && currentVersion.CompareTo(newVersion) < 0)
+                if (Config.Prop.skipVersion != newVersion && currentVersion.CompareTo(newVersion) < 0)
                 {
                     string newVersionStr = newVersion.ToString() + " (" + new DateTime(1970, 1, 1).AddSeconds(date).ToLocalTime().ToShortDateString() + ")";
 

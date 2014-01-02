@@ -8,6 +8,7 @@
 
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace avrdudess
@@ -16,24 +17,38 @@ namespace avrdudess
     // Simone Chifari (Fuse selector)
     public partial class FormFuseSelector : Form
     {
-        private FusesList fl = new FusesList();
-        private CheckBox[] cbLBits;
-        private Button[] btnLFuse;
-        private Button[] btnHFuse;
-        private Button[] btnEFuse;
-        private Label[] lbLB;
-        private Label[] lbLF;
-        private Label[] lbHF;
-        private Label[] lbEF;
-
+        private readonly CheckBox[] cbLBits;
+        private readonly Button[] btnLFuse;
+        private readonly Button[] btnHFuse;
+        private readonly Button[] btnEFuse;
+        private readonly Label[] lbLB;
+        private readonly Label[] lbLF;
+        private readonly Label[] lbHF;
+        private readonly Label[] lbEF;
         private string[] newFuses;
-        private bool closeOk = false;
 
         public FormFuseSelector()
         {
             InitializeComponent();
 
             Icon = AssemblyData.icon;
+
+            cbLBits = new CheckBox[] { cbLB0, cbLB1, cbLB2, cbLB3, cbLB4, cbLB5, cbLB6, cbLB7 };
+            btnLFuse = new Button[] { btnLF0, btnLF1, btnLF2, btnLF3, btnLF4, btnLF5, btnLFuse6, btnLFuse7 };
+            btnHFuse = new Button[] { btnHF0, btnHF1, btnHF2, btnHF3, btnHF4, btnHF5, btnHF6, btnHF7 };
+            btnEFuse = new Button[] { btnEF0, btnEF1, btnEF2, btnEF3, btnEF4, btnEF5, btnEF6, btnEF7 };
+            lbLB = new Label[] { lbLB0, lbLB1, lbLB2, lbLB3, lbLB4, lbLB5, lbLB6, lbLB7 };
+            lbLF = new Label[] { lbLFuse0, lbLFuse1, lbLFuse2, lbLFuse3, lbLFuse4, lbLFuse5, lbLFuse6, lbLFuse7 };
+            lbHF = new Label[] { lbHFuse0, lbHFuse1, lbHFuse2, lbHFuse3, lbHFuse4, lbHFuse5, lbHFuse6, lbHFuse7 };
+            lbEF = new Label[] { lbEFuse0, lbEFuse1, lbEFuse2, lbEFuse3, lbEFuse4, lbEFuse5, lbEFuse6, lbEFuse7 };
+
+            for (int i = 7; i >= 0; i--)
+            {
+                btnLFuse[i].Click += bits_Click;
+                btnHFuse[i].Click += bits_Click;
+                btnEFuse[i].Click += bits_Click;
+                cbLBits[i].Click += bits_Click;
+            }
         }
 
         private void FormFusesAndLocks_Load(object sender, EventArgs e)
@@ -45,21 +60,12 @@ namespace avrdudess
         {
             Text = "Fuse & lock bits: " + mcu.fullName + " (" + mcu.signature.ToUpper() + ")";
 
-            cbLBits = new CheckBox[] { cbLB0, cbLB1, cbLB2, cbLB3, cbLB4, cbLB5, cbLB6, cbLB7 };
-            btnLFuse = new Button[] { btnLF0, btnLF1, btnLF2, btnLF3, btnLF4, btnLF5, btnLFuse6, btnLFuse7 };
-            btnHFuse = new Button[] { btnHF0, btnHF1, btnHF2, btnHF3, btnHF4, btnHF5, btnHF6, btnHF7 };
-            btnEFuse = new Button[] { btnEF0, btnEF1, btnEF2, btnEF3, btnEF4, btnEF5, btnEF6, btnEF7 };
-            lbLB = new Label[] { lbLB0, lbLB1, lbLB2, lbLB3, lbLB4, lbLB5, lbLB6, lbLB7 };
-            lbLF = new Label[] { lbLFuse0, lbLFuse1, lbLFuse2, lbLFuse3, lbLFuse4, lbLFuse5, lbLFuse6, lbLFuse7 };
-            lbHF = new Label[] { lbHFuse0, lbHFuse1, lbHFuse2, lbHFuse3, lbHFuse4, lbHFuse5, lbHFuse6, lbHFuse7 };
-            lbEF = new Label[] { lbEFuse0, lbEFuse1, lbEFuse2, lbEFuse3, lbEFuse4, lbEFuse5, lbEFuse6, lbEFuse7 };
+            lblCarefulNow.Visible = !FusesList.fl.isSupported(mcu.signature);
 
-            lblCarefulNow.Visible = !fl.isSupported(mcu.signature);
-
-            string[] lfd = fl.getLfuse(mcu.signature).Split(',');
-            string[] hfd = fl.getHfuse(mcu.signature).Split(',');
-            string[] efd = fl.getEfuse(mcu.signature).Split(',');
-            string[] lbd = fl.getLockBits(mcu.signature).Split(',');
+            string[] lfd = FusesList.fl.getLfuse(mcu.signature).Split(',');
+            string[] hfd = FusesList.fl.getHfuse(mcu.signature).Split(',');
+            string[] efd = FusesList.fl.getEfuse(mcu.signature).Split(',');
+            string[] lbd = FusesList.fl.getLockBits(mcu.signature).Split(',');
 
             string lf = hex2binary(fuses[0]);
             string hf = hex2binary(fuses[1]);
@@ -68,11 +74,6 @@ namespace avrdudess
 
             for (int i = 7; i >= 0; i--)
             {
-                btnLFuse[i].Click += new EventHandler(bits_Click);
-                btnHFuse[i].Click += new EventHandler(bits_Click);
-                btnEFuse[i].Click += new EventHandler(bits_Click);
-                cbLBits[i].Click += new EventHandler(bits_Click);
-
                 btnLFuse[i].Text = lf.Substring(7 - i, 1);
                 btnHFuse[i].Text = hf.Substring(7 - i, 1);
                 btnEFuse[i].Text = ef.Substring(7 - i, 1);
@@ -91,9 +92,7 @@ namespace avrdudess
 
             generateFusesAndLocks();
 
-            ShowDialog();
-
-            if (closeOk)
+            if(ShowDialog() == DialogResult.OK)
                 return newFuses;
 
             return null;
@@ -143,33 +142,16 @@ namespace avrdudess
             return String.Format("{0:X2}", Convert.ToInt32(value, 2));
         }
 
-        private string hex2binary(string hexvalue)
+        private string hex2binary(string hexValue)
         {
             int value;
-            try
-            {
-                value = Convert.ToInt32(hexvalue, 16);
-            }
-            catch (Exception)
-            {
+            if (!int.TryParse(hexValue, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out value))
                 value = 0xFF;
-            }
 
             string binary = Convert.ToString(value, 2);
             binary = binary.PadLeft(8, '0');
 
             return binary;
-        }
-
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            closeOk = true;
-            Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }

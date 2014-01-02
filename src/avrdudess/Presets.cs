@@ -32,14 +32,14 @@ namespace avrdudess
         {
             get { return presetList; }
         }
-        
-        public Presets(Form1 mainForm)
-            : base(FILE_PRESETS, "presets")
+
+        public Presets(Form1 mainForm, string xmlFile = FILE_PRESETS)
+            : base(xmlFile, "presets")
         {
             this.mainForm = mainForm;
             presetList = new List<PresetData>();
         }
-
+        
         public void setDataSource(ComboBox cb, EventHandler handler)
         {
             cb.SelectedIndexChanged -= handler;
@@ -75,7 +75,7 @@ namespace avrdudess
         private void bumpDefault()
         {
             int idx = presetList.FindIndex(s => s.name == "Default");
-            if (idx > -1)
+            if (idx > 0)
             {
                 PresetData p = presetList[idx];
                 presetList.RemoveAt(idx);
@@ -101,13 +101,12 @@ namespace avrdudess
 
             // Load presets from XML
             read();
-            if (presetList == null)
+            if (presetList == null) // Failed to load
                 presetList = new List<PresetData>();
         }
     }
 
-    [Serializable]
-    [XmlType(TypeName = "Preset")] // For backwards compatability with old (<v1.3) presets.xml
+    [XmlType(TypeName = "Preset")] // For backwards compatability with old (<v2.0) presets.xml
     public class PresetData
     {
         public string name { get; set; }
@@ -145,8 +144,8 @@ namespace avrdudess
         {
             this.name = name;
 
-            programmer = mainForm.prog;
-            mcu = mainForm.mcu;
+            programmer = (mainForm.prog != null) ? mainForm.prog.name : "";
+            mcu = (mainForm.mcu != null) ? mainForm.mcu.name : "";
             port = mainForm.port;
             baud = mainForm.baudRate;
             bitclock = mainForm.bitClock;
@@ -173,8 +172,8 @@ namespace avrdudess
 
         public void load(Form1 mainForm)
         {
-            mainForm.prog = programmer;
-            mainForm.mcu = mcu;
+            mainForm.prog = new Programmer(programmer);
+            mainForm.mcu = new MCU(mcu);
             mainForm.port = port;
             mainForm.baudRate = baud;
             mainForm.bitClock = bitclock;

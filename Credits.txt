@@ -21,3 +21,6 @@ Ideas & code credits:
 "Dean Canafranca" <deanc338 (-at-) yahoo (-dot-) com (-dot-) sg>
 * Console in main window instead of separate window
 * Buttons to separately write/read the fuses/locks
+
+"Brutus"
+* Fixing incorrect fuse bits for ATmega328(P)

@@ -1,3 +1,12 @@
+2014-01-02 (v2.2):
+	- Fixed USBasp frequency not loading from presets for some users
+	- Fixed incorrect fuse bits for ATmega328(P)
+	- Flash and EEPROM sizes of selected MCU is shown
+	- Flash and EEPROM space used is shown as a little usage bar above .hex/.eep file locations and in console
+	- Fuse bit names have been moved to an external file (bits.xml)
+	- Added options window
+	- Now shows log if MCU autodetect failed
+
 2013-11-20 (v2.1):
 	- No longer need to run as administrator to have the config and presets save correctly
 	- Fixed some typos

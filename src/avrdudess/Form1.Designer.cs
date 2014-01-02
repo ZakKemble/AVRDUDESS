@@ -52,6 +52,7 @@
             this.cmbPort = new System.Windows.Forms.ComboBox();
             this.txtCmdLine = new System.Windows.Forms.TextBox();
             this.gbEEPROMFile = new System.Windows.Forms.GroupBox();
+            this.pbEEPROMUsage = new System.Windows.Forms.PictureBox();
             this.btnEEPROMGo = new System.Windows.Forms.Button();
             this.pEEPROMOp = new System.Windows.Forms.Panel();
             this.rbEEPROMOpVerify = new System.Windows.Forms.RadioButton();
@@ -62,6 +63,7 @@
             this.btnEEPROMBrowse = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.gbFlashFile = new System.Windows.Forms.GroupBox();
+            this.pbFlashUsage = new System.Windows.Forms.PictureBox();
             this.btnFlashGo = new System.Windows.Forms.Button();
             this.pFlashOp = new System.Windows.Forms.Panel();
             this.rbFlashOpVerify = new System.Windows.Forms.RadioButton();
@@ -71,7 +73,6 @@
             this.cmbFlashFormat = new System.Windows.Forms.ComboBox();
             this.btnFlashBrowse = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
-            this.cbShowToolTips = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnWriteLock = new System.Windows.Forms.Button();
@@ -106,11 +107,18 @@
             this.tsmiClear = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDetect = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.lblFlashSize = new System.Windows.Forms.Label();
+            this.lblEEPROMSize = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnOptions = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbEEPROMFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEEPROMUsage)).BeginInit();
             this.pEEPROMOp.SuspendLayout();
             this.gbFlashFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFlashUsage)).BeginInit();
             this.pFlashOp.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -349,6 +357,7 @@
             // 
             // gbEEPROMFile
             // 
+            this.gbEEPROMFile.Controls.Add(this.pbEEPROMUsage);
             this.gbEEPROMFile.Controls.Add(this.btnEEPROMGo);
             this.gbEEPROMFile.Controls.Add(this.pEEPROMOp);
             this.gbEEPROMFile.Controls.Add(this.txtEEPROMFile);
@@ -361,6 +370,14 @@
             this.gbEEPROMFile.TabIndex = 5;
             this.gbEEPROMFile.TabStop = false;
             this.gbEEPROMFile.Text = "EEPROM";
+            // 
+            // pbEEPROMUsage
+            // 
+            this.pbEEPROMUsage.Location = new System.Drawing.Point(6, 14);
+            this.pbEEPROMUsage.Name = "pbEEPROMUsage";
+            this.pbEEPROMUsage.Size = new System.Drawing.Size(388, 10);
+            this.pbEEPROMUsage.TabIndex = 58;
+            this.pbEEPROMUsage.TabStop = false;
             // 
             // btnEEPROMGo
             // 
@@ -456,6 +473,7 @@
             // 
             // gbFlashFile
             // 
+            this.gbFlashFile.Controls.Add(this.pbFlashUsage);
             this.gbFlashFile.Controls.Add(this.btnFlashGo);
             this.gbFlashFile.Controls.Add(this.pFlashOp);
             this.gbFlashFile.Controls.Add(this.txtFlashFile);
@@ -468,6 +486,14 @@
             this.gbFlashFile.TabIndex = 4;
             this.gbFlashFile.TabStop = false;
             this.gbFlashFile.Text = "Flash";
+            // 
+            // pbFlashUsage
+            // 
+            this.pbFlashUsage.Location = new System.Drawing.Point(6, 9);
+            this.pbFlashUsage.Name = "pbFlashUsage";
+            this.pbFlashUsage.Size = new System.Drawing.Size(388, 10);
+            this.pbFlashUsage.TabIndex = 57;
+            this.pbFlashUsage.TabStop = false;
             // 
             // btnFlashGo
             // 
@@ -560,19 +586,6 @@
             this.label11.Size = new System.Drawing.Size(39, 13);
             this.label11.TabIndex = 31;
             this.label11.Text = "Format";
-            // 
-            // cbShowToolTips
-            // 
-            this.cbShowToolTips.AutoSize = true;
-            this.cbShowToolTips.Checked = true;
-            this.cbShowToolTips.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbShowToolTips.Location = new System.Drawing.Point(322, 369);
-            this.cbShowToolTips.Name = "cbShowToolTips";
-            this.cbShowToolTips.Size = new System.Drawing.Size(89, 17);
-            this.cbShowToolTips.TabIndex = 38;
-            this.cbShowToolTips.Text = "Show tooltips";
-            this.cbShowToolTips.UseVisualStyleBackColor = true;
-            this.cbShowToolTips.CheckedChanged += new System.EventHandler(this.cbShowToolTips_CheckedChanged);
             // 
             // groupBox4
             // 
@@ -862,34 +875,35 @@
             this.tsmiCopy,
             this.tsmiClear});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(120, 70);
+            this.contextMenuStrip1.ShowImageMargin = false;
+            this.contextMenuStrip1.Size = new System.Drawing.Size(95, 70);
             // 
             // tsmiSelectAll
             // 
             this.tsmiSelectAll.Name = "tsmiSelectAll";
-            this.tsmiSelectAll.Size = new System.Drawing.Size(119, 22);
+            this.tsmiSelectAll.Size = new System.Drawing.Size(94, 22);
             this.tsmiSelectAll.Text = "Select all";
             this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
             // 
             // tsmiCopy
             // 
             this.tsmiCopy.Name = "tsmiCopy";
-            this.tsmiCopy.Size = new System.Drawing.Size(119, 22);
+            this.tsmiCopy.Size = new System.Drawing.Size(94, 22);
             this.tsmiCopy.Text = "Copy";
             this.tsmiCopy.Click += new System.EventHandler(this.tsmiCopy_Click);
             // 
             // tsmiClear
             // 
             this.tsmiClear.Name = "tsmiClear";
-            this.tsmiClear.Size = new System.Drawing.Size(119, 22);
+            this.tsmiClear.Size = new System.Drawing.Size(94, 22);
             this.tsmiClear.Text = "Clear";
             this.tsmiClear.Click += new System.EventHandler(this.tsmiClear_Click);
             // 
             // btnDetect
             // 
-            this.btnDetect.Location = new System.Drawing.Point(6, 57);
+            this.btnDetect.Location = new System.Drawing.Point(98, 61);
             this.btnDetect.Name = "btnDetect";
-            this.btnDetect.Size = new System.Drawing.Size(167, 23);
+            this.btnDetect.Size = new System.Drawing.Size(75, 23);
             this.btnDetect.TabIndex = 53;
             this.btnDetect.Text = "Detect";
             this.btnDetect.UseVisualStyleBackColor = true;
@@ -897,6 +911,10 @@
             // 
             // groupBox9
             // 
+            this.groupBox9.Controls.Add(this.lblFlashSize);
+            this.groupBox9.Controls.Add(this.lblEEPROMSize);
+            this.groupBox9.Controls.Add(this.label2);
+            this.groupBox9.Controls.Add(this.label3);
             this.groupBox9.Controls.Add(this.cmbMCU);
             this.groupBox9.Controls.Add(this.btnDetect);
             this.groupBox9.Location = new System.Drawing.Point(449, 12);
@@ -906,13 +924,59 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "MCU (-p)";
             // 
+            // lblFlashSize
+            // 
+            this.lblFlashSize.AutoSize = true;
+            this.lblFlashSize.Location = new System.Drawing.Point(59, 46);
+            this.lblFlashSize.Name = "lblFlashSize";
+            this.lblFlashSize.Size = new System.Drawing.Size(10, 13);
+            this.lblFlashSize.TabIndex = 57;
+            this.lblFlashSize.Text = "-";
+            // 
+            // lblEEPROMSize
+            // 
+            this.lblEEPROMSize.AutoSize = true;
+            this.lblEEPROMSize.Location = new System.Drawing.Point(59, 67);
+            this.lblEEPROMSize.Name = "lblEEPROMSize";
+            this.lblEEPROMSize.Size = new System.Drawing.Size(10, 13);
+            this.lblEEPROMSize.TabIndex = 56;
+            this.lblEEPROMSize.Text = "-";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 67);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 55;
+            this.label2.Text = "EEPROM:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 46);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 54;
+            this.label3.Text = "Flash:";
+            // 
+            // btnOptions
+            // 
+            this.btnOptions.Location = new System.Drawing.Point(336, 365);
+            this.btnOptions.Name = "btnOptions";
+            this.btnOptions.Size = new System.Drawing.Size(75, 23);
+            this.btnOptions.TabIndex = 55;
+            this.btnOptions.Text = "Options";
+            this.btnOptions.UseVisualStyleBackColor = true;
+            this.btnOptions.Click += new System.EventHandler(this.btnOptions_Click);
+            // 
             // Form1
             // 
-            this.AcceptButton = this.btnProgram;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnForceStop;
             this.ClientSize = new System.Drawing.Size(644, 608);
+            this.Controls.Add(this.btnOptions);
             this.Controls.Add(this.gbEEPROMFile);
             this.Controls.Add(this.gbFlashFile);
             this.Controls.Add(this.groupBox9);
@@ -923,7 +987,6 @@
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.cbShowToolTips);
             this.Controls.Add(this.txtCmdLine);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -941,10 +1004,12 @@
             this.groupBox2.PerformLayout();
             this.gbEEPROMFile.ResumeLayout(false);
             this.gbEEPROMFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEEPROMUsage)).EndInit();
             this.pEEPROMOp.ResumeLayout(false);
             this.pEEPROMOp.PerformLayout();
             this.gbFlashFile.ResumeLayout(false);
             this.gbFlashFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFlashUsage)).EndInit();
             this.pFlashOp.ResumeLayout(false);
             this.pFlashOp.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -957,6 +1022,7 @@
             this.statusBar1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -980,7 +1046,6 @@
         private System.Windows.Forms.TextBox txtCmdLine;
         private System.Windows.Forms.Button btnFlashBrowse;
         private System.Windows.Forms.TextBox txtFlashFile;
-        private System.Windows.Forms.CheckBox cbShowToolTips;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btnReadFuses;
@@ -1041,6 +1106,13 @@
         private System.Windows.Forms.Button btnWriteLock;
         private System.Windows.Forms.Button btnWriteFuses;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblFlashSize;
+        private System.Windows.Forms.Label lblEEPROMSize;
+        private System.Windows.Forms.PictureBox pbFlashUsage;
+        private System.Windows.Forms.PictureBox pbEEPROMUsage;
+        private System.Windows.Forms.Button btnOptions;
     }
 }
 

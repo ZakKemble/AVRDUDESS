@@ -2,12 +2,12 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "AVRDUDESS"
-#define MyAppVersion "2.1"
+#define MyAppVersion "2.2"
 #define MyAppPublisher "Zak Kemble"
 #define MyAppURL "http://zakkemble.co.uk/"
 #define MyAppExeName "avrdudess.exe"
 #define MyAppContact "contact@zakkemble.co.uk"
-#define MyAppCopyright "Copyright © 2013 Zak Kemble"
+#define MyAppCopyright "Copyright © 2014 Zak Kemble"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -48,6 +48,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Source: "avrdudess.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "avrdude.conf"; DestDir: "{app}"; Flags: ignoreversion
 Source: "avrdude.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "avr-size.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Changelog.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Credits.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "License.txt"; DestDir: "{app}"; Flags: ignoreversion
@@ -55,6 +56,7 @@ Source: "Readme.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "TODO.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "config.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "presets.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "bits.xml"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

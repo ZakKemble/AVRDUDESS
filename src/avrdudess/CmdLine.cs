@@ -11,7 +11,7 @@ using System.Text;
 
 namespace avrdudess
 {
-	// Move this class to Avrdude class or somthing instead of it being on its own?
+    // Move this class to Avrdude class or somthing instead of it being on its own?
     // Maybe have stuff like setMCU("m328") in Avrdude class and do away with this one?
     // TODO: Improve this class
     class CmdLine
@@ -94,19 +94,27 @@ namespace avrdudess
         public string generateWriteFuses()
         {
             generateMain();
-
             if (mainForm.additionalSettings.Length > 0)
                 sb.Append(mainForm.additionalSettings + " ");
 
             if (mainForm.lowFuse.Length > 0)
+            {
+                if (mainForm.lowFuse.Length == 2)
+                    mainForm.lowFuse = "0x" + mainForm.lowFuse.ToUpper();
                 cmdLineOption("U", "lfuse:w:" + mainForm.lowFuse + ":m");
-
+            }
             if (mainForm.highFuse.Length > 0)
+            {
+                if (mainForm.highFuse.Length == 2)
+                    mainForm.highFuse = "0x" + mainForm.highFuse.ToUpper();
                 cmdLineOption("U", "hfuse:w:" + mainForm.highFuse + ":m");
-
+            }
             if (mainForm.exFuse.Length > 0)
+            {
+                if (mainForm.exFuse.Length == 2)
+                    mainForm.exFuse = "0x" + mainForm.exFuse.ToUpper();
                 cmdLineOption("U", "efuse:w:" + mainForm.exFuse + ":m");
-
+            }
             return sb.ToString();
         }
 
@@ -186,7 +194,7 @@ namespace avrdudess
             if (mainForm.doNotWrite)
                 cmdLineOption("n");
 
-            if(mainForm.additionalSettings.Length > 0)
+            if (mainForm.additionalSettings.Length > 0)
                 sb.Append(mainForm.additionalSettings + " ");
 
             if (mainForm.flashFile.Length > 0)
@@ -197,17 +205,10 @@ namespace avrdudess
 
             if (mainForm.setFuses)
             {
-                if (mainForm.lowFuse.Length > 0)
-                    cmdLineOption("U", "lfuse:w:" + mainForm.lowFuse + ":m");
-
-                if (mainForm.highFuse.Length > 0)
-                    cmdLineOption("U", "hfuse:w:" + mainForm.highFuse + ":m");
-
-                if (mainForm.exFuse.Length > 0)
-                    cmdLineOption("U", "efuse:w:" + mainForm.exFuse + ":m");
+                generateWriteFuses();
             }
 
-            if(mainForm.setLock && mainForm.lockSetting.Length > 0)
+            if (mainForm.setLock && mainForm.lockSetting.Length > 0)
                 cmdLineOption("U", "lock:w:" + mainForm.lockSetting + ":m");
 
             mainForm.cmdBox = sb.ToString();

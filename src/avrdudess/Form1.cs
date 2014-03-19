@@ -368,7 +368,7 @@ namespace avrdudess
             ToolTips.SetToolTip(pEEPROMOp, "");
             ToolTips.SetToolTip(cbForce, "Skip signature check");
             ToolTips.SetToolTip(cbNoVerify, "Don't verify after writing");
-            ToolTips.SetToolTip(cbDisableFlashErase, "Don't erase flash before writing");
+            ToolTips.SetToolTip(cbDisableFlashErase, "Don't erase flash before writing" + Environment.NewLine + "Use this if you only want to update EEPROM");
             ToolTips.SetToolTip(cbEraseFlashEEPROM, "Erase both flash and EEPROM");
             ToolTips.SetToolTip(cbDoNotWrite, "Don't write anything, used for debugging AVRDUDE");
             ToolTips.SetToolTip(txtLFuse, "Low fuse");
@@ -379,6 +379,8 @@ namespace avrdudess
             ToolTips.SetToolTip(btnEEPROMGo, "Only write/read/verify EEPROM");
             ToolTips.SetToolTip(btnWriteFuses, "Write fuses now");
             ToolTips.SetToolTip(btnWriteLock, "Write lock now");
+            ToolTips.SetToolTip(btnReadFuses, "Read fuses now");
+            ToolTips.SetToolTip(btnReadLock, "Read lock now");
             ToolTips.SetToolTip(cbSetFuses, "Write fuses when programming");
             ToolTips.SetToolTip(cbSetLock, "Write lock when programming");
 
@@ -413,7 +415,7 @@ namespace avrdudess
             string avrdudeVersion = (avrdude != null) ? avrdude.version : "";
             if (avrdudeVersion == "")
                 avrdudeVersion = "?";
-            Text = String.Format("{0} v{1}.{2} ({3})", AssemblyData.title, AssemblyData.version.Major, AssemblyData.version.Minor, avrdudeVersion);
+            Text = String.Format("{0} {1}.{2} ({3})", AssemblyData.title, AssemblyData.version.Major, AssemblyData.version.Minor, avrdudeVersion);
         }
 
         // Set combo box data source etc
@@ -679,7 +681,7 @@ namespace avrdudess
                 foreach (string p in ports)
                     cmbPort.Items.Add(p);
 
-                cmbPort.Items.Add("USB");
+                cmbPort.Items.Add("usb");
                 cmbPort.Items.Add("LPT1");
                 cmbPort.Items.Add("LPT2");
                 cmbPort.Items.Add("LPT3");

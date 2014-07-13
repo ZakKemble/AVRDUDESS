@@ -24,3 +24,6 @@ Ideas & code credits:
 
 "Brutus"
 * Fixing incorrect fuse bits for ATmega328(P)
+
+"adnbr" <https://github.com/adnbr>
+* Automatically prepend 0x to fuse hex values

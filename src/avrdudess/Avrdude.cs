@@ -355,7 +355,7 @@ namespace avrdudess
                 // Set conf file to use
                 string confLoc = Config.Prop.avrdudeConfLoc;
                 if (confLoc != "")
-                    args = "-C " + Path.Combine(confLoc, FILE_AVRDUDECONF) + " " + args;
+                    args = "-C \"" + Path.Combine(confLoc, FILE_AVRDUDECONF) + "\" " + args;
             }
 
             if (outputTo == OutputTo.Console)

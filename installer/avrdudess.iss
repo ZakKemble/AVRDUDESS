@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "AVRDUDESS"
-#define MyAppVersion "2.2"
+#define MyAppVersion "2.3"
 #define MyAppPublisher "Zak Kemble"
 #define MyAppURL "http://zakkemble.co.uk/"
 #define MyAppExeName "avrdudess.exe"
@@ -36,7 +36,7 @@ SolidCompression=yes
 VersionInfoVersion={#MyAppVersion}
 WizardSmallImageFile=wizardsmall.bmp
 UninstallDisplayIcon={app}\{#MyAppExeName}
-
+               
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 

@@ -348,6 +348,7 @@
             // 
             // txtCmdLine
             // 
+            this.txtCmdLine.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCmdLine.Location = new System.Drawing.Point(12, 394);
             this.txtCmdLine.Name = "txtCmdLine";
             this.txtCmdLine.ReadOnly = true;

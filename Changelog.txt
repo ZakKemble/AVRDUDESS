@@ -1,3 +1,9 @@
+2014-07-13 (v2.3):
+	- Updated AVRDUDE to v6.1
+	- USB option in port drop down list is now lower case
+	- Automatically prepend 0x to fuse hex values
+	- Fixed issue with spaces when setting avrdude.conf location
+
 2014-01-02 (v2.2):
 	- Fixed USBasp frequency not loading from presets for some users
 	- Fixed incorrect fuse bits for ATmega328(P)

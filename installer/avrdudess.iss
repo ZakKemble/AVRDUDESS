@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "AVRDUDESS"
-#define MyAppVersion "2.3"
+#define MyAppVersion "2.4"
 #define MyAppPublisher "Zak Kemble"
 #define MyAppURL "http://zakkemble.co.uk/"
 #define MyAppExeName "avrdudess.exe"

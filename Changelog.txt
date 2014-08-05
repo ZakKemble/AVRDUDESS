@@ -1,3 +1,6 @@
+2014-08-05 (v2.4):
+	- For some reason antivirus software falsely detects AVRDUDESS as malware when using HttpWebRequest to check for updates, using raw sockets seems to fix it
+
 2014-07-13 (v2.3):
 	- Updated AVRDUDE to v6.1
 	- USB option in port drop down list is now lower case

@@ -267,6 +267,12 @@ namespace avrdudess
             // Load saved configuration
             Config.Prop.load();
 
+            // Persist window location across sessions
+            // Credits:
+            // gl.tter
+            if (Config.Prop.windowLocation != null && Config.Prop.windowLocation != new Point(0, 0))
+                Location = Config.Prop.windowLocation;
+
             cmdLine = new CmdLine(this);
             avrdude = new Avrdude();
             avrsize = new Avrsize();
@@ -929,13 +935,19 @@ namespace avrdudess
                     return;
                 }
 
-                // Remove the preset
-                presets.remove((PresetData)cmbPresets.SelectedItem);
-                presets.save();
-                presets.setDataSource(cmbPresets, cmbPresets_SelectedIndexChanged);
+                // Confirm preset deletion (too easy to accidentally delete)
+                // Credits:
+                // gl.tter
+                if (MsgBox.confirm("Delete preset '" + ((PresetData)cmbPresets.SelectedItem).name + "'?") == DialogResult.OK)
+                {
+                    // Remove the preset
+                    presets.remove((PresetData)cmbPresets.SelectedItem);
+                    presets.save();
+                    presets.setDataSource(cmbPresets, cmbPresets_SelectedIndexChanged);
 
-                // Load up default
-                cmbPresets.SelectedItem = presets.presets.Find(s => s.name == "Default");
+                    // Load up default
+                    cmbPresets.SelectedItem = presets.presets.Find(s => s.name == "Default");
+                }
             }
         }
 
@@ -1173,6 +1185,12 @@ namespace avrdudess
         // Save configuration when closing
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Persist window location across sessions
+            // Credits:
+            // gl.tter
+            if (WindowState != FormWindowState.Minimized)
+                Config.Prop.windowLocation = Location;
+
             Config.Prop.save();
         }
 

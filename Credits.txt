@@ -27,3 +27,7 @@ Ideas & code credits:
 
 "adnbr" <https://github.com/adnbr>
 * Automatically prepend 0x to fuse hex values
+
+"gl.tter"
+* Confirm preset deletion
+* Persist window location across sessions

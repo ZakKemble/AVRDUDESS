@@ -7,6 +7,7 @@
  */
 
 using System;
+using System.Drawing;
 using System.Xml.Serialization;
 
 namespace avrdudess
@@ -37,6 +38,7 @@ namespace avrdudess
         public string avrdudeLoc;   // avrdude location
         public string avrdudeConfLoc;   // avrdude.conf location
         public string avrSizeLoc;   // avr-size location
+        public Point windowLocation; // For persistant window location across sessions
 
         [XmlIgnore]
         public Version skipVersion

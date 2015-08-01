@@ -108,6 +108,11 @@ namespace avrdudess
         {
             MessageBox.Show(msg, "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        public static DialogResult confirm(string msg)
+        {
+            return (MessageBox.Show(msg, "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2));
+        }
     }
 
     static class AssemblyData

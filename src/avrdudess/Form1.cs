@@ -999,9 +999,33 @@ namespace avrdudess
         }
 
         // Fuse link clicked
+        // Credits:
+        // buttim (Load up selected MCU and fuses when opening the fuse calc web page)
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(WEB_ADDR_FUSE_SETTINGS);
+            string sParam;
+            string sURL = WEB_ADDR_FUSE_SETTINGS;
+
+            if (cmbMCU.SelectedIndex != 0)
+            {
+                sParam = "?P=" + cmbMCU.Text;
+
+                if (txtLFuse.Text != "")
+                    sParam += "&V_LOW=" + txtLFuse.Text;
+
+                if (txtHFuse.Text != "")
+                    sParam += "&V_HIGH=" + txtHFuse.Text;
+
+                if (txtEFuse.Text != "")
+                    sParam += "&V_EXTENDED=" + txtEFuse.Text;
+
+                if (sParam != "" || txtHFuse.Text != "" || txtEFuse.Text != "")
+                    sParam += "&O_HEX=Apply+values";
+
+                sURL += sParam;
+            }
+
+            System.Diagnostics.Process.Start(sURL);
         }
 
         // Read fuses

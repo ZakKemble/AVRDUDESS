@@ -31,3 +31,6 @@ Ideas & code credits:
 "gl.tter"
 * Confirm preset deletion
 * Persist window location across sessions
+
+"buttim" <https://github.com/buttim>
+* Load up selected MCU and fuses when opening the fuse calc web page

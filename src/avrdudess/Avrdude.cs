@@ -383,39 +383,31 @@ namespace avrdudess
             int pos = log.IndexOf("device signature");
             if (pos > -1)
             {
-                // Cut out line
+                // Remove upto "device signature" line
                 log = log.Substring(pos);
-                log = log.Substring(0, log.IndexOf(Environment.NewLine));
 
-                // Split by =
-                string[] signature = log.Split(new char[] { '=' }, StringSplitOptions.RemoveEmptyEntries);
-
-                // Check split result
-                if (signature.Length == 2 && signature[0].Trim() == "device signature")
+                int sigStart = log.IndexOf("0x"); // Look for signature hex value
+                if (sigStart > -1)
                 {
-                    // Remove 0x and spaces from signature
-                    string detectedSignature = signature[1].Trim(new char[] { ' ', '"', ';' }).Replace("0x", "").Replace(" ", "");
+                    // Get the 6 hex digits
+                    string detectedSignature = log.Substring(sigStart + 2, 6);
 
-                    // Found something
-                    if (detectedSignature != "")
+                    // Look for MCU with same signature
+                    MCU m = mcus.Find(s => s.signature == detectedSignature);
+
+                    if (m != null) // Found
                     {
-                        // Look for MCU with same signature
-                        MCU m = mcus.Find(s => s.signature == detectedSignature);
-
-                        if (m != null) // Found
-                        {
-                            if (OnDetectedMCU != null)
-                                OnDetectedMCU(this, new DetectedMCUEventArgs(m));
-                        }
-                        else // Not found
-                        {
-                            // TODO: dont write to console here
-                            //m = new MCU(null, null, detectedSignature);
-                            Util.consoleWrite("Unknown signature " + detectedSignature + Environment.NewLine);
-                        }
-
-                        return;
+                        if (OnDetectedMCU != null)
+                            OnDetectedMCU(this, new DetectedMCUEventArgs(m));
                     }
+                    else // Not found
+                    {
+                        // TODO: dont write to console here
+                        //m = new MCU(null, null, detectedSignature);
+                        Util.consoleWrite("Unknown signature " + detectedSignature + Environment.NewLine);
+                    }
+
+                    return;
                 }
             }
 

@@ -27,6 +27,7 @@ namespace avrdudess
             int totalSize = INVALID;
             if (File.Exists(file))
             {
+                file = "\"" + file + "\"";
                 if (launch(file, null, null, OutputTo.Log))
                 {
                     waitForExit();

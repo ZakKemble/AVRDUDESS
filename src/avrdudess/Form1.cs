@@ -271,7 +271,24 @@ namespace avrdudess
             // Credits:
             // gl.tter
             if (Config.Prop.windowLocation != null && Config.Prop.windowLocation != new Point(0, 0))
+            {
                 Location = Config.Prop.windowLocation;
+
+                // Make sure the window is on-screen (like if the window was last on a monitor that is no longer connected)
+                Screen s = Screen.FromPoint(Location);
+
+                if (Location.X + Width > s.WorkingArea.Width)
+                    Location = new Point(s.WorkingArea.Width - Width, Location.Y);
+
+                if (Location.Y + Height > s.WorkingArea.Height)
+                    Location = new Point(Location.X, s.WorkingArea.Height - Height);
+
+                if (Location.X < s.WorkingArea.X)
+                    Location = new Point(s.WorkingArea.X, Location.Y);
+
+                if (Location.Y < s.WorkingArea.Y)
+                    Location = new Point(Location.X, s.WorkingArea.Y);
+            }
 
             cmdLine = new CmdLine(this);
             avrdude = new Avrdude();

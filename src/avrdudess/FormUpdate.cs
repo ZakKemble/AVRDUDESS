@@ -1,9 +1,9 @@
 ﻿/*
  * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.co.uk
+ * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2013 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.co.uk/avrdudess-a-gui-for-avrdude/
+ * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
 using System;
@@ -14,29 +14,51 @@ namespace avrdudess
     public partial class FormUpdate : Form
     {
         private string address;
-        private Action skipVersion;
+        private Action onSkipVersion;
+        private Timer tmr;
 
-        public FormUpdate()
+        public FormUpdate(UpdateData updateData, Action onSkipVersion)
         {
             InitializeComponent();
 
             Icon = AssemblyData.icon;
-            Text = "Update available";
+
+            btnUpdate.Enabled = false;
+            btnSkip.Enabled = false;
+            btnLater.Enabled = false;
+
+            lblCurrentVersion.Text = updateData.currentVersion.ToString();
+
+            // Make sure end lines are in the correct format (probably not needed...)
+            txtUpdateInfo.Text = updateData.updateInfo.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
+
+            address = updateData.updateAddr;
+            this.onSkipVersion = onSkipVersion;
+
+            lblNewVersion.Text = string.Format(
+                "{0} ({1})",
+                updateData.newVersion.ToString(),
+                new DateTime(1970, 1, 1).AddSeconds(updateData.newVersionDate).ToLocalTime().ToLongDateString()
+                );
         }
 
-        public void doUpdateMsg(string currentVersion, string newVersion, string msg, string address, Action skipVersion)
+        private void FormUpdate_Load(object sender, EventArgs e)
         {
-            // Make sure end lines are in the correct format
-            msg = msg.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
+            Language.Translation.ApplyTranslation(this);
 
-            lblCurrentVersion.Text = currentVersion;
-            lblNewVersion.Text = newVersion;
-            txtUpdateInfo.Text = msg;
+            // 2 second timer so that a button is not accidentally clicked when the form pops up
+            tmr = new Timer();
+            tmr.Interval = 2000;
+            tmr.Tick += Tmr_Tick;
+            tmr.Start();
+        }
 
-            this.address = address;
-            this.skipVersion = skipVersion;
-
-            ShowDialog();
+        private void Tmr_Tick(object sender, EventArgs e)
+        {
+            tmr.Stop();
+            btnUpdate.Enabled = true;
+            btnSkip.Enabled = true;
+            btnLater.Enabled = true;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -52,9 +74,15 @@ namespace avrdudess
 
         private void btnSkip_Click(object sender, EventArgs e)
         {
-            if(skipVersion != null)
-                skipVersion();
+            if(onSkipVersion != null)
+                onSkipVersion();
             Close();
+        }
+
+        private void FormUpdate_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(tmr.Enabled)
+                e.Cancel = true;
         }
     }
 }

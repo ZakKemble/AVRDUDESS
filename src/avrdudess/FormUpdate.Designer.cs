@@ -41,27 +41,32 @@
             // 
             // btnUpdate
             // 
+            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUpdate.Location = new System.Drawing.Point(279, 284);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 2;
-            this.btnUpdate.Text = "Update";
+            this.btnUpdate.Text = "_BTN_UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnLater
             // 
+            this.btnLater.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLater.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnLater.Location = new System.Drawing.Point(441, 284);
             this.btnLater.Name = "btnLater";
             this.btnLater.Size = new System.Drawing.Size(75, 23);
             this.btnLater.TabIndex = 3;
-            this.btnLater.Text = "Later";
+            this.btnLater.Text = "_BTN_LATER";
             this.btnLater.UseVisualStyleBackColor = true;
             this.btnLater.Click += new System.EventHandler(this.btnLater_Click);
             // 
             // txtUpdateInfo
             // 
+            this.txtUpdateInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUpdateInfo.Location = new System.Drawing.Point(15, 38);
             this.txtUpdateInfo.Multiline = true;
             this.txtUpdateInfo.Name = "txtUpdateInfo";
@@ -93,36 +98,38 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.Size = new System.Drawing.Size(114, 13);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Current version:";
+            this.label1.Text = "_CURRENTVERSION";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 13);
+            this.label2.Size = new System.Drawing.Size(87, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "New version:";
+            this.label2.Text = "_NEWVERSION";
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(429, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 13);
+            this.label3.Size = new System.Drawing.Size(114, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Update available";
+            this.label3.Text = "_UPDATEAVAILABLE";
             // 
             // btnSkip
             // 
+            this.btnSkip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSkip.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSkip.Location = new System.Drawing.Point(360, 284);
             this.btnSkip.Name = "btnSkip";
             this.btnSkip.Size = new System.Drawing.Size(75, 23);
             this.btnSkip.TabIndex = 10;
-            this.btnSkip.Text = "Skip version";
+            this.btnSkip.Text = "_BTN_SKIPVERSION";
             this.btnSkip.UseVisualStyleBackColor = true;
             this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
             // 
@@ -147,7 +154,9 @@
             this.MinimizeBox = false;
             this.Name = "FormUpdate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FormUpdate";
+            this.Text = "_UPDATEAVAILABLE";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormUpdate_FormClosing);
+            this.Load += new System.EventHandler(this.FormUpdate_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

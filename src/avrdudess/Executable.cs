@@ -1,9 +1,9 @@
 ﻿/*
  * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.co.uk
+ * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2014 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.co.uk/avrdudess-a-gui-for-avrdude/
+ * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
 using System;
@@ -37,7 +37,7 @@ namespace avrdudess
             binary = searchForBinary(binaryName, directory);
 
             if (binary == null)
-                MsgBox.error(binaryName + " is missing!");
+                Util.consoleError("_EXECMISSING", binaryName);
             else if (enableConsoleWrite)
             {
                 Thread t = new Thread(new ThreadStart(tConsoleUpdate));
@@ -127,7 +127,7 @@ namespace avrdudess
             }
             catch (Exception ex)
             {
-                MsgBox.error("Error starting process", ex);
+                Util.consoleError("_EXECFAIL", ex.Message);
                 return false;
             }
 

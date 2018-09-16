@@ -39,6 +39,8 @@
             this.txtAvrdudeConfLocation = new System.Windows.Forms.TextBox();
             this.txtAvrdudeLocation = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbLanguage = new System.Windows.Forms.ComboBox();
             this.cbShowToolTips = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
@@ -90,7 +92,7 @@
             this.groupBox1.Size = new System.Drawing.Size(412, 100);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "File locations (leave blank to auto-detect)";
+            this.groupBox1.Text = "_GRP_FILELOCATIONS";
             // 
             // btnBrowseAvrSize
             // 
@@ -151,44 +153,67 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.cbLanguage);
             this.groupBox2.Controls.Add(this.cbShowToolTips);
             this.groupBox2.Location = new System.Drawing.Point(12, 118);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(412, 45);
+            this.groupBox2.Size = new System.Drawing.Size(412, 77);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Other";
+            this.groupBox2.Text = "_GRP_OTHER";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 41;
+            this.label4.Text = "_LANGUAGE";
+            // 
+            // cbLanguage
+            // 
+            this.cbLanguage.FormattingEnabled = true;
+            this.cbLanguage.Location = new System.Drawing.Point(67, 22);
+            this.cbLanguage.Name = "cbLanguage";
+            this.cbLanguage.Size = new System.Drawing.Size(121, 21);
+            this.cbLanguage.TabIndex = 40;
             // 
             // cbShowToolTips
             // 
             this.cbShowToolTips.AutoSize = true;
             this.cbShowToolTips.Checked = true;
             this.cbShowToolTips.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbShowToolTips.Location = new System.Drawing.Point(6, 19);
+            this.cbShowToolTips.Location = new System.Drawing.Point(6, 49);
             this.cbShowToolTips.Name = "cbShowToolTips";
-            this.cbShowToolTips.Size = new System.Drawing.Size(89, 17);
+            this.cbShowToolTips.Size = new System.Drawing.Size(119, 17);
             this.cbShowToolTips.TabIndex = 39;
-            this.cbShowToolTips.Text = "Show tooltips";
+            this.cbShowToolTips.Text = "_SHOWTOOLTIPS";
             this.cbShowToolTips.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(349, 169);
+            this.btnCancel.Location = new System.Drawing.Point(349, 201);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "_CANCEL";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnOK
             // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(268, 169);
+            this.btnOK.Location = new System.Drawing.Point(268, 201);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 6;
-            this.btnOK.Text = "OK";
+            this.btnOK.Text = "_OK";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
             // FormOptions
@@ -197,7 +222,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(436, 199);
+            this.ClientSize = new System.Drawing.Size(436, 231);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.groupBox2);
@@ -207,7 +232,8 @@
             this.MinimizeBox = false;
             this.Name = "FormOptions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Options";
+            this.Text = "_TITLE_OPTIONS";
+            this.Load += new System.EventHandler(this.FormOptions_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -233,5 +259,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbLanguage;
     }
 }

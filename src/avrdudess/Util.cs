@@ -1,9 +1,9 @@
 ﻿/*
  * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.co.uk
+ * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2013 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.co.uk/avrdudess-a-gui-for-avrdude/
+ * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
 using System;
@@ -30,7 +30,7 @@ namespace avrdudess
         // No Dispatcher stuff in .NET 2.0, make a static reference to our main form
         public static Form UI;
 
-        private static TextBox console;
+        private static RichTextBox console;
 
         public static void InvokeIfRequired<T>(this T c, Action<T> action)
             where T : Control
@@ -48,27 +48,73 @@ namespace avrdudess
             }
         }
 
-        public static void consoleSet(TextBox textBox)
+        public static void consoleSet(RichTextBox textBox)
         {
             console = textBox;
         }
 
-        // Write to console
+        public static void consoleError(string text, params object[] args)
+        {
+            text = Language.Translation.get(text);
+            text = string.Format(text, args);
+            consoleWrite(string.Format("{0}: {1}{2}", Language.Translation.get("_ERRORUC"), text, Environment.NewLine), Color.Red);
+        }
+
+        public static void consoleWarning(string text, params object[] args)
+        {
+            text = Language.Translation.get(text);
+            text = string.Format(text, args);
+            consoleWrite(string.Format("{0}: {1}{2}", Language.Translation.get("_WARNINGUC"), text, Environment.NewLine), Color.Yellow);
+        }
+
+        public static void consoleWriteLine()
+        {
+            consoleWrite(Environment.NewLine, Color.White);
+        }
+
+        public static void consoleWriteLine(string text, params object[] args)
+        {
+            consoleWriteLine(text, Color.White, args);
+        }
+
+        public static void consoleWriteLine(string text, Color colour, params object[] args)
+        {
+            text = Language.Translation.get(text);
+            text = string.Format(text, args);
+            consoleWrite(text + Environment.NewLine, colour);
+        }
+
         public static void consoleWrite(string text)
+        {
+            consoleWrite(text, Color.White);
+        }
+
+        public static void consoleWrite(string text, Color colour)
         {
             // Credits:
             // Uwe Tanger (Console in main window instead of separate window)
             // Dean (Console in main window instead of separate window)
 
-            if(console != null)
-                console.InvokeIfRequired(c => { ((TextBox)c).AppendText(text); });
+            if (console != null)
+            {
+                console.InvokeIfRequired(c =>
+                {
+                    c.AppendText(text, colour);
+                    if(text.Contains("\n")) // Without this the text box spazzes a bit on the progress bars
+                        c.ScrollToCaret();
+                });
+            }
         }
 
-        // Clear console
         public static void consoleClear()
         {
-            if(console != null)
-                console.InvokeIfRequired(c => { ((TextBox)c).Clear(); });
+            if (console != null)
+            {
+                console.InvokeIfRequired(c =>
+                {
+                    c.Clear();
+                });
+            }
         }
 
         public static string fileSizeFormat(int value)
@@ -82,42 +128,80 @@ namespace avrdudess
                 len /= 1024;
             }
 
-            string result = String.Format("{0:0} {1}", (int)len, sizes[order]);
+            string result = string.Format("{0:0} {1}", (int)len, sizes[order]);
             return result;
+        }
+
+        public static void AppendText(this RichTextBox box, string text, Color color)
+        {
+            box.SelectionStart = box.TextLength;
+            box.SelectionLength = 0;
+
+            box.SelectionColor = color;
+            box.AppendText(text);
+            box.SelectionColor = box.ForeColor;
         }
     }
 
     static class MsgBox
     {
-        public static void error(string msg, Exception ex)
+        public static void error(string msg, params object[] args)
         {
-            error(msg + Environment.NewLine + ex.Message);
+            msg = Language.Translation.get(msg);
+            msg = string.Format(msg, args);
+
+            MessageBox.Show(
+                msg,
+                Language.Translation.get("_ERROR"),
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
         }
 
-        public static void error(string msg)
+        public static void warning(string msg, params object[] args)
         {
-            MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            msg = Language.Translation.get(msg);
+            msg = string.Format(msg, args);
+
+            MessageBox.Show(
+                msg,
+                Language.Translation.get("_WARNING"),
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation
+                );
         }
 
-        public static void warning(string msg)
+        public static void notice(string msg, params object[] args)
         {
-            MessageBox.Show(msg, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            msg = Language.Translation.get(msg);
+            msg = string.Format(msg, args);
+
+            MessageBox.Show(
+                msg,
+                Language.Translation.get("_NOTICE"),
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+                );
         }
 
-        public static void notice(string msg)
+        public static DialogResult confirm(string msg, params object[] args)
         {
-            MessageBox.Show(msg, "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+            msg = Language.Translation.get(msg);
+            msg = string.Format(msg, args);
 
-        public static DialogResult confirm(string msg)
-        {
-            return (MessageBox.Show(msg, "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2));
+            return (MessageBox.Show(
+                msg,
+                Language.Translation.get("_CONFIRM"),
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2
+                ));
         }
     }
 
     static class AssemblyData
     {
-        private static readonly Assembly assembly = Assembly.GetEntryAssembly();
+        public static readonly Assembly assembly = Assembly.GetEntryAssembly();
 
         public static readonly string title = ((AssemblyTitleAttribute)Attribute.GetCustomAttribute(
                 assembly, typeof(AssemblyTitleAttribute), false))
@@ -131,6 +215,9 @@ namespace avrdudess
 
         public static readonly Icon icon = Icon.ExtractAssociatedIcon(assembly.Location);
 
-        public static readonly string directory = Path.GetDirectoryName(assembly.CodeBase);
+        // TODO use .Location instead of .CodeBase?
+        // Location returns absolute path
+        // CodeBase returns a URI (file://....)
+        public static readonly string directory = Path.GetDirectoryName(assembly.Location);
     }
 }

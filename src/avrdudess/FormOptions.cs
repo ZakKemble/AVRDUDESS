@@ -1,13 +1,13 @@
 ﻿/*
  * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.co.uk
+ * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2014 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.co.uk/avrdudess-a-gui-for-avrdude/
+ * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
 using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace avrdudess
@@ -40,6 +40,12 @@ namespace avrdudess
             set { txtAvrSizeLocation.Text = value; }
         }
 
+        public string language
+        {
+            get { return (string)cbLanguage.SelectedValue; }
+            set { cbLanguage.SelectedValue = value; }
+        }
+
         #endregion
 
         public FormOptions()
@@ -47,23 +53,37 @@ namespace avrdudess
             InitializeComponent();
 
             Icon = AssemblyData.icon;
+
+            cbLanguage.Items.Clear();
+
+            // TODO a
+            Dictionary<string, string> a = Language.Translation.getLanguages();
+
+            cbLanguage.DataSource = new BindingSource(a, null);
+            cbLanguage.DisplayMember = "Value";
+            cbLanguage.ValueMember = "Key";
+        }
+
+        private void FormOptions_Load(object sender, EventArgs e)
+        {
+            Language.Translation.ApplyTranslation(this);
         }
 
         private void btnBrowseAvrdude_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.Description = "avrdude folder location";
+            folderBrowserDialog1.Description = Language.Translation.get("_AVRDUDE_LOCATION");
             browse(txtAvrdudeLocation);
         }
 
         private void btnBrowseAvrdudeConf_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.Description = "avrdude.conf folder location";
+            folderBrowserDialog1.Description = Language.Translation.get("_AVRDUDECONF_LOCATION");
             browse(txtAvrdudeConfLocation);
         }
 
         private void btnBrowseAvrSize_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.Description = "avr-size folder location";
+            folderBrowserDialog1.Description = Language.Translation.get("_AVRSIZE_LOCATION");
             browse(txtAvrSizeLocation);
         }
 

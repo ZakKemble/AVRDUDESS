@@ -854,7 +854,7 @@
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(84, 25);
             this.btnOK.TabIndex = 2;
-            this.btnOK.Text = "OK";
+            this.btnOK.Text = "_OK";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
             // btnCancel
@@ -864,7 +864,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(84, 25);
             this.btnCancel.TabIndex = 3;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "_CANCEL";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // lblCarefulNow
@@ -874,9 +874,9 @@
             this.lblCarefulNow.ForeColor = System.Drawing.Color.Red;
             this.lblCarefulNow.Location = new System.Drawing.Point(12, 274);
             this.lblCarefulNow.Name = "lblCarefulNow";
-            this.lblCarefulNow.Size = new System.Drawing.Size(233, 20);
+            this.lblCarefulNow.Size = new System.Drawing.Size(130, 20);
             this.lblCarefulNow.TabIndex = 4;
-            this.lblCarefulNow.Text = "Warning: Unsupported MCU";
+            this.lblCarefulNow.Text = "_UNSUPPMCU";
             // 
             // FormFuseSelector
             // 

@@ -1,9 +1,9 @@
 ﻿/*
  * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.co.uk
+ * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2013 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.co.uk/avrdudess-a-gui-for-avrdude/
+ * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
 using System;
@@ -125,8 +125,8 @@ namespace avrdudess
             _mcus.Sort();
 
             // Add default
-            _programmers.Insert(0, new Programmer("", "Select a programmer..."));
-            _mcus.Insert(0, new MCU("", "Select an MCU..."));
+            _programmers.Insert(0, new Programmer("", Language.Translation.get("_SELECTPROG")));
+            _mcus.Insert(0, new MCU("", Language.Translation.get("_SELECTMCU")));
         }
 
         // Get AVRDUDE version
@@ -152,6 +152,38 @@ namespace avrdudess
 
             if (OnVersionChange != null)
                 OnVersionChange(this, EventArgs.Empty);
+        }
+
+        private void savePart(bool isProgrammer, string parentId, string id, string desc, string signature, int flash, int eeprom)
+        {
+            if (id != null)
+            {
+                if (isProgrammer)
+                {
+                    // Find parent
+                    Programmer parent = null;
+                    if (parentId != null)
+                        parent = _programmers.Find(m => m.id == parentId);
+
+                    _programmers.Add(new Programmer(id, desc, parent));
+                }
+                else
+                {
+                    if (!id.StartsWith(".") && !desc.StartsWith("deprecated")) // Part is a common value thing or deprecated
+                    {
+                        // Some formatting
+                        desc = desc.ToUpper().Replace("XMEGA", "xmega").Replace("MEGA", "mega").Replace("TINY", "tiny");
+
+                        // Find parent
+                        MCU parent = null;
+                        if (parentId != null)
+                            parent = _mcus.Find(m => m.id == parentId);
+
+                        // Add to MCUs
+                        _mcus.Add(new MCU(id, desc, signature, flash, eeprom, parent));
+                    }
+                }
+            }
         }
 
         // Basic parsing of avrdude.conf to get programmers & MCUs
@@ -186,7 +218,7 @@ namespace avrdudess
             // Config file not found
             if (String.IsNullOrEmpty(conf_loc) || !File.Exists(conf_loc))
             {
-                MsgBox.error(FILE_AVRDUDECONF + " is missing!");
+                Util.consoleError("_AVRCONFMISSING", FILE_AVRDUDECONF);
                 //throw new System.IO.FileNotFoundException("File is missing", FILE_AVRDUDECONF);
                 return;
             }
@@ -199,116 +231,79 @@ namespace avrdudess
             }
             catch (Exception ex)
             {
-                MsgBox.error("Error reading " + FILE_AVRDUDECONF, ex);
+                Util.consoleError("_AVRCONFREADERROR", FILE_AVRDUDECONF, ex.Message);
                 return;
             }
 
-            // Credits:
-            // Uwe Tanger (New parse code for changed avrdude.conf)
-            // Simone Chifari (New parse code for changed avrdude.conf & getting MCU signature)
-
             char[] trimChars = new char[3] { ' ', '"', ';' };
 
-            for (int i = 0; i < lines.Length - 3; i++)
+            string parentId = null;
+            string id = null;
+            string desc = null;
+            string signature = null;
+            int flash = -1;
+            int eeprom = -1;
+       
+            ParseMemType memType = ParseMemType.None;
+            bool isProgrammer = false;
+
+            for (int i = 0; i < lines.Length; i++)
             {
                 string s = lines[i].Trim();
 
-                bool isProgrammer = s.StartsWith("programmer");
-                bool isPart = s.StartsWith("part");
-                if (!isPart && !isProgrammer)
-                    continue;
+                bool lineProgrammer = s.StartsWith("programmer");
+                bool linePart = s.StartsWith("part");
 
-                // Get parent ID
-                string partentId = null;
-                if (isPart && s.Contains("parent"))
+                if(lineProgrammer || linePart)
                 {
+                    savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom);
+
+                    parentId = null;
+                    id = null;
+                    desc = null;
+                    signature = null;
+                    flash = -1;
+                    eeprom = -1;
+                    memType = ParseMemType.None;
+
+                    // Get parent ID
                     string[] parts = s.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                    if (parts.Length > 2)
-                        partentId = parts[2].Trim(trimChars);
+                    if (parts.Length > 2 && parts[1].Trim(trimChars) == "parent")
+                        parentId = parts[2].Trim(trimChars);
+
+                    isProgrammer = lineProgrammer;
                 }
-
-                i++; // next line
-                // Does line have id key?
-                int pos = lines[i].IndexOf('=');
-                if (pos < 0 || lines[i].Substring(1, pos - 1).Trim() != "id")
-                    continue;
-
-                // Get ID value
-                string id = lines[i].Substring(pos + 1).Trim(trimChars);
-
-                i++; // next line
-                // Does line have desc key?
-                pos = lines[i].IndexOf('=');
-                if (pos < 0 || lines[i].Substring(1, pos - 1).Trim() != "desc")
-                    continue;
-
-                // Get description value
-                string desc = lines[i].Substring(pos + 1).Trim(trimChars);
-
-                // If its a programmer then add to programmers and go back to the top
-                if (isProgrammer)
+                else if (s == ";")
+                    memType = ParseMemType.None;
+                else
                 {
-                    _programmers.Add(new Programmer(id, desc));
-                    continue;
-                }
-
-                // Otherwise its an MCU
-
-                // Part is a common value thing or deprecated
-                if (id.StartsWith(".") || desc.StartsWith("deprecated"))
-                    continue;
-
-                // Here we get the MCU signature, flash and EEPROM sizes
-
-                string signature = "";
-                int flash = -1;
-                int eeprom = -1;
-                ParseMemType memType = ParseMemType.None;
-                
-                // Loop through lines looking for "signature" and "memory"
-                // Abort if "part" or "programmer" is found
-                for (; i < lines.Length; i++)
-                {
-                    s = lines[i].Trim();
-
-                    // Too far
-                    if (s.StartsWith("part") || s.StartsWith("programmer"))
+                    int pos = s.IndexOf('=');
+                    if (pos > -1)
                     {
-                        i--;
-                        break;
-                    }
+                        string key = s.Substring(0, pos - 1).Trim();
+                        string val = s.Substring(pos + 1).Trim(trimChars);
 
-                    // Found memory section
-                    if (s.StartsWith("memory"))
-                    {
-                        pos = lines[i].IndexOf('"');
-                        if (pos > -1)
+                        if (key == "id")
+                            id = val;
+                        else if (key == "desc")
+                            desc = val;
+                        else if (key == "signature")
                         {
-                            // What type of memory is this?
-                            string mem = lines[i].Substring(pos - 1).Trim(trimChars).ToLower();
-                            if (mem == "flash")
-                                memType = ParseMemType.Flash;
-                            else if (mem == "eeprom")
-                                memType = ParseMemType.Eeprom;
+                            signature = val;
+
+                            // Remove 0x and spaces from signature (0xAA 0xAA 0xAA -> AAAAAA)
+                            signature = signature.Replace("0x", "").Replace(" ", "");
                         }
-                    }
-                    else if (memType != ParseMemType.None)
-                    {
-                        // See if this line defines the memory size
-                        pos = lines[i].IndexOf('=');
-                        if (pos > -1 && lines[i].Substring(1, pos - 1).Trim() == "size")
+                        else if (key == "size" && memType != ParseMemType.None)
                         {
-                            // Get size value
-                            string memStr = lines[i].Substring(pos + 1).Trim(trimChars);
-
                             // Parse to int
                             int memTmp = 0;
-                            if (!int.TryParse(memStr, out memTmp))
+                            if (!int.TryParse(val, out memTmp))
                             {
                                 // Probably hex
-                                if(memStr.StartsWith("0x"))
-                                    memStr = memStr.Substring(2); // Remove 0x
-                                int.TryParse(memStr, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out memTmp);
+                                if (val.StartsWith("0x"))
+                                    val = val.Substring(2); // Remove 0x
+                                int.TryParse(val, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out memTmp);
                             }
 
                             if (memType == ParseMemType.Flash)
@@ -319,30 +314,23 @@ namespace avrdudess
                             memType = ParseMemType.None;
                         }
                     }
-
-                    // Does line have signature key?
-                    pos = lines[i].IndexOf('=');
-                    if (pos > -1 && lines[i].Substring(1, pos - 1).Trim() == "signature")
+                    else if (s.StartsWith("memory")) // Found memory section
                     {
-                        // Get signature value
-                        signature = lines[i].Substring(pos + 1).Trim(trimChars);
-
-                        // Remove 0x and spaces from signature (0xAA 0xAA 0xAA -> AAAAAA)
-                        signature = signature.Replace("0x", "").Replace(" ", "");
+                        pos = s.IndexOf('"');
+                        if (pos > -1)
+                        {
+                            // Figure out memory type
+                            string mem = s.Substring(pos - 1).Trim(trimChars).ToLower();
+                            if (mem == "flash")
+                                memType = ParseMemType.Flash;
+                            else if (mem == "eeprom")
+                                memType = ParseMemType.Eeprom;
+                        }
                     }
                 }
-
-                // Some formatting
-                desc = desc.ToUpper().Replace("XMEGA", "xmega").Replace("MEGA", "mega").Replace("TINY", "tiny");
-
-                // Find parent
-                MCU parent = null;
-                if (partentId != null)
-                    parent = _mcus.Find(m => m.name == partentId);
-
-                // Add to MCUs
-                _mcus.Add(new MCU(id, desc, signature, flash, eeprom, parent));
             }
+
+            savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom);
         }
 
         public new void launch(string args, Action<object> onFinish, object param, OutputTo outputTo = OutputTo.Console)
@@ -359,7 +347,7 @@ namespace avrdudess
             }
 
             if (outputTo == OutputTo.Console)
-                Util.consoleWrite("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ " + Environment.NewLine);
+                Util.consoleWriteLine("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
 
             base.launch(args, onFinish, param, outputTo);
         }
@@ -404,7 +392,7 @@ namespace avrdudess
                     {
                         // TODO: dont write to console here
                         //m = new MCU(null, null, detectedSignature);
-                        Util.consoleWrite("Unknown signature " + detectedSignature + Environment.NewLine);
+                        Util.consoleError("_UNKNOWNSIG", detectedSignature);
                     }
 
                     return;

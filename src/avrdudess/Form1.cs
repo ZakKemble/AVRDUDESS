@@ -1,9 +1,9 @@
 ﻿/*
  * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.co.uk
+ * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2013 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.co.uk/avrdudess-a-gui-for-avrdude/
+ * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
 using System;
@@ -13,6 +13,7 @@ using System.Globalization;
 using System.IO;
 using System.IO.Ports;
 using System.Media;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace avrdudess
@@ -36,6 +37,8 @@ namespace avrdudess
         private Avrdude.UsbAspFreq oldUsbAspFreq;
         private MemTypeFile fileEEPROM;
         private MemTypeFile fileFlash;
+        private FormWindowState lastWindowState = FormWindowState.Minimized;
+        private Dictionary<Control, string> tooltipData;
 
         #region Control getters and setters
 
@@ -44,17 +47,17 @@ namespace avrdudess
             get
             {
                 Programmer item = ((Programmer)cmbProg.SelectedItem);
-                if (item == null || item.name == "")
+                if (item == null || item.id == "")
                     return null;
                 return item;
             }
             set
             {
-                Programmer p = ((List<Programmer>)avrdude.programmers).Find(s => s.name == value.name);
+                Programmer p = avrdude.programmers.Find(s => s.id == value.id);
                 if (p != null)
                     cmbProg.SelectedItem = p;
                 else
-                    MsgBox.warning("Programmer not found (" + value.name + ")");
+                    Util.consoleWarning("_PROGNOTFOUND", value.id);
             }
         }
         
@@ -63,17 +66,17 @@ namespace avrdudess
             get
             {
                 MCU item = ((MCU)cmbMCU.SelectedItem);
-                if (item == null || item.name == "")
+                if (item == null || item.id == "")
                     return null;
                 return item;
             }
             set
             {
-                MCU m = avrdude.mcus.Find(s => s.name == value.name);
+                MCU m = avrdude.mcus.Find(s => s.id == value.id);
                 if (m != null)
                     cmbMCU.SelectedItem = m;
                 else
-                    MsgBox.warning("MCU not found (" + value.name + ")");
+                    Util.consoleWarning("_MCUNOTFOUND", value.id);
             }
         }
 
@@ -138,10 +141,10 @@ namespace avrdudess
 
         public string flashFileFormat
         {
-            get { return ((FileFormat)cmbFlashFormat.SelectedItem).name; }
+            get { return ((FileFormat)cmbFlashFormat.SelectedItem).id; }
             set
             {
-                FileFormat f = Avrdude.fileFormats.Find(s => s.name == value);
+                FileFormat f = Avrdude.fileFormats.Find(s => s.id == value);
                 if (f != null)
                     cmbFlashFormat.SelectedItem = f;
             }
@@ -169,10 +172,10 @@ namespace avrdudess
 
         public string EEPROMFileFormat
         {
-            get { return ((FileFormat)cmbEEPROMFormat.SelectedItem).name; }
+            get { return ((FileFormat)cmbEEPROMFormat.SelectedItem).id; }
             set
             {
-                FileFormat f = Avrdude.fileFormats.Find(s => s.name == value);
+                FileFormat f = Avrdude.fileFormats.Find(s => s.id == value);
                 if (f != null)
                     cmbEEPROMFormat.SelectedItem = f;
             }
@@ -249,24 +252,23 @@ namespace avrdudess
             if (args.Length > 0)
                 presetToLoad = args[0];
 
+            // Load saved configuration
+            Config.Prop.load();
+
+            Language.Translation.load();
+
             Icon = AssemblyData.icon;
             setWindowTitle();
 
-            // Make sure console is the right size
-            Form1_Resize(this, null);
-
-            MaximumSize = new Size(Size.Width, int.MaxValue);
-            MinimumSize = new Size(Size.Width, Height - txtConsole.Height);
+            //MaximumSize = new Size(Size.Width, int.MaxValue);
+            MinimumSize = new Size(Size.Width, Height - rtxtConsole.Height);
 
             Util.UI = this;
-            Util.consoleSet(txtConsole);
+            Util.consoleSet(rtxtConsole);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Load saved configuration
-            Config.Prop.load();
-
             // Persist window location across sessions
             // Credits:
             // gl.tter
@@ -309,8 +311,7 @@ namespace avrdudess
             pbFlashUsage.Width = txtFlashFile.Width;
             pbFlashUsage.Height = 3;
             pbFlashUsage.Location = new Point(txtFlashFile.Location.X, txtFlashFile.Location.Y - pbFlashUsage.Height);
-            pbFlashUsage.Image = new Bitmap(pbFlashUsage.Width, pbFlashUsage.Height);
-            memoryUsageBar(fileFlash, pbFlashUsage, 0);
+            memoryUsageBar(fileFlash, pbFlashUsage, 0, true);
 
             // EEPROM
             fileEEPROM = new MemTypeFile(txtEEPROMFile, avrsize);
@@ -318,8 +319,7 @@ namespace avrdudess
             pbEEPROMUsage.Width = txtEEPROMFile.Width;
             pbEEPROMUsage.Height = 3;
             pbEEPROMUsage.Location = new Point(txtEEPROMFile.Location.X, txtEEPROMFile.Location.Y - pbEEPROMUsage.Height);
-            pbEEPROMUsage.Image = new Bitmap(pbEEPROMUsage.Width, pbEEPROMUsage.Height);
-            memoryUsageBar(fileEEPROM, pbEEPROMUsage, 0);
+            memoryUsageBar(fileEEPROM, pbEEPROMUsage, 0, true);
 
             enableClientAreaDrag(Controls);
 
@@ -353,9 +353,9 @@ namespace avrdudess
             openFileDialog2.Title = "Open EEPROM file";
 
             // MCU & programmer combo box data source
-            setComboBoxDataSource(cmbMCU, avrdude.mcus, "fullName");
+            setComboBoxDataSource(cmbMCU, avrdude.mcus, "desc");
             cmbMCU.SelectedIndexChanged += cmbMCU_SelectedIndexChanged;
-            setComboBoxDataSource(cmbProg, avrdude.programmers, "fullName");
+            setComboBoxDataSource(cmbProg, avrdude.programmers, "desc");
             cmbProg.SelectedIndexChanged += cmbProg_SelectedIndexChanged;
             
             // USBasp frequency settings
@@ -366,8 +366,8 @@ namespace avrdudess
             cmbUSBaspFreq.Top = txtBitClock.Top;
 
             // Flash & EEPROM file formats
-            setComboBoxDataSource(cmbFlashFormat, Avrdude.fileFormats, "fullName");
-            setComboBoxDataSource(cmbEEPROMFormat, Avrdude.fileFormats, "fullName");
+            setComboBoxDataSource(cmbFlashFormat, Avrdude.fileFormats, "desc");
+            setComboBoxDataSource(cmbEEPROMFormat, Avrdude.fileFormats, "desc");
 
             // Verbosity levels
             cmdVerbose.Items.Clear();
@@ -375,40 +375,50 @@ namespace avrdudess
                 cmdVerbose.Items.Add(i);
             cmdVerbose.SelectedIndex = 0;
 
+            // Put tooltip stuff into a dictionary so we can loop over it while appling translations instead
+            // of having a ton of individual calls to ToolTips.SetToolTip() and Language.Translation.get()
+            tooltipData = new Dictionary<Control, string>() {
+                { cmbProg, "_TOOLTIP_PROGRAMMER" },
+                { cmbMCU, "_TOOLTIP_MCU" },
+                { cmbPort, "_TOOLTIP_PORT" },
+                { txtBaudRate, "_TOOLTIP_BAUDRATE" },
+                { txtBitClock, "_TOOLTIP_BITCLOCK" },
+                { txtFlashFile, "_TOOLTIP_FLASHFILE" },
+                { txtEEPROMFile, "_TOOLTIP_EEPROMFILE" },
+                { cbForce, "_TOOLTIP_FORCE" },
+                { cbNoVerify, "_TOOLTIP_NOVERIFY" },
+                { cbDisableFlashErase, "_TOOLTIP_NOERASE" },
+                { cbEraseFlashEEPROM, "_TOOLTIP_ERASEBOTH" },
+                { cbDoNotWrite, "_TOOLTIP_NOWRITE" },
+                { txtLFuse, "_TOOLTIP_LOWFUSE" },
+                { txtHFuse, "_TOOLTIP_HIGHFUSE" },
+                { txtEFuse, "_TOOLTIP_EXFUSE" },
+                { txtLock, "_TOOLTIP_LOCKBITS" },
+                { btnFlashGo, "_TOOLTIP_ONLYFLASH" },
+                { btnEEPROMGo, "_TOOLTIP_ONLYEEPROM" },
+                { btnWriteFuses, "_TOOLTIP_WRITEFUSES" },
+                { btnWriteLock, "_TOOLTIP_WRITELOCK" },
+                { btnReadFuses, "_TOOLTIP_READFUSES" },
+                { btnReadLock, "_TOOLTIP_READLOCK" },
+                { cbSetFuses, "_TOOLTIP_WRITEFUSESPROG" },
+                { cbSetLock, "_TOOLTIP_WRITELOCKPROG" }
+            };
+
             // Tool tips
             ToolTips = new ToolTip();
             ToolTips.ReshowDelay = 100;
             ToolTips.UseAnimation = false;
             ToolTips.UseFading = false;
-            ToolTips.SetToolTip(cmbProg, "Programmer");
-            ToolTips.SetToolTip(cmbMCU, "MCU to program");
-            ToolTips.SetToolTip(cmbPort, "Set COM/LTP/USB port");
-            ToolTips.SetToolTip(txtBaudRate, "Port baud rate");
-            ToolTips.SetToolTip(txtBitClock, "Bit clock period (us)");
-            ToolTips.SetToolTip(txtFlashFile, "Hex file (.hex)" + Environment.NewLine + "You can also drag and drop files here");
-            ToolTips.SetToolTip(pFlashOp, "");
-            ToolTips.SetToolTip(txtEEPROMFile, "EEPROM file (.eep)" + Environment.NewLine + "You can also drag and drop files here");
-            ToolTips.SetToolTip(pEEPROMOp, "");
-            ToolTips.SetToolTip(cbForce, "Skip signature check");
-            ToolTips.SetToolTip(cbNoVerify, "Don't verify after writing");
-            ToolTips.SetToolTip(cbDisableFlashErase, "Don't erase flash before writing" + Environment.NewLine + "Use this if you only want to update EEPROM");
-            ToolTips.SetToolTip(cbEraseFlashEEPROM, "Erase both flash and EEPROM");
-            ToolTips.SetToolTip(cbDoNotWrite, "Don't write anything, used for debugging AVRDUDE");
-            ToolTips.SetToolTip(txtLFuse, "Low fuse");
-            ToolTips.SetToolTip(txtHFuse, "High fuse");
-            ToolTips.SetToolTip(txtEFuse, "Extended fuse");
-            ToolTips.SetToolTip(txtLock, "Lock bits");
-            ToolTips.SetToolTip(btnFlashGo, "Only write/read/verify flash");
-            ToolTips.SetToolTip(btnEEPROMGo, "Only write/read/verify EEPROM");
-            ToolTips.SetToolTip(btnWriteFuses, "Write fuses now");
-            ToolTips.SetToolTip(btnWriteLock, "Write lock now");
-            ToolTips.SetToolTip(btnReadFuses, "Read fuses now");
-            ToolTips.SetToolTip(btnReadLock, "Read lock now");
-            ToolTips.SetToolTip(cbSetFuses, "Write fuses when programming");
-            ToolTips.SetToolTip(cbSetLock, "Write lock when programming");
+
+            foreach (KeyValuePair<Control, string> tt in tooltipData)
+            {
+                ToolTips.SetToolTip(tt.Key, Language.Translation.get(tt.Value));
+                tt.Key.MouseEnter += Key_MouseEnter;
+                tt.Key.MouseLeave += Key_MouseLeave;
+            }
 
             // Load saved presets
-            presets = new Presets(this);
+            presets = new Presets();
             presets.load();
             presets.setDataSource(cmbPresets);
 
@@ -428,8 +438,61 @@ namespace avrdudess
             PresetData p = presets.presets.Find(s => s.name == presetToLoad);
             cmbPresets.SelectedItem = (p != null) ? p : presets.presets.Find(s => s.name == "Default");
 
+            Language.Translation.ApplyTranslation(this);
+
             // Check for updates
-            UpdateCheck.check.checkNow();
+            if (UpdateCheck.check.needed())
+            {
+                Thread t = new Thread(() =>
+                {
+                    Thread.Sleep(5000);
+
+                    Util.consoleWriteLine("_UPDATE_CHECK");
+
+                    UpdateData updateData = new UpdateData();
+                    bool checkSuccess = UpdateCheck.check.now(updateData);
+
+                    if (!checkSuccess)
+                        Util.consoleError("_UPDATE_FAILED", UpdateCheck.check.errorMsg);
+                    else if (updateData.updateAvailable() && Config.Prop.skipVersion != updateData.newVersion)
+                    {
+                        Util.consoleWriteLine("_UPDATE_AVAIL");
+                        Util.UI.BeginInvoke(
+                            new MethodInvoker(() =>
+                            {
+                                using (FormUpdate fUpdate = new FormUpdate(updateData, () =>
+                                {
+                                    Config.Prop.skipVersion = updateData.newVersion;
+                                }))
+                                {
+                                    fUpdate.ShowDialog();
+                                }
+                            })
+                        );
+                    }
+                    else
+                        Util.consoleWriteLine("_UPDATE_LATEST");
+                });
+                t.IsBackground = true;
+                t.Start();
+            }
+        }
+
+        private void Key_MouseLeave(object sender, EventArgs e)
+        {
+            tssTooltip.Text = "";
+        }
+
+        private void Key_MouseEnter(object sender, EventArgs e)
+        {
+            foreach(KeyValuePair<Control, string> tt in tooltipData)
+            {
+                if (tt.Key == ((Control)sender))
+                {
+                    tssTooltip.Text = Language.Translation.get(tt.Value);
+                    break;
+                }
+            }
         }
 
         // Show AVRDUDE version etc
@@ -438,7 +501,13 @@ namespace avrdudess
             string avrdudeVersion = (avrdude != null) ? avrdude.version : "";
             if (avrdudeVersion == "")
                 avrdudeVersion = "?";
-            Text = String.Format("{0} {1}.{2} ({3})", AssemblyData.title, AssemblyData.version.Major, AssemblyData.version.Minor, avrdudeVersion);
+            Text = string.Format(
+                "{0} {1}.{2} ({3})",
+                Language.Translation.get("_PROGRAM_NAME"),
+                AssemblyData.version.Major,
+                AssemblyData.version.Minor,
+                avrdudeVersion
+                );
         }
 
         // Set combo box data source etc
@@ -456,14 +525,14 @@ namespace avrdudess
         private void fileFlash_sizeChanged(object sender, EventArgs e)
         {
             if (mcu != null)
-                memoryUsageBar(fileFlash, pbFlashUsage, mcu.flash);
+                memoryUsageBar(fileFlash, pbFlashUsage, mcu.flash, false);
         }
 
         // EEPROM size changed, update usage bar
         private void fileEEPROM_sizeChanged(object sender, EventArgs e)
         {
             if (mcu != null)
-                memoryUsageBar(fileEEPROM, pbEEPROMUsage, mcu.eeprom);
+                memoryUsageBar(fileEEPROM, pbEEPROMUsage, mcu.eeprom, false);
         }
         
         // Click and drag (almost) anywhere to move window
@@ -528,22 +597,36 @@ namespace avrdudess
         }
 
         // Draw usage bar and show info in console
-        private void memoryUsageBar(MemTypeFile file, PictureBox pic, int availableSpace)
+        private void memoryUsageBar(MemTypeFile file, PictureBox pic, int availableSpace, bool onlyRedraw)
         {
             bool outOfSpace = file.size > availableSpace;
 
             // Info
-            if (file.size != Avrsize.INVALID && file.location != "")
+            if (!onlyRedraw && file.size != Avrsize.INVALID && file.location != "")
             {
                 float perc = 0;
                 if (availableSpace > 0)
                     perc = ((float)file.size / availableSpace) * 100;
-                string fmt = "{0}: {1:#,#0} / {2:#,#0} Bytes ({3:0.00}%){4}{5}";
-                string outOfSpaceStr = outOfSpace ? " [!]" : "";
-                Util.consoleWrite(String.Format(fmt, Path.GetFileName(file.location), file.size, availableSpace, perc, outOfSpaceStr, Environment.NewLine));
+
+                string outOfSpaceStr = "";
+                Color colour = Color.White;
+                if (outOfSpace)
+                {
+                    outOfSpaceStr = " [!]";
+                    colour = Color.Red;
+                }
+
+                Util.consoleWriteLine(
+                    "{0}: {1:#,#0} / {2:#,#0} Bytes ({3:0.00}%){4}",
+                    colour,
+                    Path.GetFileName(file.location),
+                    file.size, availableSpace,
+                    perc,
+                    outOfSpaceStr
+                    );
             }
 
-            Bitmap bmp = (Bitmap)pic.Image;
+            Bitmap bmp = new Bitmap(pic.Width, pic.Height);
 
             int usageWidth;
             Color barColour = Color.Red;
@@ -583,13 +666,13 @@ namespace avrdudess
         // AVRDUDE process has started
         private void avrdude_OnProcessStart(object sender, EventArgs e)
         {
-            tssStatus.Text = "AVRDUDE is running...";
+            tssStatus.Text = Language.Translation.get("_STATUSRUNNING");
         }
 
         // AVRDUDE process has ended
         private void avrdude_OnProcessEnd(object sender, EventArgs e)
         {
-            tssStatus.Text = "Ready";
+            tssStatus.Text = Language.Translation.get("_STATUSREADY");
         }
 
         // Found MCU
@@ -597,7 +680,7 @@ namespace avrdudess
         {
             if (e.mcu != null)
             {
-                Util.consoleWrite("Detected " + e.mcu.signature + " = " + e.mcu.fullName + Environment.NewLine);
+                Util.consoleWriteLine("_DETECTSUCCESS", e.mcu.signature, e.mcu.desc);
                 Invoke(new MethodInvoker(() =>
                 {
                     // Select the MCU that was found
@@ -607,8 +690,9 @@ namespace avrdudess
             else
             {
                 // Failed to detect MCU, show log so we can see what went wrong
-                Util.consoleWrite("Unable to detect MCU" + Environment.NewLine);
-                Util.consoleWrite(Environment.NewLine + avrdude.log + Environment.NewLine);
+                Util.consoleWarning("_DETECTFAIL");
+                Util.consoleWriteLine();
+                Util.consoleWriteLine(avrdude.log);
             }
         }
 
@@ -726,7 +810,7 @@ namespace avrdudess
 
             // Hide/show USBasp frequency/bit clock boxes
 
-            if (prog != null && prog.name == "usbasp") // USBasp has been selected
+            if (prog != null && prog.id == "usbasp") // USBasp has been selected
             {
                 if (txtBitClock.Visible)
                 {
@@ -772,8 +856,8 @@ namespace avrdudess
             {
                 lblFlashSize.Text = Util.fileSizeFormat(mcu.flash);
                 lblEEPROMSize.Text = Util.fileSizeFormat(mcu.eeprom);
-                memoryUsageBar(fileFlash, pbFlashUsage, mcu.flash);
-                memoryUsageBar(fileEEPROM, pbEEPROMUsage, mcu.eeprom);
+                memoryUsageBar(fileFlash, pbFlashUsage, mcu.flash, false);
+                memoryUsageBar(fileEEPROM, pbEEPROMUsage, mcu.eeprom, false);
             }
             else
             {
@@ -827,37 +911,64 @@ namespace avrdudess
             fOptions.avrdudeLocation = Config.Prop.avrdudeLoc;
             fOptions.avrdudeConfLocation = Config.Prop.avrdudeConfLoc;
             fOptions.avrSizeLocation = Config.Prop.avrSizeLoc;
+            fOptions.language = Config.Prop.language;
 
-            if (fOptions.ShowDialog() != DialogResult.OK)
-                return;
-
-            Config.Prop.toolTips = fOptions.toolTips;
-            ToolTips.Active = Config.Prop.toolTips;
-
-            bool changedAvrdudeLoc = (Config.Prop.avrdudeLoc != fOptions.avrdudeLocation);
-            bool changedAvrdudeConfLoc = (Config.Prop.avrdudeConfLoc != fOptions.avrdudeConfLocation);
-            bool changedAvrSizeLoc = (Config.Prop.avrSizeLoc != fOptions.avrSizeLocation);
-
-            Config.Prop.avrdudeLoc = fOptions.avrdudeLocation;
-            Config.Prop.avrdudeConfLoc = fOptions.avrdudeConfLocation;
-            Config.Prop.avrSizeLoc = fOptions.avrSizeLocation;
-
-            if (changedAvrdudeLoc || changedAvrdudeConfLoc)
+            if (fOptions.ShowDialog() == DialogResult.OK)
             {
-                avrdude.load();
+                Config.Prop.toolTips = fOptions.toolTips;
+                ToolTips.Active = Config.Prop.toolTips;
 
-                if (changedAvrdudeConfLoc)
+                bool changedAvrdudeLoc = (Config.Prop.avrdudeLoc != fOptions.avrdudeLocation);
+                bool changedAvrdudeConfLoc = (Config.Prop.avrdudeConfLoc != fOptions.avrdudeConfLocation);
+                bool changedAvrSizeLoc = (Config.Prop.avrSizeLoc != fOptions.avrSizeLocation);
+
+                Config.Prop.avrdudeLoc = fOptions.avrdudeLocation;
+                Config.Prop.avrdudeConfLoc = fOptions.avrdudeConfLocation;
+                Config.Prop.avrSizeLoc = fOptions.avrSizeLocation;
+                Config.Prop.language = fOptions.language;
+
+                if (changedAvrdudeLoc || changedAvrdudeConfLoc)
                 {
-                    setComboBoxDataSource(cmbMCU, avrdude.mcus, "fullName");
-                    setComboBoxDataSource(cmbProg, avrdude.programmers, "fullName");
+                    avrdude.load();
+
+                    if (changedAvrdudeConfLoc)
+                    {
+                        setComboBoxDataSource(cmbMCU, avrdude.mcus, "desc");
+                        setComboBoxDataSource(cmbProg, avrdude.programmers, "desc");
+                    }
+                }
+
+                if (changedAvrSizeLoc)
+                {
+                    avrsize.load();
+                    fileFlash.updateSize();
+                    fileEEPROM.updateSize();
                 }
             }
+        }
 
-            if (changedAvrSizeLoc)
+        // Window size changed, update usage bars (doesn't work when maximized/normalized)
+        private void Form1_ResizeEnd(object sender, EventArgs e)
+        {
+            if (mcu != null)
             {
-                avrsize.load();
-                fileFlash.updateSize();
-                fileEEPROM.updateSize();
+                memoryUsageBar(fileFlash, pbFlashUsage, mcu.flash, true);
+                memoryUsageBar(fileEEPROM, pbEEPROMUsage, mcu.eeprom, true);
+            }
+        }
+
+        // Deal with maximized/normalized resizes and update memory usage bars
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (WindowState != lastWindowState)
+            {
+                lastWindowState = WindowState;
+
+                if (WindowState != FormWindowState.Minimized && mcu != null)
+                {
+                    memoryUsageBar(fileFlash, pbFlashUsage, mcu.flash, true);
+                    memoryUsageBar(fileEEPROM, pbEEPROMUsage, mcu.eeprom, true);
+                }
             }
         }
 
@@ -900,72 +1011,71 @@ namespace avrdudess
         // Force stop
         private void btnForceStop_Click(object sender, EventArgs e)
         {
-            if(avrdude.kill())
-                Util.consoleWrite(Environment.NewLine + "AVRDUDE killed" + Environment.NewLine);
+            if (avrdude.kill())
+            {
+                Util.consoleWriteLine();
+                Util.consoleWrite("_AVRDUDEKILLED", Color.Red);
+                Util.consoleWriteLine();
+            }
         }
 
-        // Save a preset
-        private void btnPresetSave_Click(object sender, EventArgs e)
+        private PresetData makePresetData(string name)
         {
-            // Credits:
-            // Uwe Tanger (Set preset name by typing directly into presets box instead of a popup window)
+            PresetData preset = new PresetData(name);
+            preset.programmer = (prog != null) ? prog.id : "";
+            preset.mcu = (mcu != null) ? mcu.id : "";
+            preset.port = port;
+            preset.baud = baudRate;
+            preset.bitclock = bitClock;
+            preset.flashFile = flashFile;
+            preset.flashFormat = flashFileFormat;
+            preset.flashOp = flashFileOperation;
+            preset.EEPROMFile = EEPROMFile;
+            preset.EEPROMFormat = EEPROMFileFormat;
+            preset.EEPROMOp = EEPROMFileOperation;
+            preset.force = force;
+            preset.disableVerify = disableVerify;
+            preset.disableFlashErase = disableFlashErase;
+            preset.eraseFlashAndEEPROM = eraseFlashAndEEPROM;
+            preset.doNotWrite = doNotWrite;
+            preset.lfuse = lowFuse;
+            preset.hfuse = highFuse;
+            preset.efuse = exFuse;
+            preset.setFuses = setFuses;
+            preset.lockBits = lockSetting;
+            preset.setLock = setLock;
+            preset.additional = additionalSettings;
+            preset.verbosity = verbosity;
 
-            // Check name
-            string name = cmbPresets.Text;
-            if (name.Length < 1)
-                return;
-            else if (name == "Default")
-            {
-                MsgBox.notice("Can't change 'Default'");
-                return;
-            }
-
-            // Remove old preset with same name
-            PresetData p = presets.presets.Find(s => s.name == name);
-            if (p != null)
-                presets.remove(p);
-
-            // Add new preset
-            presets.add(name);
-            presets.save();
-            presets.setDataSource(cmbPresets, cmbPresets_SelectedIndexChanged);
-
-            // Select the new preset
-            p = presets.presets.Find(s => s.name == name);
-            if (p != null)
-                cmbPresets.SelectedItem = (object)p;
+            return preset;
         }
 
-        // Delete a preset
-        private void btnPresetDelete_Click(object sender, EventArgs e)
+        private void loadPresetData(PresetData item)
         {
-            // Credits:
-            // Uwe Tanger (Delete selected preset in the presets box instead of a popup window)
-
-            // Make sure a preset is selected
-            if (cmbPresets.SelectedItem != null)
-            {
-                // Make sure its not the default preset
-                if (((PresetData)cmbPresets.SelectedItem).name == "Default")
-                {
-                    MsgBox.notice("Can't remove 'Default'");
-                    return;
-                }
-
-                // Confirm preset deletion (too easy to accidentally delete)
-                // Credits:
-                // gl.tter
-                if (MsgBox.confirm("Delete preset '" + ((PresetData)cmbPresets.SelectedItem).name + "'?") == DialogResult.OK)
-                {
-                    // Remove the preset
-                    presets.remove((PresetData)cmbPresets.SelectedItem);
-                    presets.save();
-                    presets.setDataSource(cmbPresets, cmbPresets_SelectedIndexChanged);
-
-                    // Load up default
-                    cmbPresets.SelectedItem = presets.presets.Find(s => s.name == "Default");
-                }
-            }
+            prog = new Programmer(item.programmer);
+            mcu = new MCU(item.mcu);
+            port = item.port;
+            baudRate = item.baud;
+            bitClock = item.bitclock;
+            flashFile = item.flashFile;
+            flashFileFormat = item.flashFormat;
+            flashFileOperation = item.flashOp;
+            EEPROMFile = item.EEPROMFile;
+            EEPROMFileFormat = item.EEPROMFormat;
+            EEPROMFileOperation = item.EEPROMOp;
+            force = item.force;
+            disableVerify = item.disableVerify;
+            disableFlashErase = item.disableFlashErase;
+            eraseFlashAndEEPROM = item.eraseFlashAndEEPROM;
+            doNotWrite = item.doNotWrite;
+            lowFuse = item.lfuse;
+            highFuse = item.hfuse;
+            exFuse = item.efuse;
+            setFuses = item.setFuses;
+            lockSetting = item.lockBits;
+            setLock = item.setLock;
+            additionalSettings = item.additional;
+            verbosity = item.verbosity;
         }
 
         // Preset choice changed
@@ -976,11 +1086,11 @@ namespace avrdudess
                 var item = (PresetData)cmbPresets.SelectedItem;
                 if (item != null)
                 {
-                    item.load(this);
+                    loadPresetData(item);
                     Config.Prop.preset = item.name;
 
                     // If preset uses USBasp we need to workout the frequency to use from the bit clock
-                    if (prog != null && prog.name == "usbasp")
+                    if (prog != null && prog.id == "usbasp")
                     {
                         string bitClockStr = txtBitClock.Text;
 
@@ -1153,15 +1263,9 @@ namespace avrdudess
             about += "Version " + AssemblyData.version.ToString() + Environment.NewLine;
             about += AssemblyData.copyright + Environment.NewLine;
             about += Environment.NewLine;
-            about += "zakkemble.co.uk";
+            about += "zakkemble.net";
 
-            MessageBox.Show(about, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        // Resize console when form resizes
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            txtConsole.Height = Height - txtConsole.Top - 64;
+            MessageBox.Show(about, Language.Translation.get("_ABOUT"), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // Drag client area
@@ -1207,14 +1311,14 @@ namespace avrdudess
         // Tool item select all
         private void tsmiSelectAll_Click(object sender, EventArgs e)
         {
-            txtConsole.SelectAll();
+            rtxtConsole.SelectAll();
         }
 
         // Tool item copy
         private void tsmiCopy_Click(object sender, EventArgs e)
         {
-            if (txtConsole.SelectionLength > 0)
-                Clipboard.SetText(txtConsole.SelectedText);
+            if (rtxtConsole.SelectionLength > 0)
+                Clipboard.SetText(rtxtConsole.SelectedText);
         }
 
         // Tool item clear
@@ -1233,6 +1337,17 @@ namespace avrdudess
                 Config.Prop.windowLocation = Location;
 
             Config.Prop.save();
+        }
+
+        // Open the presets manager form
+        private void btnPresetMgr_Click(object sender, EventArgs e)
+        {
+            using (FormPresetManager fPresetMgr = new FormPresetManager())
+            {
+                fPresetMgr.presets = presets;
+                fPresetMgr.currentSettings = makePresetData("");
+                fPresetMgr.ShowDialog();
+            }
         }
 
         #endregion

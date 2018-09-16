@@ -1,12 +1,10 @@
 ﻿/*
  * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.co.uk
+ * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2013 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.co.uk/avrdudess-a-gui-for-avrdude/
+ * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
-
-using System;
 
 namespace avrdudess
 {
@@ -14,8 +12,7 @@ namespace avrdudess
     {
         private int _flash;
         private int _eeprom;
-        public string signature { get; private set; }
-        private MCU parent;
+        private string _signature;
 
         public int flash
         {
@@ -23,7 +20,7 @@ namespace avrdudess
             {
                 int s = _flash;
                 if (s == -1)
-                    s = (parent != null) ? parent.flash : 0;
+                    s = (parent != null) ? ((MCU)parent).flash : 0;
                 return s;
             }
             private set
@@ -38,7 +35,7 @@ namespace avrdudess
             {
                 int s = _eeprom;
                 if (s == -1)
-                    s = (parent != null) ? parent.eeprom : 0;
+                    s = (parent != null) ? ((MCU)parent).eeprom : 0;
                 return s;
             }
             private set
@@ -47,13 +44,28 @@ namespace avrdudess
             }
         }
 
-        public MCU(string name, string fullName = "", string signature = "", int flash = 0, int eeprom = 0, MCU parent = null)
-            : base(name, fullName)
+        public string signature
         {
-            this.signature = signature.ToLower();
+            get
+            {
+                string s = _signature;
+                if (s == null)
+                    s = (parent != null) ? ((MCU)parent).signature : "?";
+                return s;
+            }
+            private set
+            {
+                _signature = value;
+            }
+        }
+
+        public MCU(string id, string desc = null, string signature = null, int flash = 0, int eeprom = 0, MCU parent = null)
+            : base(id, desc, parent)
+        {
+            if(signature != null)
+                this.signature = signature.ToLower();
             this.flash = flash;
             this.eeprom = eeprom;
-            this.parent = parent;
         }
     }
 }

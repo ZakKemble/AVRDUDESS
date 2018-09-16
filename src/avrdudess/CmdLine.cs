@@ -1,9 +1,9 @@
 ﻿/*
  * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.co.uk
+ * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2013 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.co.uk/avrdudess-a-gui-for-avrdude/
+ * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
 using System;
@@ -30,11 +30,11 @@ namespace avrdudess
             sb.Length = 0;
             sb.Capacity = 0;
 
-            if (mainForm.prog != null && mainForm.prog.name.Length > 0)
-                cmdLineOption("c", mainForm.prog.name);
+            if (mainForm.prog != null && mainForm.prog.id.Length > 0)
+                cmdLineOption("c", mainForm.prog.id);
 
-            if (mainForm.mcu != null && mainForm.mcu.name.Length > 0 && addMCU)
-                cmdLineOption("p", mainForm.mcu.name);
+            if (mainForm.mcu != null && mainForm.mcu.id.Length > 0 && addMCU)
+                cmdLineOption("p", mainForm.mcu.id);
 
             if (mainForm.port.Length > 0)
                 cmdLineOption("P", mainForm.port);

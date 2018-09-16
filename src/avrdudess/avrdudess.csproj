@@ -60,6 +60,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormEnterText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEnterText.Designer.cs">
+      <DependentUpon>FormEnterText.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormFuseSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,18 @@
     <Compile Include="FormOptions.Designer.cs">
       <DependentUpon>FormOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPresetManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPresetManager.Designer.cs">
+      <DependentUpon>FormPresetManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUISimple.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUISimple.Designer.cs">
+      <DependentUpon>FormUISimple.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +97,7 @@
       <DependentUpon>FormUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="FusesAndLocks.cs" />
+    <Compile Include="Language.cs" />
     <Compile Include="MCU.cs" />
     <Compile Include="MemTypeFile.cs" />
     <Compile Include="Part.cs" />
@@ -94,14 +113,29 @@
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEnterText.resx">
+      <DependentUpon>FormEnterText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFuseSelector.resx">
       <DependentUpon>FormFuseSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOptions.resx">
       <DependentUpon>FormOptions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPresetManager.resx">
+      <DependentUpon>FormPresetManager.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUISimple.resx">
+      <DependentUpon>FormUISimple.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpdate.resx">
       <DependentUpon>FormUpdate.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -140,6 +174,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icon.ico" />
+    <Content Include="Languages\german.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\english.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

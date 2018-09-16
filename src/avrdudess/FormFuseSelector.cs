@@ -1,13 +1,12 @@
 ﻿/*
  * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.co.uk
+ * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2013 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.co.uk/avrdudess-a-gui-for-avrdude/
+ * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
 using System;
-using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -53,12 +52,14 @@ namespace avrdudess
 
         private void FormFusesAndLocks_Load(object sender, EventArgs e)
         {
+            Language.Translation.ApplyTranslation(this);
+
             Left += 200;
         }
 
         public string[] editFuseAndLocks(MCU mcu, string[] fuses)
         {
-            Text = "Fuse & lock bits: " + mcu.fullName + " (" + mcu.signature.ToUpper() + ")";
+            Text = string.Format(Language.Translation.get("_TITLE_FUSEANDLOCKBITS"), mcu.desc, mcu.signature.ToUpper());
 
             lblCarefulNow.Visible = !FusesList.fl.isSupported(mcu.signature);
 
@@ -139,7 +140,7 @@ namespace avrdudess
 
         private string binaryToHex(string value)
         {
-            return String.Format("{0:X2}", Convert.ToInt32(value, 2));
+            return string.Format("{0:X2}", Convert.ToInt32(value, 2));
         }
 
         private string hex2binary(string hexValue)

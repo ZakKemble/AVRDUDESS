@@ -1,9 +1,9 @@
 ﻿/*
  * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.co.uk
+ * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2013 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.co.uk/avrdudess-a-gui-for-avrdude/
+ * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
 using System;
@@ -15,7 +15,7 @@ namespace avrdudess
 {
     // Credits:
     // Simone Chifari (Fuse selector)
-    sealed class FusesList : XmlFile<object>
+    sealed class FusesList
     {
         private const string FILE_BITS = "bits.xml";
 
@@ -25,15 +25,11 @@ namespace avrdudess
         private Hashtable fusebitshi = new Hashtable();
         private Hashtable fusebitsext = new Hashtable();
 
-        protected override object data
-        {
-            get { return null; }
-            set { }
-        }
+        private string fileLocation;
 
         private FusesList()
-            : base(FILE_BITS, "fuses")
         {
+            fileLocation = AssemblyData.directory + "\\" + FILE_BITS;
             load();
         }
 
@@ -105,7 +101,7 @@ namespace avrdudess
             }
             catch (Exception ex)
             {
-                MsgBox.error("An error occurred trying to load fuses", ex);
+                MsgBox.error("_ERRORLOADFUSES", ex.Message);
             }
 
             if (tr != null)

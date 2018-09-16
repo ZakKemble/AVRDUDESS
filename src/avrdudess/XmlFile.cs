@@ -1,9 +1,9 @@
 ﻿/*
  * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.co.uk
+ * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2013 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.co.uk/avrdudess-a-gui-for-avrdude/
+ * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
 using System;
@@ -18,36 +18,41 @@ namespace avrdudess
         private string name;
         abstract protected object data { get; set; }
 
-        public XmlFile(string fileName, string name)
+        public XmlFile(string fileName, string name, bool customFileLocation)
         {
             this.name = name;
 
-            // Where the file should be
-            fileLocation = makePath(Environment.SpecialFolder.ApplicationData, fileName);
-            
-            // File exists, don't need to copy template
-            if (File.Exists(fileLocation))
-                return;
-
-            // Copy template if found
-
-            string[] locations = new string[]
+            if (customFileLocation)
+                fileLocation = fileName;
+            else
             {
-                makePath(Environment.SpecialFolder.CommonApplicationData, fileName), // CommonAppData
-                Path.Combine(AssemblyData.directory, fileName), // Program .exe directory
-                Path.Combine(Directory.GetCurrentDirectory(), fileName) // Working directory
-            };
+                // Where the file should be
+                fileLocation = makePath(Environment.SpecialFolder.ApplicationData, fileName);
 
-            foreach (string location in locations)
-            {
-                if (File.Exists(location))
+                // If file exists then we don't need to copy the template
+                if (!File.Exists(fileLocation))
                 {
-                    copyTemplate(location);
-                    break;
+                    // Copy template if we can find it
+
+                    string[] locations = new string[]
+                    {
+                        makePath(Environment.SpecialFolder.CommonApplicationData, fileName), // CommonAppData
+                        Path.Combine(AssemblyData.directory, fileName), // Program .exe directory
+                        Path.Combine(Directory.GetCurrentDirectory(), fileName) // Working directory
+                    };
+
+                    foreach (string location in locations)
+                    {
+                        if (File.Exists(location))
+                        {
+                            copyTemplate(location);
+                            break;
+                        }
+                    }
+
+                    // If template wasn't found then a new file will be created later
                 }
             }
-
-            // If template wasn't found then a new file will be created later
         }
 
         private string makePath(Environment.SpecialFolder folder, string fileName)
@@ -66,7 +71,7 @@ namespace avrdudess
             }
             catch (Exception ex)
             {
-                MsgBox.error("Failed to copy " + name + " template to AppData", ex);
+                MsgBox.error("_XMLCOPYERROR", name, ex.Message);
             }
         }
 
@@ -85,7 +90,7 @@ namespace avrdudess
             }
             catch (Exception ex)
             {
-                MsgBox.error("An error occurred trying to save " + name, ex);
+                MsgBox.error("_XMLWRITEERROR", name, ex.Message);
             }
 
             if (tw != null)
@@ -103,7 +108,7 @@ namespace avrdudess
             }
             catch (Exception ex)
             {
-                MsgBox.error("An error occurred trying to load " + name, ex);
+                MsgBox.error("_XMLREADERROR", name, ex.Message);
             }
 
             if (tr != null)

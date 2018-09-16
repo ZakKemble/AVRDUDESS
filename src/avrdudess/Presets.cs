@@ -1,66 +1,74 @@
 ﻿/*
  * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.co.uk
+ * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2013 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.co.uk/avrdudess-a-gui-for-avrdude/
+ * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
-using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace avrdudess
 {
-    class Presets : XmlFile<List<PresetData>>
+    public class Presets : XmlFile<List<PresetData>>
     {
         private const string FILE_PRESETS = "presets.xml";
 
-        private Form1 mainForm;
-        private List<PresetData> presetList;
+        private BindingList<PresetData> presetList;
+        private bool customFileLocation;
 
         protected override object data
         {
             get { return presetList; }
-            set { presetList = (List<PresetData>)value; }
+            set
+            {
+                if (value != null)
+                    presetList = new BindingList<PresetData>((List<PresetData>)value);
+            }
         }
         
-        // This should return a readonly list...
+        // TODO This should return a readonly list... ???
         public List<PresetData> presets
         {
-            get { return presetList; }
+            get { return new List<PresetData>(presetList); }
         }
 
-        public Presets(Form1 mainForm, string xmlFile = FILE_PRESETS)
-            : base(xmlFile, "presets")
+        public Presets(string xmlFile = FILE_PRESETS)
+            : base(xmlFile, "presets", false)
         {
-            this.mainForm = mainForm;
-            presetList = new List<PresetData>();
+            presetList = new BindingList<PresetData>();
         }
-        
-        public void setDataSource(ComboBox cb, EventHandler handler)
+
+        public Presets(string xmlFile, bool customFileLocation)
+            : base(xmlFile, "presets", customFileLocation)
         {
-            cb.SelectedIndexChanged -= handler;
-            setDataSource(cb);
-            cb.SelectedIndexChanged += handler;
+            this.customFileLocation = customFileLocation;
+            presetList = new BindingList<PresetData>();
         }
 
         public void setDataSource(ComboBox cb)
         {
+            // Create new instances of BindingSource here instead of using a single class property otherwise
+            // all the preset combo boxes (on Form1 and FormPresetManager) will change selection with each other
+            BindingSource bSource = new BindingSource();
+            bSource.DataSource = presetList;
+
             cb.DataSource = null;
             cb.ValueMember = null;
             cb.BindingContext = new BindingContext();
-            cb.DataSource = presetList;
+            cb.DataSource = bSource;
             cb.DisplayMember = "name";
             cb.SelectedIndex = -1;
         }
 
         // New preset
-        public void add(string name)
+        public void add(PresetData preset)
         {
-            presetList.Add(new PresetData(mainForm, name));
+            presetList.Add(preset);
             bumpDefault();
         }
 
@@ -74,7 +82,9 @@ namespace avrdudess
         // Make sure default is at the top
         private void bumpDefault()
         {
-            int idx = presetList.FindIndex(s => s.name == "Default");
+            // I'm assuming the order of the new List is same as the BindingList...
+
+            int idx = new List<PresetData>(presetList).FindIndex(s => s.name == "Default");
             if (idx > 0)
             {
                 PresetData p = presetList[idx];
@@ -92,36 +102,58 @@ namespace avrdudess
         // Load presets
         public void load()
         {
-            // If file doesn't exist then make it
-            if (!File.Exists(fileLocation))
+            if (!customFileLocation)
             {
-                add("Default");
-                save();
+                // If file doesn't exist then make it
+                if (!File.Exists(fileLocation))
+                {
+                    add(new PresetData("Default"));
+                    save();
+                }
             }
 
             // Load presets from XML
             read();
             if (presetList == null) // Failed to load
-                presetList = new List<PresetData>();
+                presetList = new BindingList<PresetData>();
         }
     }
 
     [XmlType(TypeName = "Preset")] // For backwards compatability with old (<v2.0) presets.xml
-    public class PresetData
+    public class PresetData : INotifyPropertyChanged
     {
-        public string name { get; set; }
+        // This notify property changed stuff is so that the preset dropdown boxes
+        // automatically update with the new name when renaming a preset
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public string programmer;
-        public string mcu;
+        // [CallerMemberName] attribute doesn't exist in .NET 2.0
+        private void NotifyPropertyChanged(string propertyName = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private string _name;
+
+        public string name {
+            get { return _name; }
+            set {
+                _name = value;
+                NotifyPropertyChanged("name");
+            }
+        }
+
+        public string programmer = "";
+        public string mcu = "";
         public string port;
         public string baud;
         public string bitclock;
         public string flashFile;
-        public string flashFormat;
-        public string flashOp;
+        public string flashFormat = "a";
+        public string flashOp = "w";
         public string EEPROMFile;
-        public string EEPROMFormat;
-        public string EEPROMOp;
+        public string EEPROMFormat = "a";
+        public string EEPROMOp = "w";
         public bool force;
         public bool disableVerify;
         public bool disableFlashErase;
@@ -140,62 +172,44 @@ namespace avrdudess
         {
         }
 
-        public PresetData(Form1 mainForm, string name)
+        public PresetData(string name)
         {
             this.name = name;
-
-            programmer = (mainForm.prog != null) ? mainForm.prog.name : "";
-            mcu = (mainForm.mcu != null) ? mainForm.mcu.name : "";
-            port = mainForm.port;
-            baud = mainForm.baudRate;
-            bitclock = mainForm.bitClock;
-            flashFile = mainForm.flashFile;
-            flashFormat = mainForm.flashFileFormat;
-            flashOp = mainForm.flashFileOperation;
-            EEPROMFile = mainForm.EEPROMFile;
-            EEPROMFormat = mainForm.EEPROMFileFormat;
-            EEPROMOp = mainForm.EEPROMFileOperation;
-            force = mainForm.force;
-            disableVerify = mainForm.disableVerify;
-            disableFlashErase = mainForm.disableFlashErase;
-            eraseFlashAndEEPROM = mainForm.eraseFlashAndEEPROM;
-            doNotWrite = mainForm.doNotWrite;
-            lfuse = mainForm.lowFuse;
-            hfuse = mainForm.highFuse;
-            efuse = mainForm.exFuse;
-            setFuses = mainForm.setFuses;
-            lockBits = mainForm.lockSetting;
-            setLock = mainForm.setLock;
-            additional = mainForm.additionalSettings;
-            verbosity = mainForm.verbosity;
         }
 
-        public void load(Form1 mainForm)
+        public PresetData(PresetData source)
         {
-            mainForm.prog = new Programmer(programmer);
-            mainForm.mcu = new MCU(mcu);
-            mainForm.port = port;
-            mainForm.baudRate = baud;
-            mainForm.bitClock = bitclock;
-            mainForm.flashFile = flashFile;
-            mainForm.flashFileFormat = flashFormat;
-            mainForm.flashFileOperation = flashOp;
-            mainForm.EEPROMFile = EEPROMFile;
-            mainForm.EEPROMFileFormat = EEPROMFormat;
-            mainForm.EEPROMFileOperation = EEPROMOp;
-            mainForm.force = force;
-            mainForm.disableVerify = disableVerify;
-            mainForm.disableFlashErase = disableFlashErase;
-            mainForm.eraseFlashAndEEPROM = eraseFlashAndEEPROM;
-            mainForm.doNotWrite = doNotWrite;
-            mainForm.lowFuse = lfuse;
-            mainForm.highFuse = hfuse;
-            mainForm.exFuse = efuse;
-            mainForm.setFuses = setFuses;
-            mainForm.lockSetting = lockBits;
-            mainForm.setLock = setLock;
-            mainForm.additionalSettings = additional;
-            mainForm.verbosity = verbosity;
+            copyFrom(source);
+        }
+
+        public void copyFrom(PresetData source)
+        {
+            name = source.name;
+
+            programmer = source.programmer;
+            mcu = source.mcu;
+            port = source.port;
+            baud = source.baud;
+            bitclock = source.bitclock;
+            flashFile = source.flashFile;
+            flashFormat = source.flashFormat;
+            flashOp = source.flashOp;
+            EEPROMFile = source.EEPROMFile;
+            EEPROMFormat = source.EEPROMFormat;
+            EEPROMOp = source.EEPROMOp;
+            force = source.force;
+            disableVerify = source.disableVerify;
+            disableFlashErase = source.disableFlashErase;
+            eraseFlashAndEEPROM = source.eraseFlashAndEEPROM;
+            doNotWrite = source.doNotWrite;
+            lfuse = source.lfuse;
+            hfuse = source.hfuse;
+            efuse = source.efuse;
+            setFuses = source.setFuses;
+            lockBits = source.lockBits;
+            setLock = source.setLock;
+            additional = source.additional;
+            verbosity = source.verbosity;
         }
     }
 }

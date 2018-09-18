@@ -61,13 +61,13 @@ namespace avrdudess
 
         public static readonly List<FileFormat> fileFormats = new List<FileFormat>()
         {
-            new FileFormat("a", "Auto (writing only)"),
-            new FileFormat("i", "Intel Hex"),
-            new FileFormat("s", "Motorola S-record"),
-            new FileFormat("r", "Raw binary"),
-            new FileFormat("d", "Decimal (reading only)"),
-            new FileFormat("h", "Hexadecimal (reading only)"),
-            new FileFormat("b", "Binary (reading only)")
+            new FileFormat("a", Language.Translation.get("_FILEFMT_AUTO")),
+            new FileFormat("i", Language.Translation.get("_FILEFMT_HEX")),
+            new FileFormat("s", Language.Translation.get("_FILEFMT_SREC")),
+            new FileFormat("r", Language.Translation.get("_FILEFMT_BIN")),
+            new FileFormat("d", Language.Translation.get("_FILEFMT_DECR")),
+            new FileFormat("h", Language.Translation.get("_FILEFMT_HEXR")),
+            new FileFormat("b", Language.Translation.get("_FILEFMT_BINR"))
         };
 
         private enum ParseMemType
@@ -123,10 +123,6 @@ namespace avrdudess
             // Sort alphabetically
             _programmers.Sort();
             _mcus.Sort();
-
-            // Add default
-            _programmers.Insert(0, new Programmer("", Language.Translation.get("_SELECTPROG")));
-            _mcus.Insert(0, new MCU("", Language.Translation.get("_SELECTMCU")));
         }
 
         // Get AVRDUDE version

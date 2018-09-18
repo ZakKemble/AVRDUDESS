@@ -45,8 +45,14 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.clbHiddenProgrammers = new System.Windows.Forms.CheckedListBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.clbHiddenMCUs = new System.Windows.Forms.CheckedListBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -78,6 +84,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.btnBrowseAvrSize);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnBrowseAvrdudeConf);
@@ -89,79 +97,88 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(412, 100);
-            this.groupBox1.TabIndex = 3;
+            this.groupBox1.Size = new System.Drawing.Size(510, 100);
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "_GRP_FILELOCATIONS";
             // 
             // btnBrowseAvrSize
             // 
-            this.btnBrowseAvrSize.Location = new System.Drawing.Point(381, 68);
+            this.btnBrowseAvrSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseAvrSize.Location = new System.Drawing.Point(479, 68);
             this.btnBrowseAvrSize.Name = "btnBrowseAvrSize";
             this.btnBrowseAvrSize.Size = new System.Drawing.Size(25, 20);
-            this.btnBrowseAvrSize.TabIndex = 8;
+            this.btnBrowseAvrSize.TabIndex = 5;
             this.btnBrowseAvrSize.Text = "...";
             this.btnBrowseAvrSize.UseVisualStyleBackColor = true;
             this.btnBrowseAvrSize.Click += new System.EventHandler(this.btnBrowseAvrSize_Click);
             // 
             // btnBrowseAvrdudeConf
             // 
-            this.btnBrowseAvrdudeConf.Location = new System.Drawing.Point(381, 42);
+            this.btnBrowseAvrdudeConf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseAvrdudeConf.Location = new System.Drawing.Point(479, 42);
             this.btnBrowseAvrdudeConf.Name = "btnBrowseAvrdudeConf";
             this.btnBrowseAvrdudeConf.Size = new System.Drawing.Size(25, 20);
-            this.btnBrowseAvrdudeConf.TabIndex = 7;
+            this.btnBrowseAvrdudeConf.TabIndex = 3;
             this.btnBrowseAvrdudeConf.Text = "...";
             this.btnBrowseAvrdudeConf.UseVisualStyleBackColor = true;
             this.btnBrowseAvrdudeConf.Click += new System.EventHandler(this.btnBrowseAvrdudeConf_Click);
             // 
             // btnBrowseAvrdude
             // 
-            this.btnBrowseAvrdude.Location = new System.Drawing.Point(381, 16);
+            this.btnBrowseAvrdude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseAvrdude.Location = new System.Drawing.Point(479, 16);
             this.btnBrowseAvrdude.Name = "btnBrowseAvrdude";
             this.btnBrowseAvrdude.Size = new System.Drawing.Size(25, 20);
-            this.btnBrowseAvrdude.TabIndex = 6;
+            this.btnBrowseAvrdude.TabIndex = 1;
             this.btnBrowseAvrdude.Text = "...";
             this.btnBrowseAvrdude.UseVisualStyleBackColor = true;
             this.btnBrowseAvrdude.Click += new System.EventHandler(this.btnBrowseAvrdude_Click);
             // 
             // txtAvrSizeLocation
             // 
+            this.txtAvrSizeLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAvrSizeLocation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtAvrSizeLocation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.txtAvrSizeLocation.Location = new System.Drawing.Point(82, 69);
             this.txtAvrSizeLocation.Name = "txtAvrSizeLocation";
-            this.txtAvrSizeLocation.Size = new System.Drawing.Size(293, 20);
-            this.txtAvrSizeLocation.TabIndex = 5;
+            this.txtAvrSizeLocation.Size = new System.Drawing.Size(391, 20);
+            this.txtAvrSizeLocation.TabIndex = 4;
             // 
             // txtAvrdudeConfLocation
             // 
+            this.txtAvrdudeConfLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAvrdudeConfLocation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtAvrdudeConfLocation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.txtAvrdudeConfLocation.Location = new System.Drawing.Point(82, 42);
             this.txtAvrdudeConfLocation.Name = "txtAvrdudeConfLocation";
-            this.txtAvrdudeConfLocation.Size = new System.Drawing.Size(293, 20);
-            this.txtAvrdudeConfLocation.TabIndex = 4;
+            this.txtAvrdudeConfLocation.Size = new System.Drawing.Size(391, 20);
+            this.txtAvrdudeConfLocation.TabIndex = 2;
             // 
             // txtAvrdudeLocation
             // 
+            this.txtAvrdudeLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAvrdudeLocation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtAvrdudeLocation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.txtAvrdudeLocation.Location = new System.Drawing.Point(82, 16);
             this.txtAvrdudeLocation.Name = "txtAvrdudeLocation";
-            this.txtAvrdudeLocation.Size = new System.Drawing.Size(293, 20);
-            this.txtAvrdudeLocation.TabIndex = 3;
+            this.txtAvrdudeLocation.Size = new System.Drawing.Size(391, 20);
+            this.txtAvrdudeLocation.TabIndex = 0;
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.cbLanguage);
             this.groupBox2.Controls.Add(this.cbShowToolTips);
             this.groupBox2.Location = new System.Drawing.Point(12, 118);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(412, 77);
-            this.groupBox2.TabIndex = 4;
+            this.groupBox2.Size = new System.Drawing.Size(510, 77);
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "_GRP_OTHER";
             // 
@@ -177,10 +194,10 @@
             // cbLanguage
             // 
             this.cbLanguage.FormattingEnabled = true;
-            this.cbLanguage.Location = new System.Drawing.Point(67, 22);
+            this.cbLanguage.Location = new System.Drawing.Point(82, 22);
             this.cbLanguage.Name = "cbLanguage";
             this.cbLanguage.Size = new System.Drawing.Size(121, 21);
-            this.cbLanguage.TabIndex = 40;
+            this.cbLanguage.TabIndex = 0;
             // 
             // cbShowToolTips
             // 
@@ -190,7 +207,7 @@
             this.cbShowToolTips.Location = new System.Drawing.Point(6, 49);
             this.cbShowToolTips.Name = "cbShowToolTips";
             this.cbShowToolTips.Size = new System.Drawing.Size(119, 17);
-            this.cbShowToolTips.TabIndex = 39;
+            this.cbShowToolTips.TabIndex = 1;
             this.cbShowToolTips.Text = "_SHOWTOOLTIPS";
             this.cbShowToolTips.UseVisualStyleBackColor = true;
             // 
@@ -198,7 +215,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(349, 201);
+            this.btnCancel.Location = new System.Drawing.Point(447, 617);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
@@ -209,12 +226,68 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(268, 201);
+            this.btnOK.Location = new System.Drawing.Point(366, 617);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 6;
+            this.btnOK.TabIndex = 4;
             this.btnOK.Text = "_OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.clbHiddenProgrammers);
+            this.groupBox3.Location = new System.Drawing.Point(12, 201);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(510, 200);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "_GRP_HIDEPROGS";
+            // 
+            // clbHiddenProgrammers
+            // 
+            this.clbHiddenProgrammers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.clbHiddenProgrammers.CheckOnClick = true;
+            this.clbHiddenProgrammers.FormattingEnabled = true;
+            this.clbHiddenProgrammers.Items.AddRange(new object[] {
+            "aaa",
+            "bbb",
+            "ccc",
+            "aaadd"});
+            this.clbHiddenProgrammers.Location = new System.Drawing.Point(6, 19);
+            this.clbHiddenProgrammers.Name = "clbHiddenProgrammers";
+            this.clbHiddenProgrammers.Size = new System.Drawing.Size(498, 169);
+            this.clbHiddenProgrammers.TabIndex = 0;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.clbHiddenMCUs);
+            this.groupBox4.Location = new System.Drawing.Point(12, 407);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(510, 200);
+            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "_GRP_HIDEMCUS";
+            // 
+            // clbHiddenMCUs
+            // 
+            this.clbHiddenMCUs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.clbHiddenMCUs.CheckOnClick = true;
+            this.clbHiddenMCUs.FormattingEnabled = true;
+            this.clbHiddenMCUs.Items.AddRange(new object[] {
+            "aaa",
+            "bbb",
+            "ccc",
+            "aaadd"});
+            this.clbHiddenMCUs.Location = new System.Drawing.Point(6, 19);
+            this.clbHiddenMCUs.Name = "clbHiddenMCUs";
+            this.clbHiddenMCUs.Size = new System.Drawing.Size(498, 169);
+            this.clbHiddenMCUs.TabIndex = 0;
             // 
             // FormOptions
             // 
@@ -222,7 +295,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(436, 231);
+            this.ClientSize = new System.Drawing.Size(534, 647);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.groupBox2);
@@ -238,6 +313,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -261,5 +338,9 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbLanguage;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckedListBox clbHiddenProgrammers;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckedListBox clbHiddenMCUs;
     }
 }

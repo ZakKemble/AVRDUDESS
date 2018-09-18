@@ -40,6 +40,9 @@ namespace avrdudess
         private FormWindowState lastWindowState = FormWindowState.Minimized;
         private Dictionary<Control, string> tooltipData;
 
+        private readonly List<Programmer> programmers;
+        private readonly List<MCU> mcus;
+
         #region Control getters and setters
 
         public Programmer prog
@@ -53,7 +56,7 @@ namespace avrdudess
             }
             set
             {
-                Programmer p = avrdude.programmers.Find(s => s.id == value.id);
+                Programmer p = programmers.Find(s => s.id == value.id);
                 if (p != null)
                     cmbProg.SelectedItem = p;
                 else
@@ -72,7 +75,7 @@ namespace avrdudess
             }
             set
             {
-                MCU m = avrdude.mcus.Find(s => s.id == value.id);
+                MCU m = mcus.Find(s => s.id == value.id);
                 if (m != null)
                     cmbMCU.SelectedItem = m;
                 else
@@ -252,6 +255,9 @@ namespace avrdudess
             if (args.Length > 0)
                 presetToLoad = args[0];
 
+            programmers = new List<Programmer>();
+            mcus = new List<MCU>();
+
             // Load saved configuration
             Config.Prop.load();
 
@@ -352,11 +358,7 @@ namespace avrdudess
             openFileDialog2.FileName = "";
             openFileDialog2.Title = "Open EEPROM file";
 
-            // MCU & programmer combo box data source
-            setComboBoxDataSource(cmbMCU, avrdude.mcus, "desc");
-            cmbMCU.SelectedIndexChanged += cmbMCU_SelectedIndexChanged;
-            setComboBoxDataSource(cmbProg, avrdude.programmers, "desc");
-            cmbProg.SelectedIndexChanged += cmbProg_SelectedIndexChanged;
+            updateProgMCUComboBoxes();
             
             // USBasp frequency settings
             cmbUSBaspFreq.Hide();
@@ -510,12 +512,44 @@ namespace avrdudess
                 );
         }
 
+        // Update programmer and MCU combo boxes with only the non-hidden parts
+        private void updateProgMCUComboBoxes()
+        {
+            setComboBoxDataSource(cmbMCU, null, "");
+            setComboBoxDataSource(cmbProg, null, "");
+
+            programmers.Clear();
+            mcus.Clear();
+
+            foreach (Programmer prog in avrdude.programmers)
+            {
+                if (Config.Prop.hiddenProgrammers.Find(x => x == prog.id) == null)
+                    programmers.Add(prog);
+            }
+
+            foreach (MCU mcu in avrdude.mcus)
+            {
+                if (Config.Prop.hiddenMCUs.Find(x => x == mcu.id) == null)
+                    mcus.Add(mcu);
+            }
+
+            // Add default
+            programmers.Insert(0, new Programmer("", Language.Translation.get("_SELECTPROG")));
+            mcus.Insert(0, new MCU("", Language.Translation.get("_SELECTMCU")));
+
+            // MCU & programmer combo box data source
+            setComboBoxDataSource(cmbMCU, mcus, "desc");
+            cmbMCU.SelectedIndexChanged += cmbMCU_SelectedIndexChanged;
+            setComboBoxDataSource(cmbProg, programmers, "desc");
+            cmbProg.SelectedIndexChanged += cmbProg_SelectedIndexChanged;
+        }
+
         // Set combo box data source etc
         private void setComboBoxDataSource(ComboBox cmb, object src, string displayMember)
         {
             cmb.DataSource = null;
             cmb.ValueMember = null;
-            cmb.DataSource = new BindingSource(src, null);
+            cmb.DataSource = src != null ? new BindingSource(src, null) : null;
             cmb.DisplayMember = displayMember;
             if(cmb.Items.Count > 0)
                 cmb.SelectedIndex = 0;
@@ -667,12 +701,25 @@ namespace avrdudess
         private void avrdude_OnProcessStart(object sender, EventArgs e)
         {
             tssStatus.Text = Language.Translation.get("_STATUSRUNNING");
+
+            // TODO This conflicts with the stuff in the enableControls() method
+            //btnProgram.Enabled = false;
+            //btnForceStop.Enabled = true;
         }
 
         // AVRDUDE process has ended
         private void avrdude_OnProcessEnd(object sender, EventArgs e)
         {
             tssStatus.Text = Language.Translation.get("_STATUSREADY");
+
+            /*
+            // TODO This conflicts with the stuff in the enableControls() method
+            Invoke(new MethodInvoker(() =>
+            {
+                btnProgram.Enabled = true;
+                btnForceStop.Enabled = false;
+            }));
+            */
         }
 
         // Found MCU
@@ -906,12 +953,14 @@ namespace avrdudess
         // Options
         private void btnOptions_Click(object sender, EventArgs e)
         {
-            FormOptions fOptions = new FormOptions();
+            FormOptions fOptions = new FormOptions(avrdude.programmers, avrdude.mcus);
             fOptions.toolTips = Config.Prop.toolTips;
             fOptions.avrdudeLocation = Config.Prop.avrdudeLoc;
             fOptions.avrdudeConfLocation = Config.Prop.avrdudeConfLoc;
             fOptions.avrSizeLocation = Config.Prop.avrSizeLoc;
             fOptions.language = Config.Prop.language;
+            fOptions.hiddenProgrammers = Config.Prop.hiddenProgrammers;
+            fOptions.hiddenMCUs = Config.Prop.hiddenMCUs;
 
             if (fOptions.ShowDialog() == DialogResult.OK)
             {
@@ -926,17 +975,13 @@ namespace avrdudess
                 Config.Prop.avrdudeConfLoc = fOptions.avrdudeConfLocation;
                 Config.Prop.avrSizeLoc = fOptions.avrSizeLocation;
                 Config.Prop.language = fOptions.language;
+                Config.Prop.hiddenProgrammers = fOptions.hiddenProgrammers;
+                Config.Prop.hiddenMCUs = fOptions.hiddenMCUs;
 
                 if (changedAvrdudeLoc || changedAvrdudeConfLoc)
-                {
                     avrdude.load();
 
-                    if (changedAvrdudeConfLoc)
-                    {
-                        setComboBoxDataSource(cmbMCU, avrdude.mcus, "desc");
-                        setComboBoxDataSource(cmbProg, avrdude.programmers, "desc");
-                    }
-                }
+                updateProgMCUComboBoxes();
 
                 if (changedAvrSizeLoc)
                 {
@@ -947,7 +992,7 @@ namespace avrdudess
             }
         }
 
-        // Window size changed, update usage bars (doesn't work when maximized/normalized)
+        // Window size changed, update usage bars (doesn't work when maximized/normalized, see Form1_Resize())
         private void Form1_ResizeEnd(object sender, EventArgs e)
         {
             if (mcu != null)
@@ -977,9 +1022,9 @@ namespace avrdudess
         private void txtNum_KeyPress(object sender, KeyPressEventArgs e)
         {
             TextBox txtBox = ((TextBox)sender);
-            if (e.KeyChar != 8 && (Control.ModifierKeys & Keys.Control) != Keys.Control)
+            if (e.KeyChar != 8 && (ModifierKeys & Keys.Control) != Keys.Control)
             {
-                if ((!Char.IsDigit(e.KeyChar) && e.KeyChar != '.') || (txtBox.SelectionLength == 0 && txtBox.Text.Length >= 10))
+                if ((!char.IsDigit(e.KeyChar) && e.KeyChar != '.') || (txtBox.SelectionLength == 0 && txtBox.Text.Length >= 10))
                 {
                     e.Handled = true;
                     SystemSounds.Beep.Play();
@@ -992,9 +1037,9 @@ namespace avrdudess
         private void txtHex_KeyPress(object sender, KeyPressEventArgs e)
         {
             TextBox txtBox = ((TextBox)sender);
-            if (e.KeyChar != 8 && (Control.ModifierKeys & Keys.Control) != Keys.Control)
+            if (e.KeyChar != 8 && (ModifierKeys & Keys.Control) != Keys.Control)
             {
-                if ((!Char.IsDigit(e.KeyChar) && !"ABCDEFX".Contains(Char.ToUpper(e.KeyChar).ToString())) || (txtBox.SelectionLength == 0 && txtBox.Text.Length >= 4))
+                if ((!char.IsDigit(e.KeyChar) && !"ABCDEFX".Contains(char.ToUpper(e.KeyChar).ToString())) || (txtBox.SelectionLength == 0 && txtBox.Text.Length >= 4))
                 {
                     e.Handled = true;
                     SystemSounds.Beep.Play();
@@ -1014,8 +1059,7 @@ namespace avrdudess
             if (avrdude.kill())
             {
                 Util.consoleWriteLine();
-                Util.consoleWrite("_AVRDUDEKILLED", Color.Red);
-                Util.consoleWriteLine();
+                Util.consoleWriteLine("_AVRDUDEKILLED", Color.Red);
             }
         }
 

@@ -43,18 +43,26 @@ namespace avrdudess
 
         public void load()
         {
-            string location = AssemblyData.directory + "\\Languages\\";
+            try
+            {
+                string location = AssemblyData.directory + "/Languages/";
 
-            findLanguages(location);
+                findLanguages(location);
 
-            // Load the selected language xml
-            readThroughXML(location + Config.Prop.language + ".xml", getTranslation, null);
+                // Load the selected language xml
+                readThroughXML(location + Config.Prop.language + ".xml", getTranslation, null);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.error("Error loading languages:{0}{1}", Environment.NewLine, ex.Message);
+            }
         }
 
         // Loop through all .xml files in directory and search for the <name> tag
         private void findLanguages(string location)
         {
             string[] languageFiles = Directory.GetFiles(location);
+
             foreach (string file in languageFiles)
             {
                 if (file.EndsWith(".xml"))
@@ -96,7 +104,7 @@ namespace avrdudess
                     }
                     catch(ArgumentException)
                     {
-                        MsgBox.error("Duplicate translation ID: {0}", translationId);
+                        throw new Exception(string.Format("Duplicate translation ID: {0}", translationId));
                     }
                 }
             }
@@ -106,28 +114,18 @@ namespace avrdudess
 
         private void readThroughXML(string file, Action<XmlReader, object> onElement, object data)
         {
-            TextReader tr = null;
+            TextReader tr = new StreamReader(file);
 
-            try
+            using (XmlReader reader = XmlReader.Create(tr))
             {
-                tr = new StreamReader(file);
-
-                using (XmlReader reader = XmlReader.Create(tr))
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    if (reader.NodeType == XmlNodeType.Element)
                     {
-                        if (reader.NodeType == XmlNodeType.Element)
-                        {
-                            if (onElement(reader, data))
-                                break;
-                        }
+                        if (onElement(reader, data))
+                            break;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                // No translation here since we've probably failed to load the translations!
-                MsgBox.error("An XML read error occurred while loading translations:{0}{1}", Environment.NewLine, ex.Message);
             }
 
             if (tr != null)

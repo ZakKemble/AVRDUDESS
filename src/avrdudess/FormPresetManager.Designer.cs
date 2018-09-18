@@ -48,7 +48,7 @@
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnClose.Location = new System.Drawing.Point(12, 245);
+            this.btnClose.Location = new System.Drawing.Point(12, 310);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(412, 23);
             this.btnClose.TabIndex = 5;
@@ -68,7 +68,8 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(168, 134);
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.Location = new System.Drawing.Point(168, 197);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 3;
@@ -109,7 +110,8 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(6, 134);
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExport.Location = new System.Drawing.Point(6, 197);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(75, 23);
             this.btnExport.TabIndex = 1;
@@ -119,7 +121,8 @@
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(87, 134);
+            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnImport.Location = new System.Drawing.Point(87, 197);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(75, 23);
             this.btnImport.TabIndex = 2;
@@ -129,6 +132,8 @@
             // 
             // clbExport
             // 
+            this.clbExport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.clbExport.CheckOnClick = true;
             this.clbExport.FormattingEnabled = true;
             this.clbExport.Items.AddRange(new object[] {
@@ -138,7 +143,7 @@
             "aaadd"});
             this.clbExport.Location = new System.Drawing.Point(6, 19);
             this.clbExport.Name = "clbExport";
-            this.clbExport.Size = new System.Drawing.Size(400, 109);
+            this.clbExport.Size = new System.Drawing.Size(400, 169);
             this.clbExport.TabIndex = 0;
             // 
             // groupBox1
@@ -149,7 +154,7 @@
             this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Location = new System.Drawing.Point(12, 68);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(412, 169);
+            this.groupBox1.Size = new System.Drawing.Size(412, 232);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Export/import/delete";
@@ -164,7 +169,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(436, 280);
+            this.ClientSize = new System.Drawing.Size(436, 345);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnOverwrite);
             this.Controls.Add(this.btnRename);

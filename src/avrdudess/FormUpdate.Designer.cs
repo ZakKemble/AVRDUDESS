@@ -45,7 +45,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(279, 284);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.TabIndex = 0;
             this.btnUpdate.Text = "_BTN_UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -57,7 +57,7 @@
             this.btnLater.Location = new System.Drawing.Point(441, 284);
             this.btnLater.Name = "btnLater";
             this.btnLater.Size = new System.Drawing.Size(75, 23);
-            this.btnLater.TabIndex = 3;
+            this.btnLater.TabIndex = 2;
             this.btnLater.Text = "_BTN_LATER";
             this.btnLater.UseVisualStyleBackColor = true;
             this.btnLater.Click += new System.EventHandler(this.btnLater_Click);
@@ -73,7 +73,7 @@
             this.txtUpdateInfo.ReadOnly = true;
             this.txtUpdateInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtUpdateInfo.Size = new System.Drawing.Size(501, 240);
-            this.txtUpdateInfo.TabIndex = 4;
+            this.txtUpdateInfo.TabIndex = 3;
             // 
             // lblNewVersion
             // 
@@ -128,7 +128,7 @@
             this.btnSkip.Location = new System.Drawing.Point(360, 284);
             this.btnSkip.Name = "btnSkip";
             this.btnSkip.Size = new System.Drawing.Size(75, 23);
-            this.btnSkip.TabIndex = 10;
+            this.btnSkip.TabIndex = 1;
             this.btnSkip.Text = "_BTN_SKIPVERSION";
             this.btnSkip.UseVisualStyleBackColor = true;
             this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);

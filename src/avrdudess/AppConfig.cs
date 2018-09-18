@@ -7,6 +7,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Xml.Serialization;
 
@@ -16,6 +17,7 @@ namespace avrdudess
     [XmlType(TypeName = "ConfigData")] // For backwards compatability with old (<v2.2) config.xml
     public sealed partial class Config
     {
+        // This usually only needs to be incremented if a field has been renamed or removed
         public const uint CONFIG_VERSION = 1;
 
         // Version isn't serializable so use this struct instead
@@ -27,19 +29,21 @@ namespace avrdudess
             //public int Revision;
         };
 
-        public uint configVersion;  // Config file version
-        public string preset;       // Last preset used
-        public long updateCheck;    // Time of last update check
+        public uint configVersion; // Config file version
+        public string preset; // Last preset used
+        public long updateCheck; // Time of last update check
 
         [XmlElement(ElementName = "skipVersion")]
         public SkipVersion _skipVersion; // Version to skip
 
-        public bool toolTips;       // Tool tips enabled
-        public string avrdudeLoc;   // avrdude location
-        public string avrdudeConfLoc;   // avrdude.conf location
-        public string avrSizeLoc;   // avr-size location
+        public bool toolTips; // Tool tips enabled
+        public string avrdudeLoc; // avrdude location
+        public string avrdudeConfLoc; // avrdude.conf location
+        public string avrSizeLoc; // avr-size location
         public Point windowLocation; // For persistent window location across sessions
-        public string language;   // Language to use
+        public string language; // Language to use
+        public List<string> hiddenMCUs; // List of MCU IDs to hide from drop down list
+        public List<string> hiddenProgrammers; // List of programmer IDs to hide from drop down list
 
         [XmlIgnore]
         public Version skipVersion
@@ -58,7 +62,7 @@ namespace avrdudess
         private Config()
             : base()
         {
-            configVersion = CONFIG_VERSION;
+            configVersion = 0;
             preset = "Default";
             updateCheck = 0;
             _skipVersion.Major = 0;
@@ -70,15 +74,33 @@ namespace avrdudess
             avrdudeConfLoc = "";
             avrSizeLoc = "";
             language = "english";
+            hiddenMCUs = new List<string>();
+            hiddenProgrammers = new List<string>();
+        }
+
+        public new void save()
+        {
+            configVersion = CONFIG_VERSION;
+            base.save();
         }
 
         public new void load()
         {
             base.load();
 
+            // NOTE: When calling load() the XML deserializer creates a new Config object, which replaces this current object.
+            // So to modify things in the latest Config object we have to access it through the Prop property, which is static.
+            // Once this method ends the garbage collector will clean up the old Config object.
+
             // Check config file version
-            if (configVersion > CONFIG_VERSION)
-                MsgBox.warning("_CONFIGNEWERVERSION", configVersion, CONFIG_VERSION);
+            // No translation here since we've not loaded them yet
+            if (Prop.configVersion == 0)
+            {
+                // TODO
+                // Probably failed to load config file
+            }
+            else if (Prop.configVersion > CONFIG_VERSION)
+                MsgBox.warning("Configuration file version ({0}) is newer than expected ({1}), things might not work properly...", Prop.configVersion, CONFIG_VERSION);
         }
     }
 }

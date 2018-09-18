@@ -108,7 +108,8 @@ namespace avrdudess
             }
             catch (Exception ex)
             {
-                MsgBox.error("_XMLREADERROR", name, ex.Message);
+                // No translation here since we might have a read error while loading config.xml or the translation file itself
+                MsgBox.error("An error occurred trying to load {0}:{1}{2}", name, Environment.NewLine, ex.Message);
             }
 
             if (tr != null)

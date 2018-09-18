@@ -46,27 +46,76 @@ namespace avrdudess
             set { cbLanguage.SelectedValue = value; }
         }
 
+        public List<string> hiddenProgrammers
+        {
+            get { return getHiddenCheckBoxes(clbHiddenProgrammers); }
+            set { setHiddenCheckBoxes(value, clbHiddenProgrammers); }
+        }
+
+        public List<string> hiddenMCUs
+        {
+            get { return getHiddenCheckBoxes(clbHiddenMCUs); }
+            set { setHiddenCheckBoxes(value, clbHiddenMCUs); }
+        }
+
         #endregion
 
-        public FormOptions()
+        public FormOptions(List<Programmer> programmers, List<MCU> mcus)
         {
             InitializeComponent();
 
             Icon = AssemblyData.icon;
 
+            Dictionary<string, string> langs = Language.Translation.getLanguages();
             cbLanguage.Items.Clear();
-
-            // TODO a
-            Dictionary<string, string> a = Language.Translation.getLanguages();
-
-            cbLanguage.DataSource = new BindingSource(a, null);
+            cbLanguage.DataSource = new BindingSource(langs, null);
             cbLanguage.DisplayMember = "Value";
             cbLanguage.ValueMember = "Key";
+
+            clbHiddenProgrammers.Items.Clear();
+            clbHiddenProgrammers.DataSource = new BindingSource(programmers, null);
+            clbHiddenProgrammers.Format += hiddenParts_Format;
+
+            clbHiddenMCUs.Items.Clear();
+            clbHiddenMCUs.DataSource = new BindingSource(mcus, null);
+            clbHiddenMCUs.Format += hiddenParts_Format;
         }
 
         private void FormOptions_Load(object sender, EventArgs e)
         {
             Language.Translation.ApplyTranslation(this);
+        }
+
+        private void setHiddenCheckBoxes(List<string> hiddenParts, CheckedListBox clb)
+        {
+            foreach (string hidden in hiddenParts)
+            {
+                for (int i = 0; i < clb.Items.Count; i++)
+                {
+                    if (((Part)clb.Items[i]).id == hidden)
+                    {
+                        clb.SetItemChecked(i, true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        private List<string> getHiddenCheckBoxes(CheckedListBox clb)
+        {
+            List<string> hiddenParts = new List<string>();
+            for (int i = 0; i < clb.Items.Count; i++)
+            {
+                if (clb.GetItemChecked(i))
+                    hiddenParts.Add(((Part)clb.Items[i]).id);
+            }
+            return hiddenParts;
+        }
+
+        private void hiddenParts_Format(object sender, ListControlConvertEventArgs e)
+        {
+            Part part = (Part)e.ListItem;
+            e.Value = string.Format("{0} ({1})", part.desc, part.id);
         }
 
         private void btnBrowseAvrdude_Click(object sender, EventArgs e)

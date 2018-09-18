@@ -19,7 +19,7 @@ namespace avrdudess
 
         protected override object data
         {
-            get { return Config.Prop; }
+            get { return Prop; }
             set { Prop = (value != null) ? (Config)value : new Config(); }
         }
     }

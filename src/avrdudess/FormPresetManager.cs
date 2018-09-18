@@ -25,16 +25,17 @@ namespace avrdudess
 
         private void reloadExportList()
         {
-            clbExport.Items.Clear();
-            foreach (PresetData preset in presets.presets)
-                clbExport.Items.Add(preset.name);
+            // TODO presets.presets should be a BindingList<T>, but at the moment its a List<T> so we have to manually refresh the data
+            clbExport.DataSource = null;
+            clbExport.DataSource = new BindingSource(presets.presets, null);
+            clbExport.DisplayMember = "name";
         }
 
         private void FormPresetManager_Load(object sender, EventArgs e)
         {
             presets.setDataSource(cmbPresets);
             reloadExportList();
-
+ 
             // Export
             saveFileDialog1.Filter = "XML files (*.xml)|*.xml";
             saveFileDialog1.Filter += "|All files (*.*)|*.*";
@@ -118,13 +119,9 @@ namespace avrdudess
             {
                 if (clbExport.GetItemChecked(i))
                 {
-                    string name = (string)clbExport.Items[i];
-                    if (name != "Default")
-                    {
-                        PresetData p = presets.presets.Find(s => s.name == name);
-                        if (p != null)
-                            toDelete.Add(p);
-                    }
+                    PresetData p = (PresetData)clbExport.Items[i];
+                    if (p.name != "Default")
+                        toDelete.Add(p);
                 }
             }
 
@@ -221,8 +218,7 @@ namespace avrdudess
                 {
                     if (clbExport.GetItemChecked(i))
                     {
-                        string name = (string)clbExport.Items[i];
-                        PresetData p = presets.presets.Find(s => s.name == name);
+                        PresetData p = (PresetData)clbExport.Items[i];
                         if (p != null)
                         {
                             export.add(p);

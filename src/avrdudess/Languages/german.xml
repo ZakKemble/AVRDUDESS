@@ -78,8 +78,10 @@ Use this if you only want to update EEPROM</string>
 
 		<string name="UPDATE_CHECK">Checking for updates...</string>
 		<string name="UPDATE_FAILED">Update check failed: {0}</string>
-		<string name="UPDATE_AVAIL">Update available</string>
+		<string name="UPDATE_AVAIL">Update available: v{0}</string>
 		<string name="UPDATE_LATEST">You have the latest version :)</string>
+		<string name="UPDATE_SKIP">You've chosen to skip version {0}</string>
+		<string name="UPDATE_BADXML">Update XML is missing release entries</string>
 
 		<string name="FILEFMT_AUTO">Auto (writing only)</string>
 		<string name="FILEFMT_HEX">Intel Hex</string>

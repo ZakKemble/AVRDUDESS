@@ -456,21 +456,26 @@ namespace avrdudess
 
                     if (!checkSuccess)
                         Util.consoleError("_UPDATE_FAILED", UpdateCheck.check.errorMsg);
-                    else if (updateData.updateAvailable() && Config.Prop.skipVersion != updateData.newVersion)
+                    else if (updateData.updateAvailable())
                     {
-                        Util.consoleWriteLine("_UPDATE_AVAIL");
-                        Util.UI.BeginInvoke(
-                            new MethodInvoker(() =>
-                            {
-                                using (FormUpdate fUpdate = new FormUpdate(updateData, () =>
+                        if (Config.Prop.skipVersion == updateData.latest.version)
+                            Util.consoleWriteLine("_UPDATE_SKIP", updateData.latest.version.ToString());
+                        else
+                        {
+                            Util.consoleWriteLine("_UPDATE_AVAIL", updateData.latest.version.ToString());
+                            Util.UI.BeginInvoke(
+                                new MethodInvoker(() =>
                                 {
-                                    Config.Prop.skipVersion = updateData.newVersion;
-                                }))
-                                {
-                                    fUpdate.ShowDialog();
-                                }
-                            })
-                        );
+                                    using (FormUpdate fUpdate = new FormUpdate(updateData, () =>
+                                    {
+                                        Config.Prop.skipVersion = updateData.latest.version;
+                                    }))
+                                    {
+                                        fUpdate.ShowDialog();
+                                    }
+                                })
+                            );
+                        }
                     }
                     else
                         Util.consoleWriteLine("_UPDATE_LATEST");

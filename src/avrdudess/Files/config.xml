@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConfigData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <configVersion>1</configVersion>
+  <preset>Default</preset>
+  <updateCheck>0</updateCheck>
+  <skipVersion>
+    <Major>0</Major>
+    <Minor>0</Minor>
+  </skipVersion>
+  <toolTips>true</toolTips>
+  <avrdudeLoc />
+  <avrdudeConfLoc />
+  <avrSizeLoc />
+  <windowLocation>
+    <X>0</X>
+    <Y>0</Y>
+  </windowLocation>
+  <language>english</language>
+  <hiddenMCUs />
+  <hiddenProgrammers />
+</ConfigData>

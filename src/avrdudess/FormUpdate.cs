@@ -29,16 +29,33 @@ namespace avrdudess
 
             lblCurrentVersion.Text = updateData.currentVersion.ToString();
 
+            string info = "";
+            foreach (UpdateReleaseData release in updateData.releases)
+            {
+                //if (release.version.CompareTo(updateData.currentVersion) > 0) // Only show change logs for newer versions
+                //{
+                    info += string.Format(
+                        "v{0} ({1}){2}{3}{4}{5}",
+                        release.version.ToString(),
+                        release.date.ToLocalTime().ToLongDateString(),
+                        Environment.NewLine,
+                        release.info,
+                        Environment.NewLine,
+                        Environment.NewLine
+                        );
+                //}
+            }
+
             // Make sure end lines are in the correct format (probably not needed...)
-            txtUpdateInfo.Text = updateData.updateInfo.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
+            txtUpdateInfo.Text = info.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
 
             address = updateData.updateAddr;
             this.onSkipVersion = onSkipVersion;
 
             lblNewVersion.Text = string.Format(
                 "{0} ({1})",
-                updateData.newVersion.ToString(),
-                new DateTime(1970, 1, 1).AddSeconds(updateData.newVersionDate).ToLocalTime().ToLongDateString()
+                updateData.latest.version.ToString(),
+                updateData.latest.date.ToLocalTime().ToLongDateString()
                 );
         }
 
@@ -51,6 +68,8 @@ namespace avrdudess
             tmr.Interval = 2000;
             tmr.Tick += Tmr_Tick;
             tmr.Start();
+
+            txtUpdateInfo.Select(0, 0);
         }
 
         private void Tmr_Tick(object sender, EventArgs e)

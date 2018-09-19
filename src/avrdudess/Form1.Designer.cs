@@ -99,6 +99,8 @@
             this.txtAdditional = new System.Windows.Forms.TextBox();
             this.statusBar1 = new System.Windows.Forms.StatusStrip();
             this.tssStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssTooltip = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,8 +113,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnOptions = new System.Windows.Forms.Button();
             this.rtxtConsole = new System.Windows.Forms.RichTextBox();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tssTooltip = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbEEPROMFile.SuspendLayout();
@@ -138,7 +138,7 @@
             this.cmbProg.Location = new System.Drawing.Point(6, 19);
             this.cmbProg.Name = "cmbProg";
             this.cmbProg.Size = new System.Drawing.Size(417, 21);
-            this.cmbProg.TabIndex = 1;
+            this.cmbProg.TabIndex = 0;
             this.cmbProg.SelectedIndexChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cmbMCU
@@ -148,7 +148,7 @@
             this.cmbMCU.Location = new System.Drawing.Point(6, 19);
             this.cmbMCU.Name = "cmbMCU";
             this.cmbMCU.Size = new System.Drawing.Size(167, 21);
-            this.cmbMCU.TabIndex = 2;
+            this.cmbMCU.TabIndex = 0;
             this.cmbMCU.SelectedIndexChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cbForce
@@ -157,7 +157,7 @@
             this.cbForce.Location = new System.Drawing.Point(6, 19);
             this.cbForce.Name = "cbForce";
             this.cbForce.Size = new System.Drawing.Size(68, 17);
-            this.cbForce.TabIndex = 30;
+            this.cbForce.TabIndex = 0;
             this.cbForce.Text = "_FORCE";
             this.cbForce.UseVisualStyleBackColor = true;
             this.cbForce.CheckedChanged += new System.EventHandler(this.event_controlChanged);
@@ -168,7 +168,7 @@
             this.cbNoVerify.Location = new System.Drawing.Point(6, 42);
             this.cbNoVerify.Name = "cbNoVerify";
             this.cbNoVerify.Size = new System.Drawing.Size(88, 17);
-            this.cbNoVerify.TabIndex = 31;
+            this.cbNoVerify.TabIndex = 1;
             this.cbNoVerify.Text = "_DISVERIFY";
             this.cbNoVerify.UseVisualStyleBackColor = true;
             this.cbNoVerify.CheckedChanged += new System.EventHandler(this.event_controlChanged);
@@ -179,7 +179,7 @@
             this.btnProgram.Location = new System.Drawing.Point(12, 365);
             this.btnProgram.Name = "btnProgram";
             this.btnProgram.Size = new System.Drawing.Size(176, 23);
-            this.btnProgram.TabIndex = 36;
+            this.btnProgram.TabIndex = 8;
             this.btnProgram.Text = "_DOPROGRAM";
             this.btnProgram.UseVisualStyleBackColor = true;
             this.btnProgram.Click += new System.EventHandler(this.btnProgram_Click);
@@ -189,7 +189,7 @@
             this.txtHFuse.Location = new System.Drawing.Point(32, 42);
             this.txtHFuse.Name = "txtHFuse";
             this.txtHFuse.Size = new System.Drawing.Size(43, 20);
-            this.txtHFuse.TabIndex = 22;
+            this.txtHFuse.TabIndex = 1;
             this.txtHFuse.Tag = "";
             this.txtHFuse.TextChanged += new System.EventHandler(this.event_controlChanged);
             this.txtHFuse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
@@ -199,7 +199,7 @@
             this.txtLFuse.Location = new System.Drawing.Point(32, 16);
             this.txtLFuse.Name = "txtLFuse";
             this.txtLFuse.Size = new System.Drawing.Size(43, 20);
-            this.txtLFuse.TabIndex = 21;
+            this.txtLFuse.TabIndex = 0;
             this.txtLFuse.Tag = "";
             this.txtLFuse.TextChanged += new System.EventHandler(this.event_controlChanged);
             this.txtLFuse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
@@ -209,7 +209,7 @@
             this.txtEFuse.Location = new System.Drawing.Point(32, 68);
             this.txtEFuse.Name = "txtEFuse";
             this.txtEFuse.Size = new System.Drawing.Size(43, 20);
-            this.txtEFuse.TabIndex = 23;
+            this.txtEFuse.TabIndex = 2;
             this.txtEFuse.Tag = "";
             this.txtEFuse.TextChanged += new System.EventHandler(this.event_controlChanged);
             this.txtEFuse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
@@ -221,7 +221,7 @@
             this.cmbPresets.Location = new System.Drawing.Point(6, 19);
             this.cmbPresets.Name = "cmbPresets";
             this.cmbPresets.Size = new System.Drawing.Size(167, 21);
-            this.cmbPresets.TabIndex = 18;
+            this.cmbPresets.TabIndex = 0;
             this.cmbPresets.SelectedIndexChanged += new System.EventHandler(this.cmbPresets_SelectedIndexChanged);
             // 
             // linkLabel1
@@ -230,7 +230,7 @@
             this.linkLabel1.Location = new System.Drawing.Point(80, 65);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(95, 13);
-            this.linkLabel1.TabIndex = 24;
+            this.linkLabel1.TabIndex = 6;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "_FUSESETTINGS";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
@@ -243,7 +243,7 @@
             this.groupBox1.Location = new System.Drawing.Point(449, 108);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(181, 73);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "_GRP_PRESET";
             // 
@@ -252,7 +252,7 @@
             this.btnPresetMgr.Location = new System.Drawing.Point(6, 46);
             this.btnPresetMgr.Name = "btnPresetMgr";
             this.btnPresetMgr.Size = new System.Drawing.Size(167, 23);
-            this.btnPresetMgr.TabIndex = 21;
+            this.btnPresetMgr.TabIndex = 1;
             this.btnPresetMgr.Text = "_PRESETMGR";
             this.btnPresetMgr.UseVisualStyleBackColor = true;
             this.btnPresetMgr.Click += new System.EventHandler(this.btnPresetMgr_Click);
@@ -272,7 +272,7 @@
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(431, 90);
-            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "_GRP_PROGRAMMER";
             // 
@@ -283,7 +283,7 @@
             this.cmbUSBaspFreq.Location = new System.Drawing.Point(288, 58);
             this.cmbUSBaspFreq.Name = "cmbUSBaspFreq";
             this.cmbUSBaspFreq.Size = new System.Drawing.Size(80, 21);
-            this.cmbUSBaspFreq.TabIndex = 56;
+            this.cmbUSBaspFreq.TabIndex = 4;
             this.cmbUSBaspFreq.SelectedIndexChanged += new System.EventHandler(this.cmbUSBaspFreq_SelectedIndexChanged);
             // 
             // label16
@@ -309,7 +309,7 @@
             this.txtBitClock.Location = new System.Drawing.Point(288, 59);
             this.txtBitClock.Name = "txtBitClock";
             this.txtBitClock.Size = new System.Drawing.Size(135, 20);
-            this.txtBitClock.TabIndex = 5;
+            this.txtBitClock.TabIndex = 3;
             this.txtBitClock.Tag = "";
             this.txtBitClock.TextChanged += new System.EventHandler(this.event_controlChanged);
             this.txtBitClock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNum_KeyPress);
@@ -319,7 +319,7 @@
             this.txtBaudRate.Location = new System.Drawing.Point(147, 59);
             this.txtBaudRate.Name = "txtBaudRate";
             this.txtBaudRate.Size = new System.Drawing.Size(135, 20);
-            this.txtBaudRate.TabIndex = 4;
+            this.txtBaudRate.TabIndex = 2;
             this.txtBaudRate.Tag = "";
             this.txtBaudRate.TextChanged += new System.EventHandler(this.event_controlChanged);
             this.txtBaudRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNum_KeyPress);
@@ -339,7 +339,7 @@
             this.cmbPort.Location = new System.Drawing.Point(6, 59);
             this.cmbPort.Name = "cmbPort";
             this.cmbPort.Size = new System.Drawing.Size(135, 21);
-            this.cmbPort.TabIndex = 3;
+            this.cmbPort.TabIndex = 1;
             this.cmbPort.TextChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // txtCmdLine
@@ -351,7 +351,7 @@
             this.txtCmdLine.Name = "txtCmdLine";
             this.txtCmdLine.ReadOnly = true;
             this.txtCmdLine.Size = new System.Drawing.Size(431, 20);
-            this.txtCmdLine.TabIndex = 50;
+            this.txtCmdLine.TabIndex = 12;
             this.txtCmdLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_KeyDown);
             // 
             // gbEEPROMFile
@@ -368,7 +368,7 @@
             this.gbEEPROMFile.Location = new System.Drawing.Point(12, 187);
             this.gbEEPROMFile.Name = "gbEEPROMFile";
             this.gbEEPROMFile.Size = new System.Drawing.Size(431, 73);
-            this.gbEEPROMFile.TabIndex = 5;
+            this.gbEEPROMFile.TabIndex = 2;
             this.gbEEPROMFile.TabStop = false;
             this.gbEEPROMFile.Text = "_GRP_EEPROM";
             // 
@@ -387,7 +387,7 @@
             this.btnEEPROMGo.Location = new System.Drawing.Point(181, 44);
             this.btnEEPROMGo.Name = "btnEEPROMGo";
             this.btnEEPROMGo.Size = new System.Drawing.Size(52, 23);
-            this.btnEEPROMGo.TabIndex = 57;
+            this.btnEEPROMGo.TabIndex = 3;
             this.btnEEPROMGo.Text = "_GO";
             this.btnEEPROMGo.UseVisualStyleBackColor = true;
             this.btnEEPROMGo.Click += new System.EventHandler(this.btnEEPROMGo_Click);
@@ -400,7 +400,7 @@
             this.pEEPROMOp.Location = new System.Drawing.Point(3, 45);
             this.pEEPROMOp.Name = "pEEPROMOp";
             this.pEEPROMOp.Size = new System.Drawing.Size(172, 22);
-            this.pEEPROMOp.TabIndex = 33;
+            this.pEEPROMOp.TabIndex = 2;
             // 
             // rbEEPROMOpVerify
             // 
@@ -408,7 +408,7 @@
             this.rbEEPROMOpVerify.Location = new System.Drawing.Point(119, 3);
             this.rbEEPROMOpVerify.Name = "rbEEPROMOpVerify";
             this.rbEEPROMOpVerify.Size = new System.Drawing.Size(69, 17);
-            this.rbEEPROMOpVerify.TabIndex = 17;
+            this.rbEEPROMOpVerify.TabIndex = 2;
             this.rbEEPROMOpVerify.Text = "_VERIFY";
             this.rbEEPROMOpVerify.UseVisualStyleBackColor = true;
             this.rbEEPROMOpVerify.CheckedChanged += new System.EventHandler(this.radioButton_flashEEPROMOp_CheckedChanged);
@@ -419,7 +419,7 @@
             this.rbEEPROMOpRead.Location = new System.Drawing.Point(62, 3);
             this.rbEEPROMOpRead.Name = "rbEEPROMOpRead";
             this.rbEEPROMOpRead.Size = new System.Drawing.Size(61, 17);
-            this.rbEEPROMOpRead.TabIndex = 16;
+            this.rbEEPROMOpRead.TabIndex = 1;
             this.rbEEPROMOpRead.Text = "_READ";
             this.rbEEPROMOpRead.UseVisualStyleBackColor = true;
             this.rbEEPROMOpRead.CheckedChanged += new System.EventHandler(this.radioButton_flashEEPROMOp_CheckedChanged);
@@ -431,7 +431,7 @@
             this.rbEEPROMOpWrite.Location = new System.Drawing.Point(6, 3);
             this.rbEEPROMOpWrite.Name = "rbEEPROMOpWrite";
             this.rbEEPROMOpWrite.Size = new System.Drawing.Size(67, 17);
-            this.rbEEPROMOpWrite.TabIndex = 15;
+            this.rbEEPROMOpWrite.TabIndex = 0;
             this.rbEEPROMOpWrite.TabStop = true;
             this.rbEEPROMOpWrite.Text = "_WRITE";
             this.rbEEPROMOpWrite.UseVisualStyleBackColor = true;
@@ -444,7 +444,7 @@
             this.txtEEPROMFile.Location = new System.Drawing.Point(6, 19);
             this.txtEEPROMFile.Name = "txtEEPROMFile";
             this.txtEEPROMFile.Size = new System.Drawing.Size(388, 20);
-            this.txtEEPROMFile.TabIndex = 12;
+            this.txtEEPROMFile.TabIndex = 0;
             this.txtEEPROMFile.TextChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cmbEEPROMFormat
@@ -455,7 +455,7 @@
             this.cmbEEPROMFormat.Location = new System.Drawing.Point(294, 45);
             this.cmbEEPROMFormat.Name = "cmbEEPROMFormat";
             this.cmbEEPROMFormat.Size = new System.Drawing.Size(131, 21);
-            this.cmbEEPROMFormat.TabIndex = 14;
+            this.cmbEEPROMFormat.TabIndex = 4;
             this.cmbEEPROMFormat.SelectedIndexChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // btnEEPROMBrowse
@@ -464,7 +464,7 @@
             this.btnEEPROMBrowse.Location = new System.Drawing.Point(400, 19);
             this.btnEEPROMBrowse.Name = "btnEEPROMBrowse";
             this.btnEEPROMBrowse.Size = new System.Drawing.Size(25, 20);
-            this.btnEEPROMBrowse.TabIndex = 13;
+            this.btnEEPROMBrowse.TabIndex = 1;
             this.btnEEPROMBrowse.Text = "...";
             this.btnEEPROMBrowse.UseVisualStyleBackColor = true;
             this.btnEEPROMBrowse.Click += new System.EventHandler(this.btnEEPROMBrowse_Click);
@@ -493,7 +493,7 @@
             this.gbFlashFile.Location = new System.Drawing.Point(12, 108);
             this.gbFlashFile.Name = "gbFlashFile";
             this.gbFlashFile.Size = new System.Drawing.Size(431, 73);
-            this.gbFlashFile.TabIndex = 4;
+            this.gbFlashFile.TabIndex = 1;
             this.gbFlashFile.TabStop = false;
             this.gbFlashFile.Text = "_GRP_FLASH";
             // 
@@ -512,7 +512,7 @@
             this.btnFlashGo.Location = new System.Drawing.Point(181, 44);
             this.btnFlashGo.Name = "btnFlashGo";
             this.btnFlashGo.Size = new System.Drawing.Size(52, 23);
-            this.btnFlashGo.TabIndex = 56;
+            this.btnFlashGo.TabIndex = 3;
             this.btnFlashGo.Text = "_GO";
             this.btnFlashGo.UseVisualStyleBackColor = true;
             this.btnFlashGo.Click += new System.EventHandler(this.btnFlashGo_Click);
@@ -525,7 +525,7 @@
             this.pFlashOp.Location = new System.Drawing.Point(3, 45);
             this.pFlashOp.Name = "pFlashOp";
             this.pFlashOp.Size = new System.Drawing.Size(172, 22);
-            this.pFlashOp.TabIndex = 33;
+            this.pFlashOp.TabIndex = 2;
             // 
             // rbFlashOpVerify
             // 
@@ -533,7 +533,7 @@
             this.rbFlashOpVerify.Location = new System.Drawing.Point(119, 3);
             this.rbFlashOpVerify.Name = "rbFlashOpVerify";
             this.rbFlashOpVerify.Size = new System.Drawing.Size(69, 17);
-            this.rbFlashOpVerify.TabIndex = 11;
+            this.rbFlashOpVerify.TabIndex = 2;
             this.rbFlashOpVerify.Text = "_VERIFY";
             this.rbFlashOpVerify.UseVisualStyleBackColor = true;
             this.rbFlashOpVerify.CheckedChanged += new System.EventHandler(this.radioButton_flashEEPROMOp_CheckedChanged);
@@ -544,7 +544,7 @@
             this.rbFlashOpRead.Location = new System.Drawing.Point(62, 3);
             this.rbFlashOpRead.Name = "rbFlashOpRead";
             this.rbFlashOpRead.Size = new System.Drawing.Size(61, 17);
-            this.rbFlashOpRead.TabIndex = 10;
+            this.rbFlashOpRead.TabIndex = 1;
             this.rbFlashOpRead.Text = "_READ";
             this.rbFlashOpRead.UseVisualStyleBackColor = true;
             this.rbFlashOpRead.CheckedChanged += new System.EventHandler(this.radioButton_flashEEPROMOp_CheckedChanged);
@@ -556,7 +556,7 @@
             this.rbFlashOpWrite.Location = new System.Drawing.Point(6, 3);
             this.rbFlashOpWrite.Name = "rbFlashOpWrite";
             this.rbFlashOpWrite.Size = new System.Drawing.Size(67, 17);
-            this.rbFlashOpWrite.TabIndex = 9;
+            this.rbFlashOpWrite.TabIndex = 0;
             this.rbFlashOpWrite.TabStop = true;
             this.rbFlashOpWrite.Text = "_WRITE";
             this.rbFlashOpWrite.UseVisualStyleBackColor = true;
@@ -569,7 +569,7 @@
             this.txtFlashFile.Location = new System.Drawing.Point(6, 19);
             this.txtFlashFile.Name = "txtFlashFile";
             this.txtFlashFile.Size = new System.Drawing.Size(388, 20);
-            this.txtFlashFile.TabIndex = 6;
+            this.txtFlashFile.TabIndex = 0;
             this.txtFlashFile.TextChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cmbFlashFormat
@@ -580,7 +580,7 @@
             this.cmbFlashFormat.Location = new System.Drawing.Point(294, 44);
             this.cmbFlashFormat.Name = "cmbFlashFormat";
             this.cmbFlashFormat.Size = new System.Drawing.Size(131, 21);
-            this.cmbFlashFormat.TabIndex = 8;
+            this.cmbFlashFormat.TabIndex = 4;
             this.cmbFlashFormat.SelectedIndexChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // btnFlashBrowse
@@ -589,7 +589,7 @@
             this.btnFlashBrowse.Location = new System.Drawing.Point(400, 19);
             this.btnFlashBrowse.Name = "btnFlashBrowse";
             this.btnFlashBrowse.Size = new System.Drawing.Size(25, 20);
-            this.btnFlashBrowse.TabIndex = 7;
+            this.btnFlashBrowse.TabIndex = 1;
             this.btnFlashBrowse.Text = "...";
             this.btnFlashBrowse.UseVisualStyleBackColor = true;
             this.btnFlashBrowse.Click += new System.EventHandler(this.btnFlashBrowse_Click);
@@ -626,7 +626,7 @@
             this.groupBox4.Location = new System.Drawing.Point(449, 187);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(181, 172);
-            this.groupBox4.TabIndex = 7;
+            this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "_GRP_FUSELOCK";
             // 
@@ -644,7 +644,7 @@
             this.btnWriteLock.Location = new System.Drawing.Point(132, 92);
             this.btnWriteLock.Name = "btnWriteLock";
             this.btnWriteLock.Size = new System.Drawing.Size(43, 23);
-            this.btnWriteLock.TabIndex = 56;
+            this.btnWriteLock.TabIndex = 9;
             this.btnWriteLock.Text = "_WRITE";
             this.btnWriteLock.UseVisualStyleBackColor = true;
             this.btnWriteLock.Click += new System.EventHandler(this.btnWriteLock_Click);
@@ -654,7 +654,7 @@
             this.btnWriteFuses.Location = new System.Drawing.Point(132, 14);
             this.btnWriteFuses.Name = "btnWriteFuses";
             this.btnWriteFuses.Size = new System.Drawing.Size(43, 23);
-            this.btnWriteFuses.TabIndex = 56;
+            this.btnWriteFuses.TabIndex = 4;
             this.btnWriteFuses.Text = "_WRITE";
             this.btnWriteFuses.UseVisualStyleBackColor = true;
             this.btnWriteFuses.Click += new System.EventHandler(this.btnWriteFuses_Click);
@@ -664,7 +664,7 @@
             this.btnFuseSelector.Location = new System.Drawing.Point(6, 143);
             this.btnFuseSelector.Name = "btnFuseSelector";
             this.btnFuseSelector.Size = new System.Drawing.Size(169, 23);
-            this.btnFuseSelector.TabIndex = 55;
+            this.btnFuseSelector.TabIndex = 11;
             this.btnFuseSelector.Text = "_BITSELECTOR";
             this.btnFuseSelector.UseVisualStyleBackColor = true;
             this.btnFuseSelector.Click += new System.EventHandler(this.btnFuseSelector_Click);
@@ -675,7 +675,7 @@
             this.cbSetLock.Location = new System.Drawing.Point(83, 121);
             this.cbSetLock.Name = "cbSetLock";
             this.cbSetLock.Size = new System.Drawing.Size(81, 17);
-            this.cbSetLock.TabIndex = 29;
+            this.cbSetLock.TabIndex = 10;
             this.cbSetLock.Text = "_SETLOCK";
             this.cbSetLock.UseVisualStyleBackColor = true;
             this.cbSetLock.CheckedChanged += new System.EventHandler(this.event_controlChanged);
@@ -686,7 +686,7 @@
             this.cbSetFuses.Location = new System.Drawing.Point(81, 43);
             this.cbSetFuses.Name = "cbSetFuses";
             this.cbSetFuses.Size = new System.Drawing.Size(88, 17);
-            this.cbSetFuses.TabIndex = 26;
+            this.cbSetFuses.TabIndex = 5;
             this.cbSetFuses.Text = "_SETFUSES";
             this.cbSetFuses.UseVisualStyleBackColor = true;
             this.cbSetFuses.CheckedChanged += new System.EventHandler(this.event_controlChanged);
@@ -696,7 +696,7 @@
             this.btnReadLock.Location = new System.Drawing.Point(83, 92);
             this.btnReadLock.Name = "btnReadLock";
             this.btnReadLock.Size = new System.Drawing.Size(43, 23);
-            this.btnReadLock.TabIndex = 28;
+            this.btnReadLock.TabIndex = 8;
             this.btnReadLock.Text = "_READ";
             this.btnReadLock.UseVisualStyleBackColor = true;
             this.btnReadLock.Click += new System.EventHandler(this.btnReadLock_Click);
@@ -715,7 +715,7 @@
             this.txtLock.Location = new System.Drawing.Point(32, 94);
             this.txtLock.Name = "txtLock";
             this.txtLock.Size = new System.Drawing.Size(43, 20);
-            this.txtLock.TabIndex = 27;
+            this.txtLock.TabIndex = 7;
             this.txtLock.Tag = "";
             this.txtLock.TextChanged += new System.EventHandler(this.event_controlChanged);
             this.txtLock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
@@ -743,7 +743,7 @@
             this.btnReadFuses.Location = new System.Drawing.Point(83, 14);
             this.btnReadFuses.Name = "btnReadFuses";
             this.btnReadFuses.Size = new System.Drawing.Size(43, 23);
-            this.btnReadFuses.TabIndex = 25;
+            this.btnReadFuses.TabIndex = 3;
             this.btnReadFuses.Text = "_READ";
             this.btnReadFuses.UseVisualStyleBackColor = true;
             this.btnReadFuses.Click += new System.EventHandler(this.btnReadFuses_Click);
@@ -762,7 +762,7 @@
             this.groupBox5.Location = new System.Drawing.Point(12, 266);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(431, 93);
-            this.groupBox5.TabIndex = 6;
+            this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "_GRP_OPTIONS";
             // 
@@ -782,7 +782,7 @@
             this.cmdVerbose.Location = new System.Drawing.Point(207, 63);
             this.cmdVerbose.Name = "cmdVerbose";
             this.cmdVerbose.Size = new System.Drawing.Size(95, 21);
-            this.cmdVerbose.TabIndex = 35;
+            this.cmdVerbose.TabIndex = 5;
             this.cmdVerbose.SelectedIndexChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cbDoNotWrite
@@ -791,7 +791,7 @@
             this.cbDoNotWrite.Location = new System.Drawing.Point(150, 40);
             this.cbDoNotWrite.Name = "cbDoNotWrite";
             this.cbDoNotWrite.Size = new System.Drawing.Size(107, 17);
-            this.cbDoNotWrite.TabIndex = 34;
+            this.cbDoNotWrite.TabIndex = 4;
             this.cbDoNotWrite.Text = "_DONOTWRITE";
             this.cbDoNotWrite.UseVisualStyleBackColor = true;
             this.cbDoNotWrite.CheckedChanged += new System.EventHandler(this.event_controlChanged);
@@ -802,7 +802,7 @@
             this.cbDisableFlashErase.Location = new System.Drawing.Point(6, 65);
             this.cbDisableFlashErase.Name = "cbDisableFlashErase";
             this.cbDisableFlashErase.Size = new System.Drawing.Size(120, 17);
-            this.cbDisableFlashErase.TabIndex = 32;
+            this.cbDisableFlashErase.TabIndex = 2;
             this.cbDisableFlashErase.Text = "_DISFLASHERASE";
             this.cbDisableFlashErase.UseVisualStyleBackColor = true;
             this.cbDisableFlashErase.CheckedChanged += new System.EventHandler(this.event_controlChanged);
@@ -813,7 +813,7 @@
             this.cbEraseFlashEEPROM.Location = new System.Drawing.Point(150, 19);
             this.cbEraseFlashEEPROM.Name = "cbEraseFlashEEPROM";
             this.cbEraseFlashEEPROM.Size = new System.Drawing.Size(123, 17);
-            this.cbEraseFlashEEPROM.TabIndex = 33;
+            this.cbEraseFlashEEPROM.TabIndex = 3;
             this.cbEraseFlashEEPROM.Text = "_ERASEFLASHEEP";
             this.cbEraseFlashEEPROM.UseVisualStyleBackColor = true;
             this.cbEraseFlashEEPROM.CheckedChanged += new System.EventHandler(this.event_controlChanged);
@@ -824,7 +824,7 @@
             this.btnAbout.Location = new System.Drawing.Point(417, 365);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(26, 23);
-            this.btnAbout.TabIndex = 39;
+            this.btnAbout.TabIndex = 11;
             this.btnAbout.Text = "?";
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
@@ -835,7 +835,7 @@
             this.btnForceStop.Location = new System.Drawing.Point(194, 365);
             this.btnForceStop.Name = "btnForceStop";
             this.btnForceStop.Size = new System.Drawing.Size(75, 23);
-            this.btnForceStop.TabIndex = 37;
+            this.btnForceStop.TabIndex = 9;
             this.btnForceStop.Text = "_DOSTOP";
             this.btnForceStop.UseVisualStyleBackColor = true;
             this.btnForceStop.Click += new System.EventHandler(this.btnForceStop_Click);
@@ -847,7 +847,7 @@
             this.groupBox7.Location = new System.Drawing.Point(449, 366);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(181, 48);
-            this.groupBox7.TabIndex = 9;
+            this.groupBox7.TabIndex = 7;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "_GRP_ADDCMDARGS";
             // 
@@ -856,7 +856,7 @@
             this.txtAdditional.Location = new System.Drawing.Point(6, 19);
             this.txtAdditional.Name = "txtAdditional";
             this.txtAdditional.Size = new System.Drawing.Size(167, 20);
-            this.txtAdditional.TabIndex = 35;
+            this.txtAdditional.TabIndex = 0;
             this.txtAdditional.TextChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // statusBar1
@@ -875,6 +875,18 @@
             this.tssStatus.Name = "tssStatus";
             this.tssStatus.Size = new System.Drawing.Size(88, 17);
             this.tssStatus.Text = "_STATUSREADY";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(525, 17);
+            this.toolStripStatusLabel1.Spring = true;
+            // 
+            // tssTooltip
+            // 
+            this.tssTooltip.Name = "tssTooltip";
+            this.tssTooltip.Size = new System.Drawing.Size(16, 17);
+            this.tssTooltip.Text = "...";
             // 
             // contextMenuStrip1
             // 
@@ -912,7 +924,7 @@
             this.btnDetect.Location = new System.Drawing.Point(98, 61);
             this.btnDetect.Name = "btnDetect";
             this.btnDetect.Size = new System.Drawing.Size(75, 23);
-            this.btnDetect.TabIndex = 53;
+            this.btnDetect.TabIndex = 1;
             this.btnDetect.Text = "_DETECT";
             this.btnDetect.UseVisualStyleBackColor = true;
             this.btnDetect.Click += new System.EventHandler(this.btnDetect_Click);
@@ -929,7 +941,7 @@
             this.groupBox9.Location = new System.Drawing.Point(449, 12);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(181, 90);
-            this.groupBox9.TabIndex = 54;
+            this.groupBox9.TabIndex = 4;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "_GRP_MCU";
             // 
@@ -975,7 +987,7 @@
             this.btnOptions.Location = new System.Drawing.Point(336, 365);
             this.btnOptions.Name = "btnOptions";
             this.btnOptions.Size = new System.Drawing.Size(75, 23);
-            this.btnOptions.TabIndex = 55;
+            this.btnOptions.TabIndex = 10;
             this.btnOptions.Text = "_BTN_OPTIONS";
             this.btnOptions.UseVisualStyleBackColor = true;
             this.btnOptions.Click += new System.EventHandler(this.btnOptions_Click);
@@ -994,21 +1006,9 @@
             this.rtxtConsole.ReadOnly = true;
             this.rtxtConsole.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.rtxtConsole.Size = new System.Drawing.Size(618, 158);
-            this.rtxtConsole.TabIndex = 56;
+            this.rtxtConsole.TabIndex = 13;
             this.rtxtConsole.Text = "";
             this.rtxtConsole.WordWrap = false;
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(494, 17);
-            this.toolStripStatusLabel1.Spring = true;
-            // 
-            // tssTooltip
-            // 
-            this.tssTooltip.Name = "tssTooltip";
-            this.tssTooltip.Size = new System.Drawing.Size(16, 17);
-            this.tssTooltip.Text = "...";
             // 
             // Form1
             // 

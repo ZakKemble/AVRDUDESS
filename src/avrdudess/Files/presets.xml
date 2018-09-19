@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPreset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Preset>
+    <programmer />
+    <mcu />
+    <port />
+    <baud />
+    <bitclock />
+    <flashFile />
+    <flashFormat>a</flashFormat>
+    <flashOp>w</flashOp>
+    <EEPROMFile />
+    <EEPROMFormat>a</EEPROMFormat>
+    <EEPROMOp>w</EEPROMOp>
+    <force>false</force>
+    <disableVerify>false</disableVerify>
+    <disableFlashErase>false</disableFlashErase>
+    <eraseFlashAndEEPROM>false</eraseFlashAndEEPROM>
+    <doNotWrite>false</doNotWrite>
+    <lfuse />
+    <hfuse />
+    <efuse />
+    <setFuses>false</setFuses>
+    <lockBits />
+    <setLock>false</setLock>
+    <additional />
+    <verbosity>0</verbosity>
+    <name>Default</name>
+  </Preset>
+  <Preset>
+    <programmer>arduino</programmer>
+    <mcu>m328p</mcu>
+    <port>COM1</port>
+    <baud>115200</baud>
+    <bitclock />
+    <flashFile />
+    <flashFormat>a</flashFormat>
+    <flashOp>w</flashOp>
+    <EEPROMFile />
+    <EEPROMFormat>a</EEPROMFormat>
+    <EEPROMOp>w</EEPROMOp>
+    <force>false</force>
+    <disableVerify>false</disableVerify>
+    <disableFlashErase>false</disableFlashErase>
+    <eraseFlashAndEEPROM>false</eraseFlashAndEEPROM>
+    <doNotWrite>false</doNotWrite>
+    <lfuse>0xFF</lfuse>
+    <hfuse>0xDE</hfuse>
+    <efuse>0x05</efuse>
+    <setFuses>false</setFuses>
+    <lockBits>0x3F</lockBits>
+    <setLock>false</setLock>
+    <additional />
+    <verbosity>0</verbosity>
+    <name>Arduino Uno (ATmega328P)</name>
+  </Preset>
+  <Preset>
+    <programmer>arduino</programmer>
+    <mcu>m328p</mcu>
+    <port>COM1</port>
+    <baud>57600</baud>
+    <bitclock />
+    <flashFile />
+    <flashFormat>a</flashFormat>
+    <flashOp>w</flashOp>
+    <EEPROMFile />
+    <EEPROMFormat>a</EEPROMFormat>
+    <EEPROMOp>w</EEPROMOp>
+    <force>false</force>
+    <disableVerify>false</disableVerify>
+    <disableFlashErase>false</disableFlashErase>
+    <eraseFlashAndEEPROM>false</eraseFlashAndEEPROM>
+    <doNotWrite>false</doNotWrite>
+    <lfuse>0xFF</lfuse>
+    <hfuse>0xDA</hfuse>
+    <efuse>0x05</efuse>
+    <setFuses>false</setFuses>
+    <lockBits>0x3F</lockBits>
+    <setLock>false</setLock>
+    <additional />
+    <verbosity>0</verbosity>
+    <name>Arduino Nano (ATmega328P)</name>
+  </Preset>
+  <Preset>
+    <programmer>arduino</programmer>
+    <mcu>m168</mcu>
+    <port>COM1</port>
+    <baud>19200</baud>
+    <bitclock />
+    <flashFile />
+    <flashFormat>a</flashFormat>
+    <flashOp>w</flashOp>
+    <EEPROMFile />
+    <EEPROMFormat>a</EEPROMFormat>
+    <EEPROMOp>w</EEPROMOp>
+    <force>false</force>
+    <disableVerify>false</disableVerify>
+    <disableFlashErase>false</disableFlashErase>
+    <eraseFlashAndEEPROM>false</eraseFlashAndEEPROM>
+    <doNotWrite>false</doNotWrite>
+    <lfuse>0xFF</lfuse>
+    <hfuse>0xDD</hfuse>
+    <efuse>0x00</efuse>
+    <setFuses>false</setFuses>
+    <lockBits>0x3F</lockBits>
+    <setLock>false</setLock>
+    <additional />
+    <verbosity>0</verbosity>
+    <name>Arduino Nano (ATmega168)</name>
+  </Preset>
+  <Preset>
+    <programmer>arduino</programmer>
+    <mcu>m1280</mcu>
+    <port>COM1</port>
+    <baud>57600</baud>
+    <bitclock />
+    <flashFile />
+    <flashFormat>a</flashFormat>
+    <flashOp>w</flashOp>
+    <EEPROMFile />
+    <EEPROMFormat>a</EEPROMFormat>
+    <EEPROMOp>w</EEPROMOp>
+    <force>false</force>
+    <disableVerify>false</disableVerify>
+    <disableFlashErase>false</disableFlashErase>
+    <eraseFlashAndEEPROM>false</eraseFlashAndEEPROM>
+    <doNotWrite>false</doNotWrite>
+    <lfuse>0xFF</lfuse>
+    <hfuse>0xDA</hfuse>
+    <efuse>0xF5</efuse>
+    <setFuses>false</setFuses>
+    <lockBits>0x3F</lockBits>
+    <setLock>false</setLock>
+    <additional />
+    <verbosity>0</verbosity>
+    <name>Arduino Mega (ATmega1280)</name>
+  </Preset>
+  <Preset>
+    <programmer>stk500v2</programmer>
+    <mcu>m2560</mcu>
+    <port>COM1</port>
+    <baud>115200</baud>
+    <bitclock />
+    <flashFile />
+    <flashFormat>a</flashFormat>
+    <flashOp>w</flashOp>
+    <EEPROMFile />
+    <EEPROMFormat>a</EEPROMFormat>
+    <EEPROMOp>w</EEPROMOp>
+    <force>false</force>
+    <disableVerify>false</disableVerify>
+    <disableFlashErase>false</disableFlashErase>
+    <eraseFlashAndEEPROM>false</eraseFlashAndEEPROM>
+    <doNotWrite>false</doNotWrite>
+    <lfuse>0xFF</lfuse>
+    <hfuse>0xD8</hfuse>
+    <efuse>0xFD</efuse>
+    <setFuses>false</setFuses>
+    <lockBits>0x3F</lockBits>
+    <setLock>false</setLock>
+    <additional />
+    <verbosity>0</verbosity>
+    <name>Arduino Mega (ATmega2560)</name>
+  </Preset>
+  <Preset>
+    <programmer>usbasp</programmer>
+    <mcu>m328p</mcu>
+    <port />
+    <baud />
+    <bitclock />
+    <flashFile />
+    <flashFormat>a</flashFormat>
+    <flashOp>w</flashOp>
+    <EEPROMFile />
+    <EEPROMFormat>a</EEPROMFormat>
+    <EEPROMOp>w</EEPROMOp>
+    <force>false</force>
+    <disableVerify>false</disableVerify>
+    <disableFlashErase>false</disableFlashErase>
+    <eraseFlashAndEEPROM>false</eraseFlashAndEEPROM>
+    <doNotWrite>false</doNotWrite>
+    <lfuse>0xFF</lfuse>
+    <hfuse>0xDF</hfuse>
+    <efuse>0xFD</efuse>
+    <setFuses>false</setFuses>
+    <lockBits>0x3F</lockBits>
+    <setLock>false</setLock>
+    <additional />
+    <verbosity>0</verbosity>
+    <name>ATmega328P barebones (16MHz)</name>
+  </Preset>
+  <Preset>
+    <programmer>usbasp</programmer>
+    <mcu>t85</mcu>
+    <port />
+    <baud />
+    <bitclock />
+    <flashFile />
+    <flashFormat>a</flashFormat>
+    <flashOp>w</flashOp>
+    <EEPROMFile />
+    <EEPROMFormat>a</EEPROMFormat>
+    <EEPROMOp>w</EEPROMOp>
+    <force>false</force>
+    <disableVerify>false</disableVerify>
+    <disableFlashErase>false</disableFlashErase>
+    <eraseFlashAndEEPROM>false</eraseFlashAndEEPROM>
+    <doNotWrite>false</doNotWrite>
+    <lfuse>0xE2</lfuse>
+    <hfuse>0xDD</hfuse>
+    <efuse>0xFF</efuse>
+    <setFuses>false</setFuses>
+    <lockBits>0x3F</lockBits>
+    <setLock>false</setLock>
+    <additional />
+    <verbosity>0</verbosity>
+    <name>ATtiny85 barebones (8MHz RC)</name>
+  </Preset>
+</ArrayOfPreset>

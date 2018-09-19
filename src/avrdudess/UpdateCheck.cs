@@ -7,6 +7,8 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Xml;
 
@@ -14,11 +16,28 @@ namespace avrdudess
 {
     public class UpdateData
     {
-        public Version newVersion;
         public Version currentVersion;
-        public long newVersionDate;
         public string updateAddr = "";
-        public string updateInfo = "";
+        public List<UpdateReleaseData> releases;
+
+        public UpdateReleaseData latest
+        {
+            get
+            {
+                if (releases == null)
+                    return null;
+
+                UpdateReleaseData lastestRelease = null;
+
+                foreach (UpdateReleaseData release in releases)
+                {
+                    if (lastestRelease == null || release.version.CompareTo(lastestRelease.version) > 0)
+                        lastestRelease = release;
+                }
+
+                return lastestRelease; // This will be null if releases list is empty
+            }
+        }
 
         public UpdateData()
         {
@@ -31,7 +50,32 @@ namespace avrdudess
 
         public bool updateAvailable()
         {
-            return (newVersion != null && currentVersion.CompareTo(newVersion) < 0);
+            UpdateReleaseData latestRelease = latest;
+            return (latestRelease != null && latestRelease.version.CompareTo(currentVersion) > 0);
+        }
+    }
+
+    public class UpdateReleaseData
+    {
+        public int major;
+        public int minor;
+        public long dateUnix;
+        public string info;
+
+        public DateTime date
+        {
+            get
+            {
+                return new DateTime(1970, 1, 1).AddSeconds(dateUnix);
+            }
+        }
+
+        public Version version
+        {
+            get
+            {
+                return new Version(major, minor);
+            }
         }
     }
 
@@ -67,13 +111,9 @@ namespace avrdudess
 
         public bool now(UpdateData updateData)
         {
+            bool success = false;
             try
             {
-                int major = 0;
-                int minor = 0;
-                //int build = 0;
-                //int revision = 0;
-
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(UPDATE_ADDR);
                 request.UserAgent = string.Format("Mozilla/5.0 (compatible; AVRDUDESS VERSION CHECKER {0})", AssemblyData.version.ToString());
                 request.ReadWriteTimeout = 30000;
@@ -84,50 +124,62 @@ namespace avrdudess
                 request.Proxy = null;
 #endif
 
+                updateData.releases = new List<UpdateReleaseData>();
+                UpdateReleaseData release = null;
+
                 // Do request
-                using (var responseStream = request.GetResponse().GetResponseStream())
+                using (Stream responseStream = request.GetResponse().GetResponseStream())
                 {
                     // XML
-                    using (var reader = XmlReader.Create(responseStream))
+                    using (XmlReader reader = XmlReader.Create(responseStream))
                     {
                         while (reader.Read())
                         {
-                            if (reader.NodeType == XmlNodeType.Element)
+                            string name = reader.Name;
+
+                            if(name == "release")
                             {
-                                string name = reader.Name;
-                                reader.Read();
-                                switch (name)
+                                if (reader.NodeType == XmlNodeType.Element)
+                                    release = new UpdateReleaseData();
+                                else if(reader.NodeType == XmlNodeType.EndElement && release != null)
                                 {
-                                    case "major":
-                                        major = reader.ReadContentAsInt();
-                                        break;
-                                    case "minor":
-                                        minor = reader.ReadContentAsInt();
-                                        break;
-                                    /*case "build":
-                                        build = reader.ReadContentAsInt();
-                                        break;
-                                    case "revision":
-                                        revision = reader.ReadContentAsInt();
-                                        break;*/
-                                    case "date":
-                                        updateData.newVersionDate = reader.ReadContentAsLong();
-                                        break;
-                                    case "updateAddr":
+                                    updateData.releases.Add(release);
+                                    release = null;
+                                    success = true; // We need at least 1 release entry otherwise something isn't right...
+                                }
+                            }
+                            else if(reader.NodeType == XmlNodeType.Element)
+                            {
+                                reader.Read();
+                                if(release == null)
+                                {
+                                    if(name == "updateAddr")
                                         updateData.updateAddr = reader.ReadContentAsString();
-                                        break;
-                                    case "updateInfo":
-                                        updateData.updateInfo = reader.ReadContentAsString();
-                                        break;
-                                    default:
-                                        break;
+                                }
+                                else
+                                {
+                                    switch (name)
+                                    {
+                                        case "major":
+                                            release.major = reader.ReadContentAsInt();
+                                            break;
+                                        case "minor":
+                                            release.minor = reader.ReadContentAsInt();
+                                            break;
+                                        case "date":
+                                            release.dateUnix = reader.ReadContentAsLong();
+                                            break;
+                                        case "info":
+                                            release.info = reader.ReadContentAsString();
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                 }
                             }
                         }
                     }
                 }
-
-                updateData.newVersion = new Version(major, minor);
 
                 saveTime();
             }
@@ -137,7 +189,10 @@ namespace avrdudess
                 return false;
             }
 
-            return true;
+            if (!success)
+                errorMsg = Language.Translation.get("_UPDATE_BADXML");
+
+            return success;
         }
     }
 }

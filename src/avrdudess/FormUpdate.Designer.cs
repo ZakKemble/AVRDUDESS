@@ -42,7 +42,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdate.Location = new System.Drawing.Point(279, 284);
+            this.btnUpdate.Location = new System.Drawing.Point(335, 284);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 0;
@@ -54,7 +54,7 @@
             // 
             this.btnLater.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLater.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnLater.Location = new System.Drawing.Point(441, 284);
+            this.btnLater.Location = new System.Drawing.Point(497, 284);
             this.btnLater.Name = "btnLater";
             this.btnLater.Size = new System.Drawing.Size(75, 23);
             this.btnLater.TabIndex = 2;
@@ -72,7 +72,7 @@
             this.txtUpdateInfo.Name = "txtUpdateInfo";
             this.txtUpdateInfo.ReadOnly = true;
             this.txtUpdateInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtUpdateInfo.Size = new System.Drawing.Size(501, 240);
+            this.txtUpdateInfo.Size = new System.Drawing.Size(557, 240);
             this.txtUpdateInfo.TabIndex = 3;
             // 
             // lblNewVersion
@@ -115,7 +115,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(429, 9);
+            this.label3.Location = new System.Drawing.Point(485, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(114, 13);
             this.label3.TabIndex = 9;
@@ -125,7 +125,7 @@
             // 
             this.btnSkip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSkip.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSkip.Location = new System.Drawing.Point(360, 284);
+            this.btnSkip.Location = new System.Drawing.Point(416, 284);
             this.btnSkip.Name = "btnSkip";
             this.btnSkip.Size = new System.Drawing.Size(75, 23);
             this.btnSkip.TabIndex = 1;
@@ -139,7 +139,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnLater;
-            this.ClientSize = new System.Drawing.Size(528, 316);
+            this.ClientSize = new System.Drawing.Size(584, 316);
             this.Controls.Add(this.btnSkip);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);

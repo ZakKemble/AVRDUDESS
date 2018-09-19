@@ -147,9 +147,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="avrdude.conf">
+    <ContentWithTargetPath Include="Files\avrdude.conf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+      <TargetPath>avrdude.conf</TargetPath>
+    </ContentWithTargetPath>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -164,15 +165,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="avr-size.exe">
+    <ContentWithTargetPath Include="Files\avr-size.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="avrdude.exe">
+      <TargetPath>avr-size.exe</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Files\avrdude.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bits.xml">
+      <TargetPath>avrdude.exe</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Files\bits.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+      <TargetPath>bits.xml</TargetPath>
+    </ContentWithTargetPath>
     <Content Include="icon.ico" />
     <Content Include="Languages\german.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

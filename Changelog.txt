@@ -1,5 +1,5 @@
 2018-09-20 (v2.6):
-	- Fetch a different XML file when checking for updates as older versions of AVRDUESS don't like the new format
+	- Fetch a different XML file when checking for updates as older versions of AVRDUDESS don't like the new format
 
 2018-09-20 (v2.5):
 	- Updated AVRDUDE to v6.3

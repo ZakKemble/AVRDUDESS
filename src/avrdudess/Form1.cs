@@ -258,6 +258,14 @@ namespace avrdudess
             programmers = new List<Programmer>();
             mcus = new List<MCU>();
 
+            // Load saved configuration and translations
+            // TODO Need to be careful here, if an uncaught exception happens then the program
+            // will just close without a JIT error message thing.
+            // Having these in Form1_Load() causes some static things to not load their translations
+            // like in Avrdude.fileFormats.
+            Config.Prop.load();
+            Language.Translation.load();
+
             Icon = AssemblyData.icon;
 
             Util.UI = this;
@@ -266,11 +274,6 @@ namespace avrdudess
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Load saved configuration
-            Config.Prop.load();
-
-            Language.Translation.load();
-
             setWindowTitle();
 
             //MaximumSize = new Size(Size.Width, int.MaxValue);

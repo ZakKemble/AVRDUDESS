@@ -1,4 +1,4 @@
-2018-08-20 (v2.5):
+2018-09-20 (v2.5):
 	- Updated AVRDUDE to v6.3
 	- libusb0.dll now included
 	- Added a preset manager, you can export and import presets and manage existing presets much easier now

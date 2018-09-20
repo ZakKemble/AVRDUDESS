@@ -1,3 +1,20 @@
+2018-08-20 (v2.5):
+	- Updated AVRDUDE to v6.3
+	- libusb0.dll now included
+	- Added a preset manager, you can export and import presets and manage existing presets much easier now
+	- Added options to hide programmers and MCUs from their drop-down menus
+	- Added support for different languages, translations go into an xml file in the Languages folder
+	- Added avrdude support for ATtiny841, ATtiny441 and ATmega16U4
+	- Added persistent window location, AVRDUDESS will now open in the same location that it was last closed
+	- Added a preset for Arduino as ISP
+	- Fixed flash and EEPROM usage bars not working if there is a space in the file path
+	- Fixed form tab indexes, pressing tab will now go through form controls in order
+	- When clicking the 'Fuse settings' link it will now automatically load up the selected MCU and fuse values
+	- Most errors and warnings are now printed to the output console (in pretty colours!) instead of having a million pop-up boxes
+	- Main window can now be properly resized
+	- Improved avrdude.conf file parsing
+	- Various other little fixes and improvements
+
 2014-08-05 (v2.4):
 	- For some reason antivirus software falsely detects AVRDUDESS as malware when using HttpWebRequest to check for updates, using raw sockets seems to fix it
 

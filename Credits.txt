@@ -34,3 +34,9 @@ Ideas & code credits:
 
 "buttim" <https://github.com/buttim>
 * Load up selected MCU and fuses when opening the fuse calc web page
+
+"Pardeep" <https://github.com/pardeepk21>
+* Fixing flash and EEPROM usage bars not working if there is a space in the file path
+
+"Jon Raymond" <https://github.com/DirtyEngineer>
+* Options to hide programmers and MCUs from their drop-down menus

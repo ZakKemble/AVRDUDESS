@@ -3,35 +3,33 @@ AVRDUDESS - A GUI for AVRDUDE
 
 This is a GUI for AVRDUDE (http://savannah.nongnu.org/projects/avrdude).
 
-http://blog.zakkemble.co.uk/avrdudess-a-gui-for-avrdude/
+http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+
+![AVRDUDESS pic](https://github.com/zkemble/AVRDUDESS/raw/master/images/avrdudess.png "")
 
 Windows:
 --------
-Requires .NET Framework 2.0 SP1 or newer (http://www.microsoft.com/en-gb/download/details.aspx?id=16614).
-Latest .NET can be found here - http://www.microsoft.com/net
-
-AVRDUDE requires LibUSB
-LibUSB should really be installed the normal way as a driver for a LibUSB device, but if you don't have any such devices then you will need to download this - http://downloads.sourceforge.net/libusb-win32/libusb-win32-bin-1.2.6.0.zip
-
-Extract libusb-win32-bin-1.2.6.0/bin/x86/libusb_x86.dll to where you have avrdude.exe placed and rename libusb_x86.dll to libusb.dll
+Requires .NET Framework 2.0 SP1. On Windows 10 and maybe 8 and 8.1 you'll probably get a prompt about installing .NET Framework 3.5 (which includes .NET 2.0), click install and it will do the rest for you.\
+If you get some other error message then you can download .NET 3.5 from https://www.microsoft.com/en-gb/download/details.aspx?id=21
 
 Linux & Mac OS X:
 -----------------
-Can be ran using Mono (http://www.mono-project.com).
-
+Can be ran using Mono (http://www.mono-project.com).\
 Has not been tested on OS X, but should work.
 
-Installing on Ubuntu 13.10:
+Installing on Ubuntu 18.04:
 ---------------------------
-Install Mono (this is the minimum required, you can do mono-complete for a full install)
+Install Mono (this is the minimum required, you can do mono-complete for a full install):
 
-    sudo apt-get install libmono-winforms2.0-cil
+    sudo apt-get install libmono-system-windows-forms4.0-cil
 
-Install AVRDUDE
+On older versions of Ubuntu you might need to use `libmono-winforms2.0-cil` instead.
 
-    sudo apt-get install avrdude
+Install AVRDUDE and AVR-GCC (for avr-size):
 
-Run AVRDUDESS with mono, you might have to run as root (sudo) so AVRDUDE runs as root if you havn't changed any rules.d stuff
+    sudo apt-get install avrdude gcc-avr
+
+Run AVRDUDESS with mono, you might have to run as root (sudo) so that AVRDUDE can access ports if you haven't changed any permissions or rules.d stuff:
 
     mono avrdudess.exe
 
@@ -39,4 +37,4 @@ Run AVRDUDESS with mono, you might have to run as root (sudo) so AVRDUDE runs as
 
 Zak Kemble
 
-contact@zakkemble.co.uk
+contact@zakkemble.net

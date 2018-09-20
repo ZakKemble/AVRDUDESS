@@ -89,7 +89,7 @@ namespace avrdudess
             base.load();
 
             // NOTE: When calling load() the XML deserializer creates a new Config object, which replaces this current object.
-            // So to modify things in the latest Config object we have to access it through the Prop property, which is static.
+            // So to get and set things in the latest Config object we have to access it through the Prop property, which is static.
             // Once this method ends the garbage collector will clean up the old Config object.
 
             // Check config file version

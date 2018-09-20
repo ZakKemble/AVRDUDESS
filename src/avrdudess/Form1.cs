@@ -258,16 +258,7 @@ namespace avrdudess
             programmers = new List<Programmer>();
             mcus = new List<MCU>();
 
-            // Load saved configuration
-            Config.Prop.load();
-
-            Language.Translation.load();
-
             Icon = AssemblyData.icon;
-            setWindowTitle();
-
-            //MaximumSize = new Size(Size.Width, int.MaxValue);
-            MinimumSize = new Size(Size.Width, Height - rtxtConsole.Height);
 
             Util.UI = this;
             Util.consoleSet(rtxtConsole);
@@ -275,6 +266,16 @@ namespace avrdudess
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Load saved configuration
+            Config.Prop.load();
+
+            Language.Translation.load();
+
+            setWindowTitle();
+
+            //MaximumSize = new Size(Size.Width, int.MaxValue);
+            MinimumSize = new Size(Size.Width, Height - rtxtConsole.Height);
+
             // Persist window location across sessions
             // Credits:
             // gl.tter
@@ -509,8 +510,7 @@ namespace avrdudess
             if (avrdudeVersion == "")
                 avrdudeVersion = "?";
             Text = string.Format(
-                "{0} {1}.{2} ({3})",
-                Language.Translation.get("_PROGRAM_NAME"),
+                "AVRDUDESS {0}.{1} ({2})",
                 AssemblyData.version.Major,
                 AssemblyData.version.Minor,
                 avrdudeVersion

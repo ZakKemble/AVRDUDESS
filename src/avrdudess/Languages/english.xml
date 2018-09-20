@@ -4,7 +4,6 @@
 	<data>
 
 		<!-- Main form -->
-		<string name="PROGRAM_NAME">AVRDUDESS</string>
 		<string name="TOOLTIP_MCU">MCU to program</string>
 		<string name="TOOLTIP_PROGRAMMER">Programmer</string>
 		<string name="TOOLTIP_PORT">Set COM/LTP/USB port</string>

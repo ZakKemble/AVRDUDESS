@@ -19,7 +19,7 @@ Has not been tested on OS X, but should work.
 
 Installing on Ubuntu 18.04:
 ---------------------------
-Install Mono (this is the minimum required, you can do mono-complete for a full install):
+Install Mono (this is the minimum required, you can use `mono-complete` for a full install):
 
     sudo apt-get install libmono-system-windows-forms4.0-cil
 

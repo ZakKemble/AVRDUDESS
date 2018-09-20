@@ -1,7 +1,7 @@
 AVRDUDESS - A GUI for AVRDUDE
 =============================
 
-This is a GUI for AVRDUDE (http://savannah.nongnu.org/projects/avrdude).
+This is a GUI for AVRDUDE [http://savannah.nongnu.org/projects/avrdude](http://savannah.nongnu.org/projects/avrdude).
 
 http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
 
@@ -14,7 +14,7 @@ If you get some other error message then you can download .NET 3.5 from https://
 
 Linux & Mac OS X:
 -----------------
-Can be ran using Mono (http://www.mono-project.com).\
+Can be ran using Mono [http://www.mono-project.com](http://www.mono-project.com).\
 Has not been tested on OS X, but should work.
 
 Installing on Ubuntu 18.04:

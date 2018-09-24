@@ -435,14 +435,17 @@ namespace avrdudess
 
             // If a preset has not been specified by the command line then use the last used preset
             // Credits:
-            // Uwe Tanger (specifing preset in command line)
-            // neptune (sticky presets)
+            // Uwe Tanger (specifying preset in command line)
             if (presetToLoad == null)
-                presetToLoad = Config.Prop.preset;
-
-            // Load preset
-            PresetData p = presets.presets.Find(s => s.name == presetToLoad);
-            cmbPresets.SelectedItem = (p != null) ? p : presets.presets.Find(s => s.name == "Default");
+            {
+                cmbPresets.SelectedItem = presets.presets.Find(s => s.name == "Default");
+                loadPresetData(Config.Prop.previousSettings);
+            }
+            else
+            {
+                PresetData p = presets.presets.Find(s => s.name == presetToLoad);
+                cmbPresets.SelectedItem = (p != null) ? p : presets.presets.Find(s => s.name == "Default");
+            }
 
             Language.Translation.ApplyTranslation(this);
 
@@ -1135,11 +1138,10 @@ namespace avrdudess
         {
             if (ready)
             {
-                var item = (PresetData)cmbPresets.SelectedItem;
+                PresetData item = (PresetData)cmbPresets.SelectedItem;
                 if (item != null)
                 {
                     loadPresetData(item);
-                    Config.Prop.preset = item.name;
 
                     // If preset uses USBasp we need to workout the frequency to use from the bit clock
                     if (prog != null && prog.id == "usbasp")
@@ -1387,6 +1389,8 @@ namespace avrdudess
             // gl.tter
             if (WindowState != FormWindowState.Minimized)
                 Config.Prop.windowLocation = Location;
+
+            Config.Prop.previousSettings = makePresetData("");
 
             Config.Prop.save();
         }

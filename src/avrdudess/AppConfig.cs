@@ -30,7 +30,6 @@ namespace avrdudess
         };
 
         public uint configVersion; // Config file version
-        public string preset; // Last preset used
         public long updateCheck; // Time of last update check
 
         [XmlElement(ElementName = "skipVersion")]
@@ -44,6 +43,7 @@ namespace avrdudess
         public string language; // Language to use
         public List<string> hiddenMCUs; // List of MCU IDs to hide from drop down list
         public List<string> hiddenProgrammers; // List of programmer IDs to hide from drop down list
+        public PresetData previousSettings; // Settings from when the program was last closed
 
         [XmlIgnore]
         public Version skipVersion
@@ -63,7 +63,6 @@ namespace avrdudess
             : base()
         {
             configVersion = 0;
-            preset = "Default";
             updateCheck = 0;
             _skipVersion.Major = 0;
             _skipVersion.Minor = 0;
@@ -76,6 +75,7 @@ namespace avrdudess
             language = "english";
             hiddenMCUs = new List<string>();
             hiddenProgrammers = new List<string>();
+            previousSettings = new PresetData();
         }
 
         public new void save()

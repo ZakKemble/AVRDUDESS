@@ -5,18 +5,18 @@ Ideas & code credits:
 * Auto detect MCU
 * Fuse selector
 * AVRDUDE version shown in window title
-* New AVRDUDE conf parse code
+* New AVRDUDE conf parse code (no longer implemented)
 * Buttons to separately write/read/verify the flash/EEPROM
 * Fixing USBasp frequency failing to load from preset because some countries use something other than a '.' for the decimal separator
 
 "Uwe Tanger" <u.tanger (-at-) arcor (-dot-) de>
 * Specifying preset to load via command line
-* Remove popup for saving and deleting presets
+* Remove popup for saving and deleting presets (no longer implemented)
 * Console in main window instead of separate window
-* New AVRDUDE conf parse code
+* New AVRDUDE conf parse code (no longer implemented)
 
 "neptune"
-* Sticky presets
+* Sticky presets (no longer implemented)
 
 "Dean Canafranca" <deanc338 (-at-) yahoo (-dot-) com (-dot-) sg>
 * Console in main window instead of separate window
@@ -29,7 +29,7 @@ Ideas & code credits:
 * Automatically prepend 0x to fuse hex values
 
 "gl.tter"
-* Confirm preset deletion
+* Confirm preset deletion (no longer implemented)
 * Persist window location across sessions
 
 "buttim" <https://github.com/buttim>

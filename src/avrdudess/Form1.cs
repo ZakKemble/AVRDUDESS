@@ -966,6 +966,7 @@ namespace avrdudess
         {
             FormOptions fOptions = new FormOptions(avrdude.programmers, avrdude.mcus);
             fOptions.toolTips = Config.Prop.toolTips;
+            fOptions.usePreviousSettings = Config.Prop.usePreviousSettings;
             fOptions.avrdudeLocation = Config.Prop.avrdudeLoc;
             fOptions.avrdudeConfLocation = Config.Prop.avrdudeConfLoc;
             fOptions.avrSizeLocation = Config.Prop.avrSizeLoc;
@@ -975,19 +976,20 @@ namespace avrdudess
 
             if (fOptions.ShowDialog() == DialogResult.OK)
             {
-                Config.Prop.toolTips = fOptions.toolTips;
-                ToolTips.Active = Config.Prop.toolTips;
-
                 bool changedAvrdudeLoc = (Config.Prop.avrdudeLoc != fOptions.avrdudeLocation);
                 bool changedAvrdudeConfLoc = (Config.Prop.avrdudeConfLoc != fOptions.avrdudeConfLocation);
                 bool changedAvrSizeLoc = (Config.Prop.avrSizeLoc != fOptions.avrSizeLocation);
 
+                Config.Prop.toolTips = fOptions.toolTips;
+                Config.Prop.usePreviousSettings = fOptions.usePreviousSettings;
                 Config.Prop.avrdudeLoc = fOptions.avrdudeLocation;
                 Config.Prop.avrdudeConfLoc = fOptions.avrdudeConfLocation;
                 Config.Prop.avrSizeLoc = fOptions.avrSizeLocation;
                 Config.Prop.language = fOptions.language;
                 Config.Prop.hiddenProgrammers = fOptions.hiddenProgrammers;
                 Config.Prop.hiddenMCUs = fOptions.hiddenMCUs;
+
+                ToolTips.Active = Config.Prop.toolTips;
 
                 if (changedAvrdudeLoc || changedAvrdudeConfLoc)
                     avrdude.load();
@@ -1390,7 +1392,7 @@ namespace avrdudess
             if (WindowState != FormWindowState.Minimized)
                 Config.Prop.windowLocation = Location;
 
-            Config.Prop.previousSettings = makePresetData("");
+            Config.Prop.previousSettings = Config.Prop.usePreviousSettings ? makePresetData("") : new PresetData();
 
             Config.Prop.save();
         }

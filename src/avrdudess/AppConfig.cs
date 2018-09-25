@@ -44,6 +44,7 @@ namespace avrdudess
         public List<string> hiddenMCUs; // List of MCU IDs to hide from drop down list
         public List<string> hiddenProgrammers; // List of programmer IDs to hide from drop down list
         public PresetData previousSettings; // Settings from when the program was last closed
+        public bool usePreviousSettings; // Enable saving settings when closing
 
         [XmlIgnore]
         public Version skipVersion
@@ -76,6 +77,7 @@ namespace avrdudess
             hiddenMCUs = new List<string>();
             hiddenProgrammers = new List<string>();
             previousSettings = new PresetData();
+            usePreviousSettings = true;
         }
 
         public new void save()

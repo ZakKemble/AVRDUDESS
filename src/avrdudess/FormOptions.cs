@@ -22,6 +22,12 @@ namespace avrdudess
             set { cbShowToolTips.Checked = value; }
         }
 
+        public bool usePreviousSettings
+        {
+            get { return cbUsePrevSettings.Checked; }
+            set { cbUsePrevSettings.Checked = value; }
+        }
+
         public string avrdudeLocation
         {
             get { return txtAvrdudeLocation.Text; }

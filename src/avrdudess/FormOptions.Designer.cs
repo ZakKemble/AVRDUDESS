@@ -49,6 +49,7 @@
             this.clbHiddenProgrammers = new System.Windows.Forms.CheckedListBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.clbHiddenMCUs = new System.Windows.Forms.CheckedListBox();
+            this.cbUsePrevSettings = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -172,6 +173,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.cbUsePrevSettings);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.cbLanguage);
             this.groupBox2.Controls.Add(this.cbShowToolTips);
@@ -204,7 +206,7 @@
             this.cbShowToolTips.AutoSize = true;
             this.cbShowToolTips.Checked = true;
             this.cbShowToolTips.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbShowToolTips.Location = new System.Drawing.Point(6, 49);
+            this.cbShowToolTips.Location = new System.Drawing.Point(209, 24);
             this.cbShowToolTips.Name = "cbShowToolTips";
             this.cbShowToolTips.Size = new System.Drawing.Size(119, 17);
             this.cbShowToolTips.TabIndex = 1;
@@ -289,6 +291,18 @@
             this.clbHiddenMCUs.Size = new System.Drawing.Size(498, 169);
             this.clbHiddenMCUs.TabIndex = 0;
             // 
+            // cbUsePrevSettings
+            // 
+            this.cbUsePrevSettings.AutoSize = true;
+            this.cbUsePrevSettings.Checked = true;
+            this.cbUsePrevSettings.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbUsePrevSettings.Location = new System.Drawing.Point(209, 47);
+            this.cbUsePrevSettings.Name = "cbUsePrevSettings";
+            this.cbUsePrevSettings.Size = new System.Drawing.Size(137, 17);
+            this.cbUsePrevSettings.TabIndex = 42;
+            this.cbUsePrevSettings.Text = "_USEPREVSETTINGS";
+            this.cbUsePrevSettings.UseVisualStyleBackColor = true;
+            // 
             // FormOptions
             // 
             this.AcceptButton = this.btnOK;
@@ -342,5 +356,6 @@
         private System.Windows.Forms.CheckedListBox clbHiddenProgrammers;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckedListBox clbHiddenMCUs;
+        private System.Windows.Forms.CheckBox cbUsePrevSettings;
     }
 }

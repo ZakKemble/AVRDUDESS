@@ -48,7 +48,7 @@
     <hfuse>0xDE</hfuse>
     <efuse>0xFD</efuse>
     <setFuses>false</setFuses>
-    <lockBits>0x3F</lockBits>
+    <lockBits>0xFF</lockBits>
     <setLock>false</setLock>
     <additional />
     <verbosity>0</verbosity>
@@ -75,7 +75,7 @@
     <hfuse>0xDA</hfuse>
     <efuse>0xFD</efuse>
     <setFuses>false</setFuses>
-    <lockBits>0x3F</lockBits>
+    <lockBits>0xFF</lockBits>
     <setLock>false</setLock>
     <additional />
     <verbosity>0</verbosity>
@@ -102,7 +102,7 @@
     <hfuse>0xDD</hfuse>
     <efuse>0xF8</efuse>
     <setFuses>false</setFuses>
-    <lockBits>0x3F</lockBits>
+    <lockBits>0xFF</lockBits>
     <setLock>false</setLock>
     <additional />
     <verbosity>0</verbosity>
@@ -183,7 +183,7 @@
     <hfuse>0xDF</hfuse>
     <efuse>0xFD</efuse>
     <setFuses>false</setFuses>
-    <lockBits>0x3F</lockBits>
+    <lockBits>0xFF</lockBits>
     <setLock>false</setLock>
     <additional />
     <verbosity>0</verbosity>

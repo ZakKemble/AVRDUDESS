@@ -45,6 +45,7 @@ namespace avrdudess
         public List<string> hiddenProgrammers; // List of programmer IDs to hide from drop down list
         public PresetData previousSettings; // Settings from when the program was last closed
         public bool usePreviousSettings; // Enable saving settings when closing
+        public Size windowSize; // For persistent window size across sessions
 
         [XmlIgnore]
         public Version skipVersion

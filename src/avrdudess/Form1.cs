@@ -302,6 +302,14 @@ namespace avrdudess
                     Location = new Point(Location.X, s.WorkingArea.Y);
             }
 
+            // Persist window size across sessions
+            if (Config.Prop.windowSize != null && Config.Prop.windowSize != new Size(0, 0))
+            {
+                if (Config.Prop.windowSize.Width >= MinimumSize.Width &&
+                    Config.Prop.windowSize.Height >= MinimumSize.Height)
+                    Size = Config.Prop.windowSize;
+            }
+
             cmdLine = new CmdLine(this);
             avrdude = new Avrdude();
             avrsize = new Avrsize();
@@ -1013,6 +1021,8 @@ namespace avrdudess
                 memoryUsageBar(fileFlash, pbFlashUsage, mcu.flash, true);
                 memoryUsageBar(fileEEPROM, pbEEPROMUsage, mcu.eeprom, true);
             }
+
+            Config.Prop.windowSize = Size;
         }
 
         // Deal with maximized/normalized resizes and update memory usage bars
@@ -1386,14 +1396,7 @@ namespace avrdudess
         // Save configuration when closing
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Persist window location across sessions
-            // Credits:
-            // gl.tter
-            if (WindowState != FormWindowState.Minimized)
-                Config.Prop.windowLocation = Location;
-
             Config.Prop.previousSettings = Config.Prop.usePreviousSettings ? makePresetData("") : new PresetData();
-
             Config.Prop.save();
         }
 
@@ -1406,6 +1409,15 @@ namespace avrdudess
                 fPresetMgr.currentSettings = makePresetData("");
                 fPresetMgr.ShowDialog();
             }
+        }
+
+        private void Form1_LocationChanged(object sender, EventArgs e)
+        {
+            // Persist window location across sessions
+            // Credits:
+            // gl.tter
+            if (WindowState == FormWindowState.Normal)
+                Config.Prop.windowLocation = Location;
         }
 
         #endregion

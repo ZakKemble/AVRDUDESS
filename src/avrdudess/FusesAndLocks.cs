@@ -29,7 +29,7 @@ namespace avrdudess
 
         private FusesList()
         {
-            fileLocation = AssemblyData.directory + "\\" + FILE_BITS;
+            fileLocation = Path.Combine(AssemblyData.directory, FILE_BITS);
             load();
         }
 

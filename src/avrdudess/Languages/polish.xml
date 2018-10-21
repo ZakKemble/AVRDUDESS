@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<translation>
+	<name>Polski (Polish)</name>
+	<data>
+
+		<!-- Main form -->
+		<string name="TOOLTIP_MCU">uC do programowania</string>
+		<string name="TOOLTIP_PROGRAMMER">Programator</string>
+		<string name="TOOLTIP_PORT">Wybierz port COM/LTP/USB</string>
+		<string name="TOOLTIP_BAUDRATE">Przepływność portu</string>
+		<string name="TOOLTIP_BITCLOCK">Okres zegara BitBang (us)</string>
+		<string name="TOOLTIP_FLASHFILE">Plik hex (.hex)
+Możesz użyć metody "przeciągnij i upuść"</string>
+		<string name="TOOLTIP_EEPROMFILE">Plik EEPROM (.eep)
+Możesz użyć metody "przeciągnij i upuść"</string>
+		<string name="TOOLTIP_FORCE">Pomiń sprawdzanie sygnatury</string>
+		<string name="TOOLTIP_NOVERIFY">Nie weryfikuj po zapisaniu</string>
+		<string name="TOOLTIP_NOERASE">Nie czyść flash przed zapisaniem
+Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
+		<string name="TOOLTIP_ERASEBOTH">Czyść flash i EEPROM</string>
+		<string name="TOOLTIP_NOWRITE">Nie zapisuj, użyj do debugowania AVRDUDE</string>
+		<string name="TOOLTIP_LOWFUSE">Fusy Low</string>
+		<string name="TOOLTIP_HIGHFUSE">Fusy High</string>
+		<string name="TOOLTIP_EXFUSE">Fusy Extended</string>
+		<string name="TOOLTIP_LOCKBITS">Lock bity</string>
+		<string name="TOOLTIP_ONLYFLASH">Tylko zapisz/odczytaj/weryfikuj flash</string>
+		<string name="TOOLTIP_ONLYEEPROM">Tylko zapisz/odczytaj/weryfikuj EEPROM</string>
+		<string name="TOOLTIP_WRITEFUSES">Zapisz fusy</string>
+		<string name="TOOLTIP_WRITELOCK">Zapisz lock bity</string>
+		<string name="TOOLTIP_READFUSES">Odczytaj fusy</string>
+		<string name="TOOLTIP_READLOCK">Odczytaj lock bity</string>
+		<string name="TOOLTIP_WRITEFUSESPROG">Zapisz fusy podczas programowania</string>
+		<string name="TOOLTIP_WRITELOCKPROG">Zapisz lock bity podczas programowania</string>
+		<string name="GO">Dawaj</string>
+		<string name="WRITE">Zapisz</string>
+		<string name="READ">Czytaj</string>
+		<string name="VERIFY">Weryf.</string>
+		<string name="GRP_PROGRAMMER">Programator (-c)</string>
+		<string name="PORT">Port (-P)</string>
+		<string name="BAUDRATE">Przepływność (-b)</string>
+		<string name="BITCLOCK">Zegar BitBang (-B)</string>
+		<string name="GRP_FLASH">Flash</string>
+		<string name="FORMAT">Format</string>
+		<string name="GRP_EEPROM">EEPROM</string>
+		<string name="GRP_OPTIONS">Opcje</string>
+		<string name="FORCE">Wymuś (-F)</string>
+		<string name="DISVERIFY">Wyłącz weryfikację (-V)</string>
+		<string name="DISFLASHERASE">Nie czyść flash (-D)</string>
+		<string name="ERASEFLASHEEP">Czyść flash i EEPROM (-e)</string>
+		<string name="DONOTWRITE">Nie zapisuj (-n)</string>
+		<string name="VERBOSITY">Gadanie:</string>
+		<string name="GRP_MCU">uC (-p)</string>
+		<string name="FLASHSZ">Flash:</string>
+		<string name="EEPROMSZ">EEPROM:</string>
+		<string name="DETECT">Wykryj</string>
+		<string name="GRP_PRESET">Profile</string>
+		<string name="PRESETMGR">Menedżer</string>
+		<string name="GRP_FUSELOCK">Fusy i lock bity</string>
+		<string name="SETFUSES">Ustaw fusy</string>
+		<string name="FUSESETTINGS">Ustawienia fusów</string>
+		<string name="SETLOCK">Ustaw lock bity</string>
+		<string name="BITSELECTOR">Ustawianie bitów</string>
+		<string name="DOPROGRAM">Programuj!</string>
+		<string name="DOSTOP">Stop</string>
+		<string name="BTN_OPTIONS">Opcje</string>
+		<string name="GRP_ADDCMDARGS">Dodatkowe argumenty konsoli</string>
+		<string name="MCUNOTFOUND">Nie znaleziono uC '{0}'</string>
+		<string name="PROGNOTFOUND">Nie znaleziono programatora '{0}'</string>
+		<string name="STATUSRUNNING">AVRDUDE pracuje...</string>
+		<string name="STATUSREADY">Gotowy</string>
+		<string name="DETECTSUCCESS">Wykryto {0} = {1}</string>
+		<string name="DETECTFAIL">Nie można wykryć uC</string>
+		<string name="AVRDUDEKILLED">AVRDUDE zabity!</string>
+		<string name="ABOUT">O...</string>
+		<string name="SELECTPROG">Wybierz programator...</string>
+		<string name="SELECTMCU">Wybierz uC...</string>
+
+		<string name="UPDATE_CHECK">Sprawdzam aktualizację...</string>
+		<string name="UPDATE_FAILED">Sprawdzanie nieudane: {0}</string>
+		<string name="UPDATE_AVAIL">Dostępna aktualizacja: v{0}</string>
+		<string name="UPDATE_LATEST">Posiadasz aktualną wersję :)</string>
+		<string name="UPDATE_SKIP">Wybrałeś aby pominąć wersję {0}</string>
+		<string name="UPDATE_BADXML">Brakuje plików XML</string>
+
+		<string name="FILEFMT_AUTO">Auto (tylko zapis)</string>
+		<string name="FILEFMT_HEX">Intel Hex</string>
+		<string name="FILEFMT_SREC">Motorola S-record</string>
+		<string name="FILEFMT_BIN">Binarny Raw </string>
+		<string name="FILEFMT_DECR">Dzięsiętny (tylko odczyt)</string>
+		<string name="FILEFMT_HEXR">Heksadecymalny (tylko odczyt)</string>
+		<string name="FILEFMT_BINR">Binarny (tylko odczyt)</string>
+
+		<!-- Preset manager form -->
+		<string name="TITLE_PRESETMGR">Menedżer profili</string>
+		<string name="RENAME">Zmień nazwę</string>
+		<string name="OVERWRITE">Nadpisz</string>
+		<string name="SAVENEWPRESET">Zapisz nowy profil...</string>
+		<string name="EXPORT">Eksportuj</string>
+		<string name="IMPORT">Importuj</string>
+		<string name="DELETE">Usuń</string>
+		<string name="CLOSE">Zamknij</string>
+		<string name="SAVEDIALOG_EXPORT">Eksportuj profil</string>
+		<string name="OPENDIALOG_IMPORT">Importuj profil</string>
+		<string name="NEWPRESETNAME">Nazwa nowego profilu</string>
+		<string name="CANTUSEDEFAULT">Nie możesz użyć 'Default'</string>
+		<string name="OVERWRITEPRESET">Nadpisać '{0}'?</string>
+		<string name="DELETEPRESETS">Usunąć {0} profile(e)?</string>
+		<string name="PRESETALREADYEXISTS">Profil o tej nazwie istnieje, nadpisać?</string>
+		<string name="CANTOVERWRITEDEFAULT">Nie można nadpisać 'Default'</string>
+		<string name="PRESETOVERWRITE">Nadpisać '{0}' z aktualnymi ustawieniami?</string>
+		<string name="EXPORTINGPRESETS">Eksportuje '{0}'...</string>
+		<string name="EXPORTCOMPLETE">Zakończono eksportowanie profilu(ów)</string>
+		<string name="IMPORTINGPRESETS">Importuje'{0}'...</string>
+		<string name="IMPORTALREADYEXISTS">'{0}' istnieje, zmieniono nazwę na '{1}'</string>
+		<string name="IMPORTCOMPLETE">Zakończono importowanie profilu(ów)</string>
+
+		<!-- Update form -->
+		<string name="UPDATEAVAILABLE">Dostępna aktualizacja</string>
+		<string name="CURRENTVERSION">Aktualna wersja:</string>
+		<string name="NEWVERSION">Nowa wersja:</string>
+		<string name="BTN_UPDATE">Aktualizuj</string>
+		<string name="BTN_SKIPVERSION">Pomiń wersję</string>
+		<string name="BTN_LATER">Później</string>
+
+		<!-- Fuse editor form -->
+		<string name="TITLE_FUSEANDLOCKBITS">Fusy i lock bity: {0} ({1})</string>
+		<string name="ERRORLOADFUSES">Wystąpił błąd podczas ładowania fusów:
+{0}</string>
+		<string name="UNSUPPMCU">Uwaga: Niewspierany MCU</string>
+		<string name="GRP_LOCKBITS">Lock Bity</string>
+		<string name="GRP_FUSEBITS">Fuse Bity</string>
+		<string name="LOCKBITS">LOCK BITY</string>
+
+		<!-- Options form -->
+		<string name="TITLE_OPTIONS">Opcje</string>
+		<string name="GRP_FILELOCATIONS">Ścieżka pliku (pozostaw puste dla autodetekcji)</string>
+		<string name="GRP_OTHER">Inne</string>
+		<string name="GRP_HIDEPROGS">Ukryj programatory</string>
+		<string name="GRP_HIDEMCUS">Ukryj uC</string>
+		<string name="LANGUAGE">Język</string>
+		<string name="SHOWTOOLTIPS">Pokaż podpowiedzi</string>
+		<string name="AVRDUDE_LOCATION">Folder z avrdude.exe</string>
+		<string name="AVRDUDECONF_LOCATION">Folder z avrdude.conf</string>
+		<string name="AVRSIZE_LOCATION">Folder z avr-size.exe</string>
+
+		<!-- General stuff -->
+		<string name="OK">OK</string>
+		<string name="CANCEL">Anuluj</string>
+		<string name="ERRORUC">BŁĄD</string>
+		<string name="WARNINGUC">OSTRZEŻENIE</string>
+		<string name="ERROR">Błąd</string>
+		<string name="WARNING">Ostrzeżenie</string>
+		<string name="NOTICE">Notatka</string>
+		<string name="CONFIRM">Potwierdzenie</string>
+
+		<!-- Errors and things -->
+		<string name="XMLWRITEERROR">Wystąpił błąd podczas zapisu {0}:
+{1}</string>
+		<string name="XMLCOPYERROR">Błąd kopiowania {0} formatki do AppData:
+{1}</string>
+		<string name="EXECMISSING">Brakuje {0} !</string>
+		<string name="EXECFAIL">Nie można uruchomić: {0}</string>
+		<string name="UNKNOWNSIG">Nieznana sygnatura{0}</string>
+		<string name="AVRCONFMISSING">Brakuje {0} !</string>
+		<string name="AVRCONFREADERROR">Nie udało się odczytać {0}:
+{1}</string>
+
+	</data>
+</translation>

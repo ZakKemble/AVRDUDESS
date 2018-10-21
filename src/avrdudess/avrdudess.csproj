@@ -165,6 +165,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Languages\polish.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <ContentWithTargetPath Include="Files\avr-size.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <TargetPath>avr-size.exe</TargetPath>

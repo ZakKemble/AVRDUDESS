@@ -91,6 +91,7 @@ Use this if you only want to update EEPROM</string>
 		<string name="FILEFMT_BINR">Binary (reading only)</string>
 
 		<!-- Preset manager form -->
+		<string name="TITLE_PRESETMGR">Preset Manager</string>
 		<string name="RENAME">Rename</string>
 		<string name="OVERWRITE">Overwrite</string>
 		<string name="SAVENEWPRESET">Save new preset...</string>
@@ -126,6 +127,9 @@ Use this if you only want to update EEPROM</string>
 		<string name="ERRORLOADFUSES">An error occurred trying to load fuses:
 {0}</string>
 		<string name="UNSUPPMCU">Warning: Unsupported MCU</string>
+		<string name="GRP_LOCKBITS">Lock Bits</string>
+		<string name="GRP_FUSEBITS">Fuse Bits</string>
+		<string name="LOCKBITS">LOCK BITS</string>
 
 		<!-- Options form -->
 		<string name="TITLE_OPTIONS">Options</string>

@@ -134,7 +134,7 @@
             this.groupBox1.Size = new System.Drawing.Size(732, 69);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lock Bits";
+            this.groupBox1.Text = "_GRP_LOCKBITS";
             // 
             // label4
             // 
@@ -142,7 +142,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 15);
             this.label4.TabIndex = 84;
-            this.label4.Text = "LOCK BITS";
+            this.label4.Text = "_LOCKBITS";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbLBits
@@ -359,7 +359,7 @@
             this.grpFuses.Size = new System.Drawing.Size(732, 180);
             this.grpFuses.TabIndex = 1;
             this.grpFuses.TabStop = false;
-            this.grpFuses.Text = "Fuse bits";
+            this.grpFuses.Text = "_GRP_FUSEBITS";
             // 
             // label3
             // 

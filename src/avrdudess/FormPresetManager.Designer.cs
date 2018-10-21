@@ -181,7 +181,7 @@
             this.MinimizeBox = false;
             this.Name = "FormPresetManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Preset Manager";
+            this.Text = "_TITLE_PRESETMGR";
             this.Load += new System.EventHandler(this.FormPresetManager_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -40,3 +40,6 @@ Ideas & code credits:
 
 "Jon Raymond" <https://github.com/DirtyEngineer>
 * Options to hide programmers and MCUs from their drop-down menus
+
+"Bercik" <ro_beri (-at-) gazeta (-dot-) pl>
+* Polish translation

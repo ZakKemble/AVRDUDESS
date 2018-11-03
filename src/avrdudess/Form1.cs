@@ -939,9 +939,9 @@ namespace avrdudess
             if (radioButton != null && radioButton.Checked)
             {
                 string op;
-                if (radioButton.Text == "Write")
+                if (radioButton.Name == "rbFlashOpWrite" || radioButton.Name == "rbEEPROMOpWrite")
                     op = "w";
-                else if (radioButton.Text == "Read")
+                else if (radioButton.Name == "rbFlashOpRead" || radioButton.Name == "rbEEPROMOpRead")
                     op = "r";
                 else
                     op = "v";

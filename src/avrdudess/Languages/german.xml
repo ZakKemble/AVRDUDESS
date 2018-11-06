@@ -90,6 +90,14 @@ Use this if you only want to update EEPROM</string>
 		<string name="FILEFMT_HEXR">Hexadecimal (reading only)</string>
 		<string name="FILEFMT_BINR">Binary (reading only)</string>
 
+		<string name="BROWSE_OPEN_FLASH">Open flash file</string>
+		<string name="BROWSE_SAVE_FLASH">Save flash file</string>
+		<string name="BROWSE_OPEN_EEPROM">Open EEPROM file</string>
+		<string name="BROWSE_SAVE_EEPROM">Save EEPROM file</string>
+		<string name="BROWSE_FILTER_ALL">All files (*.*)</string>
+		<string name="BROWSE_FILTER_HEX">Hex files (*.hex)</string>
+		<string name="BROWSE_FILTER_EEP">EEPROM files (*.eep)</string>
+
 		<!-- Preset manager form -->
 		<string name="TITLE_PRESETMGR">Preset Manager</string>
 		<string name="RENAME">Rename</string>

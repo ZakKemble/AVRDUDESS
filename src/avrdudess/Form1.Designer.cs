@@ -93,7 +93,6 @@
             this.cbEraseFlashEEPROM = new System.Windows.Forms.CheckBox();
             this.btnAbout = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.btnForceStop = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtAdditional = new System.Windows.Forms.TextBox();
@@ -113,6 +112,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnOptions = new System.Windows.Forms.Button();
             this.rtxtConsole = new System.Windows.Forms.RichTextBox();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbEEPROMFile.SuspendLayout();
@@ -467,7 +467,7 @@
             this.btnEEPROMBrowse.TabIndex = 1;
             this.btnEEPROMBrowse.Text = "...";
             this.btnEEPROMBrowse.UseVisualStyleBackColor = true;
-            this.btnEEPROMBrowse.Click += new System.EventHandler(this.btnEEPROMBrowse_Click);
+            this.btnEEPROMBrowse.Click += new System.EventHandler(this.btnFlashEEPROMBrowse_Click);
             // 
             // label6
             // 
@@ -592,7 +592,7 @@
             this.btnFlashBrowse.TabIndex = 1;
             this.btnFlashBrowse.Text = "...";
             this.btnFlashBrowse.UseVisualStyleBackColor = true;
-            this.btnFlashBrowse.Click += new System.EventHandler(this.btnFlashBrowse_Click);
+            this.btnFlashBrowse.Click += new System.EventHandler(this.btnFlashEEPROMBrowse_Click);
             // 
             // label11
             // 
@@ -1114,7 +1114,6 @@
         private System.Windows.Forms.CheckBox cbEraseFlashEEPROM;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.Button btnForceStop;
         private System.Windows.Forms.TextBox txtLock;
         private System.Windows.Forms.GroupBox groupBox7;
@@ -1156,6 +1155,7 @@
         private System.Windows.Forms.RichTextBox rtxtConsole;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel tssTooltip;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

@@ -354,22 +354,6 @@ namespace avrdudess
             gbEEPROMFile.DragEnter += event_DragEnter;
             gbEEPROMFile.DragDrop += event_DragDrop;
 
-            // Flash file
-            openFileDialog1.Filter = "Hex files (*.hex)|*.hex";
-            openFileDialog1.Filter += "|EEPROM files (*.eep)|*.eep";
-            openFileDialog1.Filter += "|All files (*.*)|*.*";
-            openFileDialog1.CheckFileExists = false;
-            openFileDialog1.FileName = "";
-            openFileDialog1.Title = "Open flash file";
-
-            // EEPROM file
-            openFileDialog2.Filter = "EEPROM files (*.eep)|*.eep";
-            openFileDialog2.Filter += "|Hex files (*.hex)|*.hex";
-            openFileDialog2.Filter += "|All files (*.*)|*.*";
-            openFileDialog2.CheckFileExists = false;
-            openFileDialog2.FileName = "";
-            openFileDialog2.Title = "Open EEPROM file";
-
             updateProgMCUComboBoxes();
             
             // USBasp frequency settings
@@ -524,7 +508,11 @@ namespace avrdudess
             if (avrdudeVersion == "")
                 avrdudeVersion = "?";
             Text = string.Format(
+#if DEBUG
+                "AVRDUDESS {0}.{1} ({2}) [DEBUG]",
+#else
                 "AVRDUDESS {0}.{1} ({2})",
+#endif
                 AssemblyData.version.Major,
                 AssemblyData.version.Minor,
                 avrdudeVersion
@@ -786,7 +774,7 @@ namespace avrdudess
             btnEEPROMGo.Enabled = enable;
         }
 
-        #region UI Events
+#region UI Events
 
         // Drag and drop
         private void event_DragEnter(object sender, DragEventArgs e)
@@ -932,41 +920,95 @@ namespace avrdudess
             }
         }
 
+        private string getFlashEEPROMOp(Control container)
+        {
+            foreach (Control control in container.Controls)
+            {
+                RadioButton radio = control as RadioButton;
+
+                if (radio != null && radio.Checked)
+                {
+                    if (radio.Name == "rbFlashOpWrite" || radio.Name == "rbEEPROMOpWrite")
+                        return "w";
+                    else if (radio.Name == "rbFlashOpRead" || radio.Name == "rbEEPROMOpRead")
+                        return "r";
+                     return "v";
+                }
+            }
+
+            return null;
+        }
+
         // Flash & EEPROM operation radio buttons
         private void radioButton_flashEEPROMOp_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;
             if (radioButton != null && radioButton.Checked)
             {
-                string op;
-                if (radioButton.Name == "rbFlashOpWrite" || radioButton.Name == "rbEEPROMOpWrite")
-                    op = "w";
-                else if (radioButton.Name == "rbFlashOpRead" || radioButton.Name == "rbEEPROMOpRead")
-                    op = "r";
-                else
-                    op = "v";
+                string op = getFlashEEPROMOp(radioButton.Parent);
+                if(op != null)
+                {
+                    if (radioButton.Parent.Name == "pFlashOp")
+                        flashOperation = op;
+                    else
+                        EEPROMOperation = op;
 
-                if (radioButton.Parent.Name == "pFlashOp")
-                    flashOperation = op;
-                else
-                    EEPROMOperation = op;
-
-                cmdLine.generate();
+                    cmdLine.generate();
+                }
             }
         }
 
-        // Browse for flash file
-        private void btnFlashBrowse_Click(object sender, EventArgs e)
+        // Browse for flash/EEPROM file
+        private void btnFlashEEPROMBrowse_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                txtFlashFile.Text = openFileDialog1.FileName;
-        }
+            Control fileOpRadioButtons;
+            TextBox fileLocation;
+            string filter;
+            string titleOpen;
+            string titleSave;
 
-        // Browse for EEPROM file
-        private void btnEEPROMBrowse_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog2.ShowDialog() == DialogResult.OK)
-                txtEEPROMFile.Text = openFileDialog2.FileName;
+            if(((Control)sender).Name == "btnFlashBrowse")
+            {
+                fileOpRadioButtons = pFlashOp;
+                fileLocation = txtFlashFile;
+                titleOpen = Language.Translation.get("_BROWSE_OPEN_FLASH");
+                titleSave = Language.Translation.get("_BROWSE_SAVE_FLASH");
+                filter = Language.Translation.get("_BROWSE_FILTER_HEX") + "|*.hex";
+                filter += "|" + Language.Translation.get("_BROWSE_FILTER_EEP") + "|*.eep";
+            }
+            else
+            {
+                fileOpRadioButtons = pEEPROMOp;
+                fileLocation = txtEEPROMFile;
+                titleOpen = Language.Translation.get("_BROWSE_OPEN_EEPROM");
+                titleSave = Language.Translation.get("_BROWSE_SAVE_EEPROM");
+                filter = Language.Translation.get("_BROWSE_FILTER_EEP") + "|*.eep";
+                filter += "|" + Language.Translation.get("_BROWSE_FILTER_HEX") + "|*.hex";
+            }
+            filter += "|" + Language.Translation.get("_BROWSE_FILTER_ALL") + "|*.*";
+
+            string op = getFlashEEPROMOp(fileOpRadioButtons);
+            if(op != null)
+            {
+                if(op == "w" || op == "v")
+                {
+                    openFileDialog1.Filter = filter;
+                    openFileDialog1.FileName = "";
+                    openFileDialog1.Title = titleOpen;
+
+                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                        fileLocation.Text = openFileDialog1.FileName;
+                }
+                else
+                {
+                    saveFileDialog1.Filter = filter;
+                    saveFileDialog1.FileName = "";
+                    saveFileDialog1.Title = titleSave;
+
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                        fileLocation.Text = saveFileDialog1.FileName;
+                }
+            }
         }
 
         // Options
@@ -1420,6 +1462,6 @@ namespace avrdudess
                 Config.Prop.windowLocation = Location;
         }
 
-        #endregion
+#endregion
     }
 }

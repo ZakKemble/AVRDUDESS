@@ -70,7 +70,7 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="STATUSREADY">Gotowy</string>
 		<string name="DETECTSUCCESS">Wykryto {0} = {1}</string>
 		<string name="DETECTFAIL">Nie można wykryć uC</string>
-		<string name="AVRDUDEKILLED">AVRDUDE zabity!</string>
+		<string name="AVRDUDEKILLED">AVRDUDE zatrzymany!</string>
 		<string name="ABOUT">O...</string>
 		<string name="SELECTPROG">Wybierz programator...</string>
 		<string name="SELECTMCU">Wybierz uC...</string>
@@ -89,6 +89,14 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="FILEFMT_DECR">Dzięsiętny (tylko odczyt)</string>
 		<string name="FILEFMT_HEXR">Heksadecymalny (tylko odczyt)</string>
 		<string name="FILEFMT_BINR">Binarny (tylko odczyt)</string>
+
+		<string name="BROWSE_OPEN_FLASH">Otwórz plik wsadu</string>
+		<string name="BROWSE_SAVE_FLASH">Zapisz plik wsadu</string>
+		<string name="BROWSE_OPEN_EEPROM">Otwórz plik EEPROM</string>
+		<string name="BROWSE_SAVE_EEPROM">Zapisz plik EEPROM</string>
+		<string name="BROWSE_FILTER_ALL">Wszystkie pliki (*.*)</string>
+		<string name="BROWSE_FILTER_HEX">Pliki hex (*.hex)</string>
+		<string name="BROWSE_FILTER_EEP">Pliki EEPROM (*.eep)</string>
 
 		<!-- Preset manager form -->
 		<string name="TITLE_PRESETMGR">Menedżer profili</string>

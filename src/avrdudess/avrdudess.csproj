@@ -168,6 +168,9 @@
     <Content Include="Languages\polish.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Languages\chinese-zh_CN.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <ContentWithTargetPath Include="Files\avr-size.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <TargetPath>avr-size.exe</TargetPath>

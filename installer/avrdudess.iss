@@ -94,6 +94,8 @@ Source: "..\src\avrdudess\bin\Release\presets.xml"; DestDir: "{app}"; Flags: ign
 Source: "..\src\avrdudess\bin\Release\bits.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\Languages\english.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\Languages\german.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\polish.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\chinese-zh_CN.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\Changelog.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Credits.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\License.txt"; DestDir: "{app}"; Flags: ignoreversion

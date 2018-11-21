@@ -43,3 +43,6 @@ Ideas & code credits:
 
 "Bercik" <ro_beri (-at-) gazeta (-dot-) pl>
 * Polish translation
+
+"radiolee" <https://github.com/radiolee>
+* Simplified Chinese translation

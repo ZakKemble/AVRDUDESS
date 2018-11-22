@@ -131,7 +131,7 @@
 		<string name="BTN_LATER">晚点再说</string>
 
 		<!-- Fuse editor form -->
-		<string name="TITLE_FUSEANDLOCKBITS">加密位: {0} ({1})</string>
+		<string name="TITLE_FUSEANDLOCKBITS">熔丝及加密位: {0} ({1})</string>
 		<string name="ERRORLOADFUSES">读取熔丝时发生以下错误:
 {0}</string>
 		<string name="UNSUPPMCU">警告: 不受支持的 MCU</string>

@@ -107,6 +107,7 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="IMPORT">Importuj</string>
 		<string name="DELETE">Usuń</string>
 		<string name="CLOSE">Zamknij</string>
+		<string name="EXPORTIMGPORTDELETE">Eksportuj/Importuj/Usuń</string>
 		<string name="SAVEDIALOG_EXPORT">Eksportuj profil</string>
 		<string name="OPENDIALOG_IMPORT">Importuj profil</string>
 		<string name="NEWPRESETNAME">Nazwa nowego profilu</string>
@@ -147,6 +148,7 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="GRP_HIDEMCUS">Ukryj uC</string>
 		<string name="LANGUAGE">Język</string>
 		<string name="SHOWTOOLTIPS">Pokaż podpowiedzi</string>
+		<string name="USEPREVSETTINGS">Ładuj poprzednie ustawienia na starcie</string>
 		<string name="AVRDUDE_LOCATION">Folder z avrdude.exe</string>
 		<string name="AVRDUDECONF_LOCATION">Folder z avrdude.conf</string>
 		<string name="AVRSIZE_LOCATION">Folder z avr-size.exe</string>

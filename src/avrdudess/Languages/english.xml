@@ -107,6 +107,7 @@ Use this if you only want to update EEPROM</string>
 		<string name="IMPORT">Import</string>
 		<string name="DELETE">Delete</string>
 		<string name="CLOSE">Close</string>
+		<string name="EXPORTIMGPORTDELETE">Export/Import/Delete</string>
 		<string name="SAVEDIALOG_EXPORT">Export preset</string>
 		<string name="OPENDIALOG_IMPORT">Import preset</string>
 		<string name="NEWPRESETNAME">New preset name</string>

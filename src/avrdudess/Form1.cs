@@ -22,14 +22,19 @@ namespace avrdudess
     {
         private const string WEB_ADDR_FUSE_SETTINGS = "http://www.engbedded.com/fusecalc";
 
+        // TODO move these somewhere else
+        public const string FILEOP_WRITE = "w";
+        public const string FILEOP_READ = "r";
+        public const string FILEOP_VERIFY = "v";
+
         private ToolTip ToolTips;
         private Avrdude avrdude;
         private Avrsize avrsize;
         private Presets presets;
         private CmdLine cmdLine;
         public bool ready               = false;
-        private string flashOperation   = "w";
-        private string EEPROMOperation  = "w";
+        private string flashOperation   = FILEOP_WRITE;
+        private string EEPROMOperation  = FILEOP_WRITE;
         private string presetToLoad;
         private bool drag               = false;
         private Point dragStart;
@@ -158,9 +163,9 @@ namespace avrdudess
             get { return flashOperation; }
             set
             {
-                if (value == "w")
+                if (value == FILEOP_WRITE)
                     rbFlashOpWrite.Checked = true;
-                else if (value == "r")
+                else if (value == FILEOP_READ)
                     rbFlashOpRead.Checked = true;
                 else
                     rbFlashOpVerify.Checked = true;
@@ -189,9 +194,9 @@ namespace avrdudess
             get { return EEPROMOperation; }
             set
             {
-                if (value == "w")
+                if (value == FILEOP_WRITE)
                     rbEEPROMOpWrite.Checked = true;
-                else if (value == "r")
+                else if (value == FILEOP_READ)
                     rbEEPROMOpRead.Checked = true;
                 else
                     rbEEPROMOpVerify.Checked = true;
@@ -912,11 +917,13 @@ namespace avrdudess
                 lblEEPROMSize.Text = Util.fileSizeFormat(mcu.eeprom);
                 memoryUsageBar(fileFlash, pbFlashUsage, mcu.flash, false);
                 memoryUsageBar(fileEEPROM, pbEEPROMUsage, mcu.eeprom, false);
+                lblSig.Text = (mcu.signature != null) ? mcu.signature.ToUpper() : "?";
             }
             else
             {
                 lblFlashSize.Text = "-";
                 lblEEPROMSize.Text = "-";
+                lblSig.Text = "-";
             }
         }
 
@@ -929,10 +936,10 @@ namespace avrdudess
                 if (radio != null && radio.Checked)
                 {
                     if (radio.Name == "rbFlashOpWrite" || radio.Name == "rbEEPROMOpWrite")
-                        return "w";
+                        return FILEOP_WRITE;
                     else if (radio.Name == "rbFlashOpRead" || radio.Name == "rbEEPROMOpRead")
-                        return "r";
-                     return "v";
+                        return FILEOP_READ;
+                     return FILEOP_VERIFY;
                 }
             }
 
@@ -990,7 +997,7 @@ namespace avrdudess
             string op = getFlashEEPROMOp(fileOpRadioButtons);
             if(op != null)
             {
-                if(op == "w" || op == "v")
+                if(op == FILEOP_WRITE || op == FILEOP_VERIFY)
                 {
                     openFileDialog1.Filter = filter;
                     openFileDialog1.FileName = "";

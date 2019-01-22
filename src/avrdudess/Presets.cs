@@ -150,10 +150,10 @@ namespace avrdudess
         public string bitclock;
         public string flashFile;
         public string flashFormat = "a";
-        public string flashOp = "w";
+        public string flashOp = Form1.FILEOP_WRITE;
         public string EEPROMFile;
         public string EEPROMFormat = "a";
-        public string EEPROMOp = "w";
+        public string EEPROMOp = Form1.FILEOP_WRITE;
         public bool force;
         public bool disableVerify;
         public bool disableFlashErase;

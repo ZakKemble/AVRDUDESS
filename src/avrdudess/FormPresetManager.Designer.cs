@@ -157,7 +157,7 @@
             this.groupBox1.Size = new System.Drawing.Size(412, 232);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Export/import/delete";
+            this.groupBox1.Text = "_EXPORTIMGPORTDELETE";
             // 
             // openFileDialog1
             // 

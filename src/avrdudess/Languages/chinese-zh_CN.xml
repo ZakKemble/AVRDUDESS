@@ -107,6 +107,7 @@
 		<string name="IMPORT">导入</string>
 		<string name="DELETE">删除</string>
 		<string name="CLOSE">关闭</string>
+		<string name="EXPORTIMGPORTDELETE">导出/导入/删除</string>
 		<string name="SAVEDIALOG_EXPORT">导出预设</string>
 		<string name="OPENDIALOG_IMPORT">导入预设</string>
 		<string name="NEWPRESETNAME">新预设名称</string>

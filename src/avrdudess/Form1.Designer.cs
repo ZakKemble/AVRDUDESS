@@ -113,6 +113,7 @@
             this.btnOptions = new System.Windows.Forms.Button();
             this.rtxtConsole = new System.Windows.Forms.RichTextBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.lblSig = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbEEPROMFile.SuspendLayout();
@@ -932,6 +933,7 @@
             // groupBox9
             // 
             this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox9.Controls.Add(this.lblSig);
             this.groupBox9.Controls.Add(this.lblFlashSize);
             this.groupBox9.Controls.Add(this.lblEEPROMSize);
             this.groupBox9.Controls.Add(this.label2);
@@ -1009,6 +1011,15 @@
             this.rtxtConsole.TabIndex = 13;
             this.rtxtConsole.Text = "";
             this.rtxtConsole.WordWrap = false;
+            // 
+            // lblSig
+            // 
+            this.lblSig.AutoSize = true;
+            this.lblSig.Location = new System.Drawing.Point(132, 46);
+            this.lblSig.Name = "lblSig";
+            this.lblSig.Size = new System.Drawing.Size(10, 13);
+            this.lblSig.TabIndex = 58;
+            this.lblSig.Text = "-";
             // 
             // Form1
             // 
@@ -1156,6 +1167,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel tssTooltip;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Label lblSig;
     }
 }
 

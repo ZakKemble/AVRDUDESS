@@ -1,3 +1,14 @@
+2019-01-22 (v2.7):
+	- Added Polish translation
+	- Added Chinese translation
+	- Added AVRDUDE support for ATmega328PB
+	- Added displaying MCU signature near to the flash and EEPROM sizes
+	- Fixed being unable to load xml file in the fuse bit selector window in Linux
+	- Fixed flash and EEPROM file operation only being able to verify when a language other than English is chosen
+	- All configuration settings are now saved across sessions instead of only the last selected preset
+	- Window size is now saved across sessions
+	- Use save file dialog when appropriate instead of only using an open file dialog
+
 2018-09-20 (v2.6):
 	- Fetch a different XML file when checking for updates as older versions of AVRDUDESS don't like the new format
 

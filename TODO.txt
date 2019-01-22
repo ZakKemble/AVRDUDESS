@@ -5,3 +5,4 @@ Add: Simple UI mode
 Add: Options to run external programs before and after running AVRDUDE
 Add: Accept the same command line arguments as AVRDUDE, which will then be applied to the UI
 Fix: High verbosity level resulting in slow programming caused by slow console output
+Fix: When auto-detecting MCU have a better guess at what programming interface to use (at the moment it only uses ISP or bootloader)

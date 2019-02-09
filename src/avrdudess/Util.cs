@@ -27,9 +27,6 @@ namespace avrdudess
 
     static class Util
     {
-        // No Dispatcher stuff in .NET 2.0, make a static reference to our main form
-        public static Form UI;
-
         private static RichTextBox console;
 
         public static void InvokeIfRequired<T>(this T c, Action<T> action)
@@ -65,6 +62,13 @@ namespace avrdudess
             text = Language.Translation.get(text);
             text = string.Format(text, args);
             consoleWrite(string.Format("{0}: {1}{2}", Language.Translation.get("_WARNINGUC"), text, Environment.NewLine), Color.Yellow);
+        }
+
+        public static void consoleSuccess(string text, params object[] args)
+        {
+            text = Language.Translation.get(text);
+            text = string.Format(text, args);
+            consoleWrite(string.Format("{0}: {1}{2}", Language.Translation.get("_SUCCESSUC"), text, Environment.NewLine), Color.LightGreen);
         }
 
         public static void consoleWriteLine()

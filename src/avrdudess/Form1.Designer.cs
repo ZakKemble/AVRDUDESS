@@ -106,6 +106,7 @@
             this.tsmiClear = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDetect = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.lblSig = new System.Windows.Forms.Label();
             this.lblFlashSize = new System.Windows.Forms.Label();
             this.lblEEPROMSize = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -113,7 +114,7 @@
             this.btnOptions = new System.Windows.Forms.Button();
             this.rtxtConsole = new System.Windows.Forms.RichTextBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.lblSig = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbEEPROMFile.SuspendLayout();
@@ -128,6 +129,9 @@
             this.statusBar1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbProg
@@ -144,11 +148,13 @@
             // 
             // cmbMCU
             // 
+            this.cmbMCU.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbMCU.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMCU.FormattingEnabled = true;
             this.cmbMCU.Location = new System.Drawing.Point(6, 19);
             this.cmbMCU.Name = "cmbMCU";
-            this.cmbMCU.Size = new System.Drawing.Size(167, 21);
+            this.cmbMCU.Size = new System.Drawing.Size(168, 21);
             this.cmbMCU.TabIndex = 0;
             this.cmbMCU.SelectedIndexChanged += new System.EventHandler(this.event_controlChanged);
             // 
@@ -177,7 +183,7 @@
             // btnProgram
             // 
             this.btnProgram.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProgram.Location = new System.Drawing.Point(12, 365);
+            this.btnProgram.Location = new System.Drawing.Point(6, 356);
             this.btnProgram.Name = "btnProgram";
             this.btnProgram.Size = new System.Drawing.Size(176, 23);
             this.btnProgram.TabIndex = 8;
@@ -217,11 +223,13 @@
             // 
             // cmbPresets
             // 
+            this.cmbPresets.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbPresets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPresets.FormattingEnabled = true;
             this.cmbPresets.Location = new System.Drawing.Point(6, 19);
             this.cmbPresets.Name = "cmbPresets";
-            this.cmbPresets.Size = new System.Drawing.Size(167, 21);
+            this.cmbPresets.Size = new System.Drawing.Size(168, 21);
             this.cmbPresets.TabIndex = 0;
             this.cmbPresets.SelectedIndexChanged += new System.EventHandler(this.cmbPresets_SelectedIndexChanged);
             // 
@@ -238,21 +246,24 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.btnPresetMgr);
             this.groupBox1.Controls.Add(this.cmbPresets);
-            this.groupBox1.Location = new System.Drawing.Point(449, 108);
+            this.groupBox1.Location = new System.Drawing.Point(0, 99);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(181, 73);
+            this.groupBox1.Size = new System.Drawing.Size(182, 73);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "_GRP_PRESET";
             // 
             // btnPresetMgr
             // 
+            this.btnPresetMgr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPresetMgr.Location = new System.Drawing.Point(6, 46);
             this.btnPresetMgr.Name = "btnPresetMgr";
-            this.btnPresetMgr.Size = new System.Drawing.Size(167, 23);
+            this.btnPresetMgr.Size = new System.Drawing.Size(168, 23);
             this.btnPresetMgr.TabIndex = 1;
             this.btnPresetMgr.Text = "_PRESETMGR";
             this.btnPresetMgr.UseVisualStyleBackColor = true;
@@ -270,7 +281,7 @@
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.cmbPort);
             this.groupBox2.Controls.Add(this.cmbProg);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
+            this.groupBox2.Location = new System.Drawing.Point(6, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(431, 90);
             this.groupBox2.TabIndex = 0;
@@ -348,7 +359,7 @@
             this.txtCmdLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCmdLine.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCmdLine.Location = new System.Drawing.Point(12, 394);
+            this.txtCmdLine.Location = new System.Drawing.Point(6, 385);
             this.txtCmdLine.Name = "txtCmdLine";
             this.txtCmdLine.ReadOnly = true;
             this.txtCmdLine.Size = new System.Drawing.Size(431, 20);
@@ -366,7 +377,7 @@
             this.gbEEPROMFile.Controls.Add(this.cmbEEPROMFormat);
             this.gbEEPROMFile.Controls.Add(this.btnEEPROMBrowse);
             this.gbEEPROMFile.Controls.Add(this.label6);
-            this.gbEEPROMFile.Location = new System.Drawing.Point(12, 187);
+            this.gbEEPROMFile.Location = new System.Drawing.Point(6, 178);
             this.gbEEPROMFile.Name = "gbEEPROMFile";
             this.gbEEPROMFile.Size = new System.Drawing.Size(431, 73);
             this.gbEEPROMFile.TabIndex = 2;
@@ -491,7 +502,7 @@
             this.gbFlashFile.Controls.Add(this.cmbFlashFormat);
             this.gbFlashFile.Controls.Add(this.btnFlashBrowse);
             this.gbFlashFile.Controls.Add(this.label11);
-            this.gbFlashFile.Location = new System.Drawing.Point(12, 108);
+            this.gbFlashFile.Location = new System.Drawing.Point(6, 99);
             this.gbFlashFile.Name = "gbFlashFile";
             this.gbFlashFile.Size = new System.Drawing.Size(431, 73);
             this.gbFlashFile.TabIndex = 1;
@@ -607,7 +618,8 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Controls.Add(this.btnWriteLock);
             this.groupBox4.Controls.Add(this.btnWriteFuses);
@@ -624,9 +636,9 @@
             this.groupBox4.Controls.Add(this.txtHFuse);
             this.groupBox4.Controls.Add(this.txtLFuse);
             this.groupBox4.Controls.Add(this.txtEFuse);
-            this.groupBox4.Location = new System.Drawing.Point(449, 187);
+            this.groupBox4.Location = new System.Drawing.Point(0, 178);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(181, 172);
+            this.groupBox4.Size = new System.Drawing.Size(182, 172);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "_GRP_FUSELOCK";
@@ -662,9 +674,11 @@
             // 
             // btnFuseSelector
             // 
+            this.btnFuseSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFuseSelector.Location = new System.Drawing.Point(6, 143);
             this.btnFuseSelector.Name = "btnFuseSelector";
-            this.btnFuseSelector.Size = new System.Drawing.Size(169, 23);
+            this.btnFuseSelector.Size = new System.Drawing.Size(170, 23);
             this.btnFuseSelector.TabIndex = 11;
             this.btnFuseSelector.Text = "_BITSELECTOR";
             this.btnFuseSelector.UseVisualStyleBackColor = true;
@@ -760,7 +774,7 @@
             this.groupBox5.Controls.Add(this.cbDisableFlashErase);
             this.groupBox5.Controls.Add(this.cbEraseFlashEEPROM);
             this.groupBox5.Controls.Add(this.cbNoVerify);
-            this.groupBox5.Location = new System.Drawing.Point(12, 266);
+            this.groupBox5.Location = new System.Drawing.Point(6, 257);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(431, 93);
             this.groupBox5.TabIndex = 3;
@@ -822,7 +836,7 @@
             // btnAbout
             // 
             this.btnAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAbout.Location = new System.Drawing.Point(417, 365);
+            this.btnAbout.Location = new System.Drawing.Point(411, 356);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(26, 23);
             this.btnAbout.TabIndex = 11;
@@ -833,7 +847,7 @@
             // btnForceStop
             // 
             this.btnForceStop.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnForceStop.Location = new System.Drawing.Point(194, 365);
+            this.btnForceStop.Location = new System.Drawing.Point(188, 356);
             this.btnForceStop.Name = "btnForceStop";
             this.btnForceStop.Size = new System.Drawing.Size(75, 23);
             this.btnForceStop.TabIndex = 9;
@@ -843,20 +857,23 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox7.Controls.Add(this.txtAdditional);
-            this.groupBox7.Location = new System.Drawing.Point(449, 366);
+            this.groupBox7.Location = new System.Drawing.Point(0, 357);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(181, 48);
+            this.groupBox7.Size = new System.Drawing.Size(182, 48);
             this.groupBox7.TabIndex = 7;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "_GRP_ADDCMDARGS";
             // 
             // txtAdditional
             // 
+            this.txtAdditional.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAdditional.Location = new System.Drawing.Point(6, 19);
             this.txtAdditional.Name = "txtAdditional";
-            this.txtAdditional.Size = new System.Drawing.Size(167, 20);
+            this.txtAdditional.Size = new System.Drawing.Size(168, 20);
             this.txtAdditional.TabIndex = 0;
             this.txtAdditional.TextChanged += new System.EventHandler(this.event_controlChanged);
             // 
@@ -922,7 +939,8 @@
             // 
             // btnDetect
             // 
-            this.btnDetect.Location = new System.Drawing.Point(98, 61);
+            this.btnDetect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDetect.Location = new System.Drawing.Point(99, 61);
             this.btnDetect.Name = "btnDetect";
             this.btnDetect.Size = new System.Drawing.Size(75, 23);
             this.btnDetect.TabIndex = 1;
@@ -932,7 +950,8 @@
             // 
             // groupBox9
             // 
-            this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox9.Controls.Add(this.lblSig);
             this.groupBox9.Controls.Add(this.lblFlashSize);
             this.groupBox9.Controls.Add(this.lblEEPROMSize);
@@ -940,12 +959,22 @@
             this.groupBox9.Controls.Add(this.label3);
             this.groupBox9.Controls.Add(this.cmbMCU);
             this.groupBox9.Controls.Add(this.btnDetect);
-            this.groupBox9.Location = new System.Drawing.Point(449, 12);
+            this.groupBox9.Location = new System.Drawing.Point(0, 3);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(181, 90);
+            this.groupBox9.Size = new System.Drawing.Size(182, 90);
             this.groupBox9.TabIndex = 4;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "_GRP_MCU";
+            // 
+            // lblSig
+            // 
+            this.lblSig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSig.AutoSize = true;
+            this.lblSig.Location = new System.Drawing.Point(132, 46);
+            this.lblSig.Name = "lblSig";
+            this.lblSig.Size = new System.Drawing.Size(10, 13);
+            this.lblSig.TabIndex = 58;
+            this.lblSig.Text = "-";
             // 
             // lblFlashSize
             // 
@@ -986,7 +1015,7 @@
             // btnOptions
             // 
             this.btnOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOptions.Location = new System.Drawing.Point(336, 365);
+            this.btnOptions.Location = new System.Drawing.Point(330, 356);
             this.btnOptions.Name = "btnOptions";
             this.btnOptions.Size = new System.Drawing.Size(75, 23);
             this.btnOptions.TabIndex = 10;
@@ -1012,14 +1041,38 @@
             this.rtxtConsole.Text = "";
             this.rtxtConsole.WordWrap = false;
             // 
-            // lblSig
+            // splitContainer1
             // 
-            this.lblSig.AutoSize = true;
-            this.lblSig.Location = new System.Drawing.Point(132, 46);
-            this.lblSig.Name = "lblSig";
-            this.lblSig.Size = new System.Drawing.Size(10, 13);
-            this.lblSig.TabIndex = 58;
-            this.lblSig.Text = "-";
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(6, 9);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
+            this.splitContainer1.Panel1.Controls.Add(this.btnProgram);
+            this.splitContainer1.Panel1.Controls.Add(this.txtCmdLine);
+            this.splitContainer1.Panel1.Controls.Add(this.btnOptions);
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox5);
+            this.splitContainer1.Panel1.Controls.Add(this.gbEEPROMFile);
+            this.splitContainer1.Panel1.Controls.Add(this.btnAbout);
+            this.splitContainer1.Panel1.Controls.Add(this.gbFlashFile);
+            this.splitContainer1.Panel1.Controls.Add(this.btnForceStop);
+            this.splitContainer1.Panel1MinSize = 440;
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox9);
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox4);
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox7);
+            this.splitContainer1.Panel2MinSize = 0;
+            this.splitContainer1.Size = new System.Drawing.Size(630, 410);
+            this.splitContainer1.SplitterDistance = 440;
+            this.splitContainer1.TabIndex = 38;
             // 
             // Form1
             // 
@@ -1027,21 +1080,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnForceStop;
             this.ClientSize = new System.Drawing.Size(644, 608);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.rtxtConsole);
-            this.Controls.Add(this.btnOptions);
-            this.Controls.Add(this.gbEEPROMFile);
-            this.Controls.Add(this.gbFlashFile);
-            this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.statusBar1);
-            this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.btnForceStop);
-            this.Controls.Add(this.btnAbout);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.txtCmdLine);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnProgram);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -1076,6 +1117,10 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1168,6 +1213,7 @@
         private System.Windows.Forms.ToolStripStatusLabel tssTooltip;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Label lblSig;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 

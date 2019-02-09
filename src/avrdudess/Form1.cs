@@ -273,7 +273,6 @@ namespace avrdudess
 
             Icon = AssemblyData.icon;
 
-            Util.UI = this;
             Util.consoleSet(rtxtConsole);
         }
 
@@ -323,6 +322,7 @@ namespace avrdudess
             avrdude.OnProcessEnd += avrdude_OnProcessEnd;
             avrdude.OnVersionChange += avrdude_OnVersionChange;
             avrdude.OnDetectedMCU += avrdude_OnDetectedMCU;
+            avrdude.OnReadFuseLock += Avrdude_OnReadFuseLock;
 
             avrdude.load();
             avrsize.load();
@@ -467,7 +467,7 @@ namespace avrdudess
                         else
                         {
                             Util.consoleWriteLine("_UPDATE_AVAIL", updateData.latest.version.ToString());
-                            Util.UI.BeginInvoke(
+                            BeginInvoke(
                                 new MethodInvoker(() =>
                                 {
                                     using (FormUpdate fUpdate = new FormUpdate(updateData, () =>
@@ -596,52 +596,41 @@ namespace avrdudess
             }
         }
 
-        // Read and display file contents
-        // TODO: Move to avrdude.cs
-        private void readFuseFiles(object param)
+        private void Avrdude_OnReadFuseLock(object sender, ReadFuseLockEventArgs e)
         {
-            string[] fuseFiles = (string[])param;
-            TextBox[] boxes = { txtLFuse, txtHFuse, txtEFuse };
-
-            for (byte i = 0; i < fuseFiles.Length; i++)
-            {
-                // Credits:
-                // Simone Chifari (output formatting)
-                string fuse = "";
-                if (File.Exists(fuseFiles[i]))
-                {
-                    fuse = "0x" + File.ReadAllText(fuseFiles[i]).Trim().ToUpper().Replace("0X", "").PadLeft(2, '0');
-                    File.Delete(fuseFiles[i]);
-                }
-
-                Invoke(new MethodInvoker(() =>
-                {
-                    boxes[i].Text = fuse;
-                }));
-            }
-        }
-
-        // Read and display file contents
-        // TODO: Move to avrdude.cs
-        private void readLockFile(object param)
-        {
-            string lockFile = (string)param;
-
             // Credits:
             // Simone Chifari (output formatting)
-            string fuse = "";
-            if (File.Exists(lockFile))
-            {
-                fuse = "0x" + File.ReadAllText(lockFile).Trim().ToUpper().Replace("0X", "").PadLeft(2, '0');
-                File.Delete(lockFile);
-            }
+            string fuse = "0x" + e.value.ToUpper().Replace("0X", "").PadLeft(2, '0');
 
             Invoke(new MethodInvoker(() =>
             {
-                txtLock.Text = fuse;
+                switch (e.type) // TODO make this an enum
+                {
+                    case "hfuse":
+                        txtHFuse.Text = fuse;
+                        Util.consoleSuccess("_READHFUSE");
+                        break;
+                    case "lfuse":
+                        txtLFuse.Text = fuse;
+                        Util.consoleSuccess("_READLFUSE");
+                        break;
+                    case "efuse":
+                        txtEFuse.Text = fuse;
+                        Util.consoleSuccess("_READEFUSE");
+                        break;
+                    case "lock":
+                        txtLock.Text = fuse;
+                        Util.consoleSuccess("_READLOCKBITS");
+                        break;
+                    default:
+                        Util.consoleWarning("_FUSELOCKREADFAIL");
+                        Util.consoleWriteLine();
+                        Util.consoleWriteLine(avrdude.log);
+                        break;
+                }
             }));
         }
-
+        
         // Draw usage bar and show info in console
         private void memoryUsageBar(MemTypeFile file, PictureBox pic, int availableSpace, bool onlyRedraw)
         {
@@ -712,7 +701,10 @@ namespace avrdudess
         // AVRDUDE process has started
         private void avrdude_OnProcessStart(object sender, EventArgs e)
         {
-            tssStatus.Text = Language.Translation.get("_STATUSRUNNING");
+            Invoke(new MethodInvoker(() =>
+            {
+                tssStatus.Text = Language.Translation.get("_STATUSRUNNING");
+            }));
 
             // TODO This conflicts with the stuff in the enableControls() method
             //btnProgram.Enabled = false;
@@ -722,7 +714,12 @@ namespace avrdudess
         // AVRDUDE process has ended
         private void avrdude_OnProcessEnd(object sender, EventArgs e)
         {
-            tssStatus.Text = Language.Translation.get("_STATUSREADY");
+            Invoke(new MethodInvoker(() =>
+            {
+                // ??? Usually there's no problems here, but one time it randomly
+                // crashed due to cross-thread access so I've added the Invoke thing.
+                tssStatus.Text = Language.Translation.get("_STATUSREADY");
+            }));
 
             /*
             // TODO This conflicts with the stuff in the enableControls() method
@@ -848,9 +845,9 @@ namespace avrdudess
                     cmbPort.Items.Add(p);
 
                 cmbPort.Items.Add("usb");
-                cmbPort.Items.Add("LPT1");
-                cmbPort.Items.Add("LPT2");
-                cmbPort.Items.Add("LPT3");
+                cmbPort.Items.Add("lpt1");
+                cmbPort.Items.Add("lpt2");
+                cmbPort.Items.Add("lpt3");
             }
         }
 
@@ -1273,25 +1270,17 @@ namespace avrdudess
         // Read fuses
         private void btnReadFuses_Click(object sender, EventArgs e)
         {
-            // Generate file names to use for saving fuses values to
-            string[] fuseFiles = new string[3];
-            for (byte i = 0; i < fuseFiles.Length; i++)
-                fuseFiles[i] = Path.Combine(Path.GetTempPath(), Path.ChangeExtension(Guid.NewGuid().ToString(), ".TMP"));
-
-            // Get values
-            string cmd = cmdLine.generateReadFuses(fuseFiles[0], fuseFiles[1], fuseFiles[2]);
-            avrdude.launch(cmd, readFuseFiles, fuseFiles);
+            Util.consoleWriteLine("_READINGFUSES");
+            string cmd = cmdLine.generateReadFuses("-", "-", "-");
+            avrdude.readFusesLock(cmd, new string[] { "lfuse", "hfuse", "efuse" });
         }
 
         // Read lock byte
         private void btnReadLock_Click(object sender, EventArgs e)
         {
-            // Generate file name to use for saving lock value to
-            string lockFile = Path.Combine(Path.GetTempPath(), Path.ChangeExtension(Guid.NewGuid().ToString(), ".TMP"));
-
-            // Get value
-            string cmd = cmdLine.generateReadLock(lockFile);
-            avrdude.launch(cmd, readLockFile, lockFile);
+            Util.consoleWriteLine("_READINGLOCKBITS");
+            string cmd = cmdLine.generateReadLock("-");
+            avrdude.readFusesLock(cmd, new string[] { "lock" });
         }
 
         // Only write fuses
@@ -1373,14 +1362,7 @@ namespace avrdudess
         // About
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            string about = "";
-            about += AssemblyData.title + Environment.NewLine;
-            about += "Version " + AssemblyData.version.ToString() + Environment.NewLine;
-            about += AssemblyData.copyright + Environment.NewLine;
-            about += Environment.NewLine;
-            about += "zakkemble.net";
-
-            MessageBox.Show(about, Language.Translation.get("_ABOUT"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            new FormAbout().ShowDialog();
         }
 
         // Drag client area

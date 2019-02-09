@@ -74,6 +74,13 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="ABOUT">O...</string>
 		<string name="SELECTPROG">Wybierz programator...</string>
 		<string name="SELECTMCU">Wybierz uC...</string>
+		<string name="FUSEREADFAIL">Unable to read fuses/lock bits</string>
+		<string name="READINGFUSES">Reading fuses...</string>
+		<string name="READINGLOCKBITS">Reading lock bits...</string>
+		<string name="READHFUSE">Read high fuse</string>
+		<string name="READLFUSE">Read low fuse</string>
+		<string name="READEFUSE">Read extended fuse</string>
+		<string name="READLOCKBITS">Read lock bits</string>
 
 		<string name="UPDATE_CHECK">Sprawdzam aktualizację...</string>
 		<string name="UPDATE_FAILED">Sprawdzanie nieudane: {0}</string>
@@ -158,6 +165,7 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="CANCEL">Anuluj</string>
 		<string name="ERRORUC">BŁĄD</string>
 		<string name="WARNINGUC">OSTRZEŻENIE</string>
+		<string name="SUCCESSUC">SUCCESS</string>
 		<string name="ERROR">Błąd</string>
 		<string name="WARNING">Ostrzeżenie</string>
 		<string name="NOTICE">Notatka</string>

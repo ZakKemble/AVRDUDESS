@@ -65,6 +65,7 @@ namespace avrdudess
             return sb.ToString();
         }
 
+        // TODO combine generateReadFuses and generateReadLock
         public string generateReadFuses(string lfuseFile, string hfuseFile, string efuseFile)
         {
             generateMain();

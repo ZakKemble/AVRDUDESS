@@ -23,6 +23,18 @@ namespace avrdudess
         }
     }
 
+    class ReadFuseLockEventArgs : EventArgs
+    {
+        public string type { get; set; }
+        public string value { get; set; }
+
+        public ReadFuseLockEventArgs(string t, string v)
+        {
+            type = t;
+            value = v;
+        }
+    }
+
     class Avrdude : Executable
     {
         public class UsbAspFreq
@@ -82,7 +94,8 @@ namespace avrdudess
         public string version { get; private set; }
         public event EventHandler OnVersionChange;
         public event EventHandler<DetectedMCUEventArgs> OnDetectedMCU;
-        
+        public event EventHandler<ReadFuseLockEventArgs> OnReadFuseLock;
+
         #region Getters and setters
 
         public List<Programmer> programmers
@@ -133,7 +146,7 @@ namespace avrdudess
             version = "";
 
             launch("", OutputTo.Log);
-            waitForExit();
+            waitForExit(); // TODO REMOVE? use callback
 
             if (outputLog != null)
             {
@@ -386,7 +399,7 @@ namespace avrdudess
                     }
                     else // Not found
                     {
-                        // TODO: dont write to console here
+                        // TODO: dont write to console here, run event callback and let that deal with it
                         //m = new MCU(null, null, detectedSignature);
                         Util.consoleError("_UNKNOWNSIG", detectedSignature);
                     }
@@ -397,6 +410,44 @@ namespace avrdudess
 
             if (OnDetectedMCU != null)
                 OnDetectedMCU(this, new DetectedMCUEventArgs(null));
+        }
+
+        public void readFusesLock(string args, string[] types)
+        {
+            launch(args, readFusesLockComplete, types, OutputTo.Log);
+        }
+
+        private void readFusesLockComplete(object param)
+        { 
+            string[] types = param as string[];
+            if (types == null)
+                return;
+
+            string log = outputLog.ToLower();
+            if (outputLog.IndexOf("error") > -1 || outputLog.IndexOf("fail") > -1)
+            {
+                if (OnReadFuseLock != null)
+                    OnReadFuseLock(this, new ReadFuseLockEventArgs("error", ""));
+                return;
+            }
+
+            string[] values = outputLogStdout.Split(
+                new[] { Environment.NewLine },
+                StringSplitOptions.RemoveEmptyEntries
+            );
+
+            if (values.Length != types.Length)
+            {
+                if (OnReadFuseLock != null)
+                    OnReadFuseLock(this, new ReadFuseLockEventArgs("error", ""));
+                return;
+            }
+
+            for(int i =0;i<types.Length;i++)
+            {
+                if (OnReadFuseLock != null)
+                    OnReadFuseLock(this, new ReadFuseLockEventArgs(types[i], values[i].Trim()));
+            }
         }
     }
 }

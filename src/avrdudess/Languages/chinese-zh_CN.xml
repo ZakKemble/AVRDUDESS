@@ -74,6 +74,13 @@
 		<string name="ABOUT">关于</string>
 		<string name="SELECTPROG">选择编程器...</string>
 		<string name="SELECTMCU">选择 MCU...</string>
+		<string name="FUSEREADFAIL">Unable to read fuses/lock bits</string>
+		<string name="READINGFUSES">Reading fuses...</string>
+		<string name="READINGLOCKBITS">Reading lock bits...</string>
+		<string name="READHFUSE">Read high fuse</string>
+		<string name="READLFUSE">Read low fuse</string>
+		<string name="READEFUSE">Read extended fuse</string>
+		<string name="READLOCKBITS">Read lock bits</string>
 
 		<string name="UPDATE_CHECK">检查更新...</string>
 		<string name="UPDATE_FAILED">检查更新失败: {0}</string>
@@ -158,6 +165,7 @@
 		<string name="CANCEL">取消</string>
 		<string name="ERRORUC">错误</string>
 		<string name="WARNINGUC">警告</string>
+		<string name="SUCCESSUC">SUCCESS</string>
 		<string name="ERROR">错误</string>
 		<string name="WARNING">警告</string>
 		<string name="NOTICE">提示</string>

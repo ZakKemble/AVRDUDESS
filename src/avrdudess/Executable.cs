@@ -25,7 +25,10 @@ namespace avrdudess
         private bool processErrorStreamOpen;
         private bool enableConsoleUpdate;
         protected string outputLog { get; private set; }
+        protected string outputLogStdout { get; private set; } // Quick hack to get fuse reading working as they are output to stdout instead of stderr like most other things
 
+        // NOTE: can't log to memory and write to console at the same time, as one method is async (log) and the other is sync (console).
+        // IIRC process bars don't work with async mode as the event only fires on a new line.
         public enum OutputTo
         {
             Log,
@@ -92,6 +95,7 @@ namespace avrdudess
 
             // Clear log
             outputLog = "";
+            outputLogStdout = "";
             //Util.consoleClear();
 
             // Binary is missing
@@ -196,11 +200,14 @@ namespace avrdudess
         }
 
         // These methods are needed to properly capture the process output for logging
-        private bool logger(string s)
+        private bool logger(string s, int stream)
         {
             if (s != null) // A null is sent when the stream is closed
             {
-                outputLog += s.Replace("\0", String.Empty) + Environment.NewLine;
+                string tmp = s.Replace("\0", string.Empty) + Environment.NewLine;
+                outputLog += tmp;
+                if (stream == 1)
+                    outputLogStdout += tmp;
                 return true;
             }
 
@@ -209,12 +216,12 @@ namespace avrdudess
 
         private void outputLogHandler(object sender, DataReceivedEventArgs e)
         {
-            processOutputStreamOpen = logger(e.Data);
+            processOutputStreamOpen = logger(e.Data, 1);
         }
 
         private void errorLogHandler(object sender, DataReceivedEventArgs e)
         {
-            processErrorStreamOpen = logger(e.Data);
+            processErrorStreamOpen = logger(e.Data, 2);
         }
 
         protected bool isActive()

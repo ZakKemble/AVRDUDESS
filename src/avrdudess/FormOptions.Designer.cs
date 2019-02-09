@@ -39,6 +39,7 @@
             this.txtAvrdudeConfLocation = new System.Windows.Forms.TextBox();
             this.txtAvrdudeLocation = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbUsePrevSettings = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbLanguage = new System.Windows.Forms.ComboBox();
             this.cbShowToolTips = new System.Windows.Forms.CheckBox();
@@ -49,7 +50,6 @@
             this.clbHiddenProgrammers = new System.Windows.Forms.CheckedListBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.clbHiddenMCUs = new System.Windows.Forms.CheckedListBox();
-            this.cbUsePrevSettings = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -184,6 +184,18 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "_GRP_OTHER";
             // 
+            // cbUsePrevSettings
+            // 
+            this.cbUsePrevSettings.AutoSize = true;
+            this.cbUsePrevSettings.Checked = true;
+            this.cbUsePrevSettings.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbUsePrevSettings.Location = new System.Drawing.Point(261, 47);
+            this.cbUsePrevSettings.Name = "cbUsePrevSettings";
+            this.cbUsePrevSettings.Size = new System.Drawing.Size(137, 17);
+            this.cbUsePrevSettings.TabIndex = 42;
+            this.cbUsePrevSettings.Text = "_USEPREVSETTINGS";
+            this.cbUsePrevSettings.UseVisualStyleBackColor = true;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -198,7 +210,7 @@
             this.cbLanguage.FormattingEnabled = true;
             this.cbLanguage.Location = new System.Drawing.Point(82, 22);
             this.cbLanguage.Name = "cbLanguage";
-            this.cbLanguage.Size = new System.Drawing.Size(121, 21);
+            this.cbLanguage.Size = new System.Drawing.Size(173, 21);
             this.cbLanguage.TabIndex = 0;
             // 
             // cbShowToolTips
@@ -206,7 +218,7 @@
             this.cbShowToolTips.AutoSize = true;
             this.cbShowToolTips.Checked = true;
             this.cbShowToolTips.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbShowToolTips.Location = new System.Drawing.Point(209, 24);
+            this.cbShowToolTips.Location = new System.Drawing.Point(261, 24);
             this.cbShowToolTips.Name = "cbShowToolTips";
             this.cbShowToolTips.Size = new System.Drawing.Size(119, 17);
             this.cbShowToolTips.TabIndex = 1;
@@ -290,18 +302,6 @@
             this.clbHiddenMCUs.Name = "clbHiddenMCUs";
             this.clbHiddenMCUs.Size = new System.Drawing.Size(498, 169);
             this.clbHiddenMCUs.TabIndex = 0;
-            // 
-            // cbUsePrevSettings
-            // 
-            this.cbUsePrevSettings.AutoSize = true;
-            this.cbUsePrevSettings.Checked = true;
-            this.cbUsePrevSettings.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbUsePrevSettings.Location = new System.Drawing.Point(209, 47);
-            this.cbUsePrevSettings.Name = "cbUsePrevSettings";
-            this.cbUsePrevSettings.Size = new System.Drawing.Size(137, 17);
-            this.cbUsePrevSettings.TabIndex = 42;
-            this.cbUsePrevSettings.Text = "_USEPREVSETTINGS";
-            this.cbUsePrevSettings.UseVisualStyleBackColor = true;
             // 
             // FormOptions
             // 

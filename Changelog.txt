@@ -1,3 +1,11 @@
+2019-02-09 (v2.8):
+	- Added .NET 4.0+ to the list of supported runtimes, no longer need to install old .NET versions onto newer systems
+	- Language selection box has been widened
+	- New "About" box, now with clickable link
+	- No longer creates temporary files when reading fuses and lock bits
+	- LPT parallel port names in the port drop down box are now lower case
+	- When resizing the main window, the controls on the right side are now also resized
+
 2019-01-22 (v2.7):
 	- Added Polish translation
 	- Added Chinese translation

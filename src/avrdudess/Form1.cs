@@ -586,7 +586,7 @@ namespace avrdudess
         {
             foreach (Control c in controls)
             {
-                if (c is GroupBox || c is Label || c is PictureBox)
+                if (c is GroupBox || c is Label || c is PictureBox || c is SplitContainer || c is SplitterPanel)
                 {
                     c.MouseDown += Form1_MouseDown;
                     c.MouseUp   += Form1_MouseUp;
@@ -1375,7 +1375,7 @@ namespace avrdudess
             dragStart = new Point(e.X + (screenPos.X - Location.X), e.Y + (screenPos.Y - Location.Y));
 
             Control c = (Control)sender;
-            while (c is GroupBox || c is Label || c is PictureBox)
+            while (c is GroupBox || c is Label || c is PictureBox || c is SplitContainer || c is SplitterPanel)
             {
                 dragStart.X += c.Location.X;
                 dragStart.Y += c.Location.Y;

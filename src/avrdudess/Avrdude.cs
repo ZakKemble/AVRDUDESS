@@ -8,6 +8,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 
@@ -25,10 +27,10 @@ namespace avrdudess
 
     class ReadFuseLockEventArgs : EventArgs
     {
-        public string type { get; set; }
+        public Avrdude.FuseLockType type { get; set; }
         public string value { get; set; }
 
-        public ReadFuseLockEventArgs(string t, string v)
+        public ReadFuseLockEventArgs(Avrdude.FuseLockType t, string v)
         {
             type = t;
             value = v;
@@ -81,6 +83,20 @@ namespace avrdudess
             new FileFormat("h", Language.Translation.get("_FILEFMT_HEXR")),
             new FileFormat("b", Language.Translation.get("_FILEFMT_BINR"))
         };
+        
+        public enum FuseLockType
+        {
+            [Description("")]
+            None,
+            [Description("hfuse")]
+            Hfuse,
+            [Description("lfuse")]
+            Lfuse,
+            [Description("efuse")]
+            Efuse,
+            [Description("lock")]
+            Lock
+        }
 
         private enum ParseMemType
         {
@@ -110,7 +126,7 @@ namespace avrdudess
 
         public string log
         {
-            get { return outputLog; }
+            get { return outputLogStdErr; }
         }
 
         #endregion
@@ -145,12 +161,12 @@ namespace avrdudess
         {
             version = "";
 
-            launch("", OutputTo.Log);
+            launch("", OutputTo.Memory);
             waitForExit(); // TODO REMOVE? use callback
 
-            if (outputLog != null)
+            if (outputLogStdErr != null)
             {
-                string log = outputLog;
+                string log = outputLogStdErr;
                 int pos = log.IndexOf("avrdude version");
                 if (pos > -1)
                 {
@@ -358,6 +374,8 @@ namespace avrdudess
             if (outputTo == OutputTo.Console)
                 Util.consoleWriteLine("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
 
+            Util.consoleWriteLine(">>>: {0} {1}", Color.Aquamarine, FILE_AVRDUDE, args);
+
             base.launch(args, onFinish, param, outputTo);
         }
 
@@ -368,13 +386,13 @@ namespace avrdudess
 
         public void detectMCU(string args)
         {
-            launch(args, detectComplete, null, OutputTo.Log);
+            launch(args, detectComplete, null, OutputTo.Memory);
         }
 
         // Got MCU info
         private void detectComplete(object param)
         {
-            string log = outputLog.ToLower();
+            string log = outputLogStdErr.ToLower();
 
             // Look for string
             int pos = log.IndexOf("device signature");
@@ -412,26 +430,26 @@ namespace avrdudess
                 OnDetectedMCU(this, new DetectedMCUEventArgs(null));
         }
 
-        public void readFusesLock(string args, string[] types)
+        public void readFusesLock(string args, FuseLockType[] types)
         {
-            launch(args, readFusesLockComplete, types, OutputTo.Log);
+            launch(args, readFusesLockComplete, types, OutputTo.Memory);
         }
 
         private void readFusesLockComplete(object param)
         { 
-            string[] types = param as string[];
+            FuseLockType[] types = param as FuseLockType[];
             if (types == null)
                 return;
 
-            string log = outputLog.ToLower();
-            if (outputLog.IndexOf("error") > -1 || outputLog.IndexOf("fail") > -1)
+            string log = outputLogStdErr.ToLower();
+            if (log.IndexOf("error") > -1 || log.IndexOf("fail") > -1)
             {
                 if (OnReadFuseLock != null)
-                    OnReadFuseLock(this, new ReadFuseLockEventArgs("error", ""));
+                    OnReadFuseLock(this, new ReadFuseLockEventArgs(FuseLockType.None, ""));
                 return;
             }
 
-            string[] values = outputLogStdout.Split(
+            string[] values = outputLogStdOut.Split(
                 new[] { Environment.NewLine },
                 StringSplitOptions.RemoveEmptyEntries
             );
@@ -439,7 +457,7 @@ namespace avrdudess
             if (values.Length != types.Length)
             {
                 if (OnReadFuseLock != null)
-                    OnReadFuseLock(this, new ReadFuseLockEventArgs("error", ""));
+                    OnReadFuseLock(this, new ReadFuseLockEventArgs(FuseLockType.None, ""));
                 return;
             }
 

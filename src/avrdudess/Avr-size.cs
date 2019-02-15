@@ -28,9 +28,9 @@ namespace avrdudess
             if (File.Exists(file))
             {
                 file = "\"" + file + "\"";
-                if (launch(file, null, null, OutputTo.Log))
+                if (launch(file, null, null, OutputTo.Memory))
                 {
-                    waitForExit();
+                    waitForExit(); // TODO remove? use callback
                     totalSize = parse();
                 }
             }
@@ -40,11 +40,11 @@ namespace avrdudess
         // Parse out size
         private int parse()
         {
-            if (outputLog == null)
+            if (outputLogStdOut == null)
                 return INVALID;
 
             // Split into lines
-            string[] data = outputLog.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] data = outputLogStdOut.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
             if (data.Length < 2)
                 return INVALID;
 

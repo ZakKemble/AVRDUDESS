@@ -28,11 +28,11 @@ namespace avrdudess
         public const string FILEOP_VERIFY = "v";
 
         private ToolTip ToolTips;
+        private ToolTip ToolTipCmdLine;
         private Avrdude avrdude;
         private Avrsize avrsize;
         private Presets presets;
         private CmdLine cmdLine;
-        public bool ready               = false;
         private string flashOperation   = FILEOP_WRITE;
         private string EEPROMOperation  = FILEOP_WRITE;
         private string presetToLoad;
@@ -138,7 +138,11 @@ namespace avrdudess
 
         public string cmdBox
         {
-            set { txtCmdLine.Text = value; }
+            set {
+                txtCmdLine.Text = value;
+                if(ToolTipCmdLine != null)
+                    ToolTipCmdLine.SetToolTip(txtCmdLine, value);
+            }
         }
 
         public string flashFile
@@ -420,6 +424,12 @@ namespace avrdudess
                 tt.Key.MouseLeave += Key_MouseLeave;
             }
 
+            ToolTipCmdLine = new ToolTip();
+            ToolTipCmdLine.ReshowDelay = 100;
+            ToolTipCmdLine.UseAnimation = false;
+            ToolTipCmdLine.UseFading = false;
+            ToolTipCmdLine.SetToolTip(txtCmdLine, txtCmdLine.Text);
+
             // Load saved presets
             presets = new Presets();
             presets.load();
@@ -428,7 +438,29 @@ namespace avrdudess
             // Enable/disable tool tips based on saved config
             ToolTips.Active = Config.Prop.toolTips;
 
-            ready = true;
+            // TODO blah
+            cmbProg.SelectedIndexChanged += event_controlChanged;
+            cmbMCU.SelectedIndexChanged += event_controlChanged;
+            cbForce.CheckedChanged += event_controlChanged;
+            cbNoVerify.CheckedChanged += event_controlChanged;
+            txtHFuse.TextChanged += event_controlChanged;
+            txtLFuse.TextChanged += event_controlChanged;
+            txtEFuse.TextChanged += event_controlChanged;
+            txtBitClock.TextChanged += event_controlChanged;
+            txtBaudRate.TextChanged += event_controlChanged;
+            cmbPort.TextChanged += event_controlChanged;
+            txtEEPROMFile.TextChanged += event_controlChanged;
+            cmbEEPROMFormat.SelectedIndexChanged += event_controlChanged;
+            txtFlashFile.TextChanged += event_controlChanged;
+            cmbFlashFormat.SelectedIndexChanged += event_controlChanged;
+            cbSetLock.CheckedChanged += event_controlChanged;
+            cbSetFuses.CheckedChanged += event_controlChanged;
+            txtLock.TextChanged += event_controlChanged;
+            cmdVerbose.SelectedIndexChanged += event_controlChanged;
+            cbDoNotWrite.CheckedChanged += event_controlChanged;
+            cbDisableFlashErase.CheckedChanged += event_controlChanged;
+            cbEraseFlashEEPROM.CheckedChanged += event_controlChanged;
+            txtAdditional.TextChanged += event_controlChanged;
 
             // If a preset has not been specified by the command line then use the last used preset
             // Credits:
@@ -604,21 +636,21 @@ namespace avrdudess
 
             Invoke(new MethodInvoker(() =>
             {
-                switch (e.type) // TODO make this an enum
+                switch (e.type)
                 {
-                    case "hfuse":
+                    case Avrdude.FuseLockType.Hfuse:
                         txtHFuse.Text = fuse;
                         Util.consoleSuccess("_READHFUSE");
                         break;
-                    case "lfuse":
+                    case Avrdude.FuseLockType.Lfuse:
                         txtLFuse.Text = fuse;
                         Util.consoleSuccess("_READLFUSE");
                         break;
-                    case "efuse":
+                    case Avrdude.FuseLockType.Efuse:
                         txtEFuse.Text = fuse;
                         Util.consoleSuccess("_READEFUSE");
                         break;
-                    case "lock":
+                    case Avrdude.FuseLockType.Lock:
                         txtLock.Text = fuse;
                         Util.consoleSuccess("_READLOCKBITS");
                         break;
@@ -936,7 +968,7 @@ namespace avrdudess
                         return FILEOP_WRITE;
                     else if (radio.Name == "rbFlashOpRead" || radio.Name == "rbEEPROMOpRead")
                         return FILEOP_READ;
-                     return FILEOP_VERIFY;
+                    return FILEOP_VERIFY;
                 }
             }
 
@@ -1194,45 +1226,42 @@ namespace avrdudess
         // Preset choice changed
         private void cmbPresets_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ready)
+            PresetData item = (PresetData)cmbPresets.SelectedItem;
+            if (item != null)
             {
-                PresetData item = (PresetData)cmbPresets.SelectedItem;
-                if (item != null)
+                loadPresetData(item);
+
+                // If preset uses USBasp we need to workout the frequency to use from the bit clock
+                if (prog != null && prog.id == "usbasp")
                 {
-                    loadPresetData(item);
+                    string bitClockStr = txtBitClock.Text;
 
-                    // If preset uses USBasp we need to workout the frequency to use from the bit clock
-                    if (prog != null && prog.id == "usbasp")
+                    // Make sure an index changed event occurs
+                    cmbUSBaspFreq.SelectedIndex = -1;
+
+                    // Convert bit clock to frequency
+
+                    // String to double
+                    double bitClock;
+                    if (!double.TryParse(bitClockStr,
+                        NumberStyles.Float | NumberStyles.AllowThousands,
+                        CultureInfo.InvariantCulture, // Bit clock is saved with a '.', we don't want it to try and parse it expecting a ',' or something else
+                        out bitClock))
                     {
-                        string bitClockStr = txtBitClock.Text;
-
-                        // Make sure an index changed event occurs
-                        cmbUSBaspFreq.SelectedIndex = -1;
-
-                        // Convert bit clock to frequency
-
-                        // String to double
-                        double bitClock;
-                        if (!double.TryParse(bitClockStr,
-                            NumberStyles.Float | NumberStyles.AllowThousands,
-                            CultureInfo.InvariantCulture, // Bit clock is saved with a '.', we don't want it to try and parse it expecting a ',' or something else
-                            out bitClock))
-                        {
-                            cmbUSBaspFreq.SelectedIndex = 0;
-                            return;
-                        }
-
-                        int freq = (int)(1 / (bitClock * 0.000001));
-
-                        // Make sure frequency is between min and max
-                        if (freq > Avrdude.USBaspFreqs[0].freq)
-                            freq = Avrdude.USBaspFreqs[0].freq;
-                        else if (freq < Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].freq)
-                            freq = Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].freq;
-
-                        // Show frequency
-                        cmbUSBaspFreq.SelectedItem = Avrdude.USBaspFreqs.Find(s => freq >= s.freq - 1);
+                        cmbUSBaspFreq.SelectedIndex = 0;
+                        return;
                     }
+
+                    int freq = (int)(1 / (bitClock * 0.000001));
+
+                    // Make sure frequency is between min and max
+                    if (freq > Avrdude.USBaspFreqs[0].freq)
+                        freq = Avrdude.USBaspFreqs[0].freq;
+                    else if (freq < Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].freq)
+                        freq = Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].freq;
+
+                    // Show frequency
+                    cmbUSBaspFreq.SelectedItem = Avrdude.USBaspFreqs.Find(s => freq >= s.freq - 1);
                 }
             }
         }
@@ -1271,16 +1300,18 @@ namespace avrdudess
         private void btnReadFuses_Click(object sender, EventArgs e)
         {
             Util.consoleWriteLine("_READINGFUSES");
-            string cmd = cmdLine.generateReadFuses("-", "-", "-");
-            avrdude.readFusesLock(cmd, new string[] { "lfuse", "hfuse", "efuse" });
+            Avrdude.FuseLockType[] types = new Avrdude.FuseLockType[] { Avrdude.FuseLockType.Hfuse, Avrdude.FuseLockType.Lfuse, Avrdude.FuseLockType.Efuse };
+            string cmd = cmdLine.generateReadFusesLock(types);
+            avrdude.readFusesLock(cmd, types);
         }
 
         // Read lock byte
         private void btnReadLock_Click(object sender, EventArgs e)
         {
             Util.consoleWriteLine("_READINGLOCKBITS");
-            string cmd = cmdLine.generateReadLock("-");
-            avrdude.readFusesLock(cmd, new string[] { "lock" });
+            Avrdude.FuseLockType[] types = new Avrdude.FuseLockType[] { Avrdude.FuseLockType.Lock };
+            string cmd = cmdLine.generateReadFusesLock(types);
+            avrdude.readFusesLock(cmd, types);
         }
 
         // Only write fuses

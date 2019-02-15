@@ -24,15 +24,21 @@ namespace avrdudess
         private bool processOutputStreamOpen;
         private bool processErrorStreamOpen;
         private bool enableConsoleUpdate;
-        protected string outputLog { get; private set; }
-        protected string outputLogStdout { get; private set; } // Quick hack to get fuse reading working as they are output to stdout instead of stderr like most other things
+        protected string outputLogStdErr { get; private set; } = string.Empty;
+        protected string outputLogStdOut { get; private set; } = string.Empty;
 
-        // NOTE: can't log to memory and write to console at the same time, as one method is async (log) and the other is sync (console).
-        // IIRC process bars don't work with async mode as the event only fires on a new line.
+        // NOTE: can't write to memory and to console at the same time, as one method is async (memory) and the other is sync (console).
+        // This is because process bars don't work with async mode as the event only fires on a new line.
         public enum OutputTo
         {
-            Log,
+            Memory,
             Console
+        }
+
+        private enum Stream
+        {
+            StdOut,
+            StdErr
         }
 
         protected void load(string binaryName, string directory, bool enableConsoleWrite = true)
@@ -58,7 +64,7 @@ namespace avrdudess
             string app;
 
             // Check user defined directory
-            if (!String.IsNullOrEmpty(directory))
+            if (!string.IsNullOrEmpty(directory))
             {
                 app = Path.Combine(directory, binaryName);
                 if (File.Exists(app))
@@ -94,8 +100,8 @@ namespace avrdudess
                 return false;
 
             // Clear log
-            outputLog = "";
-            outputLogStdout = "";
+            outputLogStdErr = string.Empty;
+            outputLogStdOut = string.Empty;
             //Util.consoleClear();
 
             // Binary is missing
@@ -118,7 +124,7 @@ namespace avrdudess
             tmp.StartInfo.RedirectStandardOutput = true;
             tmp.StartInfo.RedirectStandardError = true;
             tmp.EnableRaisingEvents = true;
-            if (outputTo == OutputTo.Log)
+            if (outputTo == OutputTo.Memory)
             {
                 tmp.OutputDataReceived += new DataReceivedEventHandler(outputLogHandler);
                 tmp.ErrorDataReceived += new DataReceivedEventHandler(errorLogHandler);
@@ -141,7 +147,7 @@ namespace avrdudess
             enableConsoleUpdate = (outputTo == OutputTo.Console);
             p = tmp;
 
-            if (outputTo == OutputTo.Log)
+            if (outputTo == OutputTo.Memory)
             {
                 processOutputStreamOpen = true;
                 processErrorStreamOpen = true;
@@ -200,14 +206,15 @@ namespace avrdudess
         }
 
         // These methods are needed to properly capture the process output for logging
-        private bool logger(string s, int stream)
+        private bool logger(string s, Stream stream)
         {
             if (s != null) // A null is sent when the stream is closed
             {
                 string tmp = s.Replace("\0", string.Empty) + Environment.NewLine;
-                outputLog += tmp;
-                if (stream == 1)
-                    outputLogStdout += tmp;
+                if(stream == Stream.StdErr)
+                    outputLogStdErr += tmp;
+                else if (stream == Stream.StdOut)
+                    outputLogStdOut += tmp;
                 return true;
             }
 
@@ -216,12 +223,12 @@ namespace avrdudess
 
         private void outputLogHandler(object sender, DataReceivedEventArgs e)
         {
-            processOutputStreamOpen = logger(e.Data, 1);
+            processOutputStreamOpen = logger(e.Data, Stream.StdOut);
         }
 
         private void errorLogHandler(object sender, DataReceivedEventArgs e)
         {
-            processErrorStreamOpen = logger(e.Data, 2);
+            processErrorStreamOpen = logger(e.Data, Stream.StdErr);
         }
 
         protected bool isActive()
@@ -243,7 +250,7 @@ namespace avrdudess
                 p.WaitForExit();
 
             // There might still be data in a buffer somewhere that needs to be read by the output handler even after the process has ended
-            while (processOutputStreamOpen && processErrorStreamOpen)
+            while (processOutputStreamOpen || processErrorStreamOpen)
                 Thread.Sleep(15);
         }
     }

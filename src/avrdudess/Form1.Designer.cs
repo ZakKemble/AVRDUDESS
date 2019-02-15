@@ -144,7 +144,6 @@
             this.cmbProg.Name = "cmbProg";
             this.cmbProg.Size = new System.Drawing.Size(417, 21);
             this.cmbProg.TabIndex = 0;
-            this.cmbProg.SelectedIndexChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cmbMCU
             // 
@@ -156,7 +155,6 @@
             this.cmbMCU.Name = "cmbMCU";
             this.cmbMCU.Size = new System.Drawing.Size(168, 21);
             this.cmbMCU.TabIndex = 0;
-            this.cmbMCU.SelectedIndexChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cbForce
             // 
@@ -167,7 +165,6 @@
             this.cbForce.TabIndex = 0;
             this.cbForce.Text = "_FORCE";
             this.cbForce.UseVisualStyleBackColor = true;
-            this.cbForce.CheckedChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cbNoVerify
             // 
@@ -178,7 +175,6 @@
             this.cbNoVerify.TabIndex = 1;
             this.cbNoVerify.Text = "_DISVERIFY";
             this.cbNoVerify.UseVisualStyleBackColor = true;
-            this.cbNoVerify.CheckedChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // btnProgram
             // 
@@ -198,7 +194,6 @@
             this.txtHFuse.Size = new System.Drawing.Size(43, 20);
             this.txtHFuse.TabIndex = 1;
             this.txtHFuse.Tag = "";
-            this.txtHFuse.TextChanged += new System.EventHandler(this.event_controlChanged);
             this.txtHFuse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
             // 
             // txtLFuse
@@ -208,7 +203,6 @@
             this.txtLFuse.Size = new System.Drawing.Size(43, 20);
             this.txtLFuse.TabIndex = 0;
             this.txtLFuse.Tag = "";
-            this.txtLFuse.TextChanged += new System.EventHandler(this.event_controlChanged);
             this.txtLFuse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
             // 
             // txtEFuse
@@ -218,7 +212,6 @@
             this.txtEFuse.Size = new System.Drawing.Size(43, 20);
             this.txtEFuse.TabIndex = 2;
             this.txtEFuse.Tag = "";
-            this.txtEFuse.TextChanged += new System.EventHandler(this.event_controlChanged);
             this.txtEFuse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
             // 
             // cmbPresets
@@ -323,7 +316,6 @@
             this.txtBitClock.Size = new System.Drawing.Size(135, 20);
             this.txtBitClock.TabIndex = 3;
             this.txtBitClock.Tag = "";
-            this.txtBitClock.TextChanged += new System.EventHandler(this.event_controlChanged);
             this.txtBitClock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNum_KeyPress);
             // 
             // txtBaudRate
@@ -333,7 +325,6 @@
             this.txtBaudRate.Size = new System.Drawing.Size(135, 20);
             this.txtBaudRate.TabIndex = 2;
             this.txtBaudRate.Tag = "";
-            this.txtBaudRate.TextChanged += new System.EventHandler(this.event_controlChanged);
             this.txtBaudRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNum_KeyPress);
             // 
             // label14
@@ -352,7 +343,6 @@
             this.cmbPort.Name = "cmbPort";
             this.cmbPort.Size = new System.Drawing.Size(135, 21);
             this.cmbPort.TabIndex = 1;
-            this.cmbPort.TextChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // txtCmdLine
             // 
@@ -457,7 +447,6 @@
             this.txtEEPROMFile.Name = "txtEEPROMFile";
             this.txtEEPROMFile.Size = new System.Drawing.Size(388, 20);
             this.txtEEPROMFile.TabIndex = 0;
-            this.txtEEPROMFile.TextChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cmbEEPROMFormat
             // 
@@ -468,7 +457,6 @@
             this.cmbEEPROMFormat.Name = "cmbEEPROMFormat";
             this.cmbEEPROMFormat.Size = new System.Drawing.Size(131, 21);
             this.cmbEEPROMFormat.TabIndex = 4;
-            this.cmbEEPROMFormat.SelectedIndexChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // btnEEPROMBrowse
             // 
@@ -582,7 +570,6 @@
             this.txtFlashFile.Name = "txtFlashFile";
             this.txtFlashFile.Size = new System.Drawing.Size(388, 20);
             this.txtFlashFile.TabIndex = 0;
-            this.txtFlashFile.TextChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cmbFlashFormat
             // 
@@ -593,7 +580,6 @@
             this.cmbFlashFormat.Name = "cmbFlashFormat";
             this.cmbFlashFormat.Size = new System.Drawing.Size(131, 21);
             this.cmbFlashFormat.TabIndex = 4;
-            this.cmbFlashFormat.SelectedIndexChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // btnFlashBrowse
             // 
@@ -693,7 +679,6 @@
             this.cbSetLock.TabIndex = 10;
             this.cbSetLock.Text = "_SETLOCK";
             this.cbSetLock.UseVisualStyleBackColor = true;
-            this.cbSetLock.CheckedChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cbSetFuses
             // 
@@ -704,7 +689,6 @@
             this.cbSetFuses.TabIndex = 5;
             this.cbSetFuses.Text = "_SETFUSES";
             this.cbSetFuses.UseVisualStyleBackColor = true;
-            this.cbSetFuses.CheckedChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // btnReadLock
             // 
@@ -732,7 +716,6 @@
             this.txtLock.Size = new System.Drawing.Size(43, 20);
             this.txtLock.TabIndex = 7;
             this.txtLock.Tag = "";
-            this.txtLock.TextChanged += new System.EventHandler(this.event_controlChanged);
             this.txtLock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
             // 
             // label9
@@ -798,7 +781,6 @@
             this.cmdVerbose.Name = "cmdVerbose";
             this.cmdVerbose.Size = new System.Drawing.Size(95, 21);
             this.cmdVerbose.TabIndex = 5;
-            this.cmdVerbose.SelectedIndexChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cbDoNotWrite
             // 
@@ -809,7 +791,6 @@
             this.cbDoNotWrite.TabIndex = 4;
             this.cbDoNotWrite.Text = "_DONOTWRITE";
             this.cbDoNotWrite.UseVisualStyleBackColor = true;
-            this.cbDoNotWrite.CheckedChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cbDisableFlashErase
             // 
@@ -820,7 +801,6 @@
             this.cbDisableFlashErase.TabIndex = 2;
             this.cbDisableFlashErase.Text = "_DISFLASHERASE";
             this.cbDisableFlashErase.UseVisualStyleBackColor = true;
-            this.cbDisableFlashErase.CheckedChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // cbEraseFlashEEPROM
             // 
@@ -831,7 +811,6 @@
             this.cbEraseFlashEEPROM.TabIndex = 3;
             this.cbEraseFlashEEPROM.Text = "_ERASEFLASHEEP";
             this.cbEraseFlashEEPROM.UseVisualStyleBackColor = true;
-            this.cbEraseFlashEEPROM.CheckedChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // btnAbout
             // 
@@ -875,7 +854,6 @@
             this.txtAdditional.Name = "txtAdditional";
             this.txtAdditional.Size = new System.Drawing.Size(168, 20);
             this.txtAdditional.TabIndex = 0;
-            this.txtAdditional.TextChanged += new System.EventHandler(this.event_controlChanged);
             // 
             // statusBar1
             // 

@@ -767,7 +767,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(151, 66);
+            this.label7.Location = new System.Drawing.Point(191, 66);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 13);
             this.label7.TabIndex = 36;
@@ -777,7 +777,7 @@
             // 
             this.cmdVerbose.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdVerbose.FormattingEnabled = true;
-            this.cmdVerbose.Location = new System.Drawing.Point(207, 63);
+            this.cmdVerbose.Location = new System.Drawing.Point(247, 63);
             this.cmdVerbose.Name = "cmdVerbose";
             this.cmdVerbose.Size = new System.Drawing.Size(95, 21);
             this.cmdVerbose.TabIndex = 5;
@@ -785,7 +785,7 @@
             // cbDoNotWrite
             // 
             this.cbDoNotWrite.AutoSize = true;
-            this.cbDoNotWrite.Location = new System.Drawing.Point(150, 40);
+            this.cbDoNotWrite.Location = new System.Drawing.Point(190, 40);
             this.cbDoNotWrite.Name = "cbDoNotWrite";
             this.cbDoNotWrite.Size = new System.Drawing.Size(107, 17);
             this.cbDoNotWrite.TabIndex = 4;
@@ -805,7 +805,7 @@
             // cbEraseFlashEEPROM
             // 
             this.cbEraseFlashEEPROM.AutoSize = true;
-            this.cbEraseFlashEEPROM.Location = new System.Drawing.Point(150, 19);
+            this.cbEraseFlashEEPROM.Location = new System.Drawing.Point(190, 19);
             this.cbEraseFlashEEPROM.Name = "cbEraseFlashEEPROM";
             this.cbEraseFlashEEPROM.Size = new System.Drawing.Size(123, 17);
             this.cbEraseFlashEEPROM.TabIndex = 3;

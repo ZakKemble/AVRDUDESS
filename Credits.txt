@@ -46,3 +46,6 @@ Ideas & code credits:
 
 "radiolee" <https://github.com/radiolee>
 * Simplified Chinese translation
+
+"Alain DÖRING" <adoring (-at-) club-internet (-dot-) fr>
+* French translation

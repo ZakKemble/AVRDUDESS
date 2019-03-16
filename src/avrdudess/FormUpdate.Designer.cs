@@ -35,7 +35,6 @@
             this.lblCurrentVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnSkip = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -78,7 +77,7 @@
             // lblNewVersion
             // 
             this.lblNewVersion.AutoSize = true;
-            this.lblNewVersion.Location = new System.Drawing.Point(99, 22);
+            this.lblNewVersion.Location = new System.Drawing.Point(120, 22);
             this.lblNewVersion.Name = "lblNewVersion";
             this.lblNewVersion.Size = new System.Drawing.Size(35, 13);
             this.lblNewVersion.TabIndex = 5;
@@ -87,7 +86,7 @@
             // lblCurrentVersion
             // 
             this.lblCurrentVersion.AutoSize = true;
-            this.lblCurrentVersion.Location = new System.Drawing.Point(99, 9);
+            this.lblCurrentVersion.Location = new System.Drawing.Point(120, 9);
             this.lblCurrentVersion.Name = "lblCurrentVersion";
             this.lblCurrentVersion.Size = new System.Drawing.Size(35, 13);
             this.lblCurrentVersion.TabIndex = 6;
@@ -111,16 +110,6 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "_NEWVERSION";
             // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(485, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "_UPDATEAVAILABLE";
-            // 
             // btnSkip
             // 
             this.btnSkip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -141,7 +130,6 @@
             this.CancelButton = this.btnLater;
             this.ClientSize = new System.Drawing.Size(584, 316);
             this.Controls.Add(this.btnSkip);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblCurrentVersion);
@@ -171,7 +159,6 @@
         private System.Windows.Forms.Label lblCurrentVersion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSkip;
     }
 }

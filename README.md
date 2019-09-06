@@ -11,10 +11,12 @@ Windows:
 --------
 Requires .NET Framework 2.0 SP1 or newer. All systems since Windows Vista will have the required version already installed.
 
-Linux & Mac OS X:
+Linux & macOS:
 -----------------
 Can be ran using Mono ([http://www.mono-project.com](http://www.mono-project.com)).\
-Has not been tested on OS X, but should work.
+Has not been tested on macOS, but should work. Might need the `--arch=32` argument.
+
+    mono --arch=32 avrdudess.exe
 
 Installing on Ubuntu 18.04:
 ---------------------------

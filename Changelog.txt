@@ -1,3 +1,10 @@
+2019-09-06 (v2.9):
+	- Added French translation
+	- Added Russian translation
+	- Now shows full command line arguments in console output whenever avrdude is invoked
+	- Fixed breaking click and drag anywhere to move window
+	- Window title now shows "avrdude version UNKNOWN" instead of "?" if unable to find avrdude version
+
 2019-02-09 (v2.8):
 	- Added .NET 4.0+ to the list of supported runtimes, no longer need to install old .NET versions onto newer systems
 	- Language selection box has been widened

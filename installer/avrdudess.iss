@@ -3,7 +3,7 @@
 
 #define MyAppName "AVRDUDESS"
 #define MyAppDescription "A GUI for AVRDUDE"
-#define MyAppVersion "2.8"
+#define MyAppVersion "2.9"
 #define MyAppPublisher "Zak Kemble"
 #define MyAppURL "http://zakkemble.net/"
 #define MyAppExeName "avrdudess.exe"
@@ -96,6 +96,8 @@ Source: "..\src\avrdudess\bin\Release\Languages\english.xml"; DestDir: "{app}\La
 Source: "..\src\avrdudess\bin\Release\Languages\german.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\Languages\polish.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\Languages\chinese-zh_CN.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\french.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\russian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\Changelog.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Credits.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\License.txt"; DestDir: "{app}"; Flags: ignoreversion

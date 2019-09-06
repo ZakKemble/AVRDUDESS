@@ -543,7 +543,7 @@ namespace avrdudess
         {
             string avrdudeVersion = (avrdude != null) ? avrdude.version : "";
             if (avrdudeVersion == "")
-                avrdudeVersion = "?";
+                avrdudeVersion = "avrdude version UNKNOWN";
             Text = string.Format(
 #if DEBUG
                 "AVRDUDESS {0}.{1} ({2}) [DEBUG]",

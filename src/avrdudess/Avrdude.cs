@@ -84,6 +84,7 @@ namespace avrdudess
             new FileFormat("b", Language.Translation.get("_FILEFMT_BINR"))
         };
         
+        // TODO change this to include all memory types?
         public enum FuseLockType
         {
             [Description("")]
@@ -94,6 +95,8 @@ namespace avrdudess
             Lfuse,
             [Description("efuse")]
             Efuse,
+            [Description("fuse")]
+            Fuse,
             [Description("lock")]
             Lock
         }
@@ -179,10 +182,11 @@ namespace avrdudess
                 OnVersionChange(this, EventArgs.Empty);
         }
 
-        private void savePart(bool isProgrammer, string parentId, string id, string desc, string signature, int flash, int eeprom)
+        private void savePart(bool isProgrammer, string parentId, string id, string desc, string signature, int flash, int eeprom, List<string> memoryTypes)
         {
             if (id != null)
             {
+
                 if (isProgrammer)
                 {
                     // Find parent
@@ -194,19 +198,16 @@ namespace avrdudess
                 }
                 else
                 {
-                    if (!id.StartsWith(".") && !desc.StartsWith("deprecated")) // Part is a common value thing or deprecated
-                    {
-                        // Some formatting
-                        desc = desc.ToUpper().Replace("XMEGA", "xmega").Replace("MEGA", "mega").Replace("TINY", "tiny");
+                    // Some formatting
+                    desc = desc.ToUpper().Replace("XMEGA", "xmega").Replace("MEGA", "mega").Replace("TINY", "tiny");
 
-                        // Find parent
-                        MCU parent = null;
-                        if (parentId != null)
-                            parent = _mcus.Find(m => m.id == parentId);
+                    // Find parent
+                    MCU parent = null;
+                    if (parentId != null)
+                        parent = _mcus.Find(m => m.id == parentId);
 
-                        // Add to MCUs
-                        _mcus.Add(new MCU(id, desc, signature, flash, eeprom, parent));
-                    }
+                    // Add to MCUs
+                    _mcus.Add(new MCU(id, desc, signature, flash, eeprom, parent, memoryTypes));
                 }
             }
         }
@@ -216,7 +217,7 @@ namespace avrdudess
         {
             string conf_loc = null;
 
-            if (!String.IsNullOrEmpty(confLoc))
+            if (!string.IsNullOrEmpty(confLoc))
                 conf_loc = Path.Combine(confLoc, FILE_AVRDUDECONF);
             else
             {
@@ -241,7 +242,7 @@ namespace avrdudess
             }
 
             // Config file not found
-            if (String.IsNullOrEmpty(conf_loc) || !File.Exists(conf_loc))
+            if (string.IsNullOrEmpty(conf_loc) || !File.Exists(conf_loc))
             {
                 Util.consoleError("_AVRCONFMISSING", FILE_AVRDUDECONF);
                 //throw new System.IO.FileNotFoundException("File is missing", FILE_AVRDUDECONF);
@@ -268,7 +269,8 @@ namespace avrdudess
             string signature = null;
             int flash = -1;
             int eeprom = -1;
-       
+            List<string> memoryTypes = new List<string>();
+
             ParseMemType memType = ParseMemType.None;
             bool isProgrammer = false;
 
@@ -281,7 +283,7 @@ namespace avrdudess
 
                 if(lineProgrammer || linePart)
                 {
-                    savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom);
+                    savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom, memoryTypes);
 
                     parentId = null;
                     id = null;
@@ -289,6 +291,7 @@ namespace avrdudess
                     signature = null;
                     flash = -1;
                     eeprom = -1;
+                    memoryTypes = new List<string>(); // NOTE: Don't use .Clear(), the List<> is being referenced by the new MCU object created in savePart()
                     memType = ParseMemType.None;
 
                     // Get parent ID
@@ -350,12 +353,14 @@ namespace avrdudess
                                 memType = ParseMemType.Flash;
                             else if (mem == "eeprom")
                                 memType = ParseMemType.Eeprom;
+
+                            memoryTypes.Add(mem);
                         }
                     }
                 }
             }
 
-            savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom);
+            savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom, memoryTypes);
         }
 
         public new void launch(string args, Action<object> onFinish, object param, OutputTo outputTo = OutputTo.Console)

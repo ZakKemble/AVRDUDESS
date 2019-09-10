@@ -80,7 +80,9 @@
 		<string name="READHFUSE">Read high fuse</string>
 		<string name="READLFUSE">Read low fuse</string>
 		<string name="READEFUSE">Read extended fuse</string>
+		<string name="READFUSE">Read fuse</string>
 		<string name="READLOCKBITS">Read lock bits</string>
+		<string name="NOSUPPORTEDFUSES">{0} does not have any supported fuses</string>
 
 		<string name="UPDATE_CHECK">检查更新...</string>
 		<string name="UPDATE_FAILED">检查更新失败: {0}</string>

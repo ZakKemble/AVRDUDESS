@@ -55,7 +55,7 @@ Use this if you only want to update EEPROM</string>
 		<string name="DETECT">Detect</string>
 		<string name="GRP_PRESET">Presets</string>
 		<string name="PRESETMGR">Manager</string>
-		<string name="GRP_FUSELOCK">Fuses &amp; lock bits</string>
+		<string name="GRP_FUSELOCK">Fuses &amp;&amp; lock bits</string>
 		<string name="SETFUSES">Set fuses</string>
 		<string name="FUSESETTINGS">Fuse settings</string>
 		<string name="SETLOCK">Set lock</string>
@@ -80,7 +80,9 @@ Use this if you only want to update EEPROM</string>
 		<string name="READHFUSE">Read high fuse</string>
 		<string name="READLFUSE">Read low fuse</string>
 		<string name="READEFUSE">Read extended fuse</string>
+		<string name="READFUSE">Read fuse</string>
 		<string name="READLOCKBITS">Read lock bits</string>
+		<string name="NOSUPPORTEDFUSES">{0} does not have any supported fuses</string>
 
 		<string name="UPDATE_CHECK">Checking for updates...</string>
 		<string name="UPDATE_FAILED">Update check failed: {0}</string>
@@ -139,7 +141,7 @@ Use this if you only want to update EEPROM</string>
 		<string name="BTN_LATER">Later</string>
 
 		<!-- Fuse editor form -->
-		<string name="TITLE_FUSEANDLOCKBITS">Fuse &amp; lock bits: {0} ({1})</string>
+		<string name="TITLE_FUSEANDLOCKBITS">Fuse &amp;&amp; lock bits: {0} ({1})</string>
 		<string name="ERRORLOADFUSES">An error occurred trying to load fuses:
 {0}</string>
 		<string name="UNSUPPMCU">Warning: Unsupported MCU</string>

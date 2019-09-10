@@ -567,13 +567,13 @@ namespace avrdudess
 
             foreach (Programmer prog in avrdude.programmers)
             {
-                if (Config.Prop.hiddenProgrammers.Find(x => x == prog.id) == null)
+                if (!prog.hide && Config.Prop.hiddenProgrammers.Find(x => x == prog.id) == null)
                     programmers.Add(prog);
             }
 
             foreach (MCU mcu in avrdude.mcus)
             {
-                if (Config.Prop.hiddenMCUs.Find(x => x == mcu.id) == null)
+                if (!mcu.hide && Config.Prop.hiddenMCUs.Find(x => x == mcu.id) == null)
                     mcus.Add(mcu);
             }
 
@@ -650,12 +650,16 @@ namespace avrdudess
                         txtEFuse.Text = fuse;
                         Util.consoleSuccess("_READEFUSE");
                         break;
+                    case Avrdude.FuseLockType.Fuse:
+                        txtLFuse.Text = fuse;
+                        Util.consoleSuccess("_READFUSE");
+                        break;
                     case Avrdude.FuseLockType.Lock:
                         txtLock.Text = fuse;
                         Util.consoleSuccess("_READLOCKBITS");
                         break;
                     default:
-                        Util.consoleWarning("_FUSELOCKREADFAIL");
+                        Util.consoleError("_FUSELOCKREADFAIL");
                         Util.consoleWriteLine();
                         Util.consoleWriteLine(avrdude.log);
                         break;
@@ -806,6 +810,13 @@ namespace avrdudess
             btnProgram.Enabled = enable;
             btnFlashGo.Enabled = enable;
             btnEEPROMGo.Enabled = enable;
+
+            if (mcu != null)
+            {
+                txtLFuse.Enabled = mcu.memoryTypes.Contains("lfuse") || mcu.memoryTypes.Contains("fuse");
+                txtHFuse.Enabled = mcu.memoryTypes.Contains("hfuse");
+                txtEFuse.Enabled = mcu.memoryTypes.Contains("efuse");
+            }
         }
 
 #region UI Events
@@ -886,6 +897,7 @@ namespace avrdudess
         // General event for when a control changes
         private void event_controlChanged(object sender, EventArgs e)
         {
+            // NOTE: Radio button change doesn't generate an event here
             cmdLine.generate();
             enableControls();
         }
@@ -1299,10 +1311,24 @@ namespace avrdudess
         // Read fuses
         private void btnReadFuses_Click(object sender, EventArgs e)
         {
-            Util.consoleWriteLine("_READINGFUSES");
-            Avrdude.FuseLockType[] types = new Avrdude.FuseLockType[] { Avrdude.FuseLockType.Hfuse, Avrdude.FuseLockType.Lfuse, Avrdude.FuseLockType.Efuse };
-            string cmd = cmdLine.generateReadFusesLock(types);
-            avrdude.readFusesLock(cmd, types);
+            List<Avrdude.FuseLockType> types = new List<Avrdude.FuseLockType>();
+            if(mcu.memoryTypes.Contains("hfuse"))
+                types.Add(Avrdude.FuseLockType.Hfuse);
+            if (mcu.memoryTypes.Contains("lfuse"))
+                types.Add(Avrdude.FuseLockType.Lfuse);
+            if (mcu.memoryTypes.Contains("efuse"))
+                types.Add(Avrdude.FuseLockType.Efuse);
+            if (mcu.memoryTypes.Contains("fuse"))
+                types.Add(Avrdude.FuseLockType.Fuse);
+
+            if (types.Count == 0)
+                Util.consoleError("_NOSUPPORTEDFUSES", mcu.desc);
+            else
+            {
+                Util.consoleWriteLine("_READINGFUSES");
+                string cmd = cmdLine.generateReadFusesLock(types.ToArray());
+                avrdude.readFusesLock(cmd, types.ToArray());
+            }
         }
 
         // Read lock byte
@@ -1319,7 +1345,9 @@ namespace avrdudess
         // Dean (Option to only set fuses)
         private void btnWriteFuses_Click(object sender, EventArgs e)
         {
-            avrdude.launch(cmdLine.generateWriteFuses());
+            Util.consoleWriteLine("_WRITINGINGFUSES");
+            string cmd = cmdLine.generateWriteFuses();
+            avrdude.launch(cmd);
         }
 
         // Only write lock

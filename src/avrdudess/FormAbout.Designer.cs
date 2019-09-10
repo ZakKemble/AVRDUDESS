@@ -31,6 +31,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lblAbout = new System.Windows.Forms.Label();
             this.lnkHome = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // btnOK
@@ -38,7 +39,7 @@
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(12, 97);
+            this.btnOK.Location = new System.Drawing.Point(12, 109);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(208, 23);
             this.btnOK.TabIndex = 0;
@@ -65,13 +66,25 @@
             this.lnkHome.Text = "http://zakkemble.net";
             this.lnkHome.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkHome_LinkClicked);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(9, 84);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(211, 13);
+            this.linkLabel1.TabIndex = 3;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://github.com/zkemble/AVRDUDESS";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkHome_LinkClicked);
+            // 
             // FormAbout
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnOK;
-            this.ClientSize = new System.Drawing.Size(232, 132);
+            this.ClientSize = new System.Drawing.Size(232, 144);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.lnkHome);
             this.Controls.Add(this.lblAbout);
             this.Controls.Add(this.btnOK);
@@ -93,5 +106,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Label lblAbout;
         private System.Windows.Forms.LinkLabel lnkHome;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

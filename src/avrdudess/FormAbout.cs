@@ -33,7 +33,7 @@ namespace avrdudess
 
         private void lnkHome_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://zakkemble.net");
+            System.Diagnostics.Process.Start(((LinkLabel)sender).Text);
         }
     }
 }

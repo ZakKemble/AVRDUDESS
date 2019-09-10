@@ -72,7 +72,7 @@ namespace avrdudess
                 sb.Append(mainForm.additionalSettings + " ");
 
             for (int i = 0; i < types.Length; i++)
-                cmdLineOption("U", types[i].GetDescription() + ":r:-:h");
+                cmdLineOption("U", string.Format("{0}:r:-:h", types[i].GetDescription()));
             
             return sb.ToString();
         }
@@ -183,14 +183,21 @@ namespace avrdudess
         {
             value = value.Trim();
             if (value.Length > 0)
-                cmdLineOption("U", fuseLockType.GetDescription() + ":w:" + value + ":m");
+                cmdLineOption("U", string.Format("{0}:w:{1}:m", fuseLockType.GetDescription(), value));
         }
 
         private void addWriteFuses()
         {
-            makeWriteFuseLock(Avrdude.FuseLockType.Lfuse, mainForm.lowFuse);
-            makeWriteFuseLock(Avrdude.FuseLockType.Hfuse, mainForm.highFuse);
-            makeWriteFuseLock(Avrdude.FuseLockType.Efuse, mainForm.exFuse);
+            if(mainForm.mcu.memoryTypes.Contains("lfuse"))
+                makeWriteFuseLock(Avrdude.FuseLockType.Lfuse, mainForm.lowFuse);
+            if (mainForm.mcu.memoryTypes.Contains("hfuse"))
+                makeWriteFuseLock(Avrdude.FuseLockType.Hfuse, mainForm.highFuse);
+            if (mainForm.mcu.memoryTypes.Contains("efuse"))
+                makeWriteFuseLock(Avrdude.FuseLockType.Efuse, mainForm.exFuse);
+            if (mainForm.mcu.memoryTypes.Contains("fuse"))
+                makeWriteFuseLock(Avrdude.FuseLockType.Fuse, mainForm.lowFuse);
+
+            // TODO what if MCU doesnt have any of these fuses?
         }
 
         private void cmdLineOption(string arg, string val)

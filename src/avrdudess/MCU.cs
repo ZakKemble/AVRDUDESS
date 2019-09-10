@@ -6,6 +6,8 @@
  * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
+using System.Collections.Generic;
+
 namespace avrdudess
 {
     public class MCU : Part
@@ -13,6 +15,36 @@ namespace avrdudess
         private int _flash;
         private int _eeprom;
         private string _signature;
+        private List<string> _memoryTypes;
+
+        /*
+        Memory types can be called anything, heres a list of all the types that currently appear in avrdude.conf
+
+        efuse
+        lfuse
+        hfuse
+        fuse
+        lock
+        signature
+        flash
+        eeprom
+        calibration
+
+        XMEGA stuff:
+        prodsig
+        fuse0
+        fuse1
+        fuse2
+        fuse3
+        fuse4
+        fuse5
+        data
+        application
+        apptable
+        boot
+        usersig
+        */
+
 
         public int flash
         {
@@ -59,13 +91,28 @@ namespace avrdudess
             }
         }
 
-        public MCU(string id, string desc = null, string signature = null, int flash = 0, int eeprom = 0, MCU parent = null)
+        public List<string> memoryTypes
+        {
+            get
+            {
+                List<string> allTypes = new List<string>();
+                allTypes.AddRange(_memoryTypes);
+                if (parent != null)
+                    allTypes.AddRange(((MCU)parent).memoryTypes);
+
+                // NOTE: This list will have duplicate entries if the same memories are also defined in parent parts
+                return allTypes;
+            }
+        }
+
+        public MCU(string id, string desc = null, string signature = null, int flash = 0, int eeprom = 0, MCU parent = null, List<string> memoryTypes = null)
             : base(id, desc, parent)
         {
             if(signature != null)
                 this.signature = signature.ToLower();
             this.flash = flash;
             this.eeprom = eeprom;
+            _memoryTypes = (memoryTypes != null) ? memoryTypes : new List<string>();
         }
     }
 }

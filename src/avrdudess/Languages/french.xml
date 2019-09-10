@@ -80,7 +80,9 @@ Utilisez cette option uniquement si vous souhaitez mettre à jour l'EEPROM.</str
 		<string name="READHFUSE">Lire le fusible de niveau élevé</string>
 		<string name="READLFUSE">Lire le fusible de niveau bas</string>
 		<string name="READEFUSE">Lire le fusible de niveau étendu</string>
+		<string name="READFUSE">Read fuse</string>
 		<string name="READLOCKBITS">Bits de verrouillage en lecture</string>
+		<string name="NOSUPPORTEDFUSES">{0} does not have any supported fuses</string>
 
 		<string name="UPDATE_CHECK">Recherche de mises à jour ...</string>
 		<string name="UPDATE_FAILED">La vérification de la mise à jour a échoué: {0}</string>

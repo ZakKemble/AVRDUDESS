@@ -80,7 +80,9 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="READHFUSE">Read high fuse</string>
 		<string name="READLFUSE">Read low fuse</string>
 		<string name="READEFUSE">Read extended fuse</string>
+		<string name="READFUSE">Read fuse</string>
 		<string name="READLOCKBITS">Read lock bits</string>
+		<string name="NOSUPPORTEDFUSES">{0} does not have any supported fuses</string>
 
 		<string name="UPDATE_CHECK">Sprawdzam aktualizację...</string>
 		<string name="UPDATE_FAILED">Sprawdzanie nieudane: {0}</string>

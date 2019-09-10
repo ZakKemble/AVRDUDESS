@@ -15,6 +15,7 @@ namespace avrdudess
         public string id { get; private set; }
         private string _desc;
         protected Part parent;
+        public bool hide { get; private set; }
 
         public string desc
         {
@@ -38,6 +39,9 @@ namespace avrdudess
             this.id = id;
             this.desc = desc;
             this.parent = parent;
+
+            // Part is a common value thing or deprecated
+            hide = (id.StartsWith(".") || (desc != null && desc.ToLower().StartsWith("deprecated")));
         }
 
         public int CompareTo(object other)

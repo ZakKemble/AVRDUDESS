@@ -81,7 +81,7 @@ namespace avrdudess
 
     sealed class UpdateCheck
     {
-        private const string UPDATE_ADDR = "http://versions.zakkemble.net/avrdudess2.xml";
+        private const string UPDATE_ADDR = "https://versions.zakkemble.net/avrdudess2.xml";
 
         public static readonly UpdateCheck check = new UpdateCheck();
         private long timeNow;

@@ -5,7 +5,7 @@
 #define MyAppDescription "A GUI for AVRDUDE"
 #define MyAppVersion "2.9"
 #define MyAppPublisher "Zak Kemble"
-#define MyAppURL "http://zakkemble.net/"
+#define MyAppURL "https://zakkemble.net/"
 #define MyAppExeName "avrdudess.exe"
 #define MyAppContact "contact@zakkemble.net"
 #define MyAppCopyright "Copyright © 2019 Zak Kemble"

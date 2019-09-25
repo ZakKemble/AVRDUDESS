@@ -60,10 +60,10 @@
             this.lnkHome.AutoSize = true;
             this.lnkHome.Location = new System.Drawing.Point(9, 64);
             this.lnkHome.Name = "lnkHome";
-            this.lnkHome.Size = new System.Drawing.Size(107, 13);
+            this.lnkHome.Size = new System.Drawing.Size(112, 13);
             this.lnkHome.TabIndex = 2;
             this.lnkHome.TabStop = true;
-            this.lnkHome.Text = "http://zakkemble.net";
+            this.lnkHome.Text = "https://zakkemble.net";
             this.lnkHome.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkHome_LinkClicked);
             // 
             // linkLabel1

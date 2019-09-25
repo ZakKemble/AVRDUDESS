@@ -1286,22 +1286,23 @@ namespace avrdudess
             string sParam;
             string sURL = WEB_ADDR_FUSE_SETTINGS;
 
-            if (cmbMCU.SelectedIndex != 0)
+            if (mcu != null)
             {
-                sParam = "?P=" + cmbMCU.Text;
+                sParam = "?P=" + mcu.desc;
 
-                if (txtLFuse.Text != "")
+                if (mcu.memoryTypes.Contains("fuse") && txtLFuse.Text != "")
+                    sParam += "&V_BYTE0=" + txtLFuse.Text;
+
+                if (mcu.memoryTypes.Contains("lfuse") && txtLFuse.Text != "")
                     sParam += "&V_LOW=" + txtLFuse.Text;
 
-                if (txtHFuse.Text != "")
+                if (mcu.memoryTypes.Contains("hfuse") && txtHFuse.Text != "")
                     sParam += "&V_HIGH=" + txtHFuse.Text;
 
-                if (txtEFuse.Text != "")
+                if (mcu.memoryTypes.Contains("efuse") && txtEFuse.Text != "")
                     sParam += "&V_EXTENDED=" + txtEFuse.Text;
 
-                if (sParam != "" || txtHFuse.Text != "" || txtEFuse.Text != "")
-                    sParam += "&O_HEX=Apply+values";
-
+                sParam += "&O_HEX=Apply+values";
                 sURL += sParam;
             }
 

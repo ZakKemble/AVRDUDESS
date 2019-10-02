@@ -1,3 +1,8 @@
+2019-10-02 (v2.10):
+	- Fix fuse read issue with MCUs that don't have all low, high and extended fuses
+	- Update avrdude.conf to allow setting the CFD bit (Disable Clock Failure Detection) in the extended fuse for the ATmega328PB
+	- Update URLs to HTTPS
+
 2019-09-06 (v2.9):
 	- Added French translation
 	- Added Russian translation

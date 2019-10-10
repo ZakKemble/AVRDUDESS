@@ -3,7 +3,7 @@ AVRDUDESS - A GUI for AVRDUDE
 
 This is a GUI for AVRDUDE ([http://savannah.nongnu.org/projects/avrdude](http://savannah.nongnu.org/projects/avrdude)).
 
-[http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/](http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/)
+[https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/](https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/)
 
 ![AVRDUDESS pic](https://github.com/zkemble/AVRDUDESS/raw/master/images/avrdudess.png "")
 

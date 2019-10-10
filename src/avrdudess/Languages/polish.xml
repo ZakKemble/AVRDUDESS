@@ -74,18 +74,18 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="ABOUT">O...</string>
 		<string name="SELECTPROG">Wybierz programator...</string>
 		<string name="SELECTMCU">Wybierz uC...</string>
-		<string name="FUSEREADFAIL">Unable to read fuses/lock bits</string>
-		<string name="READINGFUSES">Reading fuses...</string>
-		<string name="READINGLOCKBITS">Reading lock bits...</string>
-		<string name="READHFUSE">Read high fuse</string>
-		<string name="READLFUSE">Read low fuse</string>
-		<string name="READEFUSE">Read extended fuse</string>
-		<string name="READFUSE">Read fuse</string>
-		<string name="READLOCKBITS">Read lock bits</string>
-		<string name="NOSUPPORTEDFUSES">{0} does not have any supported fuses</string>
+		<string name="FUSELOCKREADFAIL">Nie można odczytać fusów/lock bitów</string>
+		<string name="READINGFUSES">Odczytuje fusy...</string>
+		<string name="READINGLOCKBITS">Odczytuje lock bity...</string>
+		<string name="READHFUSE">Odczytałem fusy High</string>
+		<string name="READLFUSE">Odczytałem fusy Low</string>
+		<string name="READEFUSE">Odczytałem fusy Extended</string>
+		<string name="READFUSE">Odczytałem fusy </string>
+		<string name="READLOCKBITS">Odczytałem lock bity</string>
+		<string name="NOSUPPORTEDFUSES">{0} nie posiada obsługiwanych fusów</string>
 
 		<string name="UPDATE_CHECK">Sprawdzam aktualizację...</string>
-		<string name="UPDATE_FAILED">Sprawdzanie nieudane: {0}</string>
+		<string name="UPDATE_FAILED">Sprawdzenie nieudane: {0}</string>
 		<string name="UPDATE_AVAIL">Dostępna aktualizacja: v{0}</string>
 		<string name="UPDATE_LATEST">Posiadasz aktualną wersję :)</string>
 		<string name="UPDATE_SKIP">Wybrałeś aby pominąć wersję {0}</string>
@@ -122,7 +122,7 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="NEWPRESETNAME">Nazwa nowego profilu</string>
 		<string name="CANTUSEDEFAULT">Nie możesz użyć 'Default'</string>
 		<string name="OVERWRITEPRESET">Nadpisać '{0}'?</string>
-		<string name="DELETEPRESETS">Usunąć {0} profile(e)?</string>
+		<string name="DELETEPRESETS">Usunąć {0} profil(e)?</string>
 		<string name="PRESETALREADYEXISTS">Profil o tej nazwie istnieje, nadpisać?</string>
 		<string name="CANTOVERWRITEDEFAULT">Nie można nadpisać 'Default'</string>
 		<string name="PRESETOVERWRITE">Nadpisać '{0}' z aktualnymi ustawieniami?</string>
@@ -145,13 +145,13 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="ERRORLOADFUSES">Wystąpił błąd podczas ładowania fusów:
 {0}</string>
 		<string name="UNSUPPMCU">Uwaga: Niewspierany MCU</string>
-		<string name="GRP_LOCKBITS">Lock Bity</string>
-		<string name="GRP_FUSEBITS">Fuse Bity</string>
+		<string name="GRP_LOCKBITS">Lock bity</string>
+		<string name="GRP_FUSEBITS">Fusy</string>
 		<string name="LOCKBITS">LOCK BITY</string>
 
 		<!-- Options form -->
 		<string name="TITLE_OPTIONS">Opcje</string>
-		<string name="GRP_FILELOCATIONS">Ścieżka pliku (pozostaw puste dla autodetekcji)</string>
+		<string name="GRP_FILELOCATIONS">Ścieżka pliku (pozostaw puste w celu autodetekcji)</string>
 		<string name="GRP_OTHER">Inne</string>
 		<string name="GRP_HIDEPROGS">Ukryj programatory</string>
 		<string name="GRP_HIDEMCUS">Ukryj uC</string>
@@ -167,7 +167,7 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="CANCEL">Anuluj</string>
 		<string name="ERRORUC">BŁĄD</string>
 		<string name="WARNINGUC">OSTRZEŻENIE</string>
-		<string name="SUCCESSUC">SUCCESS</string>
+		<string name="SUCCESSUC">SUKCES</string>
 		<string name="ERROR">Błąd</string>
 		<string name="WARNING">Ostrzeżenie</string>
 		<string name="NOTICE">Notatka</string>
@@ -180,7 +180,7 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 {1}</string>
 		<string name="EXECMISSING">Brakuje {0} !</string>
 		<string name="EXECFAIL">Nie można uruchomić: {0}</string>
-		<string name="UNKNOWNSIG">Nieznana sygnatura{0}</string>
+		<string name="UNKNOWNSIG">Nieznana sygnatura {0}</string>
 		<string name="AVRCONFMISSING">Brakuje {0} !</string>
 		<string name="AVRCONFREADERROR">Nie udało się odczytać {0}:
 {1}</string>

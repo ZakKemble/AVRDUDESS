@@ -15,6 +15,8 @@ namespace avrdudess
     // TODO: Improve this class
     class CmdLine
     {
+        // NOTE: -u and -C args are added in Avrdude.launch()
+
         private Form1 mainForm;
         private StringBuilder sb = new StringBuilder();
 
@@ -188,14 +190,19 @@ namespace avrdudess
 
         private void addWriteFuses()
         {
-            if(mainForm.mcu.memoryTypes.Contains("lfuse"))
-                makeWriteFuseLock(Avrdude.FuseLockType.Lfuse, mainForm.lowFuse);
-            if (mainForm.mcu.memoryTypes.Contains("hfuse"))
-                makeWriteFuseLock(Avrdude.FuseLockType.Hfuse, mainForm.highFuse);
-            if (mainForm.mcu.memoryTypes.Contains("efuse"))
-                makeWriteFuseLock(Avrdude.FuseLockType.Efuse, mainForm.exFuse);
-            if (mainForm.mcu.memoryTypes.Contains("fuse"))
-                makeWriteFuseLock(Avrdude.FuseLockType.Fuse, mainForm.lowFuse);
+            MCU mcu = mainForm.mcu;
+
+            if (mcu != null)
+            {
+                if (mcu.memoryTypes.Contains("lfuse"))
+                    makeWriteFuseLock(Avrdude.FuseLockType.Lfuse, mainForm.lowFuse);
+                if (mcu.memoryTypes.Contains("hfuse"))
+                    makeWriteFuseLock(Avrdude.FuseLockType.Hfuse, mainForm.highFuse);
+                if (mcu.memoryTypes.Contains("efuse"))
+                    makeWriteFuseLock(Avrdude.FuseLockType.Efuse, mainForm.exFuse);
+                if (mcu.memoryTypes.Contains("fuse"))
+                    makeWriteFuseLock(Avrdude.FuseLockType.Fuse, mainForm.lowFuse);
+            }
 
             // TODO what if MCU doesnt have any of these fuses?
         }

@@ -479,7 +479,7 @@ namespace avrdudess
             cbEraseFlashEEPROM.CheckedChanged += event_controlChanged;
             txtAdditional.TextChanged += event_controlChanged;
 
-            Language.Translation.ApplyTranslation(this);
+            Language.Translation.apply(this);
 
             // Check for updates
             if (UpdateCheck.check.needed())

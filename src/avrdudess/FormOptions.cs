@@ -89,7 +89,7 @@ namespace avrdudess
 
         private void FormOptions_Load(object sender, EventArgs e)
         {
-            Language.Translation.ApplyTranslation(this);
+            Language.Translation.apply(this);
         }
 
         private void setHiddenCheckBoxes(List<string> hiddenParts, CheckedListBox clb)

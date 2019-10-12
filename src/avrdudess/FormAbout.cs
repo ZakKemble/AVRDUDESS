@@ -21,7 +21,7 @@ namespace avrdudess
 
         private void FormAbout_Load(object sender, System.EventArgs e)
         {
-            Language.Translation.ApplyTranslation(this);
+            Language.Translation.apply(this);
 
             string about = "";
             about += AssemblyData.title + Environment.NewLine;

@@ -28,7 +28,7 @@ namespace avrdudess
 
         }
 
-        public void ApplyTranslation(Control root, bool isFirst = true)
+        public void apply(Control root, bool isFirst = true)
         {
             if (isFirst)
                 root.Text = Translation.get(root.Text);
@@ -37,7 +37,7 @@ namespace avrdudess
             {
                 control.Text = Translation.get(control.Text);
                 if (control.Controls != null)
-                    ApplyTranslation(control, false);
+                    apply(control, false);
             }
         }
 

@@ -438,7 +438,24 @@ namespace avrdudess
             // Enable/disable tool tips based on saved config
             ToolTips.Active = Config.Prop.toolTips;
 
-            // TODO blah
+            // If a preset has not been specified by the command line then use the last used preset
+            // Credits:
+            // Uwe Tanger (specifying preset in command line)
+            if (presetToLoad == null)
+            {
+                cmbPresets.SelectedItem = presets.presets.Find(s => s.name == "Default");
+                loadPresetData(Config.Prop.previousSettings);
+            }
+            else
+            {
+                PresetData p = presets.presets.Find(s => s.name == presetToLoad);
+                cmbPresets.SelectedItem = (p != null) ? p : presets.presets.Find(s => s.name == "Default");
+            }
+
+            // Force update control enabled states and generate cmd line after loading preset data
+            event_controlChanged(null, EventArgs.Empty);
+
+            // Update control enabled states and generate cmd line whenever a control is changed
             cmbProg.SelectedIndexChanged += event_controlChanged;
             cmbMCU.SelectedIndexChanged += event_controlChanged;
             cbForce.CheckedChanged += event_controlChanged;
@@ -461,20 +478,6 @@ namespace avrdudess
             cbDisableFlashErase.CheckedChanged += event_controlChanged;
             cbEraseFlashEEPROM.CheckedChanged += event_controlChanged;
             txtAdditional.TextChanged += event_controlChanged;
-
-            // If a preset has not been specified by the command line then use the last used preset
-            // Credits:
-            // Uwe Tanger (specifying preset in command line)
-            if (presetToLoad == null)
-            {
-                cmbPresets.SelectedItem = presets.presets.Find(s => s.name == "Default");
-                loadPresetData(Config.Prop.previousSettings);
-            }
-            else
-            {
-                PresetData p = presets.presets.Find(s => s.name == presetToLoad);
-                cmbPresets.SelectedItem = (p != null) ? p : presets.presets.Find(s => s.name == "Default");
-            }
 
             Language.Translation.ApplyTranslation(this);
 

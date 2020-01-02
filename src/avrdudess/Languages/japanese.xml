@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<translation>
+	<name>日本語 (Japanese)</name>
+	<data>
+
+		<!-- Main form -->
+		<string name="TOOLTIP_MCU">プログラムするMCU</string>
+		<string name="TOOLTIP_PROGRAMMER">プログラマー</string>
+		<string name="TOOLTIP_PORT">COM/LTP/USBポートの設定</string>
+		<string name="TOOLTIP_BAUDRATE">ポートのボーレート</string>
+		<string name="TOOLTIP_BITCLOCK">ビットクロック周期（us）</string>
+		<string name="TOOLTIP_FLASHFILE">Hexファイル (.hex)
+ここにファイルをドラッグ&amp;ドロップすることもできます</string>
+		<string name="TOOLTIP_EEPROMFILE">EEPROMファイル (.eep)
+ここにファイルをドラッグ&amp;ドロップすることもできます</string>
+		<string name="TOOLTIP_FORCE">検証検査をスキップ</string>
+		<string name="TOOLTIP_NOVERIFY">書き込み後に検証しません</string>
+		<string name="TOOLTIP_NOERASE">書き込み前にフラッシュを消去しません
+EEPROMのみを更新する場合に使用します</string>
+		<string name="TOOLTIP_ERASEBOTH">フラッシュとEEPROMの両方を消去します</string>
+		<string name="TOOLTIP_NOWRITE">AVRDUDEのデバッグに使用されるものは何も書き込みません</string>
+		<string name="TOOLTIP_LOWFUSE">Lowヒューズ</string>
+		<string name="TOOLTIP_HIGHFUSE">Highヒューズ</string>
+		<string name="TOOLTIP_EXFUSE">拡張ヒューズ</string>
+		<string name="TOOLTIP_LOCKBITS">ロックビット</string>
+		<string name="TOOLTIP_ONLYFLASH">フラッシュへの書き込み/読み込み/検証</string>
+		<string name="TOOLTIP_ONLYEEPROM">EEPROMへの書き込み/読み込み/検証</string>
+		<string name="TOOLTIP_WRITEFUSES">今すぐヒューズを書き込む</string>
+		<string name="TOOLTIP_WRITELOCK">今すぐロックを書き込む</string>
+		<string name="TOOLTIP_READFUSES">今すぐヒューズを読む</string>
+		<string name="TOOLTIP_READLOCK">今すぐロックを読む</string>
+		<string name="TOOLTIP_WRITEFUSESPROG">プログラミング時にヒューズを書き込む</string>
+		<string name="TOOLTIP_WRITELOCKPROG">プログラミング時にロックを書き込む</string>
+		<string name="GO">実行</string>
+		<string name="WRITE">書込</string>
+		<string name="READ">読込</string>
+		<string name="VERIFY">検証</string>
+		<string name="GRP_PROGRAMMER">プログラマー (-c)</string>
+		<string name="PORT">ポート (-P)</string>
+		<string name="BAUDRATE">ボーレート (-b)</string>
+		<string name="BITCLOCK">ビットクロック (-B)</string>
+		<string name="GRP_FLASH">フラッシュ</string>
+		<string name="FORMAT">形式</string>
+		<string name="GRP_EEPROM">EEPROM</string>
+		<string name="GRP_OPTIONS">オプション</string>
+		<string name="FORCE">強制 (-F)</string>
+		<string name="DISVERIFY">検証を無効 (-V)</string>
+		<string name="DISFLASHERASE">フラッシュの消去を無効 (-D)</string>
+		<string name="ERASEFLASHEEP">フラッシュとEEPROMを消去 (-e)</string>
+		<string name="DONOTWRITE">書き込まない (-n)</string>
+		<string name="VERBOSITY">冗長性</string>
+		<string name="GRP_MCU">MCU (-p)</string>
+		<string name="FLASHSZ">フラッシュ:</string>
+		<string name="EEPROMSZ">EEPROM:</string>
+		<string name="DETECT">検出</string>
+		<string name="GRP_PRESET">プリセット</string>
+		<string name="PRESETMGR">マネージャー</string>
+		<string name="GRP_FUSELOCK">ヒューズ &amp;&amp; ロックビット</string>
+		<string name="SETFUSES">ヒューズをセット</string>
+		<string name="FUSESETTINGS">ヒューズの設定</string>
+		<string name="SETLOCK">ロックをセット</string>
+		<string name="BITSELECTOR">ビットセレクター</string>
+		<string name="DOPROGRAM">プログラム！</string>
+		<string name="DOSTOP">停止</string>
+		<string name="BTN_OPTIONS">オプション</string>
+		<string name="GRP_ADDCMDARGS">追加のコマンドライン引数</string>
+		<string name="MCUNOTFOUND">MCU '{0}' は見つかりませんでした</string>
+		<string name="PROGNOTFOUND">プログラマー '{0}' は見つかりませんでした</string>
+		<string name="STATUSRUNNING">AVRDUDEが実行中です...</string>
+		<string name="STATUSREADY">準備完了</string>
+		<string name="DETECTSUCCESS">検出 {0} = {1}</string>
+		<string name="DETECTFAIL">MCUを検出できません</string>
+		<string name="AVRDUDEKILLED">AVRDUDE 強制停止しました</string>
+		<string name="ABOUT">About</string>
+		<string name="SELECTPROG">プログラマーを選択...</string>
+		<string name="SELECTMCU">MCUを選択...</string>
+		<string name="FUSELOCKREADFAIL">ヒューズ/ロックビットを読み取れません</string>
+		<string name="READINGFUSES">ヒューズの読み取り中...</string>
+		<string name="READINGLOCKBITS">ロックビットを読み込んでいます...</string>
+		<string name="READHFUSE">Highヒューズを読み取る</string>
+		<string name="READLFUSE">Lowヒューズを読み取る</string>
+		<string name="READEFUSE">拡張ヒューズの読み取る</string>
+		<string name="READFUSE">ヒューズを読む</string>
+		<string name="READLOCKBITS">ロックビットを読む</string>
+		<string name="NOSUPPORTEDFUSES">{0} にはサポートされているヒューズがありません</string>
+
+		<string name="UPDATE_CHECK">アップデートの確認...</string>
+		<string name="UPDATE_FAILED">更新チェックに失敗しました: {0}</string>
+		<string name="UPDATE_AVAIL">アップデート可能: v{0}</string>
+		<string name="UPDATE_LATEST">最新バージョンを使用しています :)</string>
+		<string name="UPDATE_SKIP">{0} バージョンをスキップすることを選択しました</string>
+		<string name="UPDATE_BADXML">アップデートXMLにリリースエントリがありません</string>
+
+		<string name="FILEFMT_AUTO">自動 (書き込みのみ)</string>
+		<string name="FILEFMT_HEX">Intel Hex</string>
+		<string name="FILEFMT_SREC">Motorola S-record</string>
+		<string name="FILEFMT_BIN">Raw バイナリ</string>
+		<string name="FILEFMT_DECR">10進数 (読み取り専用)</string>
+		<string name="FILEFMT_HEXR">16進数 (読み取り専用)</string>
+		<string name="FILEFMT_BINR">バイナリ (読み取り専用</string>
+
+		<string name="BROWSE_OPEN_FLASH">flashファイルを開く</string>
+		<string name="BROWSE_SAVE_FLASH">flashファイルを保存する</string>
+		<string name="BROWSE_OPEN_EEPROM">EEPROMファイルを開く</string>
+		<string name="BROWSE_SAVE_EEPROM">EEPROMファイルを保存する</string>
+		<string name="BROWSE_FILTER_ALL">すべてのファイル (*.*)</string>
+		<string name="BROWSE_FILTER_HEX">Hexファイル (*.hex)</string>
+		<string name="BROWSE_FILTER_EEP">EEPROMファイル (*.eep)</string>
+
+		<!-- Preset manager form -->
+		<string name="TITLE_PRESETMGR">プリセットマネージャー</string>
+		<string name="RENAME">名前変更</string>
+		<string name="OVERWRITE">上書き</string>
+		<string name="SAVENEWPRESET">新しいプリセットを保存...</string>
+		<string name="EXPORT">エクスポート</string>
+		<string name="IMPORT">インポート</string>
+		<string name="DELETE">削除</string>
+		<string name="CLOSE">閉じる</string>
+		<string name="EXPORTIMGPORTDELETE">エクスポート/インポート/削除</string>
+		<string name="SAVEDIALOG_EXPORT">プリセットをエクスポート</string>
+		<string name="OPENDIALOG_IMPORT">プリセットをインポート</string>
+		<string name="NEWPRESETNAME">新しいプリセットの名前</string>
+		<string name="CANTUSEDEFAULT">'Default'の名前は使用できません</string>
+		<string name="OVERWRITEPRESET">'{0}' に上書きしますか?</string>
+		<string name="DELETEPRESETS">プリセット {0} を削除しますか?</string>
+		<string name="PRESETALREADYEXISTS">この名前のプリセットは既に存在しますが、上書きしますか？</string>
+		<string name="CANTOVERWRITEDEFAULT">「デフォルト」を上書きできません</string>
+		<string name="PRESETOVERWRITE">現在の設定で '{0}'を上書きしますか？</string>
+		<string name="EXPORTINGPRESETS">エクスポート中 '{0}'...</string>
+		<string name="EXPORTCOMPLETE">プリセットのエクスポートが完了しました</string>
+		<string name="IMPORTINGPRESETS">インポート中 '{0}'...</string>
+		<string name="IMPORTALREADYEXISTS">'{0}' はすでに存在し、'{1}' に名前を変更します</string>
+		<string name="IMPORTCOMPLETE">プリセットのインポートが完了しました</string>
+
+		<!-- Update form -->
+		<string name="UPDATEAVAILABLE">アップデート可能です</string>
+		<string name="CURRENTVERSION">現在のバージョン:</string>
+		<string name="NEWVERSION">新しいバージョン:</string>
+		<string name="BTN_UPDATE">アップデート</string>
+		<string name="BTN_SKIPVERSION">このバージョンをスキップ</string>
+		<string name="BTN_LATER">後で</string>
+
+		<!-- Fuse editor form -->
+		<string name="TITLE_FUSEANDLOCKBITS">ヒューズ &amp;&amp; ロックビット: {0} ({1})</string>
+		<string name="ERRORLOADFUSES">ヒューズをロードしようとしてエラーが発生しました:
+{0}</string>
+		<string name="UNSUPPMCU">警告: サポートされていないMCUです</string>
+		<string name="GRP_LOCKBITS">ロックビット</string>
+		<string name="GRP_FUSEBITS">ヒューズビット</string>
+		<string name="LOCKBITS">ロックビット</string>
+
+		<!-- Options form -->
+		<string name="TITLE_OPTIONS">オプション</string>
+		<string name="GRP_FILELOCATIONS">ファイルの場所（空白は自動検出）</string>
+		<string name="GRP_OTHER">その他</string>
+		<string name="GRP_HIDEPROGS">非表示にするプログラマー</string>
+		<string name="GRP_HIDEMCUS">非表示にするMCU</string>
+		<string name="LANGUAGE">言語</string>
+		<string name="SHOWTOOLTIPS">ツールチップを表示</string>
+		<string name="USEPREVSETTINGS">起動時に以前の設定を読み込む</string>
+		<string name="AVRDUDE_LOCATION">avrdudeフォルダーの場所</string>
+		<string name="AVRDUDECONF_LOCATION">avrdude.confフォルダーの場所</string>
+		<string name="AVRSIZE_LOCATION">avr-sizeフォルダーの場所</string>
+
+		<!-- General stuff -->
+		<string name="OK">OK</string>
+		<string name="CANCEL">キャンセル</string>
+		<string name="ERRORUC">エラー</string>
+		<string name="WARNINGUC">警告</string>
+		<string name="SUCCESSUC">成功</string>
+		<string name="ERROR">エラー</string>
+		<string name="WARNING">警告</string>
+		<string name="NOTICE">通知</string>
+		<string name="CONFIRM">確認</string>
+
+		<!-- Errors and things -->
+		<string name="XMLWRITEERROR">{0} を保存しようとしてエラーが発生しました:
+{1}</string>
+		<string name="XMLCOPYERROR">{0} テンプレートをAppDataにコピーできませんでした:
+{1}</string>
+		<string name="EXECMISSING">{0} がありません！</string>
+		<string name="EXECFAIL">プロセスを開始できません: {0}</string>
+		<string name="UNKNOWNSIG">不明な署名 {0}</string>
+		<string name="AVRCONFMISSING">{0} がありません！</string>
+		<string name="AVRCONFREADERROR">{0} を読み取れません:
+{1}</string>
+
+	</data>
+</translation>

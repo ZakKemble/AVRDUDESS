@@ -49,3 +49,6 @@ Ideas & code credits:
 
 "Alain DÖRING" <adoring (-at-) club-internet (-dot-) fr>
 * French translation
+
+"Tetsuji Yamakawa" <opeope98 (-at-) gmail (-dot-) com>
+* Japanese translation

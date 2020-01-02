@@ -178,6 +178,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Languages\japanese.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Languages\polish.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

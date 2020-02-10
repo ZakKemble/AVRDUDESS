@@ -52,3 +52,6 @@ Ideas & code credits:
 
 "Tetsuji Yamakawa" <opeope98 (-at-) gmail (-dot-) com>
 * Japanese translation
+
+"Rod" <informa (-at-) turcotronics (-dot-) it>
+* Italian translation

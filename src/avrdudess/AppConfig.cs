@@ -46,6 +46,7 @@ namespace avrdudess
         public PresetData previousSettings; // Settings from when the program was last closed
         public bool usePreviousSettings; // Enable saving settings when closing
         public Size windowSize; // For persistent window size across sessions
+        public bool checkForUpdates; // Check for updates on startup
 
         [XmlIgnore]
         public Version skipVersion
@@ -79,6 +80,7 @@ namespace avrdudess
             hiddenProgrammers = new List<string>();
             previousSettings = new PresetData();
             usePreviousSettings = true;
+            checkForUpdates = true;
         }
 
         public new void save()

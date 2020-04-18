@@ -163,6 +163,7 @@ Usa esto si únicamente quieres actualizar la EEPROM</string>
 		<string name="AVRDUDE_LOCATION">Ubicación de la carpeta de AVRDUDE</string>
 		<string name="AVRDUDECONF_LOCATION">Ubicación de la carpeta de avrdude.conf</string>
 		<string name="AVRSIZE_LOCATION">Ubicación de la carpeta de avr-size</string>
+		<string name="CHECKFORUPDATES">Check for updates on startup</string>
 
 		<!-- General stuff -->
 		<string name="OK">OK</string>

@@ -64,6 +64,12 @@ namespace avrdudess
             set { setHiddenCheckBoxes(value, clbHiddenMCUs); }
         }
 
+        public bool checkForUpdates
+        {
+            get { return cbCheckForUpdate.Checked; }
+            set { cbCheckForUpdate.Checked = value; }
+        }
+
         #endregion
 
         public FormOptions(List<Programmer> programmers, List<MCU> mcus)

@@ -482,7 +482,7 @@ namespace avrdudess
             Language.Translation.apply(this);
 
             // Check for updates
-            if (UpdateCheck.check.needed())
+            if (UpdateCheck.check.needed() && Config.Prop.checkForUpdates)
             {
                 Thread t = new Thread(() =>
                 {
@@ -1076,6 +1076,7 @@ namespace avrdudess
             fOptions.language = Config.Prop.language;
             fOptions.hiddenProgrammers = Config.Prop.hiddenProgrammers;
             fOptions.hiddenMCUs = Config.Prop.hiddenMCUs;
+            fOptions.checkForUpdates = Config.Prop.checkForUpdates;
 
             if (fOptions.ShowDialog() == DialogResult.OK)
             {
@@ -1091,6 +1092,7 @@ namespace avrdudess
                 Config.Prop.language = fOptions.language;
                 Config.Prop.hiddenProgrammers = fOptions.hiddenProgrammers;
                 Config.Prop.hiddenMCUs = fOptions.hiddenMCUs;
+                Config.Prop.checkForUpdates = fOptions.checkForUpdates;
 
                 ToolTips.Active = Config.Prop.toolTips;
 

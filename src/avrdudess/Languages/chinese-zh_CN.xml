@@ -163,6 +163,7 @@
 		<string name="AVRDUDE_LOCATION">avrdude 路径</string>
 		<string name="AVRDUDECONF_LOCATION">avrdude.conf 路径</string>
 		<string name="AVRSIZE_LOCATION">avr-size 路径</string>
+		<string name="CHECKFORUPDATES">在启动时检查更新</string>
 
 		<!-- General stuff -->
 		<string name="OK">确定</string>

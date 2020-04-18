@@ -55,13 +55,10 @@ namespace avrdudess
 
         public string genReadSig()
         {
-            generateMain(false);
+            generateMain(true);
 
             if (mainForm.additionalSettings.Length > 0)
                 sb.Append(mainForm.additionalSettings + " ");
-
-            // AVRDUDE needs -p defined to work, so just set m8
-            cmdLineOption("p", "m8");
 
             return sb.ToString();
         }

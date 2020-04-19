@@ -83,6 +83,7 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="READFUSE">Odczytałem fusy </string>
 		<string name="READLOCKBITS">Odczytałem lock bity</string>
 		<string name="NOSUPPORTEDFUSES">{0} nie posiada obsługiwanych fusów</string>
+		<string name="AUTODETECT">Auto (dla większości MCU)</string>
 
 		<string name="UPDATE_CHECK">Sprawdzam aktualizację...</string>
 		<string name="UPDATE_FAILED">Sprawdzenie nieudane: {0}</string>
@@ -161,7 +162,7 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="AVRDUDE_LOCATION">Folder z avrdude.exe</string>
 		<string name="AVRDUDECONF_LOCATION">Folder z avrdude.conf</string>
 		<string name="AVRSIZE_LOCATION">Folder z avr-size.exe</string>
-		<string name="UPDATE">Sprawdź dostępność aktualizacji podczas uruchamiania</string>
+		<string name="CHECKFORUPDATES">Sprawdź dostępność aktualizacji podczas uruchamiania</string>
 
 		<!-- General stuff -->
 		<string name="OK">OK</string>

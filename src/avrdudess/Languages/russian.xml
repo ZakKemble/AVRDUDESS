@@ -83,6 +83,7 @@
 		<string name="READFUSE">Read fuse</string>
 		<string name="READLOCKBITS">Чтение LOCK битов</string>
 		<string name="NOSUPPORTEDFUSES">{0} does not have any supported fuses</string>
+		<string name="AUTODETECT">Auto (для большинства MCU)</string>
 
 		<string name="UPDATE_CHECK">Проверка обновлений ...</string>
 		<string name="UPDATE_FAILED">Ошибка обновления: {0}</string>
@@ -162,7 +163,7 @@
 		<string name="AVRDUDE_LOCATION">расположение папки avrdude</string>
 		<string name="AVRDUDECONF_LOCATION">расположение папки avrdude.conf</string>
 		<string name="AVRSIZE_LOCATION">расположение папки avr-размера</string>
-		<string name="UPDATE">Проверьте наличие обновлений при запуске</string>
+		<string name="CHECKFORUPDATES">Проверьте наличие обновлений при запуске</string>
 
 		<!-- Общие вещи -->
 		<string name="OK">OK</string>

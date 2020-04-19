@@ -83,6 +83,7 @@ Utilisez cette option uniquement si vous souhaitez mettre à jour l'EEPROM.</str
 		<string name="READFUSE">Read fuse</string>
 		<string name="READLOCKBITS">Bits de verrouillage en lecture</string>
 		<string name="NOSUPPORTEDFUSES">{0} does not have any supported fuses</string>
+		<string name="AUTODETECT">Auto (pour la plupart des MCU)</string>
 
 		<string name="UPDATE_CHECK">Recherche de mises à jour ...</string>
 		<string name="UPDATE_FAILED">La vérification de la mise à jour a échoué: {0}</string>
@@ -161,7 +162,7 @@ Utilisez cette option uniquement si vous souhaitez mettre à jour l'EEPROM.</str
 		<string name="AVRDUDE_LOCATION">Emplacement du dossier avrdude</string>
 		<string name="AVRDUDECONF_LOCATION">Emplacement du dossier avrdude.conf</string>
 		<string name="AVRSIZE_LOCATION">Emplacement du dossier de taille avr</string>
-		<string name="UPDATE">Vérifier les mises à jour au démarrage</string>
+		<string name="CHECKFORUPDATES">Vérifier les mises à jour au démarrage</string>
 
 		<!-- General stuff -->
 		<string name="OK">OK</string>

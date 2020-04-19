@@ -255,6 +255,16 @@ namespace avrdudess
             set { cmdVerbose.SelectedItem = value; }
         }
 
+        public bool enableMCUAutoDetect
+        {
+            get { return cbMCUAutoDetectEnabled.Checked; }
+            set 
+            { 
+                cbMCUAutoDetectEnabled.Checked = value;
+                cmbMCU.Enabled = !value; 
+            }
+        }
+
         #endregion
 
         public Form1(string[] args)
@@ -478,6 +488,7 @@ namespace avrdudess
             cbDisableFlashErase.CheckedChanged += event_controlChanged;
             cbEraseFlashEEPROM.CheckedChanged += event_controlChanged;
             txtAdditional.TextChanged += event_controlChanged;
+            cbMCUAutoDetectEnabled.CheckedChanged += event_controlChanged;
 
             Language.Translation.apply(this);
 
@@ -801,10 +812,13 @@ namespace avrdudess
         private void enableControls()
         {
             bool progOK = (prog != null);
-
-            btnDetect.Enabled = progOK;
-
             bool enable = (mcu != null && progOK);
+
+            if (enableMCUAutoDetect)
+                btnDetect.Enabled = progOK;
+            else
+                btnDetect.Enabled = progOK && enable;
+
             btnFuseSelector.Enabled = enable;
             btnWriteFuses.Enabled = enable;
             btnReadFuses.Enabled = enable;
@@ -900,6 +914,9 @@ namespace avrdudess
         // General event for when a control changes
         private void event_controlChanged(object sender, EventArgs e)
         {
+            if (sender == cbMCUAutoDetectEnabled)
+                cmbMCU.Enabled = !((CheckBox)sender).Checked;
+
             // NOTE: Radio button change doesn't generate an event here
             cmdLine.generate();
             enableControls();
@@ -1208,6 +1225,7 @@ namespace avrdudess
             preset.setLock = setLock;
             preset.additional = additionalSettings;
             preset.verbosity = verbosity;
+            preset.enableMCUAutoDetect = enableMCUAutoDetect;
 
             return preset;
         }
@@ -1238,6 +1256,7 @@ namespace avrdudess
             setLock = item.setLock;
             additionalSettings = item.additional;
             verbosity = item.verbosity;
+            enableMCUAutoDetect = item.enableMCUAutoDetect;
         }
 
         // Preset choice changed
@@ -1379,7 +1398,7 @@ namespace avrdudess
         // Simone Chifari (Auto detect MCU)
         private void btnDetect_Click(object sender, EventArgs e)
         {
-            avrdude.detectMCU(cmdLine.genReadSig());
+            avrdude.detectMCU(cmdLine.genReadSig(enableMCUAutoDetect));
         }
 
         // Open fuse selector window
@@ -1516,6 +1535,6 @@ namespace avrdudess
                 Config.Prop.windowLocation = Location;
         }
 
-#endregion
+        #endregion
     }
 }

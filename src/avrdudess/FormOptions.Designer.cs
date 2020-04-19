@@ -39,6 +39,7 @@
             this.txtAvrdudeConfLocation = new System.Windows.Forms.TextBox();
             this.txtAvrdudeLocation = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbCheckForUpdate = new System.Windows.Forms.CheckBox();
             this.cbUsePrevSettings = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbLanguage = new System.Windows.Forms.ComboBox();
@@ -50,7 +51,6 @@
             this.clbHiddenProgrammers = new System.Windows.Forms.CheckedListBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.clbHiddenMCUs = new System.Windows.Forms.CheckedListBox();
-            this.cbCheckForUpdate = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -186,6 +186,18 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "_GRP_OTHER";
             // 
+            // cbCheckForUpdate
+            // 
+            this.cbCheckForUpdate.AutoSize = true;
+            this.cbCheckForUpdate.Checked = true;
+            this.cbCheckForUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbCheckForUpdate.Location = new System.Drawing.Point(261, 70);
+            this.cbCheckForUpdate.Name = "cbCheckForUpdate";
+            this.cbCheckForUpdate.Size = new System.Drawing.Size(141, 17);
+            this.cbCheckForUpdate.TabIndex = 43;
+            this.cbCheckForUpdate.Text = "_CHECKFORUPDATES";
+            this.cbCheckForUpdate.UseVisualStyleBackColor = true;
+            // 
             // cbUsePrevSettings
             // 
             this.cbUsePrevSettings.AutoSize = true;
@@ -304,18 +316,6 @@
             this.clbHiddenMCUs.Name = "clbHiddenMCUs";
             this.clbHiddenMCUs.Size = new System.Drawing.Size(498, 169);
             this.clbHiddenMCUs.TabIndex = 0;
-            // 
-            // cbCheckForUpdate
-            // 
-            this.cbCheckForUpdate.AutoSize = true;
-            this.cbCheckForUpdate.Checked = true;
-            this.cbCheckForUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbCheckForUpdate.Location = new System.Drawing.Point(261, 70);
-            this.cbCheckForUpdate.Name = "cbCheckForUpdate";
-            this.cbCheckForUpdate.Size = new System.Drawing.Size(76, 17);
-            this.cbCheckForUpdate.TabIndex = 43;
-            this.cbCheckForUpdate.Text = "_UPDATE";
-            this.cbCheckForUpdate.UseVisualStyleBackColor = true;
             // 
             // FormOptions
             // 

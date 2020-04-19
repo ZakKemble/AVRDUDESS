@@ -83,6 +83,7 @@ Usa questo se vuoi solo aggiornare l'EEPROM</string>
 		<string name="READFUSE">Leggo fuse</string>
 		<string name="READLOCKBITS">Leggo lock bits</string>
 		<string name="NOSUPPORTEDFUSES">{0} non ha fuses supportati</string>
+		<string name="AUTODETECT">Auto (per la maggior parte degli MCU)</string>
 
 		<string name="UPDATE_CHECK">Controllo gli aggiornamenti...</string>
 		<string name="UPDATE_FAILED">Controllo aggiornamenti fallito: {0}</string>
@@ -161,7 +162,7 @@ Usa questo se vuoi solo aggiornare l'EEPROM</string>
 		<string name="AVRDUDE_LOCATION">Posizione cartella di avrdude</string>
 		<string name="AVRDUDECONF_LOCATION">Posizione cartella di avrdude.conf</string>
 		<string name="AVRSIZE_LOCATION">Posizione cartella di avr-size</string>
-		<string name="UPDATE">Controlla aggiornamenti all'avvio</string>
+		<string name="CHECKFORUPDATES">Controlla aggiornamenti all'avvio</string>
 
 		<!-- General stuff -->
 		<string name="OK">OK</string>

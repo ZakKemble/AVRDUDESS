@@ -167,6 +167,7 @@ namespace avrdudess
         public bool setLock;
         public string additional;
         public byte verbosity;
+        public bool enableMCUAutoDetect = true;
 
         public PresetData()
         {
@@ -210,6 +211,7 @@ namespace avrdudess
             setLock = source.setLock;
             additional = source.additional;
             verbosity = source.verbosity;
+            enableMCUAutoDetect = source.enableMCUAutoDetect;
         }
     }
 }

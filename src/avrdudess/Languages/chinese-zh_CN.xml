@@ -83,6 +83,7 @@
 		<string name="READFUSE">Read fuse</string>
 		<string name="READLOCKBITS">Read lock bits</string>
 		<string name="NOSUPPORTEDFUSES">{0} does not have any supported fuses</string>
+		<string name="AUTODETECT">Auto (对于大多数MCU)</string>
 
 		<string name="UPDATE_CHECK">检查更新...</string>
 		<string name="UPDATE_FAILED">检查更新失败: {0}</string>
@@ -161,7 +162,7 @@
 		<string name="AVRDUDE_LOCATION">avrdude 路径</string>
 		<string name="AVRDUDECONF_LOCATION">avrdude.conf 路径</string>
 		<string name="AVRSIZE_LOCATION">avr-size 路径</string>
-		<string name="UPDATE">在启动时检查更新</string>
+		<string name="CHECKFORUPDATES">在启动时检查更新</string>
 
 		<!-- General stuff -->
 		<string name="OK">确定</string>

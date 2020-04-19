@@ -106,6 +106,7 @@
             this.tsmiClear = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDetect = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.cbMCUAutoDetectEnabled = new System.Windows.Forms.CheckBox();
             this.lblSig = new System.Windows.Forms.Label();
             this.lblFlashSize = new System.Windows.Forms.Label();
             this.lblEEPROMSize = new System.Windows.Forms.Label();
@@ -179,7 +180,7 @@
             // btnProgram
             // 
             this.btnProgram.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProgram.Location = new System.Drawing.Point(6, 356);
+            this.btnProgram.Location = new System.Drawing.Point(5, 363);
             this.btnProgram.Name = "btnProgram";
             this.btnProgram.Size = new System.Drawing.Size(176, 23);
             this.btnProgram.TabIndex = 8;
@@ -243,7 +244,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.btnPresetMgr);
             this.groupBox1.Controls.Add(this.cmbPresets);
-            this.groupBox1.Location = new System.Drawing.Point(0, 99);
+            this.groupBox1.Location = new System.Drawing.Point(0, 125);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(182, 73);
             this.groupBox1.TabIndex = 5;
@@ -349,7 +350,7 @@
             this.txtCmdLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCmdLine.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCmdLine.Location = new System.Drawing.Point(6, 385);
+            this.txtCmdLine.Location = new System.Drawing.Point(6, 401);
             this.txtCmdLine.Name = "txtCmdLine";
             this.txtCmdLine.ReadOnly = true;
             this.txtCmdLine.Size = new System.Drawing.Size(431, 20);
@@ -622,7 +623,7 @@
             this.groupBox4.Controls.Add(this.txtHFuse);
             this.groupBox4.Controls.Add(this.txtLFuse);
             this.groupBox4.Controls.Add(this.txtEFuse);
-            this.groupBox4.Location = new System.Drawing.Point(0, 178);
+            this.groupBox4.Location = new System.Drawing.Point(0, 204);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(182, 172);
             this.groupBox4.TabIndex = 6;
@@ -815,7 +816,7 @@
             // btnAbout
             // 
             this.btnAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAbout.Location = new System.Drawing.Point(411, 356);
+            this.btnAbout.Location = new System.Drawing.Point(410, 363);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(26, 23);
             this.btnAbout.TabIndex = 11;
@@ -826,7 +827,7 @@
             // btnForceStop
             // 
             this.btnForceStop.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnForceStop.Location = new System.Drawing.Point(188, 356);
+            this.btnForceStop.Location = new System.Drawing.Point(187, 363);
             this.btnForceStop.Name = "btnForceStop";
             this.btnForceStop.Size = new System.Drawing.Size(75, 23);
             this.btnForceStop.TabIndex = 9;
@@ -839,7 +840,7 @@
             this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox7.Controls.Add(this.txtAdditional);
-            this.groupBox7.Location = new System.Drawing.Point(0, 357);
+            this.groupBox7.Location = new System.Drawing.Point(0, 382);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(182, 48);
             this.groupBox7.TabIndex = 7;
@@ -869,13 +870,13 @@
             // tssStatus
             // 
             this.tssStatus.Name = "tssStatus";
-            this.tssStatus.Size = new System.Drawing.Size(88, 17);
+            this.tssStatus.Size = new System.Drawing.Size(90, 17);
             this.tssStatus.Text = "_STATUSREADY";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(525, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(523, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // tssTooltip
@@ -918,7 +919,7 @@
             // btnDetect
             // 
             this.btnDetect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDetect.Location = new System.Drawing.Point(99, 61);
+            this.btnDetect.Location = new System.Drawing.Point(99, 86);
             this.btnDetect.Name = "btnDetect";
             this.btnDetect.Size = new System.Drawing.Size(75, 23);
             this.btnDetect.TabIndex = 1;
@@ -930,6 +931,7 @@
             // 
             this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox9.Controls.Add(this.cbMCUAutoDetectEnabled);
             this.groupBox9.Controls.Add(this.lblSig);
             this.groupBox9.Controls.Add(this.lblFlashSize);
             this.groupBox9.Controls.Add(this.lblEEPROMSize);
@@ -939,16 +941,26 @@
             this.groupBox9.Controls.Add(this.btnDetect);
             this.groupBox9.Location = new System.Drawing.Point(0, 3);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(182, 90);
+            this.groupBox9.Size = new System.Drawing.Size(182, 116);
             this.groupBox9.TabIndex = 4;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "_GRP_MCU";
+            // 
+            // cbMCUAutoDetectEnabled
+            // 
+            this.cbMCUAutoDetectEnabled.AutoSize = true;
+            this.cbMCUAutoDetectEnabled.Location = new System.Drawing.Point(9, 48);
+            this.cbMCUAutoDetectEnabled.Name = "cbMCUAutoDetectEnabled";
+            this.cbMCUAutoDetectEnabled.Size = new System.Drawing.Size(105, 17);
+            this.cbMCUAutoDetectEnabled.TabIndex = 59;
+            this.cbMCUAutoDetectEnabled.Text = "_AUTODETECT";
+            this.cbMCUAutoDetectEnabled.UseVisualStyleBackColor = true;
             // 
             // lblSig
             // 
             this.lblSig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSig.AutoSize = true;
-            this.lblSig.Location = new System.Drawing.Point(132, 46);
+            this.lblSig.Location = new System.Drawing.Point(132, 71);
             this.lblSig.Name = "lblSig";
             this.lblSig.Size = new System.Drawing.Size(10, 13);
             this.lblSig.TabIndex = 58;
@@ -957,7 +969,7 @@
             // lblFlashSize
             // 
             this.lblFlashSize.AutoSize = true;
-            this.lblFlashSize.Location = new System.Drawing.Point(59, 46);
+            this.lblFlashSize.Location = new System.Drawing.Point(59, 71);
             this.lblFlashSize.Name = "lblFlashSize";
             this.lblFlashSize.Size = new System.Drawing.Size(10, 13);
             this.lblFlashSize.TabIndex = 57;
@@ -966,7 +978,7 @@
             // lblEEPROMSize
             // 
             this.lblEEPROMSize.AutoSize = true;
-            this.lblEEPROMSize.Location = new System.Drawing.Point(59, 67);
+            this.lblEEPROMSize.Location = new System.Drawing.Point(59, 92);
             this.lblEEPROMSize.Name = "lblEEPROMSize";
             this.lblEEPROMSize.Size = new System.Drawing.Size(10, 13);
             this.lblEEPROMSize.TabIndex = 56;
@@ -975,7 +987,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 67);
+            this.label2.Location = new System.Drawing.Point(6, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 55;
@@ -984,7 +996,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 46);
+            this.label3.Location = new System.Drawing.Point(6, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 13);
             this.label3.TabIndex = 54;
@@ -993,7 +1005,7 @@
             // btnOptions
             // 
             this.btnOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOptions.Location = new System.Drawing.Point(330, 356);
+            this.btnOptions.Location = new System.Drawing.Point(329, 363);
             this.btnOptions.Name = "btnOptions";
             this.btnOptions.Size = new System.Drawing.Size(75, 23);
             this.btnOptions.TabIndex = 10;
@@ -1010,11 +1022,11 @@
             this.rtxtConsole.ContextMenuStrip = this.contextMenuStrip1;
             this.rtxtConsole.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtxtConsole.ForeColor = System.Drawing.Color.White;
-            this.rtxtConsole.Location = new System.Drawing.Point(12, 420);
+            this.rtxtConsole.Location = new System.Drawing.Point(12, 452);
             this.rtxtConsole.Name = "rtxtConsole";
             this.rtxtConsole.ReadOnly = true;
             this.rtxtConsole.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.rtxtConsole.Size = new System.Drawing.Size(618, 158);
+            this.rtxtConsole.Size = new System.Drawing.Size(618, 126);
             this.rtxtConsole.TabIndex = 13;
             this.rtxtConsole.Text = "";
             this.rtxtConsole.WordWrap = false;
@@ -1048,7 +1060,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.groupBox4);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox7);
             this.splitContainer1.Panel2MinSize = 0;
-            this.splitContainer1.Size = new System.Drawing.Size(630, 410);
+            this.splitContainer1.Size = new System.Drawing.Size(630, 440);
             this.splitContainer1.SplitterDistance = 440;
             this.splitContainer1.TabIndex = 38;
             // 
@@ -1192,6 +1204,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Label lblSig;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.CheckBox cbMCUAutoDetectEnabled;
     }
 }
 

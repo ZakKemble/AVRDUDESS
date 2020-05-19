@@ -1236,6 +1236,39 @@ namespace avrdudess
             setLock = item.setLock;
             additionalSettings = item.additional;
             verbosity = item.verbosity;
+
+            // If preset uses USBasp we need to workout the frequency to use from the bit clock
+            if (prog != null && prog.id == "usbasp")
+            {
+                string bitClockStr = txtBitClock.Text;
+
+                // Make sure an index changed event occurs
+                cmbUSBaspFreq.SelectedIndex = -1;
+
+                // Convert bit clock to frequency
+
+                // String to double
+                double bitClock;
+                if (!double.TryParse(bitClockStr,
+                    NumberStyles.Float | NumberStyles.AllowThousands,
+                    CultureInfo.InvariantCulture, // Bit clock is saved with a '.', we don't want it to try and parse it expecting a ',' or something else
+                    out bitClock))
+                {
+                    cmbUSBaspFreq.SelectedIndex = 0;
+                    return;
+                }
+
+                int freq = (int)(1 / (bitClock * 0.000001));
+
+                // Make sure frequency is between min and max
+                if (freq > Avrdude.USBaspFreqs[0].freq)
+                    freq = Avrdude.USBaspFreqs[0].freq;
+                else if (freq < Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].freq)
+                    freq = Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].freq;
+
+                // Show frequency
+                cmbUSBaspFreq.SelectedItem = Avrdude.USBaspFreqs.Find(s => freq >= s.freq - 1);
+            }
         }
 
         // Preset choice changed
@@ -1243,42 +1276,7 @@ namespace avrdudess
         {
             PresetData item = (PresetData)cmbPresets.SelectedItem;
             if (item != null)
-            {
                 loadPresetData(item);
-
-                // If preset uses USBasp we need to workout the frequency to use from the bit clock
-                if (prog != null && prog.id == "usbasp")
-                {
-                    string bitClockStr = txtBitClock.Text;
-
-                    // Make sure an index changed event occurs
-                    cmbUSBaspFreq.SelectedIndex = -1;
-
-                    // Convert bit clock to frequency
-
-                    // String to double
-                    double bitClock;
-                    if (!double.TryParse(bitClockStr,
-                        NumberStyles.Float | NumberStyles.AllowThousands,
-                        CultureInfo.InvariantCulture, // Bit clock is saved with a '.', we don't want it to try and parse it expecting a ',' or something else
-                        out bitClock))
-                    {
-                        cmbUSBaspFreq.SelectedIndex = 0;
-                        return;
-                    }
-
-                    int freq = (int)(1 / (bitClock * 0.000001));
-
-                    // Make sure frequency is between min and max
-                    if (freq > Avrdude.USBaspFreqs[0].freq)
-                        freq = Avrdude.USBaspFreqs[0].freq;
-                    else if (freq < Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].freq)
-                        freq = Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].freq;
-
-                    // Show frequency
-                    cmbUSBaspFreq.SelectedItem = Avrdude.USBaspFreqs.Find(s => freq >= s.freq - 1);
-                }
-            }
         }
 
         // Fuse link clicked
@@ -1514,6 +1512,6 @@ namespace avrdudess
                 Config.Prop.windowLocation = Location;
         }
 
-#endregion
+        #endregion
     }
 }

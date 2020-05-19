@@ -21,11 +21,13 @@ namespace avrdudess
         public event EventHandler OnProcessStart;
         public event EventHandler OnProcessEnd;
         private string binary;
-        private bool processOutputStreamOpen;
-        private bool processErrorStreamOpen;
         private bool enableConsoleUpdate;
         protected string outputLogStdErr { get; private set; } = string.Empty;
         protected string outputLogStdOut { get; private set; } = string.Empty;
+        private Thread tConUpt;
+        private ManualResetEvent exitWait = new ManualResetEvent(false);
+        private ManualResetEvent stdOutWait = new ManualResetEvent(false);
+        private ManualResetEvent stdErrWait = new ManualResetEvent(false);
 
         // NOTE: can't write to memory and to console at the same time, as one method is async (memory) and the other is sync (console).
         // This is because process bars don't work with async mode as the event only fires on a new line.
@@ -47,11 +49,11 @@ namespace avrdudess
 
             if (binary == null)
                 Util.consoleError("_EXECMISSING", binaryName);
-            else if (enableConsoleWrite)
+            else if (enableConsoleWrite && tConUpt == null)
             {
-                Thread t = new Thread(new ThreadStart(tConsoleUpdate));
-                t.IsBackground = true;
-                t.Start();
+                tConUpt = new Thread(new ThreadStart(tConsoleUpdate));
+                tConUpt.IsBackground = true;
+                tConUpt.Start();
             }
         }
 
@@ -116,6 +118,10 @@ namespace avrdudess
 
         private bool launch(string args, OutputTo outputTo)
         {
+            exitWait.Reset();
+            stdOutWait.Reset();
+            stdErrWait.Reset();
+
             Process tmp = new Process();
             tmp.StartInfo.FileName = binary;
             tmp.StartInfo.Arguments = args;
@@ -144,27 +150,43 @@ namespace avrdudess
             if (OnProcessStart != null)
                 OnProcessStart(this, EventArgs.Empty);
 
+            //var _ = ConsumeReader(tmp.StandardOutput);
+            //_ = ConsumeReader(tmp.StandardError);
+
             enableConsoleUpdate = (outputTo == OutputTo.Console);
             p = tmp;
 
             if (outputTo == OutputTo.Memory)
             {
-                processOutputStreamOpen = true;
-                processErrorStreamOpen = true;
                 p.BeginOutputReadLine();
                 p.BeginErrorReadLine();
             }
             else
             {
-                processOutputStreamOpen = false;
-                processErrorStreamOpen = false;
+                stdOutWait.Set();
+                stdErrWait.Set();
             }
 
             return true;
         }
-
+        /*
+        // Better alternative to tConsoleUpdate, but needs .NET 4.5
+        // https://stackoverflow.com/a/26722542
+        async static Task ConsumeReader(TextReader reader)
+        {
+            char[] buff = new char[1];
+            while ((await reader.ReadAsync(buff, 0, buff.Length)) > 0)
+            {
+                string s = new string(buff);
+                if(s != "\r")
+                    Util.consoleWrite(s);
+            }
+        }
+        */
         private void p_Exited(object sender, EventArgs e)
         {
+            exitWait.Set();
+
             if (OnProcessEnd != null)
                 OnProcessEnd(this, EventArgs.Empty);
 
@@ -223,12 +245,14 @@ namespace avrdudess
 
         private void outputLogHandler(object sender, DataReceivedEventArgs e)
         {
-            processOutputStreamOpen = logger(e.Data, Stream.StdOut);
+            if (!logger(e.Data, Stream.StdOut))
+                stdOutWait.Set();
         }
 
         private void errorLogHandler(object sender, DataReceivedEventArgs e)
         {
-            processErrorStreamOpen = logger(e.Data, Stream.StdErr);
+            if (!logger(e.Data, Stream.StdErr))
+                stdErrWait.Set();
         }
 
         protected bool isActive()
@@ -247,11 +271,12 @@ namespace avrdudess
         protected void waitForExit()
         {
             if (isActive())
-                p.WaitForExit();
+                exitWait.WaitOne();
+            //p.WaitForExit(); // This seems to randomly hang if the process exits too quickly, even if a timeout is used
 
             // There might still be data in a buffer somewhere that needs to be read by the output handler even after the process has ended
-            while (processOutputStreamOpen || processErrorStreamOpen)
-                Thread.Sleep(15);
+            stdOutWait.WaitOne();
+            stdErrWait.WaitOne();
         }
     }
 }

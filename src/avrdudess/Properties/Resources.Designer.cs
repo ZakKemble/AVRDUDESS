@@ -59,5 +59,15 @@ namespace avrdudess.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_donate_LG {
+            get {
+                object obj = ResourceManager.GetObject("btn_donate_LG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

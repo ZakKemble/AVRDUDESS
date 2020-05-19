@@ -35,5 +35,10 @@ namespace avrdudess
         {
             System.Diagnostics.Process.Start(((LinkLabel)sender).Text);
         }
+
+        private void pbDonate_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://donate.zakkemble.net/avrdudess/");
+        }
     }
 }

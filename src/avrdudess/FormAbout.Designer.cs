@@ -32,6 +32,8 @@
             this.lblAbout = new System.Windows.Forms.Label();
             this.lnkHome = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.pbDonate = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDonate)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOK
@@ -39,7 +41,7 @@
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(12, 109);
+            this.btnOK.Location = new System.Drawing.Point(12, 169);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(208, 23);
             this.btnOK.TabIndex = 0;
@@ -77,13 +79,26 @@
             this.linkLabel1.Text = "https://github.com/zkemble/AVRDUDESS";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkHome_LinkClicked);
             // 
+            // pbDonate
+            // 
+            this.pbDonate.BackgroundImage = global::avrdudess.Properties.Resources.btn_donate_LG;
+            this.pbDonate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbDonate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbDonate.Location = new System.Drawing.Point(12, 110);
+            this.pbDonate.Name = "pbDonate";
+            this.pbDonate.Size = new System.Drawing.Size(208, 45);
+            this.pbDonate.TabIndex = 4;
+            this.pbDonate.TabStop = false;
+            this.pbDonate.Click += new System.EventHandler(this.pbDonate_Click);
+            // 
             // FormAbout
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnOK;
-            this.ClientSize = new System.Drawing.Size(232, 144);
+            this.ClientSize = new System.Drawing.Size(232, 204);
+            this.Controls.Add(this.pbDonate);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.lnkHome);
             this.Controls.Add(this.lblAbout);
@@ -96,6 +111,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "_ABOUT";
             this.Load += new System.EventHandler(this.FormAbout_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbDonate)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,5 +123,6 @@
         private System.Windows.Forms.Label lblAbout;
         private System.Windows.Forms.LinkLabel lnkHome;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.PictureBox pbDonate;
     }
 }

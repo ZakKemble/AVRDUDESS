@@ -196,6 +196,7 @@
     <Content Include="Languages\russian.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\btn_donate_LG.png" />
     <ContentWithTargetPath Include="Files\avr-size.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <TargetPath>avr-size.exe</TargetPath>

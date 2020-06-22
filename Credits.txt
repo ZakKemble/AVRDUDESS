@@ -55,3 +55,6 @@ Ideas & code credits:
 
 "Rod" <informa (-at-) turcotronics (-dot-) it>
 * Italian translation
+
+"Protoncek" <https://github.com/Protoncek>
+* Slovenian translation

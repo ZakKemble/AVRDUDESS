@@ -586,8 +586,10 @@ namespace avrdudess
 
             // MCU & programmer combo box data source
             setComboBoxDataSource(cmbMCU, mcus, "desc");
+            cmbMCU.SelectedIndexChanged -= cmbMCU_SelectedIndexChanged;
             cmbMCU.SelectedIndexChanged += cmbMCU_SelectedIndexChanged;
             setComboBoxDataSource(cmbProg, programmers, "desc");
+            cmbProg.SelectedIndexChanged -= cmbProg_SelectedIndexChanged;
             cmbProg.SelectedIndexChanged += cmbProg_SelectedIndexChanged;
         }
 

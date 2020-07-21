@@ -275,6 +275,7 @@ namespace avrdudess
             //p.WaitForExit(); // This seems to randomly hang if the process exits too quickly, even if a timeout is used
 
             // There might still be data in a buffer somewhere that needs to be read by the output handler even after the process has ended
+            // TODO if the process never started then this should be skipped otherwise we will get stuck here
             stdOutWait.WaitOne();
             stdErrWait.WaitOne();
         }

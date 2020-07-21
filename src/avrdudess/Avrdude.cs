@@ -164,17 +164,19 @@ namespace avrdudess
         {
             version = "";
 
-            launch("", OutputTo.Memory);
-            waitForExit(); // TODO REMOVE? use callback
-
-            if (outputLogStdErr != null)
+            if (launch("", OutputTo.Memory))
             {
-                string log = outputLogStdErr;
-                int pos = log.IndexOf("avrdude version");
-                if (pos > -1)
+                waitForExit(); // TODO REMOVE? use callback
+
+                if (outputLogStdErr != null)
                 {
-                    log = log.Substring(pos);
-                    version = log.Substring(0, log.IndexOf(','));
+                    string log = outputLogStdErr;
+                    int pos = log.IndexOf("avrdude version");
+                    if (pos > -1)
+                    {
+                        log = log.Substring(pos);
+                        version = log.Substring(0, log.IndexOf(','));
+                    }
                 }
             }
 
@@ -363,7 +365,7 @@ namespace avrdudess
             savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom, memoryTypes);
         }
 
-        public new void launch(string args, Action<object> onFinish, object param, OutputTo outputTo = OutputTo.Console)
+        public new bool launch(string args, Action<object> onFinish, object param, OutputTo outputTo = OutputTo.Console)
         {
             if (args.Trim().Length > 0)
             {
@@ -381,12 +383,12 @@ namespace avrdudess
 
             Util.consoleWriteLine(">>>: {0} {1}", Color.Aquamarine, FILE_AVRDUDE, args);
 
-            base.launch(args, onFinish, param, outputTo);
+            return base.launch(args, onFinish, param, outputTo);
         }
 
-        public void launch(string args, OutputTo outputTo = OutputTo.Console)
+        public bool launch(string args, OutputTo outputTo = OutputTo.Console)
         {
-            launch(args, null, null, outputTo);
+            return launch(args, null, null, outputTo);
         }
 
         public void detectMCU(string args)

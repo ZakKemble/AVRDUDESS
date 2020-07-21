@@ -14,16 +14,42 @@ namespace avrdudess
 {
     public abstract class XmlFile<T>
     {
+        private const string FILE_PORTABLE = "portable.txt";
+
         protected string fileLocation { get; private set; }
         private string name;
         abstract protected object data { get; set; }
+
+        private bool isPortable()
+        {
+            string path = Path.Combine(AssemblyData.directory, FILE_PORTABLE);
+
+            try
+            {
+                using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                {
+                    byte[] buffer = new byte[1];
+                    int n = fs.Read(buffer, 0, 1);
+                    if (n == 1 && buffer[0] == 'Y')
+                        return true;
+                }
+            }
+            catch(Exception)
+            {
+                // Failed to open or something, run in non-portable mode
+            }
+
+            return false;
+        }
 
         public XmlFile(string fileName, string name, bool customFileLocation)
         {
             this.name = name;
 
-            if (customFileLocation)
+            if (customFileLocation) // Used for importing/exporting presets XML (a bit hacky)
                 fileLocation = fileName;
+            else if(isPortable()) // Portable mode will only read/write from the application directory
+                fileLocation = Path.Combine(AssemblyData.directory, fileName);
             else
             {
                 // Where the file should be

@@ -1,0 +1,3 @@
+N
+
+The existence of this file (portable.txt) with the first byte representing ASCII "Y" tells AVRDUDESS to run in portable mode. In this mode AVRDUDESS will read and write config.xml and presets.xml in the application directory instead of the user appdata directory.

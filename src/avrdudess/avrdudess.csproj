@@ -224,6 +224,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <TargetPath>presets.xml</TargetPath>
     </ContentWithTargetPath>
+    <ContentWithTargetPath Include="Files\portable.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TargetPath>portable.txt</TargetPath>
+    </ContentWithTargetPath>
     <Content Include="icon.ico" />
     <Content Include="Languages\german.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

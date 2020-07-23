@@ -1,3 +1,9 @@
+2020-07-23 (v2.13):
+	- Added Slovenian translation
+	- Fixed issue with reading ATmega328PB efuse
+	- Fixed startup failure if avrdude.exe is missing
+	- Portable version now uses config files from application directory instead of user appdata directory
+
 2020-05-19 (v2.12):
 	- Added Japanese translation
 	- Added Italian translation

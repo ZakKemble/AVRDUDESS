@@ -1357,6 +1357,7 @@ namespace avrdudess
         // Only write lock
         private void btnWriteLock_Click(object sender, EventArgs e)
         {
+            Util.consoleWriteLine("_WRITINGINGLOCKBITS");
             avrdude.launch(cmdLine.generateWriteLock());
         }
 

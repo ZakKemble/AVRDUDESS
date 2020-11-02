@@ -77,6 +77,8 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="FUSELOCKREADFAIL">Nie można odczytać fusów/lock bitów</string>
 		<string name="READINGFUSES">Odczytuje fusy...</string>
 		<string name="READINGLOCKBITS">Odczytuje lock bity...</string>
+		<string name="WRITINGINGFUSES">Writing fuses...</string>
+		<string name="WRITINGINGLOCKBITS">Writing lock bits...</string>
 		<string name="READHFUSE">Odczytałem fusy High</string>
 		<string name="READLFUSE">Odczytałem fusy Low</string>
 		<string name="READEFUSE">Odczytałem fusy Extended</string>

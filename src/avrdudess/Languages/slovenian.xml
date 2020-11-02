@@ -77,6 +77,8 @@ Sem lahko tudi povlečeš datoteko</string>
 		<string name="FUSELOCKREADFAIL">Ne morem prebrati fuses/lock bitov</string>
 		<string name="READINGFUSES">Branje fuse bitov...</string>
 		<string name="READINGLOCKBITS">Branje lock bitov...</string>
+		<string name="WRITINGINGFUSES">Writing fuses...</string>
+		<string name="WRITINGINGLOCKBITS">Writing lock bits...</string>
 		<string name="READHFUSE">Branje high fuse bitov</string>
 		<string name="READLFUSE">Branje low fuse bitov</string>
 		<string name="READEFUSE">Branje extended fuse bitov</string>

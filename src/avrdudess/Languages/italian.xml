@@ -77,6 +77,8 @@ Usa questo se vuoi solo aggiornare l'EEPROM</string>
 		<string name="FUSELOCKREADFAIL">Non sono in grado di leggere i bits di fuses/lock</string>
 		<string name="READINGFUSES">Leggo i fuses...</string>
 		<string name="READINGLOCKBITS">Leggo i lock bits...</string>
+		<string name="WRITINGINGFUSES">Writing fuses...</string>
+		<string name="WRITINGINGLOCKBITS">Writing lock bits...</string>
 		<string name="READHFUSE">Leggo fuse alto</string>
 		<string name="READLFUSE">Leggo fuse basso</string>
 		<string name="READEFUSE">Leggo fuse estesi</string>

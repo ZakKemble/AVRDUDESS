@@ -77,6 +77,8 @@ Use this if you only want to update EEPROM</string>
 		<string name="FUSELOCKREADFAIL">Unable to read fuses/lock bits</string>
 		<string name="READINGFUSES">Reading fuses...</string>
 		<string name="READINGLOCKBITS">Reading lock bits...</string>
+		<string name="WRITINGINGFUSES">Writing fuses...</string>
+		<string name="WRITINGINGLOCKBITS">Writing lock bits...</string>
 		<string name="READHFUSE">Read high fuse</string>
 		<string name="READLFUSE">Read low fuse</string>
 		<string name="READEFUSE">Read extended fuse</string>

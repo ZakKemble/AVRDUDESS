@@ -77,6 +77,8 @@ Utilisez cette option uniquement si vous souhaitez mettre à jour l'EEPROM.</str
 		<string name="FUSELOCKREADFAIL">Impossible de lire les fusibles / bits de verrouillage</string>
 		<string name="READINGFUSES">Lecture des fusibles ...</string>
 		<string name="READINGLOCKBITS">Lecture des bits de verrouillage ...</string>
+		<string name="WRITINGINGFUSES">Writing fuses...</string>
+		<string name="WRITINGINGLOCKBITS">Writing lock bits...</string>
 		<string name="READHFUSE">Lire le fusible de niveau élevé</string>
 		<string name="READLFUSE">Lire le fusible de niveau bas</string>
 		<string name="READEFUSE">Lire le fusible de niveau étendu</string>

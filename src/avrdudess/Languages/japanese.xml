@@ -77,6 +77,8 @@ EEPROMのみを更新する場合に使用します</string>
 		<string name="FUSELOCKREADFAIL">ヒューズ/ロックビットを読み取れません</string>
 		<string name="READINGFUSES">ヒューズの読み取り中...</string>
 		<string name="READINGLOCKBITS">ロックビットを読み込んでいます...</string>
+		<string name="WRITINGINGFUSES">Writing fuses...</string>
+		<string name="WRITINGINGLOCKBITS">Writing lock bits...</string>
 		<string name="READHFUSE">Highヒューズを読み取る</string>
 		<string name="READLFUSE">Lowヒューズを読み取る</string>
 		<string name="READEFUSE">拡張ヒューズの読み取る</string>

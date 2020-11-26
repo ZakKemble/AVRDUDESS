@@ -6,7 +6,7 @@
 		<!-- Main form -->
 		<string name="TOOLTIP_MCU">uC do programowania</string>
 		<string name="TOOLTIP_PROGRAMMER">Programator</string>
-		<string name="TOOLTIP_PORT">Wybierz port COM/LTP/USB</string>
+		<string name="TOOLTIP_PORT">Wybierz port COM/LPT/USB</string>
 		<string name="TOOLTIP_BAUDRATE">Przepływność portu</string>
 		<string name="TOOLTIP_BITCLOCK">Okres zegara BitBang (us)</string>
 		<string name="TOOLTIP_FLASHFILE">Plik hex (.hex)

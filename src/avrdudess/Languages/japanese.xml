@@ -6,7 +6,7 @@
 		<!-- Main form -->
 		<string name="TOOLTIP_MCU">プログラムするMCU</string>
 		<string name="TOOLTIP_PROGRAMMER">プログラマー</string>
-		<string name="TOOLTIP_PORT">COM/LTP/USBポートの設定</string>
+		<string name="TOOLTIP_PORT">COM/LPT/USBポートの設定</string>
 		<string name="TOOLTIP_BAUDRATE">ポートのボーレート</string>
 		<string name="TOOLTIP_BITCLOCK">ビットクロック周期（us）</string>
 		<string name="TOOLTIP_FLASHFILE">Hexファイル (.hex)

@@ -6,7 +6,7 @@
 		<!-- Main form -->
 		<string name="TOOLTIP_MCU">Microprocesseur à programmer</string>
 		<string name="TOOLTIP_PROGRAMMER">Programmateur</string>
-		<string name="TOOLTIP_PORT">Installer Port COM/LTP/USB</string>
+		<string name="TOOLTIP_PORT">Installer Port COM/LPT/USB</string>
 		<string name="TOOLTIP_BAUDRATE">Vitesse du Port en bauds</string>
 		<string name="TOOLTIP_BITCLOCK">Fréquence d'horloge (us)</string>
 		<string name="TOOLTIP_FLASHFILE">Fichier Hex (.hex)

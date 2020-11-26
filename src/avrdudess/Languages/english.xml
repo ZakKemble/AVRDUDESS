@@ -6,7 +6,7 @@
 		<!-- Main form -->
 		<string name="TOOLTIP_MCU">MCU to program</string>
 		<string name="TOOLTIP_PROGRAMMER">Programmer</string>
-		<string name="TOOLTIP_PORT">Set COM/LTP/USB port</string>
+		<string name="TOOLTIP_PORT">Set COM/LPT/USB port</string>
 		<string name="TOOLTIP_BAUDRATE">Port baud rate</string>
 		<string name="TOOLTIP_BITCLOCK">Bit clock period (us)</string>
 		<string name="TOOLTIP_FLASHFILE">Hex file (.hex)

@@ -6,7 +6,7 @@
 		<!-- Main form -->
 		<string name="TOOLTIP_MCU">要编程的MCU</string>
 		<string name="TOOLTIP_PROGRAMMER">编程器</string>
-		<string name="TOOLTIP_PORT">设置 COM/LTP/USB 端口</string>
+		<string name="TOOLTIP_PORT">设置 COM/LPT/USB 端口</string>
 		<string name="TOOLTIP_BAUDRATE">端口波特率</string>
 		<string name="TOOLTIP_BITCLOCK">时钟周期(us)</string>
 		<string name="TOOLTIP_FLASHFILE">Hex 文件 (.hex)

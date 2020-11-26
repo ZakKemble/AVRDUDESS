@@ -6,7 +6,7 @@
 		<!-- Main form -->
 		<string name="TOOLTIP_MCU">Микроконтроллер для программирования</string>
 		<string name="TOOLTIP_PROGRAMMER">Программатор</string>
-		<string name="TOOLTIP_PORT">Установить порт COM / LTP / USB</string>
+		<string name="TOOLTIP_PORT">Установить порт COM / LPT / USB</string>
 		<string name="TOOLTIP_BAUDRATE">Скорость передачи данных порта</string>
 		<string name="TOOLTIP_BITCLOCK">Частота (мс)</string>
 		<string name="TOOLTIP_FLASHFILE">Шестнадцатеричный файл (.hex)

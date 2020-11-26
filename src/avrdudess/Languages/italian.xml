@@ -6,7 +6,7 @@
 		<!-- Main form -->
 		<string name="TOOLTIP_MCU">MCU da programmare</string>
 		<string name="TOOLTIP_PROGRAMMER">Programmatore</string>
-		<string name="TOOLTIP_PORT">Setta porta COM/LTP/USB</string>
+		<string name="TOOLTIP_PORT">Setta porta COM/LPT/USB</string>
 		<string name="TOOLTIP_BAUDRATE">Baudrate</string>
 		<string name="TOOLTIP_BITCLOCK">Periodo Bit (us)</string>
 		<string name="TOOLTIP_FLASHFILE">File Hex (.hex)

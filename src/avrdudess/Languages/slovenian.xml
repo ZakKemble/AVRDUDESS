@@ -6,7 +6,7 @@
 		<!-- Main form -->
 		<string name="TOOLTIP_MCU">Izberi MCU katerega programiraš (pri XMEGI ne deluje "Zaznaj"!)</string>
 		<string name="TOOLTIP_PROGRAMMER">Programator</string>
-		<string name="TOOLTIP_PORT">Nastavi COM/LTP/USB port</string>
+		<string name="TOOLTIP_PORT">Nastavi COM/LPT/USB port</string>
 		<string name="TOOLTIP_BAUDRATE">Bitna hitrost vrat</string>
 		<string name="TOOLTIP_BITCLOCK">Perioda bit ure (us)</string>
 		<string name="TOOLTIP_FLASHFILE">Hex datoteka (.hex)

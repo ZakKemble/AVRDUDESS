@@ -58,3 +58,6 @@ Ideas & code credits:
 
 "Protoncek" <https://github.com/Protoncek>
 * Slovenian translation
+
+"Tóth Roland" <rendszergazdanyh (-at-) citromail (-dot-) hu>
+* Hungarian translation

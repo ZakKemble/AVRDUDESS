@@ -229,9 +229,6 @@
       <TargetPath>portable.txt</TargetPath>
     </ContentWithTargetPath>
     <Content Include="icon.ico" />
-    <Content Include="Languages\german.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Languages\english.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>

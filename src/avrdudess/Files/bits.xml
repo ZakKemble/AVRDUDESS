@@ -348,6 +348,12 @@
 		<ext>SELFPRGEN,,,,,,,</ext>
 		<lock>LB1,LB2,,,,,,</lock>
 	</mcu>
+	<mcu signature="1e920d" name="attiny4313">
+		<high>RSTDISBL,BODLEVEL0,BODLEVEL1,BODLEVEL2,WDTON,SPIEN,EESAVE,DWEN</high>
+		<low>CKSEL0,CKSEL1,CKSEL2,CKSEL3,SUT0,SUT1,CKOUT,CKDIV8</low>
+		<ext>SELFPRGEN,,,,,,,</ext>
+		<lock>LB1,LB2,,,,,,</lock>
+	</mcu>
 	<mcu signature="1e910b" name="attiny24">
 		<high>BODLEVEL0,BODLEVEL1,BODLEVEL2,EESAVE,WDTON,,DWEN,RSTDISBL</high>
 		<low>CKSEL0,CKSEL1,CKSEL2,CKSEL3,SUT0,SUT1,CKOUT,CKDIV8</low>

@@ -102,6 +102,7 @@ Source: "..\src\avrdudess\bin\Release\Languages\japanese.xml"; DestDir: "{app}\L
 Source: "..\src\avrdudess\bin\Release\Languages\italian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\Languages\slovenian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\Languages\hungarian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\spanish.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\Changelog.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Credits.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\License.txt"; DestDir: "{app}"; Flags: ignoreversion

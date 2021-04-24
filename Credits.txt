@@ -64,3 +64,6 @@ Ideas & code credits:
 
 "Lumito" <https://github.com/LumitoLuma>
 * Spanish translation
+
+"Stefan Kramer" <stefan.kramer (-at-) gmx (-dot-)>
+* German translation

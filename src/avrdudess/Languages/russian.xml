@@ -143,7 +143,7 @@
 		<string name="BTN_LATER">Позже</string>
 
 		<!-- Форма редактора фьюзов -->
-		<string name="TITLE_FUSEANDLOCKBITS">FUSE &amp;&amp; LOCK биты: {0} ({1})</string>
+		<string name="TITLE_FUSEANDLOCKBITS">FUSE &amp; LOCK биты: {0} ({1})</string>
 		<string name="ERRORLOADFUSES">Произошла ошибка при попытке загрузить фьюзы:
 {0}</string>
 		<string name="UNSUPPMCU">Предупреждение: неподдерживаемый МК</string>

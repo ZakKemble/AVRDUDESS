@@ -143,7 +143,7 @@ Usa questo se vuoi solo aggiornare l'EEPROM</string>
 		<string name="BTN_LATER">Più tardi</string>
 
 		<!-- Fuse editor form -->
-		<string name="TITLE_FUSEANDLOCKBITS">Fuse &amp;&amp; lock bits: {0} ({1})</string>
+		<string name="TITLE_FUSEANDLOCKBITS">Fuse &amp; lock bits: {0} ({1})</string>
 		<string name="ERRORLOADFUSES">Errore provando a caricare i fuses:
 {0}</string>
 		<string name="UNSUPPMCU">Attenzione: MCU non supportata</string>

@@ -143,7 +143,7 @@ Usa esto si únicamente quieres actualizar la EEPROM</string>
 		<string name="BTN_LATER">Más tarde</string>
 
 		<!-- Fuse editor form -->
-		<string name="TITLE_FUSEANDLOCKBITS">Fusible &amp;&amp; bits de bloqueo: {0} ({1})</string>
+		<string name="TITLE_FUSEANDLOCKBITS">Fusible &amp; bits de bloqueo: {0} ({1})</string>
 		<string name="ERRORLOADFUSES">Ha ocurrido un error al intentar cargar los fusibles:
 {0}</string>
 		<string name="UNSUPPMCU">Advertencia: microprocesador no soportado</string>

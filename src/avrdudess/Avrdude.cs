@@ -45,6 +45,11 @@ namespace avrdudess
             public string bitClock { get; private set; }
             public int freq { get; private set; }
 
+            public UsbAspFreq(string name) // Used for USBASP automatic bit clock configuration
+            {
+                this.name = name;
+            }
+
             public UsbAspFreq(string name, string bitClock, int freq)
             {
                 this.name       = name;
@@ -59,6 +64,7 @@ namespace avrdudess
         public static readonly List<UsbAspFreq> USBaspFreqs = new List<UsbAspFreq>()
         {
             // Must be in order from highest to lowest
+            new UsbAspFreq("Auto"),
             new UsbAspFreq("1.5 MHz", "0.5", 1500000),
             new UsbAspFreq("750 KHz", "1.0", 750000),
             new UsbAspFreq("375 KHz", "2.0", 375000),

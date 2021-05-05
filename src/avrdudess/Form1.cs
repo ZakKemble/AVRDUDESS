@@ -582,6 +582,9 @@ namespace avrdudess
             programmers.Insert(0, new Programmer("", Language.Translation.get("_SELECTPROG")));
             mcus.Insert(0, new MCU("", Language.Translation.get("_SELECTMCU")));
 
+            // Add custom programmer option
+            programmers.Add(new Programmer("other", Language.Translation.get("_OTHERPROG")));
+
             // MCU & programmer combo box data source
             setComboBoxDataSource(cmbMCU, mcus, "desc");
             cmbMCU.SelectedIndexChanged -= cmbMCU_SelectedIndexChanged;

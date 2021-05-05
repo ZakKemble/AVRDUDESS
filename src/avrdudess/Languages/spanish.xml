@@ -74,6 +74,7 @@ Usa esto si únicamente quieres actualizar la EEPROM</string>
 		<string name="ABOUT">Acerca de</string>
 		<string name="SELECTPROG">Seleccionar programador...</string>
 		<string name="SELECTMCU">Seleccionar microprocesador...</string>
+    <string name="OTHERPROG">Otro programador (especificar en la sección "Argumentos adicionales")</string>
 		<string name="FUSELOCKREADFAIL">No se pueden leer los fusibles/bits bloqueados</string>
 		<string name="READINGFUSES">Leyendo fusibles...</string>
 		<string name="READINGLOCKBITS">Leyendo bits bloqueados...</string>

@@ -764,7 +764,7 @@
             // 
             this.cmdVerbose.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdVerbose.FormattingEnabled = true;
-            this.cmdVerbose.Location = new System.Drawing.Point(247, 63);
+            this.cmdVerbose.Location = new System.Drawing.Point(252, 63);
             this.cmdVerbose.Name = "cmdVerbose";
             this.cmdVerbose.Size = new System.Drawing.Size(95, 21);
             this.cmdVerbose.TabIndex = 5;
@@ -856,13 +856,13 @@
             // tssStatus
             // 
             this.tssStatus.Name = "tssStatus";
-            this.tssStatus.Size = new System.Drawing.Size(88, 17);
+            this.tssStatus.Size = new System.Drawing.Size(86, 17);
             this.tssStatus.Text = "_STATUSREADY";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(525, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(527, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // tssTooltip

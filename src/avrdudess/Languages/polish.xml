@@ -74,6 +74,7 @@ Użyj tej opcji jeśli chcesz zapisać tylko EEPROM</string>
 		<string name="ABOUT">O...</string>
 		<string name="SELECTPROG">Wybierz programator...</string>
 		<string name="SELECTMCU">Wybierz uC...</string>
+    <string name="OTHERPROG">Other programmer (specify in 'Additional command line args' section)</string> <!-- NEEDS TO BE TRANSLATED -->
 		<string name="FUSELOCKREADFAIL">Nie można odczytać fusów/lock bitów</string>
 		<string name="READINGFUSES">Odczytuje fusy...</string>
 		<string name="READINGLOCKBITS">Odczytuje lock bity...</string>

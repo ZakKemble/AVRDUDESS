@@ -74,6 +74,7 @@
 		<string name="ABOUT">О программе</string>
 		<string name="SELECTPROG">Выберите программатор...</string>
 		<string name="SELECTMCU">Выберите МК...</string>
+    <string name="OTHERPROG">Other programmer (specify in 'Additional command line args' section)</string> <!-- NEEDS TO BE TRANSLATED -->
 		<string name="FUSELOCKREADFAIL">Невозможно прочитать FUSE биты / LOCK биты</string>
 		<string name="READINGFUSES">Чтение фьюзов...</string>
 		<string name="READINGLOCKBITS">Чтение LOCK битов...</string>

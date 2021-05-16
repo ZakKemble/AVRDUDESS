@@ -8,7 +8,7 @@
 #define MyAppURL "https://zakkemble.net/"
 #define MyAppExeName "avrdudess.exe"
 #define MyAppContact "contact@zakkemble.net"
-#define MyAppCopyright "Copyright © 2020 Zak Kemble"
+#define MyAppCopyright "Copyright © 2021 Zak Kemble"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.

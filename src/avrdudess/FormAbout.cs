@@ -25,7 +25,7 @@ namespace avrdudess
 
             string about = "";
             about += AssemblyData.title + Environment.NewLine;
-            about += "Version " + AssemblyData.version.ToString() + Environment.NewLine;
+            about += "Version " + AssemblyData.version.ToString() + " (" + getBuildDate() + ")" + Environment.NewLine;
             about += AssemblyData.copyright + Environment.NewLine;
 
             lblAbout.Text = about;
@@ -39,6 +39,13 @@ namespace avrdudess
         private void pbDonate_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://donate.zakkemble.net/avrdudess/");
+        }
+
+        static string getBuildDate() // Based on John Leidegren's way on StackOverflow
+        {
+            var version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
+            var buildDate = new DateTime(2000, 1, 1).Add(new TimeSpan(TimeSpan.TicksPerDay * version.Build));
+            return buildDate.ToString().Split(' ')[0];
         }
     }
 }

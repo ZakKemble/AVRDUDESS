@@ -74,7 +74,6 @@ Sem lahko tudi povlečeš datoteko</string>
 		<string name="ABOUT">Vizitka</string>
 		<string name="SELECTPROG">Izberi programator...</string>
 		<string name="SELECTMCU">Izberi MCU...</string>
-    <string name="OTHERPROG">Other programmer (specify in 'Additional command line args' section)</string> <!-- NEEDS TO BE TRANSLATED -->
 		<string name="FUSELOCKREADFAIL">Ne morem prebrati fuses/lock bitov</string>
 		<string name="READINGFUSES">Branje fuse bitov...</string>
 		<string name="READINGLOCKBITS">Branje lock bitov...</string>

@@ -74,7 +74,6 @@ Verwenden Sie dies, wenn Sie nur das EEPROM aktualisieren wollen.</string>
 		<string name="ABOUT">Über</string>
 		<string name="SELECTPROG">Wählen sie ein Programmiergerät aus...</string>
 		<string name="SELECTMCU">Wählen Sie einen Mikroprozessor aus...</string>
-    <string name="OTHERPROG">Other programmer (specify in 'Additional command line args' section)</string> <!-- NEEDS TO BE TRANSLATED -->
 		<string name="FUSEREADFAIL">Kann Sicherungsbytes / Sperrbyte nicht lesen</string>
 		<string name="READINGFUSES">Lese Sicherungsbytes...</string>
 		<string name="READINGLOCKBITS">Lese Sperrbyte...</string>

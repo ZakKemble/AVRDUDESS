@@ -74,7 +74,6 @@ Utilisez cette option uniquement si vous souhaitez mettre à jour l'EEPROM.</str
 		<string name="ABOUT">À propos de</string>
 		<string name="SELECTPROG">Sélectionnez un programmateur ...</string>
 		<string name="SELECTMCU">Sélectionner un Microprocesseur...</string>
-    <string name="OTHERPROG">Other programmer (specify in 'Additional command line args' section)</string> <!-- NEEDS TO BE TRANSLATED -->
 		<string name="FUSELOCKREADFAIL">Impossible de lire les fusibles / bits de verrouillage</string>
 		<string name="READINGFUSES">Lecture des fusibles ...</string>
 		<string name="READINGLOCKBITS">Lecture des bits de verrouillage ...</string>

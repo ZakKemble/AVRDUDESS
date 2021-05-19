@@ -74,7 +74,6 @@
 		<string name="ABOUT">关于</string>
 		<string name="SELECTPROG">选择编程器...</string>
 		<string name="SELECTMCU">选择 MCU...</string>
-    <string name="OTHERPROG">Other programmer (specify in 'Additional command line args' section)</string>
 		<string name="FUSEREADFAIL">Unable to read fuses/lock bits</string>
 		<string name="READINGFUSES">Reading fuses...</string>
 		<string name="READINGLOCKBITS">Reading lock bits...</string>

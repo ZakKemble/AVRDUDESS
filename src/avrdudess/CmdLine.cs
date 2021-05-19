@@ -31,7 +31,7 @@ namespace avrdudess
             sb.Length = 0;
             sb.Capacity = 0;
 
-            if (mainForm.prog != null && mainForm.prog.id != "other" && mainForm.prog.id.Length > 0)
+            if (mainForm.prog != null && mainForm.prog.id.Length > 0)
                 cmdLineOption("c", mainForm.prog.id);
 
             if (mainForm.mcu != null && mainForm.mcu.id.Length > 0 && addMCU)

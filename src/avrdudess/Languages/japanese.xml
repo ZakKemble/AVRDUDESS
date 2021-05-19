@@ -74,7 +74,6 @@ EEPROMのみを更新する場合に使用します</string>
 		<string name="ABOUT">About</string>
 		<string name="SELECTPROG">プログラマーを選択...</string>
 		<string name="SELECTMCU">MCUを選択...</string>
-    <string name="OTHERPROG">Other programmer (specify in 'Additional command line args' section)</string> <!-- NEEDS TO BE TRANSLATED -->
 		<string name="FUSELOCKREADFAIL">ヒューズ/ロックビットを読み取れません</string>
 		<string name="READINGFUSES">ヒューズの読み取り中...</string>
 		<string name="READINGLOCKBITS">ロックビットを読み込んでいます...</string>

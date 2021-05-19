@@ -74,7 +74,6 @@ Usa questo se vuoi solo aggiornare l'EEPROM</string>
 		<string name="ABOUT">A proposito</string>
 		<string name="SELECTPROG">Seleziona un programmatore...</string>
 		<string name="SELECTMCU">Seleziona una MCU...</string>
-    <string name="OTHERPROG">Other programmer (specify in 'Additional command line args' section)</string> <!-- NEEDS TO BE TRANSLATED -->
 		<string name="FUSELOCKREADFAIL">Non sono in grado di leggere i bits di fuses/lock</string>
 		<string name="READINGFUSES">Leggo i fuses...</string>
 		<string name="READINGLOCKBITS">Leggo i lock bits...</string>

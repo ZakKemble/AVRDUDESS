@@ -64,7 +64,7 @@ namespace avrdudess
         public static readonly List<UsbAspFreq> USBaspFreqs = new List<UsbAspFreq>()
         {
             // Must be in order from highest to lowest
-            new UsbAspFreq("Auto"),
+            new UsbAspFreq("Default (375 KHz)"),
             new UsbAspFreq("1.5 MHz", "0.5", 1500000),
             new UsbAspFreq("750 KHz", "1.0", 750000),
             new UsbAspFreq("375 KHz", "2.0", 375000),

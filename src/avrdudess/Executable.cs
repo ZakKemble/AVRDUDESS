@@ -68,7 +68,7 @@ namespace avrdudess
             // Check user defined directory
             if (!string.IsNullOrEmpty(directory))
             {
-                app = Path.Combine(directory.Replace("\"", "").Replace("\'", ""), binaryName);
+                app = Path.Combine(directory, binaryName);
                 if (File.Exists(app))
                     return app;
                 return null;

@@ -226,7 +226,7 @@ namespace avrdudess
             string conf_loc = null;
 
             if (!string.IsNullOrEmpty(confLoc))
-                conf_loc = Path.Combine(confLoc.Replace("\"", "").Replace("\'", ""), FILE_AVRDUDECONF);
+                conf_loc = Path.Combine(confLoc, FILE_AVRDUDECONF);
             else
             {
                 // If on Unix check /etc/ and /usr/local/etc/ first

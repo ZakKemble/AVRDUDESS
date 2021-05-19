@@ -92,7 +92,7 @@ namespace avrdudess
         public bool needed()
         {
 #if DEBUG
-            timeNow = 0; // This will remove a debugging warning
+            timeNow = 0; // Removes a debugging warning
             return true;
 #else
             timeNow = (long)((DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds);

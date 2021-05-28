@@ -20,8 +20,6 @@ namespace avrdudess
 {
     public partial class Form1 : Form
     {
-        private const string WEB_ADDR_FUSE_SETTINGS = "http://www.engbedded.com/fusecalc";
-
         // TODO move these somewhere else
         public const string FILEOP_WRITE = "w";
         public const string FILEOP_READ = "r";
@@ -1279,37 +1277,6 @@ namespace avrdudess
             PresetData item = (PresetData)cmbPresets.SelectedItem;
             if (item != null)
                 loadPresetData(item);
-        }
-
-        // Fuse link clicked
-        // Credits:
-        // buttim (Load up selected MCU and fuses when opening the fuse calc web page)
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            string sParam;
-            string sURL = WEB_ADDR_FUSE_SETTINGS;
-
-            if (mcu != null)
-            {
-                sParam = "?P=" + mcu.desc;
-
-                if (mcu.memoryTypes.Contains("fuse") && txtLFuse.Text != "")
-                    sParam += "&V_BYTE0=" + txtLFuse.Text;
-
-                if (mcu.memoryTypes.Contains("lfuse") && txtLFuse.Text != "")
-                    sParam += "&V_LOW=" + txtLFuse.Text;
-
-                if (mcu.memoryTypes.Contains("hfuse") && txtHFuse.Text != "")
-                    sParam += "&V_HIGH=" + txtHFuse.Text;
-
-                if (mcu.memoryTypes.Contains("efuse") && txtEFuse.Text != "")
-                    sParam += "&V_EXTENDED=" + txtEFuse.Text;
-
-                sParam += "&O_HEX=Apply+values";
-                sURL += sParam;
-            }
-
-            System.Diagnostics.Process.Start(sURL);
         }
 
         // Read fuses

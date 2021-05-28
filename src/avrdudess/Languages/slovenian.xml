@@ -143,7 +143,7 @@ Sem lahko tudi povlečeš datoteko</string>
 		<string name="BTN_LATER">Kasneje</string>
 
 		<!-- Fuse editor form -->
-		<string name="TITLE_FUSEANDLOCKBITS">Fusebiti &amp;&amp; lock biti: {0} ({1})</string>
+		<string name="TITLE_FUSEANDLOCKBITS">Fusebiti &amp; lock biti: {0} ({1})</string>
 		<string name="ERRORLOADFUSES">Med nalaganjem fusebitov je prišlo do napake:
 {0}</string>
 		<string name="UNSUPPMCU">POZOR: nepodprt MCU</string>

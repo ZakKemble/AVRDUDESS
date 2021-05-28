@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<translation>
+	<name>Deutsch (German)</name>
+	<data>
+
+		<!-- Main form -->
+		<string name="TOOLTIP_MCU">Mikroprozessor der programmiert werden soll</string>
+		<string name="TOOLTIP_PROGRAMMER">Programmiergerät</string>
+		<string name="TOOLTIP_PORT">Port der Verbindung COM/LTP/USB</string>
+		<string name="TOOLTIP_BAUDRATE">Baudrate des Ports</string>
+		<string name="TOOLTIP_BITCLOCK">Bit Tacktung (us)</string>
+		<string name="TOOLTIP_FLASHFILE">Flash-Datei (.hex)
+Sie können Dateien auch per Drag&amp;&amp;Drop hierher ziehen</string>
+		<string name="TOOLTIP_EEPROMFILE">EEPROM Datei (.eep)
+Sie können Dateien auch per Drag&amp;&amp;Drop hierher ziehen</string>
+		<string name="TOOLTIP_FORCE">Es wird keine Signaturprüfung vor dem Schreibvorgang durchgeführt.</string>
+		<string name="TOOLTIP_NOVERIFY">Es wird keine Überprüfung des Schreibvorgangs durchgeführt.</string>
+		<string name="TOOLTIP_NOERASE">Unterdrückt das Löschen des Flash-Speichers vor dem Schreibvorgang.
+Verwenden Sie dies, wenn Sie nur das EEPROM aktualisieren wollen.</string>
+		<string name="TOOLTIP_ERASEBOTH">Löscht den Flash-Speicher und das EEPROM</string>
+		<string name="TOOLTIP_NOWRITE">Deaktiviert das tatsächliche Schreiben von Daten, wird zum Debuggen von AVRDUDE verwendet</string>
+		<string name="TOOLTIP_LOWFUSE">Low-Sicherungsbyte</string>
+		<string name="TOOLTIP_HIGHFUSE">High-Sicherungsbyte</string>
+		<string name="TOOLTIP_EXFUSE">Erweitertes Sicherungsbyte</string>
+		<string name="TOOLTIP_LOCKBITS">Sperrbyte</string>
+		<string name="TOOLTIP_ONLYFLASH">Schreibt / Liest / Prüfen jetzt den Flash-Speicher</string>
+		<string name="TOOLTIP_ONLYEEPROM">Schreibt / Liest / Prüfen jetzt den EEPROM</string>
+		<string name="TOOLTIP_WRITEFUSES">Schreibt die Sicherungsbytes jetzt!</string>
+		<string name="TOOLTIP_WRITELOCK">Schreibt sofort das Sperrbyte!</string>
+		<string name="TOOLTIP_READFUSES">Liest sofort die Sicherungsbytes!</string>
+		<string name="TOOLTIP_READLOCK">Liest sofort das Sperrbyte!</string>
+		<string name="TOOLTIP_WRITEFUSESPROG">Schreibt die Sicherungsbytes beim Programmieren</string>
+		<string name="TOOLTIP_WRITELOCKPROG">Schreibt das Sperrbyte beim Programmieren</string>
+		<string name="GO">Ausführen</string>
+		<string name="WRITE">Schreiben</string>
+		<string name="READ">Lesen</string>
+		<string name="VERIFY">Überprüfen</string>
+		<string name="GRP_PROGRAMMER">Programmiergerät (-c)</string>
+		<string name="PORT">Port (-P)</string>
+		<string name="BAUDRATE">Baudrate (-b)</string>
+		<string name="BITCLOCK">Bit-Tacktung (-B)</string>
+		<string name="GRP_FLASH">Flash</string>
+		<string name="FORMAT">Format</string>
+		<string name="GRP_EEPROM">EEPROM</string>
+		<string name="GRP_OPTIONS">Optionen</string>
+		<string name="FORCE">Signaturprüfung überspringen (-F)</string>
+		<string name="DISVERIFY">Keine Schreib-Überprüfung (-V)</string>
+		<string name="DISFLASHERASE">Flash nicht löschen (-D)</string>
+		<string name="ERASEFLASHEEP">Flash und EEPROM löschen (-e)</string>
+		<string name="DONOTWRITE">Kein Schreiben (-n)</string>
+		<string name="VERBOSITY">Details</string>
+		<string name="GRP_MCU">Mikroprozessor (-p)</string>
+		<string name="FLASHSZ">Flash:</string>
+		<string name="EEPROMSZ">EEPROM:</string>
+		<string name="DETECT">Erkennen</string>
+		<string name="GRP_PRESET">Voreinstellungen</string>
+		<string name="PRESETMGR">Voreinstellungs-Manager</string>
+		<string name="GRP_FUSELOCK">Sicherungsbytes &amp;&amp; Sperrbyte</string>
+		<string name="SETFUSES">Sicherungsbytes einstellen</string>
+		<string name="FUSESETTINGS">Parameter der Sicherungsbytes</string>
+		<string name="SETLOCK">Sperrbyte schreiben</string>
+		<string name="BITSELECTOR">Bit-Konfigurator</string>
+		<string name="DOPROGRAM">Programmierung ausführen!</string>
+		<string name="DOSTOP">Stop</string>
+		<string name="BTN_OPTIONS">Einstellungen</string>
+		<string name="GRP_ADDCMDARGS">Zusätzliche Parameter</string>
+		<string name="MCUNOTFOUND">Mikroprozessor '{0}' nicht gefunden</string>
+		<string name="PROGNOTFOUND">Programmiergerät '{0}' nicht gefunden</string>
+		<string name="STATUSRUNNING">AVRDUDE läuft...</string>
+		<string name="STATUSREADY">Bereit</string>
+		<string name="DETECTSUCCESS">Erkannt {0} = {1}</string>
+		<string name="DETECTFAIL">Mikroprozessor kann nicht erkannt werden</string>
+		<string name="AVRDUDEKILLED">AVRDUDE zerstört</string>
+		<string name="ABOUT">Über</string>
+		<string name="SELECTPROG">Wählen sie ein Programmiergerät aus...</string>
+		<string name="SELECTMCU">Wählen Sie einen Mikroprozessor aus...</string>
+		<string name="FUSEREADFAIL">Kann Sicherungsbytes / Sperrbyte nicht lesen</string>
+		<string name="READINGFUSES">Lese Sicherungsbytes...</string>
+		<string name="READINGLOCKBITS">Lese Sperrbyte...</string>
+		<string name="READHFUSE">Lese Hight-Sicherungsbyte</string>
+		<string name="READLFUSE">Lese Low-Sicherungsbyte</string>
+		<string name="READEFUSE">Lese erweitertes Sicherungsbyte</string>
+		<string name="READFUSE">Lese Sicherungsbytes</string>
+		<string name="READLOCKBITS">Lese Sperrbyte</string>
+		<string name="NOSUPPORTEDFUSES">{0} besitzt keine unterstützte Absicherung</string>
+
+		<string name="UPDATE_CHECK">Prüfen auf Updates...</string>
+		<string name="UPDATE_FAILED">Update-Prüfung fehlgeschlagen: {0}</string>
+		<string name="UPDATE_AVAIL">Update verfügbar: v{0}</string>
+		<string name="UPDATE_LATEST">Sie haben die neueste Version :-)</string>
+		<string name="UPDATE_SKIP">Sie haben sich entschieden, die Version {0} zu überspringen</string>
+		<string name="UPDATE_BADXML">Update-XML fehlen Release-Einträge</string>
+
+		<string name="FILEFMT_AUTO">Auto (nur Schreiben)</string>
+		<string name="FILEFMT_HEX">Intel Hex</string>
+		<string name="FILEFMT_SREC">Motorola S-record</string>
+		<string name="FILEFMT_BIN">RAW Binärformat</string>
+		<string name="FILEFMT_DECR">Decimal (nur lesend)</string>
+		<string name="FILEFMT_HEXR">Hexadecimal (nur lesend)</string>
+		<string name="FILEFMT_BINR">Binary (nur lesend)</string>
+
+		<string name="BROWSE_OPEN_FLASH">Flash-Datei öffnen</string>
+		<string name="BROWSE_SAVE_FLASH">Flash-Datei speichern</string>
+		<string name="BROWSE_OPEN_EEPROM">EEPROM-Datei öffnen</string>
+		<string name="BROWSE_SAVE_EEPROM">EEPROM-Datei speichern</string>
+		<string name="BROWSE_FILTER_ALL">Alle Dateien (*.*)</string>
+		<string name="BROWSE_FILTER_HEX">HEX-Dateien (*.hex)</string>
+		<string name="BROWSE_FILTER_EEP">EEPROM-Dateien (*.eep)</string>
+
+		<!-- Preset manager form -->
+		<string name="TITLE_PRESETMGR">Voreinstellungs-Manager</string>
+		<string name="RENAME">Umbenennen</string>
+		<string name="OVERWRITE">Überschreiben</string>
+		<string name="SAVENEWPRESET">Neue Voreinstellung...</string>
+		<string name="EXPORT">Exportieren</string>
+		<string name="IMPORT">Importieren</string>
+		<string name="DELETE">Löschen</string>
+		<string name="CLOSE">Schließen</string>
+		<string name="EXPORTIMGPORTDELETE">Voreinstellungen</string>
+		<string name="SAVEDIALOG_EXPORT">Voreinstellung exportieren</string>
+		<string name="OPENDIALOG_IMPORT">Voreinstellung importieren</string>
+		<string name="NEWPRESETNAME">Name der Voreinstellung</string>
+		<string name="CANTUSEDEFAULT">Der Name 'Default' kann nicht verwenden werden!</string>
+		<string name="OVERWRITEPRESET">Wollen Sie die Voreinstellung '{0}' überschreiben?</string>
+		<string name="DELETEPRESETS">Wollen Sie {0} Voreinstellung(en) löschen?</string>
+		<string name="PRESETALREADYEXISTS">Eine Voreinstellung mit diesem Namen existiert bereits, wollen Sie diese überschreiben?</string>
+		<string name="CANTOVERWRITEDEFAULT">Die Voreinstellung 'Default' kann nicht überschreiben werden!</string>
+		<string name="PRESETOVERWRITE">Wollen Sie die Voreinstellung '{0}' mit den aktuellen Einstellungen überschreiben?</string>
+		<string name="EXPORTINGPRESETS">Die Voreinstellung '{0}' wird exportiert...</string>
+		<string name="EXPORTCOMPLETE">Export der Voreinstellungen ist abgeschlossen!</string>
+		<string name="IMPORTINGPRESETS">Die Voreinstellung '{0}' wird importiert...</string>
+		<string name="IMPORTALREADYEXISTS">Die Voreinstellung '{0}' ist bereits vorhanden, sie wird umbenannt in '{1}'...</string>
+		<string name="IMPORTCOMPLETE">Voreinstellungs-Import ist abgeschlossen!</string>
+
+		<!-- Update form -->
+		<string name="UPDATEAVAILABLE">Ein Update ist verfügbar</string>
+		<string name="CURRENTVERSION">Aktuelle Version:</string>
+		<string name="NEWVERSION">Neue Version:</string>
+		<string name="BTN_UPDATE">Update</string>
+		<string name="BTN_SKIPVERSION">Version überspringen</string>
+		<string name="BTN_LATER">Später</string>
+
+		<!-- Fuse editor form -->
+		<string name="TITLE_FUSEANDLOCKBITS">Sicherungsbits &amp; Sperrbits: {0} ({1})</string>
+		<string name="ERRORLOADFUSES">Beim Versuch, eine Absicherungen zu laden, ist ein Fehler aufgetreten:
+{0}</string>
+		<string name="UNSUPPMCU">Warnung: Nicht unterstützter Mikroprozessor</string>
+		<string name="GRP_LOCKBITS">Sperrbits</string>
+		<string name="GRP_FUSEBITS">Sicherungsbits</string>
+		<string name="LOCKBITS">LOCK-BYTE</string>
+
+		<!-- Options form -->
+		<string name="TITLE_OPTIONS">Einstellungen</string>
+		<string name="GRP_FILELOCATIONS">Dateispeicherorte (zur automatischen Erkennung leer lassen)</string>
+		<string name="GRP_OTHER">Sonstiges</string>
+		<string name="GRP_HIDEPROGS">Ausgeblendete Programmiergeräte</string>
+		<string name="GRP_HIDEMCUS">Ausgeblendete Mikroprozessoren</string>
+		<string name="LANGUAGE">Sprache</string>
+		<string name="SHOWTOOLTIPS">Hinweise anzeigen</string>
+		<string name="USEPREVSETTINGS">Einstellungen der letzten Ausführung</string>
+		<string name="AVRDUDE_LOCATION">Speicherordner
+der AVRDUDE.exe Datei</string>
+		<string name="AVRDUDECONF_LOCATION">Speicherordner
+der AVRDUDE.conf Datei</string>
+		<string name="AVRSIZE_LOCATION">Speicherordner
+der AVR-SIZE.exe Datei</string>
+
+		<!-- General stuff -->
+		<string name="OK">OK</string>
+		<string name="CANCEL">Abbrechen</string>
+		<string name="ERRORUC">FEHLER</string>
+		<string name="WARNINGUC">WARNUNG</string>
+		<string name="SUCCESSUC">ERFOLG</string>
+		<string name="ERROR">Fehler</string>
+		<string name="WARNING">Warnung</string>
+		<string name="NOTICE">Hinweis</string>
+		<string name="CONFIRM">Bestätigung</string>
+
+		<!-- Errors and things -->
+		<string name="XMLWRITEERROR">Beim Versuch zu speichern ist ein Fehler aufgetreten {0}:
+{1}</string>
+		<string name="XMLCOPYERROR">Kopieren der Vorlage {0} in AppData ist fehlgeschlagen:
+{1}</string>
+		<string name="EXECMISSING">{0} fehlt!</string>
+		<string name="EXECFAIL">Prozess kann nicht gestartet werden: {0}</string>
+		<string name="UNKNOWNSIG">Unbekannte Signatur {0}</string>
+		<string name="AVRCONFMISSING">{0} fehlt!</string>
+		<string name="AVRCONFREADERROR">Kann nicht gelesen werden {0}:
+{1}</string>
+
+	</data>
+</translation>

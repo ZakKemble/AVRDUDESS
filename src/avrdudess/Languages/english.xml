@@ -143,7 +143,7 @@ Use this if you only want to update EEPROM</string>
 		<string name="BTN_LATER">Later</string>
 
 		<!-- Fuse editor form -->
-		<string name="TITLE_FUSEANDLOCKBITS">Fuse &amp;&amp; lock bits: {0} ({1})</string>
+		<string name="TITLE_FUSEANDLOCKBITS">Fuse &amp; lock bits: {0} ({1})</string>
 		<string name="ERRORLOADFUSES">An error occurred trying to load fuses:
 {0}</string>
 		<string name="UNSUPPMCU">Warning: Unsupported MCU</string>

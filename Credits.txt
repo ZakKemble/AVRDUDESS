@@ -61,3 +61,9 @@ Ideas & code credits:
 
 "Tóth Roland" <rendszergazdanyh (-at-) citromail (-dot-) hu>
 * Hungarian translation
+
+"Lumito" <https://github.com/LumitoLuma>
+* Spanish translation
+
+"Stefan Kramer" <stefan.kramer (-at-) gmx (-dot-)>
+* German translation

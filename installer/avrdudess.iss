@@ -87,7 +87,6 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Source: "..\src\avrdudess\bin\Release\avrdudess.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\avrdude.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\avr-size.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\libusb0.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\avrdude.conf"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\config.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\presets.xml"; DestDir: "{app}"; Flags: ignoreversion

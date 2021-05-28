@@ -212,10 +212,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <TargetPath>bits.xml</TargetPath>
     </ContentWithTargetPath>
-    <ContentWithTargetPath Include="Files\libusb0.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <TargetPath>libusb0.dll</TargetPath>
-    </ContentWithTargetPath>
     <ContentWithTargetPath Include="Files\config.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <TargetPath>config.xml</TargetPath>

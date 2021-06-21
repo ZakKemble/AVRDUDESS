@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translation>
+	<name>Українська (Ukraine)</name>
+	<data>
+
+		<!-- Main form -->
+		<string name="TOOLTIP_MCU">MCU для програмування</string>
+		<string name="TOOLTIP_PROGRAMMER">Программатор</string>
+		<string name="TOOLTIP_PORT">Вибрати порт COM / LTP / USB</string>
+		<string name="TOOLTIP_BAUDRATE">Швидкість передачі даних порта</string>
+		<string name="TOOLTIP_BITCLOCK">Частота (мс)</string>
+		<string name="TOOLTIP_FLASHFILE">Файл шістнадцятизначного формату(.hex)
+Перетягніть файль сюди</string>
+		<string name="TOOLTIP_EEPROMFILE">Файл EEPROM (.eep)
+Перетягніть файль сюди</string>
+		<string name="TOOLTIP_FORCE">Пропустити перевірку підпису</string>
+		<string name="TOOLTIP_NOVERIFY">Не перевіряти після запису</string>
+		<string name="TOOLTIP_NOERASE">Не очищати Flash пам'ять
+Використовуйте це, якщо потрібно оновити тільки EEPROM</string>
+		<string name="TOOLTIP_ERASEBOTH">Очистити Flash пам'ять та EEPROM</string>
+		<string name="TOOLTIP_NOWRITE">Нічого не записувати, використовується для відладки AVRDUDE</string>
+		<string name="TOOLTIP_LOWFUSE">LOW FUSE</string>
+		<string name="TOOLTIP_HIGHFUSE">HI FUSE</string>
+		<string name="TOOLTIP_EXFUSE">EXT FUSE</string>
+		<string name="TOOLTIP_LOCKBITS">LOCK Біти</string>
+		<string name="TOOLTIP_ONLYFLASH">Тільки запис/читання/перевірка Flash пам'ять</string>
+		<string name="TOOLTIP_ONLYEEPROM">Тільки запис/читання/перевірка EEPROM</string>
+		<string name="TOOLTIP_WRITEFUSES">Записати FUSE зараз</string>
+		<string name="TOOLTIP_WRITELOCK">Записати блокування зараз</string>
+		<string name="TOOLTIP_READFUSES">Прочитати FUSE зараз</string>
+		<string name="TOOLTIP_READLOCK">Зчитати блокування зараз</string>
+		<string name="TOOLTIP_WRITEFUSESPROG">Запис FUSE при програмуванні</string>
+		<string name="TOOLTIP_WRITELOCKPROG">Блокування запису при програмуванні</string>
+		<string name="GO">Вперед!</string>
+		<string name="WRITE">Запис</string>
+		<string name="READ">Читати</string>
+		<string name="VERIFY">Перевірка</string>
+		<string name="GRP_PROGRAMMER">Програматор (-c)</string>
+		<string name="PORT">Порт (-P)</string>
+		<string name="BAUDRATE">Швидкість в бодах (-b)</string>
+		<string name="BITCLOCK">Частота бітів (-B)</string>
+		<string name="GRP_FLASH">Flash</string>
+		<string name="FORMAT">Формат</string>
+		<string name="GRP_EEPROM">EEPROM</string>
+		<string name="GRP_OPTIONS">Опції</string>
+		<string name="FORCE">Force (-F)</string>
+		<string name="DISVERIFY">Вимкнути перевірку (-V)</string>
+		<string name="DISFLASHERASE">Не зтирати Flash (-D)</string>
+		<string name="ERASEFLASHEEP">Очистити Flash та EEPROM (-e)</string>
+		<string name="DONOTWRITE">Не записувати (-n)</string>
+		<string name="VERBOSITY">Verbosity</string>
+		<string name="GRP_MCU">MCU (-p)</string>
+		<string name="FLASHSZ">Flash:</string>
+		<string name="EEPROMSZ">EEPROM:</string>
+		<string name="DETECT">Визначити</string>
+		<string name="GRP_PRESET">Попередні налаштування</string>
+		<string name="PRESETMGR">Менеджер</string>
+		<string name="GRP_FUSELOCK">FUSE &amp;&amp; LOCK біти</string>
+		<string name="SETFUSES">Записати Fuses</string>
+		<string name="FUSESETTINGS">Налаштування Fuse</string>
+		<string name="SETLOCK">Заблокувати</string>
+		<string name="BITSELECTOR">Селектор бітів</string>
+		<string name="DOPROGRAM">Програмувати!</string>
+		<string name="DOSTOP">Стоп</string>
+		<string name="BTN_OPTIONS">Параметри</string>
+		<string name="GRP_ADDCMDARGS">Додаткові аргументи командни</string>
+		<string name="MCUNOTFOUND">MCU '{0}' не знайдено</string>
+		<string name="PROGNOTFOUND">Програміст '{0}' не знайдений</string>
+		<string name="STATUSRUNNING">AVRDUDE виконую ...</string>
+		<string name="STATUSREADY">Готово</string>
+		<string name="DETECTSUCCESS">Виявлено {0} = {1}</string>
+		<string name="DETECTFAIL">Неможливо виявити MCU</string>
+		<string name="AVRDUDEKILLED">AVRDUDE знищений</string>
+		<string name="ABOUT">Про програму</string>
+		<string name="SELECTPROG">Виберіть програматор ...</string>
+		<string name="SELECTMCU">Виберіть MCU ...</string>
+		<string name="FUSELOCKREADFAIL">Неможливо прочитати FUSE біти / LOCK біти</string>
+		<string name="READINGFUSES">Читання Fuse ...</string>
+		<string name="READINGLOCKBITS">Читання LOCK битов ...</string>
+		<string name="READHFUSE">Читання HI FUSES</string>
+		<string name="READLFUSE">Читання LOW FUSES</string>
+		<string name="READEFUSE">Читання EXT FUSES</string>
+		<string name="READFUSE">Read fuse</string>
+		<string name="READLOCKBITS">Читання LOCK битов</string>
+		<string name="NOSUPPORTEDFUSES">{0} Не має Fuses, що підтримуються</string>
+
+		<string name="UPDATE_CHECK">Преревірка оновлення ...</string>
+		<string name="UPDATE_FAILED">Помилка оновлення: {0}</string>
+		<string name="UPDATE_AVAIL">Наявне оновлення: v {0}</string>
+		<string name="UPDATE_LATEST">У Вас найновіша версия:)</string>
+		<string name="UPDATE_SKIP">Ви пропустили версию {0}</string>
+		<string name="UPDATE_BADXML">В оновленні XML відсутні дані про випуск</string>
+		
+		<string name="FILEFMT_AUTO">Авто (тільки запис)</string>
+		<string name="FILEFMT_HEX">Intel Hex</string>
+		<string name="FILEFMT_SREC">S-запис Motorola</string>
+		<string name="FILEFMT_BIN">Необроблений BIN</string>
+		<string name="FILEFMT_DECR">DEC (тільки Читання)</string>
+		<string name="FILEFMT_HEXR">HEX (тільки Читання)</string>
+		<string name="FILEFMT_BINR">BIN (тільки Читання)</string>
+
+		<string name="BROWSE_OPEN_FLASH">Відкрити Flash-файл</string>
+		<string name="BROWSE_SAVE_FLASH">Зберегти Flash-файл</string>
+		<string name="BROWSE_OPEN_EEPROM">Вікрити файл EEPROM</string>
+		<string name="BROWSE_SAVE_EEPROM">Зберегти файл EEPROM</string>
+		<string name="BROWSE_FILTER_ALL">Всі файли (*. *)</string>
+		<string name="BROWSE_FILTER_HEX">Файли в шіснятизначному форматі (* .hex)</string>
+		<string name="BROWSE_FILTER_EEP">Файли EEPROM (* .eep)</string>
+
+		<!-- Форма менеджера пресетів -->
+		<string name="TITLE_PRESETMGR">Менеджер пресетів</string>
+		<string name="RENAME">Переименовать</string>
+		<string name="OVERWRITE">Перезаписать</string>
+		<string name="SAVENEWPRESET">Зберегти новий пресет ...</string>
+		<string name="EXPORT">Експорт</string>
+		<string name="IMPORT">Імпорт</string>
+		<string name="DELETE">Удалить</string>
+		<string name="CLOSE">Закрити</string>
+		<string name="EXPORTIMGPORTDELETE">Експорт / Імпорт / Видалити</string>
+		<string name="SAVEDIALOG_EXPORT">Експорт налаштувань</string>
+		<string name="OPENDIALOG_IMPORT">Імпортувати пресети</string>
+		<string name="NEWPRESETNAME">Нове і'мя пресета</string>
+		<string name="CANTUSEDEFAULT">Неможливо використати ім'я за замовчуванням</string>
+		<string name="OVERWRITEPRESET">Перезаписати '{0}'?</string>
+		<string name="DELETEPRESETS">Видалено {0} пресетів?</string>
+		<string name="PRESETALREADYEXISTS">Набір ім'я налаштувань вже існує, перезаписати?</string>
+		<string name="CANTOVERWRITEDEFAULT">Неможливо перезаписати 'Default'</string>
+		<string name="PRESETOVERWRITE">Перезаписати '{0}' поточними налаштуваннями?</string>
+		<string name="EXPORTINGPRESETS">Експорт '{0}' ...</string>
+		<string name="EXPORTCOMPLETE">Експорт пресетів закінчено</string>
+		<string name="IMPORTINGPRESETS">Імпорт '{0}' ...</string>
+		<string name="IMPORTALREADYEXISTS">'{0}' вже існує, перейменувати в '{1}'</string>
+		<string name="IMPORTCOMPLETE">Імпорт попередніх налаштувань завершено</string>
+
+		<!-- Форма оновлення -->
+		<string name="UPDATEAVAILABLE">Наявне оновлення</string>
+		<string name="CURRENTVERSION">Поточна версия:</string>
+		<string name="NEWVERSION">Нова версия:</string>
+		<string name="BTN_UPDATE">Оновлення</string>
+		<string name="BTN_SKIPVERSION">Пропустити версію</string>
+		<string name="BTN_LATER">Пізніше</string>
+
+		<!-- Форма редактора Fuses -->
+		<string name="TITLE_FUSEANDLOCKBITS">FUSE &amp;&amp; LOCK біти: {0} ({1})</string>
+		<string name="ERRORLOADFUSES">Виникла помилка при спробі завантажити FUSE:
+{0}</string>
+		<string name="UNSUPPMCU">Попередження: MCU не підтримується</string>
+		<string name="GRP_LOCKBITS">LOCK Біти</string>
+		<string name="GRP_FUSEBITS">FUSE Біти</string>
+		<string name="LOCKBITS">LOCK Біти</string>
+		
+		<!-- Форма налаштувань -->
+		<string name="TITLE_OPTIONS">Опції</string>
+		<string name="GRP_FILELOCATIONS">Розміщення файлів (лишіть пустим для автоматичного визначення)</string>
+		<string name="GRP_OTHER">Інше</string>
+		<string name="GRP_HIDEPROGS">Приховати програматори</string>
+		<string name="GRP_HIDEMCUS">Приховати MCU</string>
+		<string name="LANGUAGE">Мова</string>
+		<string name="SHOWTOOLTIPS">Показати підказки</string>
+		<string name="USEPREVSETTINGS">Завантажити попередні налаштування при завантаженні</string>
+		<string name="AVRDUDE_LOCATION">положення папки avrdude</string>
+		<string name="AVRDUDECONF_LOCATION">шлях папки avrdude.conf</string>
+		<string name="AVRSIZE_LOCATION">шлях папки avr-size</string>
+
+		<!-- Загальне -->
+		<string name="OK">OK</string>
+		<string name="CANCEL">Відмінити</string>
+		<string name="ERRORUC">Помилка</string>
+		<string name="WARNINGUC">с</string>
+		<string name="SUCCESSUC">Успішно закінчено!</string>
+		<string name="ERROR">Помилка</string>
+		<string name="WARNING">Попередження</string>
+		<string name="NOTICE">Повідомлення</string>
+		<string name="CONFIRM">Підтвердіть</string>
+
+		<!-- Errors -->
+		<string name="XMLWRITEERROR">Помилка при збереженні {0}:
+{1}</string>
+		<string name="XMLCOPYERROR">не вдається зкопіювати шаблон {0} в AppData:
+{1}</string>
+		<string name="EXECMISSING">{0} відсутній!</string>
+		<string name="EXECFAIL">Неможливо запустити виконання: {0}</string>
+		<string name="UNKNOWNSIG">Невідомий підпис {0}</string>
+		<string name="AVRCONFMISSING">{0} відсутній!</string>
+		<string name="AVRCONFREADERROR">Неможливо прочитати {0}:
+{1}</string>
+
+	</data>
+</translation>

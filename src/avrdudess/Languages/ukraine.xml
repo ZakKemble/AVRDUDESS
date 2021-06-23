@@ -65,7 +65,7 @@
 		<string name="BTN_OPTIONS">Параметри</string>
 		<string name="GRP_ADDCMDARGS">Додаткові аргументи команди</string>
 		<string name="MCUNOTFOUND">MCU '{0}' не знайдено</string>
-		<string name="PROGNOTFOUND">Програміст '{0}' не знайдений</string>
+		<string name="PROGNOTFOUND">Програматор '{0}' не знайдений</string>
 		<string name="STATUSRUNNING">AVRDUDE виконую ...</string>
 		<string name="STATUSREADY">Готово</string>
 		<string name="DETECTSUCCESS">Виявлено {0} = {1}</string>

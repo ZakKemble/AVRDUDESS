@@ -5,7 +5,7 @@
 
 		<!-- Main form -->
 		<string name="TOOLTIP_MCU">MCU для програмування</string>
-		<string name="TOOLTIP_PROGRAMMER">Программатор</string>
+		<string name="TOOLTIP_PROGRAMMER">Програматор</string>
 		<string name="TOOLTIP_PORT">Вибрати порт COM / LTP / USB</string>
 		<string name="TOOLTIP_BAUDRATE">Швидкість передачі даних порта</string>
 		<string name="TOOLTIP_BITCLOCK">Частота (мс)</string>
@@ -63,7 +63,7 @@
 		<string name="DOPROGRAM">Програмувати!</string>
 		<string name="DOSTOP">Стоп</string>
 		<string name="BTN_OPTIONS">Параметри</string>
-		<string name="GRP_ADDCMDARGS">Додаткові аргументи командни</string>
+		<string name="GRP_ADDCMDARGS">Додаткові аргументи команди</string>
 		<string name="MCUNOTFOUND">MCU '{0}' не знайдено</string>
 		<string name="PROGNOTFOUND">Програміст '{0}' не знайдений</string>
 		<string name="STATUSRUNNING">AVRDUDE виконую ...</string>
@@ -87,8 +87,8 @@
 		<string name="UPDATE_CHECK">Преревірка оновлення ...</string>
 		<string name="UPDATE_FAILED">Помилка оновлення: {0}</string>
 		<string name="UPDATE_AVAIL">Наявне оновлення: v {0}</string>
-		<string name="UPDATE_LATEST">У Вас найновіша версия:)</string>
-		<string name="UPDATE_SKIP">Ви пропустили версию {0}</string>
+		<string name="UPDATE_LATEST">У Вас найновіша версія:)</string>
+		<string name="UPDATE_SKIP">Ви пропустили версію {0}</string>
 		<string name="UPDATE_BADXML">В оновленні XML відсутні дані про випуск</string>
 		
 		<string name="FILEFMT_AUTO">Авто (тільки запис)</string>
@@ -109,17 +109,17 @@
 
 		<!-- Форма менеджера пресетів -->
 		<string name="TITLE_PRESETMGR">Менеджер пресетів</string>
-		<string name="RENAME">Переименовать</string>
-		<string name="OVERWRITE">Перезаписать</string>
+		<string name="RENAME">Перейменувати</string>
+		<string name="OVERWRITE">Перезаписати</string>
 		<string name="SAVENEWPRESET">Зберегти новий пресет ...</string>
 		<string name="EXPORT">Експорт</string>
 		<string name="IMPORT">Імпорт</string>
-		<string name="DELETE">Удалить</string>
+		<string name="DELETE">Видалити</string>
 		<string name="CLOSE">Закрити</string>
 		<string name="EXPORTIMGPORTDELETE">Експорт / Імпорт / Видалити</string>
 		<string name="SAVEDIALOG_EXPORT">Експорт налаштувань</string>
 		<string name="OPENDIALOG_IMPORT">Імпортувати пресети</string>
-		<string name="NEWPRESETNAME">Нове і'мя пресета</string>
+		<string name="NEWPRESETNAME">Нове ім'я пресета</string>
 		<string name="CANTUSEDEFAULT">Неможливо використати ім'я за замовчуванням</string>
 		<string name="OVERWRITEPRESET">Перезаписати '{0}'?</string>
 		<string name="DELETEPRESETS">Видалено {0} пресетів?</string>
@@ -134,8 +134,8 @@
 
 		<!-- Форма оновлення -->
 		<string name="UPDATEAVAILABLE">Наявне оновлення</string>
-		<string name="CURRENTVERSION">Поточна версия:</string>
-		<string name="NEWVERSION">Нова версия:</string>
+		<string name="CURRENTVERSION">Поточна версія:</string>
+		<string name="NEWVERSION">Нова версія:</string>
 		<string name="BTN_UPDATE">Оновлення</string>
 		<string name="BTN_SKIPVERSION">Пропустити версію</string>
 		<string name="BTN_LATER">Пізніше</string>

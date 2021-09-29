@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<translation>
+	<name> Português (Portuguese)</name>
+	<data>
+
+		<!-- Main form -->
+		<string name="TOOLTIP_MCU">MCU para programar</string>
+		<string name="TOOLTIP_PROGRAMMER">Programador</string>
+		<string name="TOOLTIP_PORT">Definir porta COM/LTP/USB</string>
+		<string name="TOOLTIP_BAUDRATE">Port baud rate</string>
+		<string name="TOOLTIP_BITCLOCK">Bit clock period (us)</string>
+		<string name="TOOLTIP_FLASHFILE">Arquivo hexadecimal (.hex)
+Você também pode arrastar e soltar arquivos aqui</string>
+		<string name="TOOLTIP_EEPROMFILE">Arquivo EEPROM (.eep)
+Você também pode arrastar e soltar arquivos aqui</string>
+		<string name="TOOLTIP_FORCE">Pular verificação de assinatura</string>
+		<string name="TOOLTIP_NOVERIFY">Não verifique depois de gravar</string>
+		<string name="TOOLTIP_NOERASE">Não apagar o flash antes de escrever
+Use-o se quiser apenas atualizar a EEPROM</string>
+		<string name="TOOLTIP_ERASEBOTH">Apagar flash e EEPROM</string>
+		<string name="TOOLTIP_NOWRITE">Não Gravar nada, usado para depurar AVRDUDE</string>
+		<string name="TOOLTIP_LOWFUSE">Low fuse</string>
+		<string name="TOOLTIP_HIGHFUSE">High fuse</string>
+		<string name="TOOLTIP_EXFUSE">fuse Estendido</string>
+		<string name="TOOLTIP_LOCKBITS">Lock bits</string>
+		<string name="TOOLTIP_ONLYFLASH">Apenas gravar/ler/verificar flash</string>
+		<string name="TOOLTIP_ONLYEEPROM">Apenas gravar/ler/verificar EEPROM</string>
+		<string name="TOOLTIP_WRITEFUSES">Gravar fuses agora</string>
+		<string name="TOOLTIP_WRITELOCK">Gravar lock agora</string>
+		<string name="TOOLTIP_READFUSES">Ler fuses agora</string>
+		<string name="TOOLTIP_READLOCK">Ler lock agora</string>
+		<string name="TOOLTIP_WRITEFUSESPROG">Gravar Fuses ao programar</string>
+		<string name="TOOLTIP_WRITELOCKPROG">Bloqueio de escrita ao programar</string>
+		<string name="GO">Iniciar</string>
+		<string name="WRITE">Gravar</string>
+		<string name="READ">Ler</string>
+		<string name="VERIFY">Verificar</string>
+		<string name="GRP_PROGRAMMER">Programador (-c)</string>
+		<string name="PORT">Porta (-P)</string>
+		<string name="BAUDRATE">Baud rate (-b)</string>
+		<string name="BITCLOCK">Bit clock (-B)</string>
+		<string name="GRP_FLASH">Flash</string>
+		<string name="FORMAT">Formato</string>
+		<string name="GRP_EEPROM">EEPROM</string>
+		<string name="GRP_OPTIONS">Opções</string>
+		<string name="FORCE">Forçar (-F)</string>
+		<string name="DISVERIFY">Desativar verificação (-V)</string>
+		<string name="DISFLASHERASE">desabilitar apagamento
+de flash (-D)</string>
+		<string name="ERASEFLASHEEP">Apagar flash e EEPROM (-e)</string>
+		<string name="DONOTWRITE">Não Gravar (-n)</string>
+		<string name="VERBOSITY">verbose</string>
+		<string name="GRP_MCU">MCU (-p)</string>
+		<string name="FLASHSZ">Flash:</string>
+		<string name="EEPROMSZ">EEPROM:</string>
+		<string name="DETECT">Detectar</string>
+		<string name="GRP_PRESET">Presets</string>
+		<string name="PRESETMGR">Gerenciador</string>
+		<string name="GRP_FUSELOCK">Fuses &amp;&amp; lock bits</string>
+		<string name="SETFUSES">Definir fuses</string>
+		<string name="FUSESETTINGS">definições de Fuse</string>
+		<string name="SETLOCK">Definir lock</string>
+		<string name="BITSELECTOR">Seletor de bits</string>
+		<string name="DOPROGRAM">Programar!</string>
+		<string name="DOSTOP">Parar</string>
+		<string name="BTN_OPTIONS">Opções</string>
+		<string name="GRP_ADDCMDARGS">Argumentos de linha de comando adicionais</string>
+		<string name="MCUNOTFOUND">MCU '{0}' não encontradod</string>
+		<string name="PROGNOTFOUND">Programador '{0}' não encontrado</string>
+		<string name="STATUSRUNNING">AVRDUDE está em execução...</string>
+		<string name="STATUSREADY">Pronto</string>
+		<string name="DETECTSUCCESS">Detectou {0} = {1}</string>
+		<string name="DETECTFAIL">Incapaz de detectar MCU</string>
+		<string name="AVRDUDEKILLED">AVRDUDE killed</string>
+		<string name="ABOUT">sobre</string>
+		<string name="SELECTPROG">Selecione um programador...</string>
+		<string name="SELECTMCU">Selecione um MCU...</string>
+		<string name="FUSELOCKREADFAIL">Incapaz de ler fuses/lock bits</string>
+		<string name="READINGFUSES">Lendo fuses...</string>
+		<string name="READINGLOCKBITS">Lendo lock bits...</string>
+		<string name="READHFUSE">Ler high fuse</string>
+		<string name="READLFUSE">Ler low fuse</string>
+		<string name="READEFUSE">Ler fuse estendido</string>
+		<string name="READFUSE">Ler fuse</string>
+		<string name="READLOCKBITS">Ler lock bits</string>
+		<string name="NOSUPPORTEDFUSES">{0} não tem nenhum Fuse suportado</string>
+
+		<string name="UPDATE_CHECK">Verificando atualizações...</string>
+		<string name="UPDATE_FAILED">Falha na verificação de atualização: {0}</string>
+		<string name="UPDATE_AVAIL">Atualização disponível: v{0}</string>
+		<string name="UPDATE_LATEST">Você tem a última versão :)</string>
+		<string name="UPDATE_SKIP">Você optou por pular a versão {0}</string>
+		<string name="UPDATE_BADXML">O XML de atualização não contém entradas de lançamento</string>
+
+		<string name="FILEFMT_AUTO">Auto (apenas escrita)</string>
+		<string name="FILEFMT_HEX">Intel Hex</string>
+		<string name="FILEFMT_SREC">Motorola S-record</string>
+		<string name="FILEFMT_BIN">Binário bruto</string>
+		<string name="FILEFMT_DECR">Decimal (apenas leitura)</string>
+		<string name="FILEFMT_HEXR">Hexadecimal (apenas leitura)</string>
+		<string name="FILEFMT_BINR">Binário (apenas leitura)</string>
+
+		<string name="BROWSE_OPEN_FLASH">Abrir arquivo flash</string>
+		<string name="BROWSE_SAVE_FLASH">Salvar arquivo flash</string>
+		<string name="BROWSE_OPEN_EEPROM">Abrir arquivo EEPROM</string>
+		<string name="BROWSE_SAVE_EEPROM">Salvar arquivo EEPROM</string>
+		<string name="BROWSE_FILTER_ALL">Todos os arquivos (*.*)</string>
+		<string name="BROWSE_FILTER_HEX">Arquivos Hex (*.hex)</string>
+		<string name="BROWSE_FILTER_EEP">Arquivos EEPROM (*.eep)</string>
+
+		<!-- Preset manager form -->
+		<string name="TITLE_PRESETMGR">Gerenciador de Preset</string>
+		<string name="RENAME">Renomear</string>
+		<string name="OVERWRITE">Sobrescrever</string>
+		<string name="SAVENEWPRESET">Salvar novo preset...</string>
+		<string name="EXPORT">Exportar</string>
+		<string name="IMPORT">Importar</string>
+		<string name="DELETE">Excluir</string>
+		<string name="CLOSE">Fechar</string>
+		<string name="EXPORTIMGPORTDELETE">Exportar/Importar/Excluir</string>
+		<string name="SAVEDIALOG_EXPORT">Exportar preset</string>
+		<string name="OPENDIALOG_IMPORT">Importar preset</string>
+		<string name="NEWPRESETNAME">Novo nome de Preset</string>
+		<string name="CANTUSEDEFAULT">Não é possível usar o nome 'Default'</string>
+		<string name="OVERWRITEPRESET">Sobrescrever '{0}'?</string>
+		<string name="DELETEPRESETS">Excluir {0} preset(s)?</string>
+		<string name="PRESETALREADYEXISTS">Já existe um Preset com este nome, sobrescrever?</string>
+		<string name="CANTOVERWRITEDEFAULT">Não é possível sobrescrever 'Default'</string>
+		<string name="PRESETOVERWRITE">Sobrescrever '{0}' com as configurações atuais?</string>
+		<string name="EXPORTINGPRESETS">Exportando '{0}'...</string>
+		<string name="EXPORTCOMPLETE">Exportação de Presets concluída</string>
+		<string name="IMPORTINGPRESETS">Importando '{0}'...</string>
+		<string name="IMPORTALREADYEXISTS">'{0}' já existe, renomeando para'{1}'</string>
+		<string name="IMPORTCOMPLETE">Importação de Presets concluída</string>
+
+		<!-- Update form -->
+		<string name="UPDATEAVAILABLE">Atualização disponível</string>
+		<string name="CURRENTVERSION">Versão Atual:</string>
+		<string name="NEWVERSION">Nova versão:</string>
+		<string name="BTN_UPDATE">Atualizar</string>
+		<string name="BTN_SKIPVERSION">Pular versão</string>
+		<string name="BTN_LATER">Mais tarde</string>
+
+		<!-- Fuse editor form -->
+		<string name="TITLE_FUSEANDLOCKBITS">Fuse &amp;&amp; lock bits: {0} ({1})</string>
+		<string name="ERRORLOADFUSES">An ocorreu um erro ao tentar carregar os fuses:
+{0}</string>
+		<string name="UNSUPPMCU">Aviso: MCU não suportado</string>
+		<string name="GRP_LOCKBITS">Lock Bits</string>
+		<string name="GRP_FUSEBITS">Fuse Bits</string>
+		<string name="LOCKBITS">LOCK BITS</string>
+
+		<!-- Options form -->
+		<string name="TITLE_OPTIONS">Opções</string>
+		<string name="GRP_FILELOCATIONS">Localizações de arquivos (deixe em branco para detecção automática)</string>
+		<string name="GRP_OTHER">Outro</string>
+		<string name="GRP_HIDEPROGS">Esconder programmers</string>
+		<string name="GRP_HIDEMCUS">Esconder MCUs</string>
+		<string name="LANGUAGE">Linguagem</string>
+		<string name="SHOWTOOLTIPS">Mostrar dicas de ferramentas</string>
+		<string name="USEPREVSETTINGS">Carregar configurações anteriores
+na inicialização</string>
+		<string name="AVRDUDE_LOCATION">avrdude localização da pasta</string>
+		<string name="AVRDUDECONF_LOCATION">avrdude.conf localização da pasta</string>
+		<string name="AVRSIZE_LOCATION">avr-size localização da pasta</string>
+
+		<!-- General stuff -->
+		<string name="OK">OK</string>
+		<string name="CANCEL">Cancelar</string>
+		<string name="ERRORUC">ERRO</string>
+		<string name="WARNINGUC">AVISO</string>
+		<string name="SUCCESSUC">SUCESSO</string>
+		<string name="ERROR">Erro</string>
+		<string name="WARNING">Aviso</string>
+		<string name="NOTICE">Observação</string>
+		<string name="CONFIRM">Confirmar</string>
+
+		<!-- Errors and things -->
+		<string name="XMLWRITEERROR">Ocorreu um erro ao tentar salvar {0}:
+{1}</string>
+		<string name="XMLCOPYERROR">Falha ao copiar o modelo {0} para AppData:
+{1}</string>
+		<string name="EXECMISSING">{0} está faltando!</string>
+		<string name="EXECFAIL">Incapaz de iniciar o processo: {0}</string>
+		<string name="UNKNOWNSIG">Assinatura desconhecida {0}</string>
+		<string name="AVRCONFMISSING">{0} está faltando!</string>
+		<string name="AVRCONFREADERROR">Incapaz de ler {0}:
+{1}</string>
+
+	</data>
+</translation>

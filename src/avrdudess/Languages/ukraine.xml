@@ -77,6 +77,8 @@
 		<string name="FUSELOCKREADFAIL">Неможливо прочитати FUSE біти / LOCK біти</string>
 		<string name="READINGFUSES">Читання Fuse ...</string>
 		<string name="READINGLOCKBITS">Читання LOCK битов ...</string>
+		<string name="WRITINGINGFUSES">Writing fuses...</string>
+		<string name="WRITINGINGLOCKBITS">Writing lock bits...</string>
 		<string name="READHFUSE">Читання HI FUSES</string>
 		<string name="READLFUSE">Читання LOW FUSES</string>
 		<string name="READEFUSE">Читання EXT FUSES</string>

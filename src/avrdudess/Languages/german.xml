@@ -74,9 +74,11 @@ Verwenden Sie dies, wenn Sie nur das EEPROM aktualisieren wollen.</string>
 		<string name="ABOUT">Über</string>
 		<string name="SELECTPROG">Wählen Sie ein Programmiergerät aus...</string>
 		<string name="SELECTMCU">Wählen Sie einen Mikroprozessor aus...</string>
-		<string name="FUSEREADFAIL">Kann Sicherungsbytes / Sperrbyte nicht lesen</string>
+		<string name="FUSELOCKREADFAIL">Kann Sicherungsbytes / Sperrbyte nicht lesen</string>
 		<string name="READINGFUSES">Lese Sicherungsbytes...</string>
 		<string name="READINGLOCKBITS">Lese Sperrbyte...</string>
+		<string name="WRITINGINGFUSES">Writing fuses...</string>
+		<string name="WRITINGINGLOCKBITS">Writing lock bits...</string>
 		<string name="READHFUSE">Lese Hight-Sicherungsbyte</string>
 		<string name="READLFUSE">Lese Low-Sicherungsbyte</string>
 		<string name="READEFUSE">Lese erweitertes Sicherungsbyte</string>

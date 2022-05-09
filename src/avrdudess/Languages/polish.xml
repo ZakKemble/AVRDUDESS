@@ -77,6 +77,8 @@ Użyj tej opcji jeśli chcesz zaprogramować tylko EEPROM</string>
 		<string name="FUSELOCKREADFAIL">Nie można odczytać bezpieczników/bitów blokujących</string>
 		<string name="READINGFUSES">Odczytuje bezpieczniki...</string>
 		<string name="READINGLOCKBITS">Odczytuje bity blokujące...</string>
+		<string name="WRITINGINGFUSES">Writing fuses...</string>
+		<string name="WRITINGINGLOCKBITS">Writing lock bits...</string>
 		<string name="READHFUSE">Odczytałem bezpieczniki High</string>
 		<string name="READLFUSE">Odczytałem bezpieczniki Low</string>
 		<string name="READEFUSE">Odczytałem bezpieczniki Extended</string>

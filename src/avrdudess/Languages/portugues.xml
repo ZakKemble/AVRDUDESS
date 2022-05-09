@@ -78,6 +78,8 @@ de flash (-D)</string>
 		<string name="FUSELOCKREADFAIL">Incapaz de ler fuses/lock bits</string>
 		<string name="READINGFUSES">Lendo fuses...</string>
 		<string name="READINGLOCKBITS">Lendo lock bits...</string>
+		<string name="WRITINGINGFUSES">Writing fuses...</string>
+		<string name="WRITINGINGLOCKBITS">Writing lock bits...</string>
 		<string name="READHFUSE">Ler high fuse</string>
 		<string name="READLFUSE">Ler low fuse</string>
 		<string name="READEFUSE">Ler fuse estendido</string>

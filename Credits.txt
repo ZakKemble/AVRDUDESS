@@ -64,6 +64,22 @@ Ideas & code credits:
 
 "Lumito" <https://github.com/LumitoLuma>
 * Spanish translation
+* Various other little bits
 
-"Stefan Kramer" <stefan.kramer (-at-) gmx (-dot-)>
+"Stefan Kramer" <stefan.kramer (-at-) gmx (-dot-) de>
 * German translation
+
+"Patrick Wulfert" <https://github.com/der-pw>
+* German translation
+
+"Nechytailo Oleksii" <https://github.com/Oless-N>
+* Ukrainian translation
+
+"Fareeha" <https://github.com/Fareeha-Takanashi>
+* Traditional Chinese (Taiwan) translation
+
+"lucas458" <https://github.com/lucas458>
+* Portuguese translation
+
+"Rendszer Gazda RendszergazdaNyh"
+* Hungarian translation

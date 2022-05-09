@@ -8,7 +8,7 @@
 #define MyAppURL "https://zakkemble.net/"
 #define MyAppExeName "avrdudess.exe"
 #define MyAppContact "contact@zakkemble.net"
-#define MyAppCopyright "Copyright © 2021 Zak Kemble"
+#define MyAppCopyright "Copyright © 2022 Zak Kemble"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -104,6 +104,10 @@ Source: "..\src\avrdudess\bin\Release\Languages\slovenian.xml"; DestDir: "{app}\
 Source: "..\src\avrdudess\bin\Release\Languages\hungarian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\Languages\spanish.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\Languages\german.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\portugues.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\Traditional_Chinese(Taiwan).xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\ukraine.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\hungarian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\Changelog.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Credits.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\License.txt"; DestDir: "{app}"; Flags: ignoreversion

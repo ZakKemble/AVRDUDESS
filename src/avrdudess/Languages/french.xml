@@ -164,6 +164,7 @@ Utilisez cette option uniquement si vous souhaitez mettre à jour l'EEPROM.</str
 		<string name="AVRDUDECONF_LOCATION">Emplacement du dossier avrdude.conf</string>
 		<string name="AVRSIZE_LOCATION">Emplacement du dossier de taille avr</string>
 		<string name="CHECKFORUPDATES">Vérifier les mises à jour au démarrage</string>
+		<string name="CHK_UNCHK_ALL">Check/uncheck all</string>
 
 		<!-- General stuff -->
 		<string name="OK">OK</string>

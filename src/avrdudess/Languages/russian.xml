@@ -163,7 +163,8 @@
 		<string name="AVRDUDE_LOCATION">Расположение папки с avrdude.exe</string>
 		<string name="AVRDUDECONF_LOCATION">Расположение папки с avrdude.conf</string>
 		<string name="AVRSIZE_LOCATION">Расположение папки с avr-size.exe</string>
-		<string name="UPDATE">Проверьте наличие обновлений при запуске</string>
+		<string name="CHECKFORUPDATES">Проверьте наличие обновлений при запуске</string>
+		<string name="CHK_UNCHK_ALL">Check/uncheck all</string>
 
 		<!-- Общие вещи -->
 		<string name="OK">OK</string>

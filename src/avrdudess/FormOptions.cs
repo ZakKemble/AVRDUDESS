@@ -14,6 +14,9 @@ namespace avrdudess
 {
     public partial class FormOptions : Form
     {
+        private bool checkAllProg;
+        private bool checkAllMCU;
+
         #region Control getters and setters
 
         public bool toolTips
@@ -96,6 +99,24 @@ namespace avrdudess
         private void FormOptions_Load(object sender, EventArgs e)
         {
             Language.Translation.apply(this);
+
+            // If less than half of checkboxes are checked then the first button click should check all, otherwise uncheck all
+
+            int checkedCount = 0;
+            for (int i = 0; i < clbHiddenProgrammers.Items.Count; i++)
+            {
+                if (clbHiddenProgrammers.GetItemChecked(i))
+                    checkedCount++;
+            }
+            checkAllProg = (checkedCount < (clbHiddenProgrammers.Items.Count / 2));
+
+            checkedCount = 0;
+            for (int i = 0; i < clbHiddenMCUs.Items.Count; i++)
+            {
+                if (clbHiddenMCUs.GetItemChecked(i))
+                    checkedCount++;
+            }
+            checkAllMCU = (checkedCount < (clbHiddenMCUs.Items.Count / 2));
         }
 
         private void setHiddenCheckBoxes(List<string> hiddenParts, CheckedListBox clb)
@@ -152,6 +173,20 @@ namespace avrdudess
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
                 txt.Text = folderBrowserDialog1.SelectedPath;
+        }
+
+        private void btnCheckUncheckProgs_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < clbHiddenProgrammers.Items.Count; i++)
+                clbHiddenProgrammers.SetItemChecked(i, checkAllProg);
+            checkAllProg = !checkAllProg;
+        }
+
+        private void btnCheckUncheckMCU_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < clbHiddenMCUs.Items.Count; i++)
+                clbHiddenMCUs.SetItemChecked(i, checkAllMCU);
+            checkAllMCU = !checkAllMCU;
         }
     }
 }

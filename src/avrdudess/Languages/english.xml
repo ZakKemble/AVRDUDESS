@@ -164,6 +164,7 @@ Use this if you only want to update EEPROM</string>
 		<string name="AVRDUDECONF_LOCATION">avrdude.conf folder location</string>
 		<string name="AVRSIZE_LOCATION">avr-size folder location</string>
 		<string name="CHECKFORUPDATES">Check for updates on startup</string>
+		<string name="CHK_UNCHK_ALL">Check/uncheck all</string>
 
 		<!-- General stuff -->
 		<string name="OK">OK</string>

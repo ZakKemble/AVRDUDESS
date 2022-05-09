@@ -164,7 +164,8 @@ der AVRDUDE.exe Datei</string>
 der AVRDUDE.conf Datei</string>
 		<string name="AVRSIZE_LOCATION">Speicherordner
 der AVR-SIZE.exe Datei</string>
-		<string name="UPDATE">Check for updates on startup</string>
+		<string name="CHECKFORUPDATES">Check for updates on startup</string>
+		<string name="CHK_UNCHK_ALL">Check/uncheck all</string>
 
 		<!-- General stuff -->
 		<string name="OK">OK</string>

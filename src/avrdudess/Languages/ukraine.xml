@@ -162,6 +162,7 @@
 		<string name="AVRDUDECONF_LOCATION">шлях папки avrdude.conf</string>
 		<string name="AVRSIZE_LOCATION">шлях папки avr-size</string>
 		<string name="CHECKFORUPDATES">Check for updates on startup</string>
+		<string name="CHK_UNCHK_ALL">Check/uncheck all</string>
 
 		<!-- Загальне -->
 		<string name="OK">OK</string>

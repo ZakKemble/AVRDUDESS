@@ -38,6 +38,7 @@
             this.txtLFuse = new System.Windows.Forms.TextBox();
             this.txtEFuse = new System.Windows.Forms.TextBox();
             this.cmbPresets = new System.Windows.Forms.ComboBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnPresetMgr = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -224,6 +225,17 @@
             this.cmbPresets.Size = new System.Drawing.Size(168, 21);
             this.cmbPresets.TabIndex = 0;
             this.cmbPresets.SelectedIndexChanged += new System.EventHandler(this.cmbPresets_SelectedIndexChanged);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(80, 65);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(95, 13);
+            this.linkLabel1.TabIndex = 6;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "_FUSESETTINGS";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // groupBox1
             // 
@@ -606,6 +618,7 @@
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.btnReadFuses);
+            this.groupBox4.Controls.Add(this.linkLabel1);
             this.groupBox4.Controls.Add(this.txtHFuse);
             this.groupBox4.Controls.Add(this.txtLFuse);
             this.groupBox4.Controls.Add(this.txtEFuse);
@@ -1102,6 +1115,7 @@
         private System.Windows.Forms.TextBox txtLFuse;
         private System.Windows.Forms.TextBox txtEFuse;
         private System.Windows.Forms.ComboBox cmbPresets;
+        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtCmdLine;

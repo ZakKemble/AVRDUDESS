@@ -8,7 +8,7 @@
 		<string name="TOOLTIP_PROGRAMMER">Programmiergerät</string>
 		<string name="TOOLTIP_PORT">Port der Verbindung COM/LTP/USB</string>
 		<string name="TOOLTIP_BAUDRATE">Baudrate des Ports</string>
-		<string name="TOOLTIP_BITCLOCK">Bit Tacktung (us)</string>
+		<string name="TOOLTIP_BITCLOCK">Bit Taktung (us)</string>
 		<string name="TOOLTIP_FLASHFILE">Flash-Datei (.hex)
 Sie können Dateien auch per Drag&amp;&amp;Drop hierher ziehen</string>
 		<string name="TOOLTIP_EEPROMFILE">EEPROM Datei (.eep)
@@ -38,7 +38,7 @@ Verwenden Sie dies, wenn Sie nur das EEPROM aktualisieren wollen.</string>
 		<string name="GRP_PROGRAMMER">Programmiergerät (-c)</string>
 		<string name="PORT">Port (-P)</string>
 		<string name="BAUDRATE">Baudrate (-b)</string>
-		<string name="BITCLOCK">Bit-Tacktung (-B)</string>
+		<string name="BITCLOCK">Bit-Taktung (-B)</string>
 		<string name="GRP_FLASH">Flash</string>
 		<string name="FORMAT">Format</string>
 		<string name="GRP_EEPROM">EEPROM</string>
@@ -61,7 +61,7 @@ Verwenden Sie dies, wenn Sie nur das EEPROM aktualisieren wollen.</string>
 		<string name="SETLOCK">Sperrbyte schreiben</string>
 		<string name="BITSELECTOR">Bit-Konfigurator</string>
 		<string name="DOPROGRAM">Programmierung ausführen!</string>
-		<string name="DOSTOP">Stop</string>
+		<string name="DOSTOP">Stopp</string>
 		<string name="BTN_OPTIONS">Einstellungen</string>
 		<string name="GRP_ADDCMDARGS">Zusätzliche Parameter</string>
 		<string name="MCUNOTFOUND">Mikroprozessor '{0}' nicht gefunden</string>
@@ -72,7 +72,7 @@ Verwenden Sie dies, wenn Sie nur das EEPROM aktualisieren wollen.</string>
 		<string name="DETECTFAIL">Mikroprozessor kann nicht erkannt werden</string>
 		<string name="AVRDUDEKILLED">AVRDUDE zerstört</string>
 		<string name="ABOUT">Über</string>
-		<string name="SELECTPROG">Wählen sie ein Programmiergerät aus...</string>
+		<string name="SELECTPROG">Wählen Sie ein Programmiergerät aus...</string>
 		<string name="SELECTMCU">Wählen Sie einen Mikroprozessor aus...</string>
 		<string name="FUSEREADFAIL">Kann Sicherungsbytes / Sperrbyte nicht lesen</string>
 		<string name="READINGFUSES">Lese Sicherungsbytes...</string>

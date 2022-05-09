@@ -3,15 +3,15 @@
  * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2013 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+ * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
 using System.IO;
 
 namespace avrdudess
 {
-	// http://stackoverflow.com/questions/453161/best-practice-to-save-application-settings-in-a-windows-forms-application
-	// http://stackoverflow.com/questions/401232/static-indexers
+	// https://stackoverflow.com/questions/453161/best-practice-to-save-application-settings-in-a-windows-forms-application
+	// https://stackoverflow.com/questions/401232/static-indexers
 
     public sealed partial class Config : AppConfig
     {

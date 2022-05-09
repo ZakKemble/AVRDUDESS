@@ -3,7 +3,7 @@
  * Author: Zak Kemble, contact@zakkemble.net
  * Copyright: (C) 2013 by Zak Kemble
  * License: GNU GPL v3 (see License.txt)
- * Web: http://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+ * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
  */
 
 using System;
@@ -20,7 +20,7 @@ namespace avrdudess
 {
     public partial class Form1 : Form
     {
-        private const string WEB_ADDR_FUSE_SETTINGS = "http://www.engbedded.com/fusecalc";
+        private const string WEB_ADDR_FUSE_SETTINGS = "https://www.engbedded.com/fusecalc";
 
         // TODO move these somewhere else
         public const string FILEOP_WRITE = "w";
@@ -859,7 +859,7 @@ namespace avrdudess
                     "lp" // Parallel port
                 };
 
-                // http://stackoverflow.com/questions/434494/serial-port-rs232-in-mono-for-multiple-platforms
+                // https://stackoverflow.com/questions/434494/serial-port-rs232-in-mono-for-multiple-platforms
                 string[] devs;
                 try
                 {

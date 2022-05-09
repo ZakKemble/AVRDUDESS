@@ -324,6 +324,30 @@
 		<ext>BOOTRST,BOOTSZ0,BOOTSZ1,,,,,</ext>
 		<lock>LB1,LB2,BLB01,BLB02,BLB11,BLB12,,</lock>
 	</mcu>
+	<mcu signature="1e8f0a" name="attiny4">
+		<high>,,,,,,,</high>
+		<low>RSTDISBL,WDTON,CKOUT,,,,,</low>
+		<ext>,,,,,,,</ext>
+		<lock>LB1,LB2,,,,,,</lock>
+	</mcu>
+	<mcu signature="1e8f09" name="attiny5">
+		<high>,,,,,,,</high>
+		<low>RSTDISBL,WDTON,CKOUT,,,,,</low>
+		<ext>,,,,,,,</ext>
+		<lock>LB1,LB2,,,,,,</lock>
+	</mcu>
+	<mcu signature="1e9008" name="attiny9">
+		<high>,,,,,,,</high>
+		<low>RSTDISBL,WDTON,CKOUT,,,,,</low>
+		<ext>,,,,,,,</ext>
+		<lock>LB1,LB2,,,,,,</lock>
+	</mcu>
+	<mcu signature="1e9003" name="attiny10">
+		<high>,,,,,,,</high>
+		<low>RSTDISBL,WDTON,CKOUT,,,,,</low>
+		<ext>,,,,,,,</ext>
+		<lock>LB1,LB2,,,,,,</lock>
+	</mcu>
 	<mcu signature="1e9004" name="attiny11">
 		<high>,,,,,,,</high>
 		<low>CKSEL0,CKSEL1,CKSEL2,RSTDISBL,FSTRT,,,</low>

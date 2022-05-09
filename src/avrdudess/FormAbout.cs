@@ -33,12 +33,12 @@ namespace avrdudess
 
         private void lnkHome_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(((LinkLabel)sender).Text);
+            Util.openURL(((LinkLabel)sender).Text);
         }
 
         private void pbDonate_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://donate.zakkemble.net/avrdudess/");
+            Util.openURL("https://donate.zakkemble.net/avrdudess/");
         }
 
         static string getBuildDate() // Based on John Leidegren's way on StackOverflow

@@ -82,7 +82,7 @@ namespace avrdudess
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(address);
+            Util.openURL(address);
             Close();
         }
 

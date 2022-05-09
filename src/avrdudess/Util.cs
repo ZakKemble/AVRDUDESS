@@ -163,6 +163,20 @@ namespace avrdudess
             }
             return null;
         }
+
+        public static void openURL(string url)
+        {
+            // Some versions of Mono have a bug where passing a URL to Process.Start() will result in a "Cannot find the specified file" Win32Exception
+            // https://github.com/ZakKemble/AVRDUDESS/issues/41
+            try
+            {
+                System.Diagnostics.Process.Start(url);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.error("Probably a Mono bug..." + Environment.NewLine + ex.Message + ": " + url);
+            }
+        }
     }
 
     static class MsgBox

@@ -1309,7 +1309,7 @@ namespace avrdudess
                 sURL += sParam;
             }
 
-            System.Diagnostics.Process.Start(sURL);
+            Util.openURL(sURL);
         }
 
         // Read fuses

@@ -45,7 +45,7 @@ namespace avrdudess
             public string bitClock { get; private set; }
             public int freq { get; private set; }
 
-            public UsbAspFreq(string name) // Used for USBASP automatic bit clock configuration
+            public UsbAspFreq(string name) // Used for USBASP default bit clock configuration
             {
                 this.name = name;
             }
@@ -376,7 +376,8 @@ namespace avrdudess
             if (args.Trim().Length > 0)
             {
                 // Add -u to command line (disables safe mode)
-                args = "-u " + args;
+                // v7.0+ no longer has a safe mode to disable
+                //args = "-u " + args;
 
                 // Set conf file to use
                 string confLoc = Config.Prop.avrdudeConfLoc;

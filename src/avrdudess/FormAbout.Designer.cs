@@ -43,7 +43,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Location = new System.Drawing.Point(12, 169);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(208, 23);
+            this.btnOK.Size = new System.Drawing.Size(219, 23);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "_OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -73,20 +73,22 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Location = new System.Drawing.Point(9, 84);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(211, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(226, 13);
             this.linkLabel1.TabIndex = 3;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "https://github.com/zkemble/AVRDUDESS";
+            this.linkLabel1.Text = "https://github.com/ZakKemble/AVRDUDESS";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkHome_LinkClicked);
             // 
             // pbDonate
             // 
+            this.pbDonate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pbDonate.BackgroundImage = global::avrdudess.Properties.Resources.btn_donate_LG;
             this.pbDonate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pbDonate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbDonate.Location = new System.Drawing.Point(12, 110);
             this.pbDonate.Name = "pbDonate";
-            this.pbDonate.Size = new System.Drawing.Size(208, 45);
+            this.pbDonate.Size = new System.Drawing.Size(219, 45);
             this.pbDonate.TabIndex = 4;
             this.pbDonate.TabStop = false;
             this.pbDonate.Click += new System.EventHandler(this.pbDonate_Click);
@@ -97,7 +99,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnOK;
-            this.ClientSize = new System.Drawing.Size(232, 204);
+            this.ClientSize = new System.Drawing.Size(243, 204);
             this.Controls.Add(this.pbDonate);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.lnkHome);

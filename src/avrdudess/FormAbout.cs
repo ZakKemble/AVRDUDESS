@@ -41,11 +41,11 @@ namespace avrdudess
             Util.openURL("https://donate.zakkemble.net/avrdudess/");
         }
 
-        static string getBuildDate() // Based on John Leidegren's way on StackOverflow
+        private static string getBuildDate() // Based on John Leidegren's way on StackOverflow
         {
             var version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
             var buildDate = new DateTime(2000, 1, 1).Add(new TimeSpan(TimeSpan.TicksPerDay * version.Build));
-            return buildDate.ToString().Split(' ')[0];
+            return buildDate.ToString("dd-MMM-yy").Split(' ')[0];
         }
     }
 }

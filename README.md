@@ -5,7 +5,7 @@ This is a GUI for AVRDUDE ([https://savannah.nongnu.org/projects/avrdude](https:
 
 [https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/](https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/)
 
-![AVRDUDESS pic](https://github.com/zkemble/AVRDUDESS/raw/master/images/avrdudess.png "")
+![AVRDUDESS pic](images/avrdudess.png "")
 
 Windows:
 --------

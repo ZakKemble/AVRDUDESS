@@ -84,7 +84,7 @@ namespace avrdudess
         private const string UPDATE_ADDR = "https://versions.zakkemble.net/avrdudess2.xml";
 
         public static readonly UpdateCheck check = new UpdateCheck();
-        private long timeNow;
+        private long timeNow = 0;
         public string errorMsg { get; private set; }
 
         private UpdateCheck() { }

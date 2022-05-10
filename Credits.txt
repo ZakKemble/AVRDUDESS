@@ -83,3 +83,6 @@ Ideas & code credits:
 
 "Rendszer Gazda RendszergazdaNyh"
 * Hungarian translation
+
+"RedSnake64" <https://github.com/RedSnake64>
+* Option to turn off update checks

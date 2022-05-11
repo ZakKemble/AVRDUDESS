@@ -49,4 +49,5 @@
     <Width>0</Width>
     <Height>0</Height>
   </windowSize>
+  <checkForUpdates>true</checkForUpdates>
 </ConfigData>

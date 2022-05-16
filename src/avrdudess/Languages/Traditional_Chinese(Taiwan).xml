@@ -163,8 +163,8 @@
 		<string name="AVRDUDE_LOCATION">avrdude 路徑</string>
 		<string name="AVRDUDECONF_LOCATION">avrdude.conf 路徑</string>
 		<string name="AVRSIZE_LOCATION">avr-size 路徑</string>
-		<string name="CHECKFORUPDATES">Check for updates on startup</string>
-		<string name="CHK_UNCHK_ALL">Check/uncheck all</string>
+		<string name="CHECKFORUPDATES">在啟動時檢查更新</string>
+		<string name="CHK_UNCHK_ALL">選中/取消選中所有</string>
 
 		<!-- General stuff -->
 		<string name="OK">確定</string>

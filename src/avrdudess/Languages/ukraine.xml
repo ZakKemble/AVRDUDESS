@@ -76,14 +76,14 @@
 		<string name="SELECTMCU">Виберіть MCU ...</string>
 		<string name="FUSELOCKREADFAIL">Неможливо прочитати FUSE біти / LOCK біти</string>
 		<string name="READINGFUSES">Читання Fuse ...</string>
-		<string name="READINGLOCKBITS">Читання LOCK битов ...</string>
-		<string name="WRITINGINGFUSES">Writing fuses...</string>
-		<string name="WRITINGINGLOCKBITS">Writing lock bits...</string>
+		<string name="READINGLOCKBITS">Читання LOCK битів ...</string>
+		<string name="WRITINGINGFUSES">Записати FUSE запобіжники...</string>
+		<string name="WRITINGINGLOCKBITS">Записати lock ,snb...</string>
 		<string name="READHFUSE">Читання HI FUSES</string>
 		<string name="READLFUSE">Читання LOW FUSES</string>
 		<string name="READEFUSE">Читання EXT FUSES</string>
 		<string name="READFUSE">Read fuse</string>
-		<string name="READLOCKBITS">Читання LOCK битов</string>
+		<string name="READLOCKBITS">Читання LOCK бітів</string>
 		<string name="NOSUPPORTEDFUSES">{0} Не має Fuses, що підтримуються</string>
 
 		<string name="UPDATE_CHECK">Преревірка оновлення ...</string>
@@ -163,8 +163,8 @@
 		<string name="AVRDUDE_LOCATION">положення папки avrdude</string>
 		<string name="AVRDUDECONF_LOCATION">шлях папки avrdude.conf</string>
 		<string name="AVRSIZE_LOCATION">шлях папки avr-size</string>
-		<string name="CHECKFORUPDATES">Check for updates on startup</string>
-		<string name="CHK_UNCHK_ALL">Check/uncheck all</string>
+		<string name="CHECKFORUPDATES">Перевірте наявність оновлень під час запуску</string>
+		<string name="CHK_UNCHK_ALL">Вибрати все/ні</string>
 
 		<!-- Загальне -->
 		<string name="OK">OK</string>

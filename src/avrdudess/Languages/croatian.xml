@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<translation>
+	<name>Hrvatski</name>
+	<data>
+
+		<!-- Main form -->
+		<string name="TOOLTIP_MCU">Mikroupravljač</string>
+		<string name="TOOLTIP_PROGRAMMER">Programator</string>
+		<string name="TOOLTIP_PORT">Postavi COM/LTP/USB port</string>
+		<string name="TOOLTIP_BAUDRATE">Port baud rate</string>
+		<string name="TOOLTIP_BITCLOCK">Bit clock period (us)</string>
+		<string name="TOOLTIP_FLASHFILE">Hex datoteka (.hex)
+Možete mišem pustiti datoteku ovdje</string>
+		<string name="TOOLTIP_EEPROMFILE">EEPROM datoteka (.eep)
+Možete mišem pustiti datoteku ovdje</string>
+		<string name="TOOLTIP_FORCE">Preskoči provjeravanje mikroupravljača</string>
+		<string name="TOOLTIP_NOVERIFY">Don't verify after writing</string>
+		<string name="TOOLTIP_NOERASE">Ne briši FLASH prije prženja
+Odaberite ako samo želite ažurirate EEPROM</string>
+		<string name="TOOLTIP_ERASEBOTH">Obriši FLASH i EEPROM</string>
+		<string name="TOOLTIP_NOWRITE">Ništa ne zapisuj. Koristi se za debug AVRdude-a</string>
+		<string name="TOOLTIP_LOWFUSE">Low fuse</string>
+		<string name="TOOLTIP_HIGHFUSE">High fuse</string>
+		<string name="TOOLTIP_EXFUSE">Extended fuse</string>
+		<string name="TOOLTIP_LOCKBITS">LOCK bits</string>
+		<string name="TOOLTIP_ONLYFLASH">Samo zapiši/čitaj/provjeri FLASH</string>
+		<string name="TOOLTIP_ONLYEEPROM">Samo apiši/čitaj/provjeri EEPROM</string>
+		<string name="TOOLTIP_WRITEFUSES">Zapiši FUSES</string>
+		<string name="TOOLTIP_WRITELOCK">Zapiši LOCK bitove</string>
+		<string name="TOOLTIP_READFUSES">Pročitaj FUSES</string>
+		<string name="TOOLTIP_READLOCK">Pročitaj LOCK</string>
+		<string name="TOOLTIP_WRITEFUSESPROG">Zapiši FUSES kod programiranja</string>
+		<string name="TOOLTIP_WRITELOCKPROG">Zapiši LOCK kod programiranja</string>
+		<string name="GO">Izvrši</string>
+		<string name="WRITE">Zapiši</string>
+		<string name="READ">Čitaj</string>
+		<string name="VERIFY">Provjeri</string>
+		<string name="GRP_PROGRAMMER">Programator (-c)</string>
+		<string name="PORT">Port (-P)</string>
+		<string name="BAUDRATE">Baud (-b)</string>
+		<string name="BITCLOCK">Brzina komunikacije (-B)</string>
+		<string name="GRP_FLASH">Zapiši</string>
+		<string name="FORMAT">Format</string>
+		<string name="GRP_EEPROM">EEPROM</string>
+		<string name="GRP_OPTIONS">Opcije</string>
+		<string name="FORCE">Prisili (-F)</string>
+		<string name="DISVERIFY">Ne provjeravaj (-V)</string>
+		<string name="DISFLASHERASE">Onemogući brisanje FLASH (-D)</string>
+		<string name="ERASEFLASHEEP">Obriši FLASH i EEPROM (-e)</string>
+		<string name="DONOTWRITE">Ne zapisuj (-n)</string>
+		<string name="VERBOSITY">Rječitost</string>
+		<string name="GRP_MCU">Mikroupravljač (-p)</string>
+		<string name="FLASHSZ">FLASH:</string>
+		<string name="EEPROMSZ">EEPROM:</string>
+		<string name="DETECT">Detektiraj</string>
+		<string name="GRP_PRESET">Obrasci</string>
+		<string name="PRESETMGR">Upravljanje obrascima</string>
+		<string name="GRP_FUSELOCK">FUSES &amp;&amp; LOCK bitovi</string>
+		<string name="SETFUSES">Postavi FUSES</string>
+		<string name="FUSESETTINGS">Postavke FUSES</string>
+		<string name="SETLOCK">Postavi LOCK</string>
+		<string name="BITSELECTOR">Odaberi bitove</string>
+		<string name="DOPROGRAM">Prži!</string>
+		<string name="DOSTOP">Zaustavi</string>
+		<string name="BTN_OPTIONS">Opcije</string>
+		<string name="GRP_ADDCMDARGS">Dodatni argumenti</string>
+		<string name="MCUNOTFOUND">Mikroupravljač '{0}' nije pronađen!</string>
+		<string name="PROGNOTFOUND">Programator '{0}' nije pronađen!</string>
+		<string name="STATUSRUNNING">AVRDUDE radi...</string>
+		<string name="STATUSREADY">Spreman</string>
+		<string name="DETECTSUCCESS">Detektiran {0} = {1}</string>
+		<string name="DETECTFAIL">Ne mogu detektirati mikroupravljač</string>
+		<string name="AVRDUDEKILLED">AVRDUDE ubijen</string>
+		<string name="ABOUT">O programu</string>
+		<string name="SELECTPROG">Odaberi programator...</string>
+		<string name="SELECTMCU">Odaberi mikroupravljač...</string>
+		<string name="FUSELOCKREADFAIL">Ne mogu očitati FUSE/LOCK bitove</string>
+		<string name="READINGFUSES">Čitam FUSES...</string>
+		<string name="READINGLOCKBITS">Čitam LOCK bitove...</string>
+		<string name="READHFUSE">Očitaj FUSE HIGH</string>
+		<string name="READLFUSE">Očitaj FUSE LOW</string>
+		<string name="READEFUSE">Očitaj FUSE EXTENDED</string>
+		<string name="READFUSE">Očitaj FUSE</string>
+		<string name="READLOCKBITS">Očitaj LOCK bitove</string>
+		<string name="NOSUPPORTEDFUSES">{0} ne podržava FUSE bitove</string>
+
+		<string name="UPDATE_CHECK">Provjeravam ažuriranja...</string>
+		<string name="UPDATE_FAILED">Provjera ažuriranja neuspjela: {0}</string>
+		<string name="UPDATE_AVAIL">Ažuriranje dostupno: v{0}</string>
+		<string name="UPDATE_LATEST">Vrtite zadnju verziju programa :)</string>
+		<string name="UPDATE_SKIP">Odlučili ste koristiti staru verziju {0}</string>
+		<string name="UPDATE_BADXML">Update XML is missing release entries</string>
+
+		<string name="FILEFMT_AUTO">Automatski (samo zapis.)</string>
+		<string name="FILEFMT_HEX">Intel Hex</string>
+		<string name="FILEFMT_SREC">Motorola S-record</string>
+		<string name="FILEFMT_BIN">Sirovi binary</string>
+		<string name="FILEFMT_DECR">Decimal (samo čitanje)</string>
+		<string name="FILEFMT_HEXR">Hexadecimal (samo čitanje)</string>
+		<string name="FILEFMT_BINR">Binary (samo čitanje)</string>
+
+		<string name="BROWSE_OPEN_FLASH">Otvori FLASH datoteku</string>
+		<string name="BROWSE_SAVE_FLASH">spremi FLASH datoteku</string>
+		<string name="BROWSE_OPEN_EEPROM">Otvori EEPROM datoteku</string>
+		<string name="BROWSE_SAVE_EEPROM">spremi EEPROM datoteku</string>
+		<string name="BROWSE_FILTER_ALL">Sve datoteke (*.*)</string>
+		<string name="BROWSE_FILTER_HEX">Hex datoteke (*.hex)</string>
+		<string name="BROWSE_FILTER_EEP">EEPROM datoteke (*.eep)</string>
+
+		<!-- Preset manager form -->
+		<string name="TITLE_PRESETMGR">Upravljanje obrascima</string>
+		<string name="RENAME">Preimenuj</string>
+		<string name="OVERWRITE">Zamijeni</string>
+		<string name="SAVENEWPRESET">Snimi novi obrazac...</string>
+		<string name="EXPORT">Izvoz</string>
+		<string name="IMPORT">Uvoz</string>
+		<string name="DELETE">Izbriši</string>
+		<string name="CLOSE">Zatvori</string>
+		<string name="EXPORTIMGPORTDELETE">Izvoz/uvoz/brisanje</string>
+		<string name="SAVEDIALOG_EXPORT">Izvozi obrazac</string>
+		<string name="OPENDIALOG_IMPORT">Uvezi obrazac</string>
+		<string name="NEWPRESETNAME">Novo ime obrasca</string>
+		<string name="CANTUSEDEFAULT">Ne mogu koristiti ime 'Default'</string>
+		<string name="OVERWRITEPRESET">Zamijeni '{0}'?</string>
+		<string name="DELETEPRESETS">Izbriši obrazca(e){0}?</string>
+		<string name="PRESETALREADYEXISTS">Obrazac s tim imenom več postoji, zamijeni?</string>
+		<string name="CANTOVERWRITEDEFAULT">Ne mogu zamijeniti 'Default' obrazac</string>
+		<string name="PRESETOVERWRITE">Zamijeni '{0}' sa trenutnim postavkama?</string>
+		<string name="EXPORTINGPRESETS">Izvoz '{0}'...</string>
+		<string name="EXPORTCOMPLETE">Izvoz završen</string>
+		<string name="IMPORTINGPRESETS">Uvoz '{0}'...</string>
+		<string name="IMPORTALREADYEXISTS">'{0}' več ostoji, preimenujem u '{1}'</string>
+		<string name="IMPORTCOMPLETE">Uvoz završen</string>
+
+		<!-- Update form -->
+		<string name="UPDATEAVAILABLE">Ažuriranje dostupno</string>
+		<string name="CURRENTVERSION">Trenutna verzija:</string>
+		<string name="NEWVERSION">Nova verzija:</string>
+		<string name="BTN_UPDATE">Ažuriraj</string>
+		<string name="BTN_SKIPVERSION">Preskoči verziju</string>
+		<string name="BTN_LATER">Kasnije</string>
+
+		<!-- Fuse editor form -->
+		<string name="TITLE_FUSEANDLOCKBITS">FUSE &amp;&amp; LOCK bitovi: {0} ({1})</string>
+		<string name="ERRORLOADFUSES">Greška kod učitavanja FUSE:
+{0}</string>
+		<string name="UNSUPPMCU">Upozorenje! Nepodržan mikroupravljač</string>
+		<string name="GRP_LOCKBITS">LOCK bitovi</string>
+		<string name="GRP_FUSEBITS">FUSE bitovi</string>
+		<string name="LOCKBITS">LOCK BITOVI</string>
+
+		<!-- Options form -->
+		<string name="TITLE_OPTIONS">Opcije</string>
+		<string name="GRP_FILELOCATIONS">Lokacije datoteka (za automatsku detekciju ostavi prazno)</string>
+		<string name="GRP_OTHER">Ostalo</string>
+		<string name="GRP_HIDEPROGS">Sakrij programatore</string>
+		<string name="GRP_HIDEMCUS">Sakrij mikroupravljače</string>
+		<string name="LANGUAGE">Jezik</string>
+		<string name="SHOWTOOLTIPS">Prikaži opise alata</string>
+		<string name="USEPREVSETTINGS">Učitaj zadnje postavke pri pokretanju</string>
+		<string name="AVRDUDE_LOCATION">lokacija programa avrdude</string>
+		<string name="AVRDUDECONF_LOCATION">lokacija programa datoteke avrdude.conf</string>
+		<string name="AVRSIZE_LOCATION">lokacija programa avr-size</string>
+
+		<!-- General stuff -->
+		<string name="OK">OK</string>
+		<string name="CANCEL">Prekid</string>
+		<string name="ERRORUC">GREŠKA</string>
+		<string name="WARNINGUC">UPOZORENJE</string>
+		<string name="SUCCESSUC">USPJEH</string>
+		<string name="ERROR">Greška</string>
+		<string name="WARNING">Upozorenje</string>
+		<string name="NOTICE">Upozorenje</string>
+		<string name="CONFIRM">U redu</string>
+
+		<!-- Errors and things -->
+		<string name="XMLWRITEERROR">Greška kod spremanja {0}:
+{1}</string>
+		<string name="XMLCOPYERROR">Greška kod kopiranja obrasca {0} u AppData:
+{1}</string>
+		<string name="EXECMISSING">Nedostaje {0}!</string>
+		<string name="EXECFAIL">Ne mogu pokrenuti proces: {0}</string>
+		<string name="UNKNOWNSIG">Nepoznat potpis {0}</string>
+		<string name="AVRCONFMISSING">Nedostaje {0}!</string>
+		<string name="AVRCONFREADERROR">Ne mogu očitati {0}:
+{1}</string>
+
+	</data>
+</translation>

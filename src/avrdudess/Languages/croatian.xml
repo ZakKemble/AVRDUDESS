@@ -78,6 +78,8 @@ Odaberite ako samo želite ažurirate EEPROM</string>
 		<string name="READINGFUSES">Čitam FUSES...</string>
 		<string name="READINGLOCKBITS">Čitam LOCK bitove...</string>
 		<string name="READHFUSE">Očitaj FUSE HIGH</string>
+		<string name="WRITINGINGFUSES">Zapisujem FUSES...</string>
+		<string name="WRITINGINGLOCKBITS">Zapisujem LOCK bitove...</string>
 		<string name="READLFUSE">Očitaj FUSE LOW</string>
 		<string name="READEFUSE">Očitaj FUSE EXTENDED</string>
 		<string name="READFUSE">Očitaj FUSE</string>
@@ -161,7 +163,8 @@ Odaberite ako samo želite ažurirate EEPROM</string>
 		<string name="AVRDUDE_LOCATION">lokacija programa avrdude</string>
 		<string name="AVRDUDECONF_LOCATION">lokacija programa datoteke avrdude.conf</string>
 		<string name="AVRSIZE_LOCATION">lokacija programa avr-size</string>
-
+		<string name="CHECKFORUPDATES">Provjeri ažuriranja kod pokretanja</string>
+		<string name="CHK_UNCHK_ALL">Označi sve/ništa</string>
 		<!-- General stuff -->
 		<string name="OK">OK</string>
 		<string name="CANCEL">Prekid</string>

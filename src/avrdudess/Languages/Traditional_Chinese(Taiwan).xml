@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <translation>
 	<name>正體中文,台灣(Traditional Chinese,Taiwan)</name>
 	<data>
@@ -6,7 +6,7 @@
 		<!-- Main form -->
 		<string name="TOOLTIP_MCU">要燒錄的MCU</string>
 		<string name="TOOLTIP_PROGRAMMER">燒錄器</string>
-		<string name="TOOLTIP_PORT">設置 COM/LPT/USB 端口</string>
+		<string name="TOOLTIP_PORT">設置 COM/LPT/USB 埠</string>
 		<string name="TOOLTIP_BAUDRATE">埠鮑率</string>
 		<string name="TOOLTIP_BITCLOCK">時脈週期(us)</string>
 		<string name="TOOLTIP_FLASHFILE">Hex檔案 (.hex)
@@ -25,9 +25,9 @@
 		<string name="TOOLTIP_LOCKBITS">加密位</string>
 		<string name="TOOLTIP_ONLYFLASH">只寫入/讀取/核對Flash</string>
 		<string name="TOOLTIP_ONLYEEPROM">只寫入/讀取/核對EEPROM</string>
-		<string name="TOOLTIP_WRITEFUSES">寫入熔丝</string>
+		<string name="TOOLTIP_WRITEFUSES">寫入熔絲</string>
 		<string name="TOOLTIP_WRITELOCK">寫入加密位</string>
-		<string name="TOOLTIP_READFUSES">讀取熔丝</string>
+		<string name="TOOLTIP_READFUSES">讀取熔絲</string>
 		<string name="TOOLTIP_READLOCK">讀取加密位</string>
 		<string name="TOOLTIP_WRITEFUSESPROG">編程時寫入熔絲</string>
 		<string name="TOOLTIP_WRITELOCKPROG">編程時寫入加密位</string>
@@ -59,7 +59,7 @@
 		<string name="SETFUSES">寫入熔絲</string>
 		<string name="FUSESETTINGS">熔絲線上計算</string>
 		<string name="SETLOCK">寫入加密</string>
-		<string name="BITSELECTOR">手动熔絲選擇器</string>
+		<string name="BITSELECTOR">手動熔絲選擇器</string>
 		<string name="DOPROGRAM">開始燒錄</string>
 		<string name="DOSTOP">停止</string>
 		<string name="BTN_OPTIONS">選項</string>
@@ -84,7 +84,7 @@
 		<string name="READEFUSE">讀取擴展熔絲位</string>
 		<string name="READFUSE">讀取熔絲位</string>
 		<string name="READLOCKBITS">讀取加密位</string>
-		<string name="NOSUPPORTEDFUSES">{0} 沒有任何受支持的熔絲位</string>
+		<string name="NOSUPPORTEDFUSES">{0} 沒有任何受支援的熔絲位</string>
 
 		<string name="UPDATE_CHECK">檢查更新...</string>
 		<string name="UPDATE_FAILED">檢查更新失敗: {0}</string>
@@ -113,7 +113,7 @@
 		<string name="TITLE_PRESETMGR">預設檔管理器</string>
 		<string name="RENAME">重命名</string>
 		<string name="OVERWRITE">覆蓋</string>
-		<string name="SAVENEWPRESET">存为新预设檔...</string>
+		<string name="SAVENEWPRESET">存為新預設檔...</string>
 		<string name="EXPORT">導出</string>
 		<string name="IMPORT">導入</string>
 		<string name="DELETE">刪除</string>
@@ -122,7 +122,7 @@
 		<string name="SAVEDIALOG_EXPORT">導出預設檔</string>
 		<string name="OPENDIALOG_IMPORT">導入預設檔</string>
 		<string name="NEWPRESETNAME">預設檔名稱</string>
-		<string name="CANTUSEDEFAULT">不能使用默認值 'Default'</string>
+		<string name="CANTUSEDEFAULT">不能使用預設值 'Default'</string>
 		<string name="OVERWRITEPRESET">覆蓋 '{0}'?</string>
 		<string name="DELETEPRESETS">刪除預設檔 {0} (s)?</string>
 		<string name="PRESETALREADYEXISTS">預設檔已存在，是否覆蓋?</string>
@@ -182,10 +182,10 @@
 {1}</string>
 		<string name="XMLCOPYERROR">複製模板 {0} 到AppData失敗:
 {1}</string>
-		<string name="EXECMISSING">{0} 丟失</string>
+		<string name="EXECMISSING">{0} 遺失</string>
 		<string name="EXECFAIL">無法啟動進程: {0}</string>
 		<string name="UNKNOWNSIG">未知簽章 {0}</string>
-		<string name="AVRCONFMISSING">{0} 丟失</string>
+		<string name="AVRCONFMISSING">{0} 遺失</string>
 		<string name="AVRCONFREADERROR">無法讀取 {0}:
 {1}</string>
 

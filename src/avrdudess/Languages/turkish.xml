@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <translation>
 	<name>Turkish</name>
 	<data>
@@ -14,10 +14,10 @@ Dosyaları buraya sürükleyip bırakabilirsiniz.</string>
 		<string name="TOOLTIP_EEPROMFILE">EEPROM dosyası (.eep)
 Dosyaları buraya sürükleyip bırakabilirsiniz.</string>
 		<string name="TOOLTIP_FORCE">İmza kontrolünü atla</string>
-		<string name="TOOLTIP_NOVERIFY">Yazdıktan sonra doğrulama</string>
+		<string name="TOOLTIP_NOVERIFY">Yazdıktan sonra doğrulama yapma</string>
 		<string name="TOOLTIP_NOERASE">Yazmadan önce flaşı silme
 Bunu yalnızca EEPROM'u güncellemek istiyorsanız kullanın</string>
-		<string name="TOOLTIP_ERASEBOTH">Hem flaşı hem de EEPROM'u silin</string>
+		<string name="TOOLTIP_ERASEBOTH">Hem flaşı hem de EEPROM'u sil</string>
 		<string name="TOOLTIP_NOWRITE">Hiçbir şey yazma, AVRDUDE hatalarını ayıklamak için kullanılır</string>
 		<string name="TOOLTIP_LOWFUSE">Düşük (Low) sigorta</string>
 		<string name="TOOLTIP_HIGHFUSE">Yüksek (High)sigorta</string>
@@ -111,7 +111,7 @@ Bunu yalnızca EEPROM'u güncellemek istiyorsanız kullanın</string>
 
 		<!-- Preset manager form -->
 		<string name="TITLE_PRESETMGR">Hazır Ayar Yöneticisi</string>
-		<string name="RENAME">Yeniden Adlandır</string>
+		<string name="RENAME">Y. Adlandır</string>
 		<string name="OVERWRITE">Üzerine Yaz</string>
 		<string name="SAVENEWPRESET">Yeni hazır ayar kaydet...</string>
 		<string name="EXPORT">Dışa Aktar</string>
@@ -164,7 +164,7 @@ Bunu yalnızca EEPROM'u güncellemek istiyorsanız kullanın</string>
 		<string name="AVRDUDECONF_LOCATION">avrdude.conf klasör konumu</string>
 		<string name="AVRSIZE_LOCATION">avr-size klasör konumu</string>
 		<string name="CHECKFORUPDATES">Başlangıçta güncellemeleri kontrol et</string>
-		<string name="CHK_UNCHK_ALL">Tümününü işaretle/işaretleme </string>
+		<string name="CHK_UNCHK_ALL">Tümününü seç/kaldır </string>
 
 		<!-- General stuff -->
 		<string name="OK">Tamam</string>

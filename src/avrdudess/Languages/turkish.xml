@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translation>
+	<name>Turkish</name>
+	<data>
+
+		<!-- Main form -->
+		<string name="TOOLTIP_MCU">Programlanacak mikroişlemci</string>
+		<string name="TOOLTIP_PROGRAMMER">Programlayıcı</string>
+		<string name="TOOLTIP_PORT">COM/LPT/USB bağlantı noktasını ayarla</string>
+		<string name="TOOLTIP_BAUDRATE">Bağlantı noktası iletişim hızı</string>
+		<string name="TOOLTIP_BITCLOCK">Bit saat periyodu (us)</string>
+		<string name="TOOLTIP_FLASHFILE">Hex dosyası (.hex)
+Dosyaları buraya sürükleyip bırakabilirsiniz.</string>
+		<string name="TOOLTIP_EEPROMFILE">EEPROM dosyası (.eep)
+Dosyaları buraya sürükleyip bırakabilirsiniz.</string>
+		<string name="TOOLTIP_FORCE">İmza kontrolünü atla</string>
+		<string name="TOOLTIP_NOVERIFY">Yazdıktan sonra doğrulama yapma</string>
+		<string name="TOOLTIP_NOERASE">Yazmadan önce flaşı silme
+Bunu yalnızca EEPROM'u güncellemek istiyorsanız kullanın</string>
+		<string name="TOOLTIP_ERASEBOTH">Hem flaşı hem de EEPROM'u sil</string>
+		<string name="TOOLTIP_NOWRITE">Hiçbir şey yazma, AVRDUDE hatalarını ayıklamak için kullanılır</string>
+		<string name="TOOLTIP_LOWFUSE">Düşük (Low) sigorta</string>
+		<string name="TOOLTIP_HIGHFUSE">Yüksek (High)sigorta</string>
+		<string name="TOOLTIP_EXFUSE">Genişletilmiş (Extended) sigorta</string>
+		<string name="TOOLTIP_LOCKBITS">Bitleri kilitle (Lock bits)</string>
+		<string name="TOOLTIP_ONLYFLASH">Yalnızca flaşı yaz/oku/doğrula</string>
+		<string name="TOOLTIP_ONLYEEPROM">Yalnızca EEPROM'u yaz/oku/doğrula</string>
+		<string name="TOOLTIP_WRITEFUSES">Şimdi sigortaları yaz</string>
+		<string name="TOOLTIP_WRITELOCK">Şimdi kilit yaz</string>
+		<string name="TOOLTIP_READFUSES">Sigortaları şimdi oku</string>
+		<string name="TOOLTIP_READLOCK">Şimdi kilit oku</string>
+		<string name="TOOLTIP_WRITEFUSESPROG">Programlama sırasında sigortaları yaz</string>
+		<string name="TOOLTIP_WRITELOCKPROG">Programlama sırasında kilit yaz</string>
+		<string name="GO">Git</string>
+		<string name="WRITE">Yaz</string>
+		<string name="READ">Oku</string>
+		<string name="VERIFY">Doğrula</string>
+		<string name="GRP_PROGRAMMER">Programlayıcı (-c)</string>
+		<string name="PORT">Bağlantı Noktası (-P)</string>
+		<string name="BAUDRATE">İletişim Hızı (-b)</string>
+		<string name="BITCLOCK">Bit clock (-B)</string>
+		<string name="GRP_FLASH">Flaş</string>
+		<string name="FORMAT">Format</string>
+		<string name="GRP_EEPROM">EEPROM</string>
+		<string name="GRP_OPTIONS">Seçenekler</string>
+		<string name="FORCE">Zorla (-F)</string>
+		<string name="DISVERIFY">Doğrulamayı devre dışı bırak (-V)</string>
+		<string name="DISFLASHERASE">Flaş silmeyi devre dışı bırak (-D)</string>
+		<string name="ERASEFLASHEEP">Flaşı ve EEPROM'u sil (-e)</string>
+		<string name="DONOTWRITE">Yazma (-n)</string>
+		<string name="VERBOSITY">Ayrıntı</string>
+		<string name="GRP_MCU">Mikroişlemci (-p)</string>
+		<string name="FLASHSZ">Flaş:</string>
+		<string name="EEPROMSZ">EEPROM:</string>
+		<string name="DETECT">Detect</string>
+		<string name="GRP_PRESET">Hazır ayarlar</string>
+		<string name="PRESETMGR">Yönetici</string>
+		<string name="GRP_FUSELOCK">Sigortalar &amp;&amp; Kilit bitleri</string>
+		<string name="SETFUSES">Sigortaları ayarla</string>
+		<string name="FUSESETTINGS">Sigorta ayarları</string>
+		<string name="SETLOCK">Kilit ayarla</string>
+		<string name="BITSELECTOR">Bit seçici</string>
+		<string name="DOPROGRAM">Programla!</string>
+		<string name="DOSTOP">Dur</string>
+		<string name="BTN_OPTIONS">Seçenekler</string>
+		<string name="GRP_ADDCMDARGS">Ek parametreler</string>
+		<string name="MCUNOTFOUND">Mikroişlemci '{0}' bulunamadı</string>
+		<string name="PROGNOTFOUND">'{0}' programlayıcısı bulunamadı</string>
+		<string name="STATUSRUNNING">AVRDUDE çalışıyor...</string>
+		<string name="STATUSREADY">Hazır</string>
+		<string name="DETECTSUCCESS">Tespit edildi {0} = {1}</string>
+		<string name="DETECTFAIL">Mikroişlemci algılanamıyor</string>
+		<string name="AVRDUDEKILLED">AVRDUDE çöktü</string>
+		<string name="ABOUT">Hakkında</string>
+		<string name="SELECTPROG">Bir programlayıcı seçin...</string>
+		<string name="SELECTMikroişlemci">Bir mikroişlemci seçin...</string>
+		<string name="FUSELOCKREADFAIL">Sigortalar/kilit bitleri okunamıyor</string>
+		<string name="READINGFUSES">Sigortalar okunuyor...</string>
+		<string name="READINGLOCKBITS">Kilit bitleri okunuyor...</string>
+		<string name="WRITINGINGFUSES">Sigortalar yazılıyor...</string>
+		<string name="WRITINGINGLOCKBITS">Writing lock bits...</string>
+		<string name="READHFUSE">Yüksek (High) sigorta oku</string>
+		<string name="READLFUSE">Düşük sigorta (Low) oku</string>
+		<string name="READEFUSE">Genişletilmiş (Extended) sigorta oku</string>
+		<string name="READFUSE">Sigorta oku</string>
+		<string name="READLOCKBITS">Kilit bitleri oku</string>
+		<string name="NOSUPPORTEDFUSES">{0} desteklenen herhangi bir sigortaya sahip değil</string>
+
+		<string name="UPDATE_CHECK">Güncellemeler kontrol ediliyor...</string>
+		<string name="UPDATE_FAILED">Güncelleme kontrolü başarısız oldu: {0}</string>
+		<string name="UPDATE_AVAIL">Mevcut güncelleme: v{0}</string>
+		<string name="UPDATE_LATEST">En son sürüme sahipsiniz :)</string>
+		<string name="UPDATE_SKIP">{0} sürümünü atlamayı seçtiniz</string>
+		<string name="UPDATE_BADXML">Güncelleme XML'inde sürüm girişleri eksik</string>
+
+		<string name="FILEFMT_AUTO">Otomatik (sadece yazma)</string>
+		<string name="FILEFMT_HEX">Intel Hex</string>
+		<string name="FILEFMT_SREC">Motorola S-record</string>
+		<string name="FILEFMT_BIN">Raw binary</string>
+		<string name="FILEFMT_DECR">Decimal (sadece okuma)</string>
+		<string name="FILEFMT_HEXR">Hexadecimal (sadece okuma)</string>
+		<string name="FILEFMT_BINR">Binary (sadece okuma)</string>
+
+		<string name="BROWSE_OPEN_FLASH">Flaş dosyası aç</string>
+		<string name="BROWSE_SAVE_FLASH">Flaş dosyasını kaydet</string>
+		<string name="BROWSE_OPEN_EEPROM">EEPROM dosyası aç</string>
+		<string name="BROWSE_SAVE_EEPROM">EEPROM dosyasını kaydet</string>
+		<string name="BROWSE_FILTER_ALL">Tüm dosyalar (*.*)</string>
+		<string name="BROWSE_FILTER_HEX">Hex dosyaları (*.hex)</string>
+		<string name="BROWSE_FILTER_EEP">EEPROM dosyaları (*.eep)</string>
+
+		<!-- Preset manager form -->
+		<string name="TITLE_PRESETMGR">Hazır Ayar Yöneticisi</string>
+		<string name="RENAME">Y. Adlandır</string>
+		<string name="OVERWRITE">Üzerine Yaz</string>
+		<string name="SAVENEWPRESET">Yeni hazır ayar kaydet...</string>
+		<string name="EXPORT">Dışa Aktar</string>
+		<string name="IMPORT">İçe Aktar</string>
+		<string name="DELETE">Sil</string>
+		<string name="CLOSE">Kapat</string>
+		<string name="EXPORTIMGPORTDELETE">Dışa Aktar/İçe Aktar/Sil</string>
+		<string name="SAVEDIALOG_EXPORT">Hazır ayar dışa aktar</string>
+		<string name="OPENDIALOG_IMPORT">Hazır ayar içe aktar</string>
+		<string name="NEWPRESETNAME">Yeni hazır ayar adı</string>
+		<string name="CANTUSEDEFAULT">'Default' ad kullanılamaz</string>
+		<string name="OVERWRITEPRESET">'{0}' üzerine yazılsın mı?</string>
+		<string name="DELETEPRESETS">{0} hazır ayar(lar) silinsin mi?</string>
+		<string name="PRESETALREADYEXISTS">Bu ada sahip bir hazır ayar zaten var, üzerine yazılsın mı?</string>
+		<string name="CANTOVERWRITEDEFAULT">'Default' üzerine yazılamıyor</string>
+		<string name="PRESETOVERWRITE">Geçerli ayarlarlar '{0}' üzerine yazılsın mı?</string>
+		<string name="EXPORTINGPRESETS">'{0}' Dışa aktarılıyor...</string>
+		<string name="EXPORTCOMPLETE">Hazır ayarları dışa aktarma tamamlandı</string>
+		<string name="IMPORTINGPRESETS">'{0}' İçe aktarılıyor...</string>
+		<string name="IMPORTALREADYEXISTS">'{0}' zaten var, '{1}' olarak yeniden adlandırılıyor</string>
+		<string name="IMPORTCOMPLETE">Hazır ayarları içe aktarma tamamlandı</string>
+
+		<!-- Update form -->
+		<string name="UPDATEAVAILABLE">Update available</string>
+		<string name="CURRENTVERSION">Mevcut sürüm:</string>
+		<string name="NEWVERSION">Yeni sürüm:</string>
+		<string name="BTN_UPDATE">Güncelle</string>
+		<string name="BTN_SKIPVERSION">Sürümü atla</string>
+		<string name="BTN_LATER">Daha sonra</string>
+
+		<!-- Fuse editor form -->
+		<string name="TITLE_FUSEANDLOCKBITS">Sigorta &amp; kilit bitleri: {0} ({1})</string>
+		<string name="ERRORLOADFUSES">Sigortalar yüklenmeye çalışılırken bir hata oluştu:
+{0}</string>
+		<string name="UNSUPPMikroişlemci">Uyarı: Desteklenmeyen Mikroişlemci</string>
+		<string name="GRP_LOCKBITS">Kilit bitleri</string>
+		<string name="GRP_FUSEBITS">Sigorta bitleri</string>
+		<string name="LOCKBITS">KİLİT bitleri</string>
+
+		<!-- Options form -->
+		<string name="TITLE_OPTIONS">Seçenekler</string>
+		<string name="GRP_FILELOCATIONS">Dosya konumları (otomatik algılanması için boş bırakın)</string>
+		<string name="GRP_OTHER">Diğer</string>
+		<string name="GRP_HIDEPROGS">Programlayıcıları gizle</string>
+		<string name="GRP_HIDEMCUS">Mikroişlemcileri gizle</string>
+		<string name="LANGUAGE">Dil</string>
+		<string name="SHOWTOOLTIPS">Araç ipuçlarını göster</string>
+		<string name="USEPREVSETTINGS">Başlangıçta önceki ayarları yükle</string>
+		<string name="AVRDUDE_LOCATION">avrdude klasör konumu</string>
+		<string name="AVRDUDECONF_LOCATION">avrdude.conf klasör konumu</string>
+		<string name="AVRSIZE_LOCATION">avr-size klasör konumu</string>
+		<string name="CHECKFORUPDATES">Başlangıçta güncellemeleri kontrol et</string>
+		<string name="CHK_UNCHK_ALL">Tümününü seç/kaldır </string>
+
+		<!-- General stuff -->
+		<string name="OK">Tamam</string>
+		<string name="CANCEL">İptal</string>
+		<string name="ERRORUC">HATA</string>
+		<string name="WARNINGUC">UYARI</string>
+		<string name="SUCCESSUC">BAŞARILI</string>
+		<string name="ERROR">Hata</string>
+		<string name="WARNING">Uyarı</string>
+		<string name="NOTICE">Bildirim</string>
+		<string name="CONFIRM">Onayla</string>
+
+		<!-- Errors and things -->
+		<string name="XMLWRITEERROR">{0} kaydedilmeye çalışılırken bir hata oluştu:
+{1}</string>
+		<string name="XMLCOPYERROR">{0} şablonu AppData'ya kopyalanamadı:
+{1}</string>
+		<string name="EXECMISSING">{0} eksik!</string>
+		<string name="EXECFAIL">İşlem başlatılamıyor: {0}</string>
+		<string name="UNKNOWNSIG">Bilinmeyen imza {0}</string>
+		<string name="AVRCONFMISSING">{0} eksik!</string>
+		<string name="AVRCONFREADERROR">{0} okunamıyor:
+{1}</string>
+
+	</data>
+</translation>

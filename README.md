@@ -1,3 +1,10 @@
+### Difference to original version from ZakKemble:
+* Remove search for update service
+* Simplify portable mode detection
+* Update to latest avrdude
+
+### Original description:
+
 AVRDUDESS - A GUI for AVRDUDE
 =============================
 

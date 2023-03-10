@@ -98,12 +98,6 @@
     <Compile Include="FormUISimple.Designer.cs">
       <DependentUpon>FormUISimple.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormUpdate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormUpdate.Designer.cs">
-      <DependentUpon>FormUpdate.cs</DependentUpon>
-    </Compile>
     <Compile Include="FusesAndLocks.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="MCU.cs" />
@@ -114,7 +108,6 @@
     <Compile Include="Programmer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Executable.cs" />
-    <Compile Include="UpdateCheck.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="XmlFile.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -142,10 +135,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUISimple.resx">
       <DependentUpon>FormUISimple.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormUpdate.resx">
-      <DependentUpon>FormUpdate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -178,53 +167,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Languages\croatian.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Languages\english.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Languages\slovenian.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\italian.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\japanese.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\polish.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\chinese-zh_CN.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\french.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\russian.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\spanish.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\german.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\portugues.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\Traditional_Chinese(Taiwan).xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\ukraine.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\hungarian.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="Resources\btn_donate_LG.png" />
+    <None Include="Resources\Image1.bmp" />
     <ContentWithTargetPath Include="Files\avr-size.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <TargetPath>avr-size.exe</TargetPath>
@@ -245,12 +192,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <TargetPath>presets.xml</TargetPath>
     </ContentWithTargetPath>
-    <ContentWithTargetPath Include="Files\portable.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <TargetPath>portable.txt</TargetPath>
-    </ContentWithTargetPath>
     <Content Include="icon.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

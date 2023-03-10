@@ -480,48 +480,6 @@ namespace avrdudess
             txtAdditional.TextChanged += event_controlChanged;
 
             Language.Translation.apply(this);
-
-            // Check for updates
-            if (UpdateCheck.check.needed() && Config.Prop.checkForUpdates)
-            {
-                Thread t = new Thread(() =>
-                {
-                    Thread.Sleep(5000);
-
-                    Util.consoleWriteLine("_UPDATE_CHECK");
-
-                    UpdateData updateData = new UpdateData();
-                    bool checkSuccess = UpdateCheck.check.now(updateData);
-
-                    if (!checkSuccess)
-                        Util.consoleError("_UPDATE_FAILED", UpdateCheck.check.errorMsg);
-                    else if (updateData.updateAvailable())
-                    {
-                        if (Config.Prop.skipVersion == updateData.latest.version)
-                            Util.consoleWriteLine("_UPDATE_SKIP", updateData.latest.version.ToString());
-                        else
-                        {
-                            Util.consoleWriteLine("_UPDATE_AVAIL", updateData.latest.version.ToString());
-                            BeginInvoke(
-                                new MethodInvoker(() =>
-                                {
-                                    using (FormUpdate fUpdate = new FormUpdate(updateData, () =>
-                                    {
-                                        Config.Prop.skipVersion = updateData.latest.version;
-                                    }))
-                                    {
-                                        fUpdate.ShowDialog();
-                                    }
-                                })
-                            );
-                        }
-                    }
-                    else
-                        Util.consoleWriteLine("_UPDATE_LATEST");
-                });
-                t.IsBackground = true;
-                t.Start();
-            }
         }
 
         private void Key_MouseLeave(object sender, EventArgs e)

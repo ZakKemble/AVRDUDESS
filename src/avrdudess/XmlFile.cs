@@ -19,65 +19,50 @@ namespace avrdudess
         protected string fileLocation { get; private set; }
         private string name;
         abstract protected object data { get; set; }
-
-        private bool isPortable()
-        {
-            string path = Path.Combine(AssemblyData.directory, FILE_PORTABLE);
-
-            try
-            {
-                using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-                {
-                    byte[] buffer = new byte[1];
-                    int n = fs.Read(buffer, 0, 1);
-                    if (n == 1 && buffer[0] == 'Y')
-                        return true;
-                }
-            }
-            catch(Exception)
-            {
-                // Failed to open or something, run in non-portable mode
-            }
-
-            return false;
-        }
-
+        
         public XmlFile(string fileName, string name, bool customFileLocation)
         {
             this.name = name;
 
             if (customFileLocation) // Used for importing/exporting presets XML (a bit hacky)
-                fileLocation = fileName;
-            else if(isPortable()) // Portable mode will only read/write from the application directory
-                fileLocation = Path.Combine(AssemblyData.directory, fileName);
-            else
             {
-                // Where the file should be
-                fileLocation = makePath(Environment.SpecialFolder.ApplicationData, fileName);
+                fileLocation = fileName;
+                return;
+            }
 
-                // If file exists then we don't need to copy the template
-                if (!File.Exists(fileLocation))
+            var portableFileLocation = Path.Combine(AssemblyData.directory, fileName);
+            if (File.Exists(portableFileLocation)) // Portable mode will only read/write from the application directory
+            {
+                fileLocation = portableFileLocation;
+                return;
+            }
+
+            
+            // Where the file should be
+            fileLocation = makePath(Environment.SpecialFolder.ApplicationData, fileName);
+
+            // If file exists then we don't need to copy the template
+            if (!File.Exists(fileLocation))
+            {
+                // Copy template if we can find it
+
+                string[] locations = new string[]
                 {
-                    // Copy template if we can find it
+                    makePath(Environment.SpecialFolder.CommonApplicationData, fileName), // CommonAppData
+                    Path.Combine(AssemblyData.directory, fileName), // Program .exe directory
+                    Path.Combine(Directory.GetCurrentDirectory(), fileName) // Working directory
+                };
 
-                    string[] locations = new string[]
+                foreach (string location in locations)
+                {
+                    if (File.Exists(location))
                     {
-                        makePath(Environment.SpecialFolder.CommonApplicationData, fileName), // CommonAppData
-                        Path.Combine(AssemblyData.directory, fileName), // Program .exe directory
-                        Path.Combine(Directory.GetCurrentDirectory(), fileName) // Working directory
-                    };
-
-                    foreach (string location in locations)
-                    {
-                        if (File.Exists(location))
-                        {
-                            copyTemplate(location);
-                            break;
-                        }
+                        copyTemplate(location);
+                        break;
                     }
-
-                    // If template wasn't found then a new file will be created later
                 }
+
+                // If template wasn't found then a new file will be created later
             }
         }
 

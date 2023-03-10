@@ -50,7 +50,8 @@ namespace avrdudess
                 findLanguages(location);
 
                 // Load the selected language xml
-                readThroughXML(location + Config.Prop.language + ".xml", getTranslation, null);
+                string fileName = Config.Prop.language + ".xml";
+                readThroughXML(Path.Combine(location, fileName), getTranslation, null);
             }
             catch (Exception ex)
             {
@@ -61,15 +62,12 @@ namespace avrdudess
         // Loop through all .xml files in directory and search for the <name> tag
         private void findLanguages(string location)
         {
-            string[] languageFiles = Directory.GetFiles(location);
+            string[] languageFiles = Directory.GetFiles(location, "*.xml");
 
             foreach (string file in languageFiles)
             {
-                if (file.EndsWith(".xml"))
-                {
-                    string languageId = Path.GetFileNameWithoutExtension(file);
-                    readThroughXML(file, getLanguageInfo, languageId);
-                }
+                string languageId = Path.GetFileNameWithoutExtension(file);
+                readThroughXML(file, getLanguageInfo, languageId);
             }
         }
 

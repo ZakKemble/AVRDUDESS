@@ -330,7 +330,7 @@ namespace avrdudess
                 else
                 {
                     int pos = s.IndexOf('=');
-                    if (pos > -1)
+                    if (pos > 0)
                     {
                         string key = s.Substring(0, pos - 1).Trim();
                         string val = s.Substring(pos + 1).Trim(trimChars);

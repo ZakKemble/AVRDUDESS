@@ -549,7 +549,7 @@ namespace avrdudess
 #endif
                 AssemblyData.version.Major,
                 AssemblyData.version.Minor,
-                avrdude?.version ?? "avrdude version UNKNOWN"
+                string.IsNullOrEmpty(avrdude?.version) ? "avrdude version UNKNOWN" : avrdude.version
                 );
         }
 

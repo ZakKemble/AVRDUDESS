@@ -1244,13 +1244,13 @@ namespace avrdudess
                 int freq = (int)(1 / (bitClock * 0.000001));
 
                 // Make sure frequency is between min and max
-                if (freq > Avrdude.USBaspFreqs[0].freq)
-                    freq = Avrdude.USBaspFreqs[0].freq;
+                if (freq > Avrdude.USBaspFreqs[1].freq)
+                    freq = Avrdude.USBaspFreqs[1].freq;
                 else if (freq < Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].freq)
                     freq = Avrdude.USBaspFreqs[Avrdude.USBaspFreqs.Count - 1].freq;
 
                 // Show frequency
-                cmbUSBaspFreq.SelectedItem = Avrdude.USBaspFreqs.Find(s => freq >= s.freq - 1);
+                cmbUSBaspFreq.SelectedItem = Avrdude.USBaspFreqs.Find(s => s.freq > 0 && freq >= s.freq - 1);
             }
         }
 

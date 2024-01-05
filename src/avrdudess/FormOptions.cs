@@ -81,9 +81,12 @@ namespace avrdudess
 
             Dictionary<string, string> langs = Language.Translation.getLanguages();
             cbLanguage.Items.Clear();
-            cbLanguage.DataSource = new BindingSource(langs, null);
-            cbLanguage.DisplayMember = "Value";
-            cbLanguage.ValueMember = "Key";
+            if (langs.Count > 0)
+            {
+                cbLanguage.DataSource = new BindingSource(langs, null);
+                cbLanguage.DisplayMember = "Value";
+                cbLanguage.ValueMember = "Key";
+            }
 
             clbHiddenProgrammers.Items.Clear();
             clbHiddenProgrammers.DataSource = new BindingSource(programmers, null);

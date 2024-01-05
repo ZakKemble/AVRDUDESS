@@ -18,7 +18,7 @@ namespace avrdudess
         private object param;
         public event EventHandler OnProcessStart;
         public event EventHandler OnProcessEnd;
-        private string binary;
+        protected string binary;
         private bool enableConsoleUpdate;
         protected string outputLogStdErr { get; private set; } = string.Empty;
         protected string outputLogStdOut { get; private set; } = string.Empty;
@@ -41,12 +41,12 @@ namespace avrdudess
             StdErr
         }
 
-        protected void load(string binaryName, string directory, bool enableConsoleWrite = true)
+        protected void load(string defaultBinaryName, string filePath, bool enableConsoleWrite = true)
         {
-            binary = searchForBinary(binaryName, directory);
+            binary = searchForBinary(defaultBinaryName, filePath);
 
             if (binary == null)
-                Util.consoleError("_EXECMISSING", binaryName);
+                Util.consoleError("_EXECMISSING", defaultBinaryName);
             else if (enableConsoleWrite && tConUpt == null)
             {
                 tConUpt = new Thread(new ThreadStart(tConsoleUpdate));
@@ -55,30 +55,29 @@ namespace avrdudess
             }
         }
 
-        private string searchForBinary(string binaryName, string directory)
+        private string searchForBinary(string defaultBinaryName, string filePath)
         {
             PlatformID os = Environment.OSVersion.Platform;
             if(os != PlatformID.MacOSX && os != PlatformID.Unix)
-                binaryName += ".exe";
+                defaultBinaryName += ".exe";
 
             string app;
 
-            // Check user defined directory
-            if (!string.IsNullOrEmpty(directory))
+            // Check user defined file path
+            if (!string.IsNullOrEmpty(filePath))
             {
-                app = Path.Combine(directory, binaryName);
-                if (File.Exists(app))
-                    return app;
+                if (File.Exists(filePath))
+                    return filePath;
                 return null;
             }
 
             // File exists in application directory (mainly for Windows)
-            app = Path.Combine(AssemblyData.directory, binaryName);
+            app = Path.Combine(AssemblyData.directory, defaultBinaryName);
             if (File.Exists(app))
                 return app;
 
             // File exists in working directory
-            app = Path.Combine(Directory.GetCurrentDirectory(), binaryName);
+            app = Path.Combine(Directory.GetCurrentDirectory(), defaultBinaryName);
             if (File.Exists(app))
                 return app;
 
@@ -86,7 +85,7 @@ namespace avrdudess
             string[] paths = Environment.GetEnvironmentVariable("PATH").Split(new char[] { Path.PathSeparator }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string path in paths)
             {
-                app = Path.Combine(path, binaryName);
+                app = Path.Combine(path, defaultBinaryName);
                 if (File.Exists(app))
                     return app;
             }

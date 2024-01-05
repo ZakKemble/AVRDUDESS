@@ -150,7 +150,7 @@ namespace avrdudess
 
         public void load()
         {
-            base.load(FILE_AVRDUDE, Config.Prop.avrdudeLoc);
+            load(FILE_AVRDUDE, Config.Prop.avrdudeLoc);
 
             getVersion();
 
@@ -233,7 +233,7 @@ namespace avrdudess
             string conf_loc = null;
 
             if (!string.IsNullOrEmpty(confLoc))
-                conf_loc = Path.Combine(confLoc, FILE_AVRDUDECONF);
+                conf_loc = confLoc;
             else
             {
                 // If on Unix check /etc/ and /usr/local/etc/ first
@@ -264,6 +264,15 @@ namespace avrdudess
                 return;
             }
 
+            var fileName = Path.GetFileName(conf_loc);
+
+            // If the config file is over 10MB then it's probably not the right one
+            if(new FileInfo(conf_loc).Length > 10 * 1024 * 1024)
+            {
+                Util.consoleError("Config file {0} is too large", fileName); // TODO translate
+                return;
+            }
+
             // Load config
             string[] lines;
             try
@@ -272,7 +281,7 @@ namespace avrdudess
             }
             catch (Exception ex)
             {
-                Util.consoleError("_AVRCONFREADERROR", FILE_AVRDUDECONF, ex.Message);
+                Util.consoleError("_AVRCONFREADERROR", fileName, ex.Message);
                 return;
             }
 
@@ -376,6 +385,9 @@ namespace avrdudess
             }
 
             savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom, memoryTypes);
+
+            if (_programmers.Count == 0 && _mcus.Count == 0)
+                Util.consoleError("Nothing was found in this config file, are you sure it's the correct one?"); // TODO translate
         }
 
         public new bool launch(string args, Action<object> onFinish, object param, OutputTo outputTo = OutputTo.Console)
@@ -389,13 +401,13 @@ namespace avrdudess
                 // Set conf file to use
                 string confLoc = Config.Prop.avrdudeConfLoc;
                 if (confLoc != "")
-                    args = $"-C \"{Path.Combine(confLoc, FILE_AVRDUDECONF)}\" {args}";
+                    args = $"-C \"{confLoc}\" {args}";
             }
 
             if (outputTo == OutputTo.Console)
                 Util.consoleWriteLine("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~"); // TODO remove this?
 
-            Util.consoleWriteLine($">>>: {FILE_AVRDUDE} {args}", Color.Aquamarine);
+            Util.consoleWriteLine($">>>: {Path.GetFileName(binary)} {args}", Color.Aquamarine);
 
             return base.launch(args, onFinish, param, outputTo);
         }

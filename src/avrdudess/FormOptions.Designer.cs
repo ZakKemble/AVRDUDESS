@@ -39,20 +39,20 @@
             this.txtAvrdudeConfLocation = new System.Windows.Forms.TextBox();
             this.txtAvrdudeLocation = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbCheckForUpdate = new System.Windows.Forms.CheckBox();
             this.cbUsePrevSettings = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbLanguage = new System.Windows.Forms.ComboBox();
             this.cbShowToolTips = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnCheckUncheckProgs = new System.Windows.Forms.Button();
             this.clbHiddenProgrammers = new System.Windows.Forms.CheckedListBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnCheckUncheckMCU = new System.Windows.Forms.Button();
             this.clbHiddenMCUs = new System.Windows.Forms.CheckedListBox();
-            this.cbCheckForUpdate = new System.Windows.Forms.CheckBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -187,6 +187,18 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "_GRP_OTHER";
+            // 
+            // cbCheckForUpdate
+            // 
+            this.cbCheckForUpdate.AutoSize = true;
+            this.cbCheckForUpdate.Checked = true;
+            this.cbCheckForUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbCheckForUpdate.Location = new System.Drawing.Point(261, 70);
+            this.cbCheckForUpdate.Name = "cbCheckForUpdate";
+            this.cbCheckForUpdate.Size = new System.Drawing.Size(141, 17);
+            this.cbCheckForUpdate.TabIndex = 43;
+            this.cbCheckForUpdate.Text = "_CHECKFORUPDATES";
+            this.cbCheckForUpdate.UseVisualStyleBackColor = true;
             // 
             // cbUsePrevSettings
             // 
@@ -329,17 +341,9 @@
             this.clbHiddenMCUs.Size = new System.Drawing.Size(498, 169);
             this.clbHiddenMCUs.TabIndex = 0;
             // 
-            // cbCheckForUpdate
+            // openFileDialog1
             // 
-            this.cbCheckForUpdate.AutoSize = true;
-            this.cbCheckForUpdate.Checked = true;
-            this.cbCheckForUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbCheckForUpdate.Location = new System.Drawing.Point(261, 70);
-            this.cbCheckForUpdate.Name = "cbCheckForUpdate";
-            this.cbCheckForUpdate.Size = new System.Drawing.Size(141, 17);
-            this.cbCheckForUpdate.TabIndex = 43;
-            this.cbCheckForUpdate.Text = "_CHECKFORUPDATES";
-            this.cbCheckForUpdate.UseVisualStyleBackColor = true;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // FormOptions
             // 
@@ -387,7 +391,6 @@
         private System.Windows.Forms.CheckBox cbShowToolTips;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbLanguage;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -398,5 +401,6 @@
         private System.Windows.Forms.CheckBox cbCheckForUpdate;
         private System.Windows.Forms.Button btnCheckUncheckProgs;
         private System.Windows.Forms.Button btnCheckUncheckMCU;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

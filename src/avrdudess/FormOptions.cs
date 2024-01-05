@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace avrdudess
@@ -137,26 +138,33 @@ namespace avrdudess
 
         private void btnBrowseAvrdude_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.Description = Language.Translation.get("_AVRDUDE_LOCATION");
+            openFileDialog1.Title = Language.Translation.get("avrdude location"); // TODO translate
             browse(txtAvrdudeLocation);
         }
 
         private void btnBrowseAvrdudeConf_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.Description = Language.Translation.get("_AVRDUDECONF_LOCATION");
+            openFileDialog1.Title = Language.Translation.get("avrdude config location"); // TODO translate
             browse(txtAvrdudeConfLocation);
         }
 
         private void btnBrowseAvrSize_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.Description = Language.Translation.get("_AVRSIZE_LOCATION");
+            openFileDialog1.Title = Language.Translation.get("avr-size location"); // TODO translate
             browse(txtAvrSizeLocation);
         }
 
         private void browse(TextBox txt)
         {
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-                txt.Text = folderBrowserDialog1.SelectedPath;
+            openFileDialog1.FileName = Path.GetFileName(txt.Text);
+            try
+            {
+                openFileDialog1.InitialDirectory = Path.GetDirectoryName(txt.Text);
+            }
+            catch (Exception) { }
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                txt.Text = openFileDialog1.FileName;
         }
 
         private void btnCheckUncheckProgs_Click(object sender, EventArgs e)

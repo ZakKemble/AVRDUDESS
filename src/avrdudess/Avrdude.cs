@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace avrdudess
 {
@@ -119,6 +120,8 @@ namespace avrdudess
         public event EventHandler<DetectedMCUEventArgs> OnDetectedMCU;
         public event EventHandler<ReadFuseLockEventArgs> OnReadFuseLock;
 
+        private static readonly Regex strArrSplitRegex = new Regex("\"[\\s]*,[\\s]*\"");
+
         #region Getters and setters
 
         public List<Programmer> programmers
@@ -191,6 +194,18 @@ namespace avrdudess
         {
             if (id != null)
             {
+                // Quick and hacky.
+                // AVRDUDE 7.2+ config can have multiple IDs for the same part entry.
+                // Here we split the IDs and create a new part for each one.
+                // Really, we only need to keep one of the IDs/parts, but users might
+                // look for a particular ID and probably won't know about the alternative IDs.
+                var ids = strArrSplitRegex.Split(id);
+                if (ids.Length > 1)
+                {
+                    foreach (var subId in ids)
+                        savePart(isProgrammer, parentId, subId, desc, signature, flash, eeprom, memoryTypes);
+                    return;
+                }
 
                 if (isProgrammer)
                 {

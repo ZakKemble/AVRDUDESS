@@ -57,8 +57,7 @@ namespace avrdudess
 
         private string searchForBinary(string defaultBinaryName, string filePath)
         {
-            PlatformID os = Environment.OSVersion.Platform;
-            if(os != PlatformID.MacOSX && os != PlatformID.Unix)
+            if(Util.isWindows())
                 defaultBinaryName += ".exe";
 
             string app;

@@ -177,6 +177,12 @@ namespace avrdudess
                 MsgBox.error("Probably a Mono bug..." + Environment.NewLine + ex.Message + ": " + url);
             }
         }
+
+        public static bool isWindows()
+        {
+            var os = Environment.OSVersion.Platform;
+            return os != PlatformID.MacOSX && os != PlatformID.Unix;
+        }
     }
 
     static class MsgBox

@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2013 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2013-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 using System.Collections.Generic;
@@ -114,6 +112,8 @@ namespace avrdudess
             bool success = false;
             try
             {
+                ServicePointManager.SecurityProtocol |= (SecurityProtocolType)(3072 | 12288); // TLSv1.2 (Win7+) | TLSv1.3 (Win11+)
+
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(UPDATE_ADDR);
                 request.UserAgent = string.Format("Mozilla/5.0 (compatible; AVRDUDESS VERSION CHECKER {0})", AssemblyData.version.ToString());
                 request.ReadWriteTimeout = 30000;

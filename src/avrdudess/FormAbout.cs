@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2019 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2019-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 using System.Windows.Forms;
@@ -25,7 +23,7 @@ namespace avrdudess
 
             string about = "";
             about += AssemblyData.title + Environment.NewLine;
-            about += "Version " + AssemblyData.version.ToString() + " (" + getBuildDate() + ")" + Environment.NewLine;
+            about += $"Version {AssemblyData.version} ({getBuildDate()}){Environment.NewLine}";
             about += AssemblyData.copyright + Environment.NewLine;
 
             lblAbout.Text = about;
@@ -45,7 +43,7 @@ namespace avrdudess
         {
             var version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
             var buildDate = new DateTime(2000, 1, 1).Add(new TimeSpan(TimeSpan.TicksPerDay * version.Build));
-            return buildDate.ToString("dd-MMM-yy").Split(' ')[0];
+            return buildDate.ToString("dd-MMM-yyyy").Split(' ')[0];
         }
     }
 }

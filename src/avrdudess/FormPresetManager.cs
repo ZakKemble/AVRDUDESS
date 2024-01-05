@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2018 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2018-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 using System.Collections.Generic;
@@ -115,17 +113,14 @@ namespace avrdudess
         private void btnDelete_Click(object sender, EventArgs e)
         {
             List<PresetData> toDelete = new List<PresetData>();
-            for (int i = 0; i < clbExport.Items.Count; i++)
+            foreach (var item in clbExport.CheckedItems)
             {
-                if (clbExport.GetItemChecked(i))
-                {
-                    PresetData p = (PresetData)clbExport.Items[i];
-                    if (p.name != "Default")
-                        toDelete.Add(p);
-                }
+                PresetData p = (PresetData)item;
+                if (p.name != "Default")
+                    toDelete.Add(p);
             }
 
-            if(toDelete.Count > 0)
+            if (toDelete.Count > 0)
             {
                 if (MsgBox.confirm("_DELETEPRESETS", toDelete.Count) == DialogResult.OK)
                 {
@@ -214,16 +209,13 @@ namespace avrdudess
             {
                 Presets export = new Presets(saveFileDialog1.FileName, true);
 
-                for (int i = 0; i < clbExport.Items.Count; i++)
+                foreach (var item in clbExport.CheckedItems)
                 {
-                    if (clbExport.GetItemChecked(i))
+                    PresetData p = (PresetData)item;
+                    if (p != null)
                     {
-                        PresetData p = (PresetData)clbExport.Items[i];
-                        if (p != null)
-                        {
-                            export.add(p);
-                            Util.consoleWriteLine("_EXPORTINGPRESETS", p.name);
-                        }
+                        export.add(p);
+                        Util.consoleWriteLine("_EXPORTINGPRESETS", p.name);
                     }
                 }
 
@@ -248,7 +240,7 @@ namespace avrdudess
                     if (presets.presets.Find(s => s.name == newPreset.name) != null)
                     {
                         string oldName = newPreset.name;
-                        newPreset.name = string.Format("{0} {1:X16}", newPreset.name, DateTime.UtcNow.Ticks);
+                        newPreset.name = $"{newPreset.name} {DateTime.UtcNow.Ticks:X16}";
                         Util.consoleWarning("_IMPORTALREADYEXISTS", oldName, newPreset.name);
                     }
                     

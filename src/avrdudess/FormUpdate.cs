@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2013 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2013-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 using System.Windows.Forms;
@@ -13,8 +11,8 @@ namespace avrdudess
 {
     public partial class FormUpdate : Form
     {
-        private string address;
-        private Action onSkipVersion;
+        private readonly string address;
+        private readonly Action onSkipVersion;
         private Timer tmr;
 
         public FormUpdate(UpdateData updateData, Action onSkipVersion)
@@ -52,11 +50,7 @@ namespace avrdudess
             address = updateData.updateAddr;
             this.onSkipVersion = onSkipVersion;
 
-            lblNewVersion.Text = string.Format(
-                "{0} ({1})",
-                updateData.latest.version.ToString(),
-                updateData.latest.date.ToLocalTime().ToLongDateString()
-                );
+            lblNewVersion.Text = $"{updateData.latest.version} ({updateData.latest.date.ToLocalTime().ToLongDateString()})";
         }
 
         private void FormUpdate_Load(object sender, EventArgs e)
@@ -93,8 +87,7 @@ namespace avrdudess
 
         private void btnSkip_Click(object sender, EventArgs e)
         {
-            if(onSkipVersion != null)
-                onSkipVersion();
+            onSkipVersion?.Invoke();
             Close();
         }
 

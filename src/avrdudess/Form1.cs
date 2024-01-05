@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2013 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2013-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 using System.Collections.Generic;
@@ -35,7 +33,7 @@ namespace avrdudess
         private CmdLine cmdLine;
         private string flashOperation   = FILEOP_WRITE;
         private string EEPROMOperation  = FILEOP_WRITE;
-        private string presetToLoad;
+        private readonly string presetToLoad;
         private bool drag               = false;
         private Point dragStart;
         private string oldBitClock;
@@ -448,8 +446,7 @@ namespace avrdudess
             }
             else
             {
-                PresetData p = presets.presets.Find(s => s.name == presetToLoad);
-                cmbPresets.SelectedItem = (p != null) ? p : presets.presets.Find(s => s.name == "Default");
+                cmbPresets.SelectedItem = presets.presets.Find(s => s.name == presetToLoad) ?? presets.presets.Find(s => s.name == "Default");
             }
 
             // Force update control enabled states and generate cmd line after loading preset data
@@ -544,9 +541,6 @@ namespace avrdudess
         // Show AVRDUDE version etc
         private void setWindowTitle()
         {
-            string avrdudeVersion = (avrdude != null) ? avrdude.version : "";
-            if (avrdudeVersion == "")
-                avrdudeVersion = "avrdude version UNKNOWN";
             Text = string.Format(
 #if DEBUG
                 "AVRDUDESS {0}.{1} ({2}) [DEBUG]",
@@ -555,7 +549,7 @@ namespace avrdudess
 #endif
                 AssemblyData.version.Major,
                 AssemblyData.version.Minor,
-                avrdudeVersion
+                avrdude?.version ?? "avrdude version UNKNOWN"
                 );
         }
 
@@ -680,26 +674,10 @@ namespace avrdudess
             // Info
             if (!onlyRedraw && file.size != Avrsize.INVALID && file.location != "")
             {
-                float perc = 0;
-                if (availableSpace > 0)
-                    perc = ((float)file.size / availableSpace) * 100;
-
-                string outOfSpaceStr = "";
-                Color colour = Color.White;
-                if (outOfSpace)
-                {
-                    outOfSpaceStr = " [!]";
-                    colour = Color.Red;
-                }
-
-                Util.consoleWriteLine(
-                    "{0}: {1:#,#0} / {2:#,#0} Bytes ({3:0.00}%){4}",
-                    colour,
-                    Path.GetFileName(file.location),
-                    file.size, availableSpace,
-                    perc,
-                    outOfSpaceStr
-                    );
+                float perc = (availableSpace > 0) ? ((float)file.size / availableSpace * 100) : 0;
+                string outOfSpaceStr = outOfSpace ? " [!]" : "";
+                Color colour = outOfSpace ? Color.Red : Color.White;
+                Util.consoleWriteLine($"{Path.GetFileName(file.location)}: {file.size:#,#0} / {availableSpace:#,#0} Bytes ({perc:0.00}%){outOfSpaceStr}", colour);
             }
 
             Bitmap bmp = new Bitmap(pic.Width, pic.Height);
@@ -878,7 +856,7 @@ namespace avrdudess
                     // See if device starts with one of the prefixes
                     foreach (string prefix in devPrefixs)
                     {
-                        if (dev.StartsWith("/dev/" + prefix))
+                        if (dev.StartsWith($"/dev/{prefix}"))
                         {
                             cmbPort.Items.Add(dev);
                             break;
@@ -963,7 +941,7 @@ namespace avrdudess
                 lblEEPROMSize.Text = Util.fileSizeFormat(mcu.eeprom);
                 memoryUsageBar(fileFlash, pbFlashUsage, mcu.flash, false);
                 memoryUsageBar(fileEEPROM, pbEEPROMUsage, mcu.eeprom, false);
-                lblSig.Text = (mcu.signature != null) ? mcu.signature.ToUpper() : "?";
+                lblSig.Text = mcu.signature?.ToUpper() ?? "?";
             }
             else
             {
@@ -977,9 +955,7 @@ namespace avrdudess
         {
             foreach (Control control in container.Controls)
             {
-                RadioButton radio = control as RadioButton;
-
-                if (radio != null && radio.Checked)
+                if (control is RadioButton radio && radio.Checked)
                 {
                     if (radio.Name == "rbFlashOpWrite" || radio.Name == "rbEEPROMOpWrite")
                         return FILEOP_WRITE;
@@ -995,11 +971,10 @@ namespace avrdudess
         // Flash & EEPROM operation radio buttons
         private void radioButton_flashEEPROMOp_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = sender as RadioButton;
-            if (radioButton != null && radioButton.Checked)
+            if (sender is RadioButton radioButton && radioButton.Checked)
             {
                 string op = getFlashEEPROMOp(radioButton.Parent);
-                if(op != null)
+                if (op != null)
                 {
                     if (radioButton.Parent.Name == "pFlashOp")
                         flashOperation = op;
@@ -1020,7 +995,7 @@ namespace avrdudess
             string titleOpen;
             string titleSave;
 
-            if(((Control)sender).Name == "btnFlashBrowse")
+            if (((Control)sender).Name == "btnFlashBrowse")
             {
                 fileOpRadioButtons = pFlashOp;
                 fileLocation = txtFlashFile;
@@ -1067,16 +1042,18 @@ namespace avrdudess
         // Options
         private void btnOptions_Click(object sender, EventArgs e)
         {
-            FormOptions fOptions = new FormOptions(avrdude.programmers, avrdude.mcus);
-            fOptions.toolTips = Config.Prop.toolTips;
-            fOptions.usePreviousSettings = Config.Prop.usePreviousSettings;
-            fOptions.avrdudeLocation = Config.Prop.avrdudeLoc;
-            fOptions.avrdudeConfLocation = Config.Prop.avrdudeConfLoc;
-            fOptions.avrSizeLocation = Config.Prop.avrSizeLoc;
-            fOptions.language = Config.Prop.language;
-            fOptions.hiddenProgrammers = Config.Prop.hiddenProgrammers;
-            fOptions.hiddenMCUs = Config.Prop.hiddenMCUs;
-            fOptions.checkForUpdates = Config.Prop.checkForUpdates;
+            FormOptions fOptions = new FormOptions(avrdude.programmers, avrdude.mcus)
+            {
+                toolTips = Config.Prop.toolTips,
+                usePreviousSettings = Config.Prop.usePreviousSettings,
+                avrdudeLocation = Config.Prop.avrdudeLoc,
+                avrdudeConfLocation = Config.Prop.avrdudeConfLoc,
+                avrSizeLocation = Config.Prop.avrSizeLoc,
+                language = Config.Prop.language,
+                hiddenProgrammers = Config.Prop.hiddenProgrammers,
+                hiddenMCUs = Config.Prop.hiddenMCUs,
+                checkForUpdates = Config.Prop.checkForUpdates
+            };
 
             if (fOptions.ShowDialog() == DialogResult.OK)
             {
@@ -1185,31 +1162,33 @@ namespace avrdudess
 
         private PresetData makePresetData(string name)
         {
-            PresetData preset = new PresetData(name);
-            preset.programmer = (prog != null) ? prog.id : "";
-            preset.mcu = (mcu != null) ? mcu.id : "";
-            preset.port = port;
-            preset.baud = baudRate;
-            preset.bitclock = bitClock;
-            preset.flashFile = flashFile;
-            preset.flashFormat = flashFileFormat;
-            preset.flashOp = flashFileOperation;
-            preset.EEPROMFile = EEPROMFile;
-            preset.EEPROMFormat = EEPROMFileFormat;
-            preset.EEPROMOp = EEPROMFileOperation;
-            preset.force = force;
-            preset.disableVerify = disableVerify;
-            preset.disableFlashErase = disableFlashErase;
-            preset.eraseFlashAndEEPROM = eraseFlashAndEEPROM;
-            preset.doNotWrite = doNotWrite;
-            preset.lfuse = lowFuse;
-            preset.hfuse = highFuse;
-            preset.efuse = exFuse;
-            preset.setFuses = setFuses;
-            preset.lockBits = lockSetting;
-            preset.setLock = setLock;
-            preset.additional = additionalSettings;
-            preset.verbosity = verbosity;
+            PresetData preset = new PresetData(name)
+            {
+                programmer = prog?.id ?? "",
+                mcu = mcu?.id ?? "",
+                port = port,
+                baud = baudRate,
+                bitclock = bitClock,
+                flashFile = flashFile,
+                flashFormat = flashFileFormat,
+                flashOp = flashFileOperation,
+                EEPROMFile = EEPROMFile,
+                EEPROMFormat = EEPROMFileFormat,
+                EEPROMOp = EEPROMFileOperation,
+                force = force,
+                disableVerify = disableVerify,
+                disableFlashErase = disableFlashErase,
+                eraseFlashAndEEPROM = eraseFlashAndEEPROM,
+                doNotWrite = doNotWrite,
+                lfuse = lowFuse,
+                hfuse = highFuse,
+                efuse = exFuse,
+                setFuses = setFuses,
+                lockBits = lockSetting,
+                setLock = setLock,
+                additional = additionalSettings,
+                verbosity = verbosity
+            };
 
             return preset;
         }
@@ -1293,19 +1272,19 @@ namespace avrdudess
 
             if (mcu != null)
             {
-                sParam = "?P=" + mcu.desc;
+                sParam = $"?P={mcu.desc}";
 
                 if (mcu.memoryTypes.Contains("fuse") && txtLFuse.Text != "")
-                    sParam += "&V_BYTE0=" + txtLFuse.Text;
+                    sParam += $"&V_BYTE0={txtLFuse.Text}";
 
                 if (mcu.memoryTypes.Contains("lfuse") && txtLFuse.Text != "")
-                    sParam += "&V_LOW=" + txtLFuse.Text;
+                    sParam += $"&V_LOW={txtLFuse.Text}";
 
                 if (mcu.memoryTypes.Contains("hfuse") && txtHFuse.Text != "")
-                    sParam += "&V_HIGH=" + txtHFuse.Text;
+                    sParam += $"&V_HIGH={txtHFuse.Text}";
 
                 if (mcu.memoryTypes.Contains("efuse") && txtEFuse.Text != "")
-                    sParam += "&V_EXTENDED=" + txtEFuse.Text;
+                    sParam += $"&V_EXTENDED={txtEFuse.Text}";
 
                 sParam += "&O_HEX=Apply+values";
                 sURL += sParam;
@@ -1407,7 +1386,7 @@ namespace avrdudess
             {
                 // Add 0x back on
                 for (int i = 0; i < newFuses.Length; i++)
-                    newFuses[i] = "0x" + newFuses[i];
+                    newFuses[i] = $"0x{newFuses[i]}";
 
                 // Set fuse values
                 txtLFuse.Text = newFuses[0];
@@ -1420,7 +1399,7 @@ namespace avrdudess
         // Workout bit clock for USBasp programmer frequency
         private void cmbUSBaspFreq_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Avrdude.UsbAspFreq freq = ((Avrdude.UsbAspFreq)((ComboBox)sender).SelectedItem);
+            Avrdude.UsbAspFreq freq = (Avrdude.UsbAspFreq)((ComboBox)sender).SelectedItem;
             if (cmbUSBaspFreq.Visible && freq != null)
                 txtBitClock.Text = freq.bitClock;
         }

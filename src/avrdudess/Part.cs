@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2013 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2013-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 
@@ -21,10 +19,7 @@ namespace avrdudess
         {
             get
             {
-                string s = _desc;
-                if (s == null)
-                    s = (parent != null) ? parent.desc : "?";
-                return s;
+                return _desc ?? parent?.desc ?? "?";
             }
             private set
             {
@@ -41,7 +36,7 @@ namespace avrdudess
             this.parent = parent;
 
             // Part is a common value thing or deprecated
-            hide = (id.StartsWith(".") || (desc != null && desc.ToLower().StartsWith("deprecated")));
+            hide = id.StartsWith(".") || (desc?.ToLower().StartsWith("deprecated") ?? false);
         }
 
         public int CompareTo(object other)

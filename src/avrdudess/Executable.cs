@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2014 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2014-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 using System.Diagnostics;
@@ -25,9 +23,9 @@ namespace avrdudess
         protected string outputLogStdErr { get; private set; } = string.Empty;
         protected string outputLogStdOut { get; private set; } = string.Empty;
         private Thread tConUpt;
-        private ManualResetEvent exitWait = new ManualResetEvent(false);
-        private ManualResetEvent stdOutWait = new ManualResetEvent(false);
-        private ManualResetEvent stdErrWait = new ManualResetEvent(false);
+        private readonly ManualResetEvent exitWait = new ManualResetEvent(false);
+        private readonly ManualResetEvent stdOutWait = new ManualResetEvent(false);
+        private readonly ManualResetEvent stdErrWait = new ManualResetEvent(false);
 
         // NOTE: can't write to memory and to console at the same time, as one method is async (memory) and the other is sync (console).
         // This is because process bars don't work with async mode as the event only fires on a new line.
@@ -147,8 +145,7 @@ namespace avrdudess
                 return false;
             }
 
-            if (OnProcessStart != null)
-                OnProcessStart(this, EventArgs.Empty);
+            OnProcessStart?.Invoke(this, EventArgs.Empty);
 
             //var _ = ConsumeReader(tmp.StandardOutput);
             //_ = ConsumeReader(tmp.StandardError);
@@ -186,12 +183,8 @@ namespace avrdudess
         private void p_Exited(object sender, EventArgs e)
         {
             exitWait.Set();
-
-            if (OnProcessEnd != null)
-                OnProcessEnd(this, EventArgs.Empty);
-
-            if (onFinish != null)
-                onFinish(param);
+            OnProcessEnd?.Invoke(this, EventArgs.Empty);
+            onFinish?.Invoke(param);
             onFinish = null;
         }
 
@@ -257,7 +250,7 @@ namespace avrdudess
 
         protected bool isActive()
         {
-            return (p != null && !p.HasExited);
+            return !p?.HasExited ?? false;
         }
 
         public bool kill()

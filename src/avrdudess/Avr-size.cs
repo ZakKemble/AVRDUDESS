@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2014 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2014-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 using System.IO;
@@ -18,21 +16,17 @@ namespace avrdudess
 
         public void load()
         {
-            base.load(FILE_AVR_SIZE, Config.Prop.avrSizeLoc, false);
+            load(FILE_AVR_SIZE, Config.Prop.avrSizeLoc, false);
         }
 
         // Get size of flash/EEPROM file
         public int getSize(string file)
         {
             int totalSize = INVALID;
-            if (File.Exists(file))
+            if (File.Exists(file) && launch($"\"{file}\"", null, null, OutputTo.Memory))
             {
-                file = "\"" + file + "\"";
-                if (launch(file, null, null, OutputTo.Memory))
-                {
-                    waitForExit(); // TODO remove? use callback
-                    totalSize = parse();
-                }
+                waitForExit(); // TODO remove? use callback
+                totalSize = parse();
             }
             return totalSize;
         }
@@ -54,10 +48,8 @@ namespace avrdudess
                 return INVALID;
 
             // Parse data
-            int textSize;
-            int dataSize;
-            int.TryParse(data[0], out textSize);
-            int.TryParse(data[1], out dataSize);
+            int.TryParse(data[0], out int textSize);
+            int.TryParse(data[1], out int dataSize);
 
             int totalSize = textSize + dataSize;
 

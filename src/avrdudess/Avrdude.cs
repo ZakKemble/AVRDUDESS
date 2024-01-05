@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2013 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2013-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 using System.Collections.Generic;
@@ -186,8 +184,7 @@ namespace avrdudess
                 }
             }
 
-            if (OnVersionChange != null)
-                OnVersionChange(this, EventArgs.Empty);
+            OnVersionChange?.Invoke(this, EventArgs.Empty);
         }
 
         private void savePart(bool isProgrammer, string parentId, string id, string desc, string signature, int flash, int eeprom, List<string> memoryTypes)
@@ -198,10 +195,7 @@ namespace avrdudess
                 if (isProgrammer)
                 {
                     // Find parent
-                    Programmer parent = null;
-                    if (parentId != null)
-                        parent = _programmers.Find(m => m.id == parentId);
-
+                    Programmer parent = (parentId != null) ? _programmers.Find(m => m.id == parentId) : null;
                     _programmers.Add(new Programmer(id, desc, parent));
                 }
                 else
@@ -210,9 +204,7 @@ namespace avrdudess
                     desc = desc.ToUpper().Replace("XMEGA", "xmega").Replace("MEGA", "mega").Replace("TINY", "tiny");
 
                     // Find parent
-                    MCU parent = null;
-                    if (parentId != null)
-                        parent = _mcus.Find(m => m.id == parentId);
+                    MCU parent = (parentId != null) ? _mcus.Find(m => m.id == parentId) : null;
 
                     // Add to MCUs
                     _mcus.Add(new MCU(id, desc, signature, flash, eeprom, parent, memoryTypes));
@@ -382,13 +374,13 @@ namespace avrdudess
                 // Set conf file to use
                 string confLoc = Config.Prop.avrdudeConfLoc;
                 if (confLoc != "")
-                    args = "-C \"" + Path.Combine(confLoc, FILE_AVRDUDECONF) + "\" " + args;
+                    args = $"-C \"{Path.Combine(confLoc, FILE_AVRDUDECONF)}\" {args}";
             }
 
             if (outputTo == OutputTo.Console)
-                Util.consoleWriteLine("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+                Util.consoleWriteLine("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~"); // TODO remove this?
 
-            Util.consoleWriteLine(">>>: {0} {1}", Color.Aquamarine, FILE_AVRDUDE, args);
+            Util.consoleWriteLine($">>>: {FILE_AVRDUDE} {args}", Color.Aquamarine);
 
             return base.launch(args, onFinish, param, outputTo);
         }
@@ -425,10 +417,7 @@ namespace avrdudess
                     MCU m = mcus.Find(s => s.signature == detectedSignature);
 
                     if (m != null) // Found
-                    {
-                        if (OnDetectedMCU != null)
-                            OnDetectedMCU(this, new DetectedMCUEventArgs(m));
-                    }
+                        OnDetectedMCU?.Invoke(this, new DetectedMCUEventArgs(m));
                     else // Not found
                     {
                         // TODO: dont write to console here, run event callback and let that deal with it
@@ -440,8 +429,7 @@ namespace avrdudess
                 }
             }
 
-            if (OnDetectedMCU != null)
-                OnDetectedMCU(this, new DetectedMCUEventArgs(null));
+            OnDetectedMCU?.Invoke(this, new DetectedMCUEventArgs(null));
         }
 
         public void readFusesLock(string args, FuseLockType[] types)
@@ -458,8 +446,7 @@ namespace avrdudess
             string log = outputLogStdErr.ToLower();
             if (log.IndexOf("error") > -1 || log.IndexOf("fail") > -1)
             {
-                if (OnReadFuseLock != null)
-                    OnReadFuseLock(this, new ReadFuseLockEventArgs(FuseLockType.None, ""));
+                OnReadFuseLock?.Invoke(this, new ReadFuseLockEventArgs(FuseLockType.None, ""));
                 return;
             }
 
@@ -470,16 +457,12 @@ namespace avrdudess
 
             if (values.Length != types.Length)
             {
-                if (OnReadFuseLock != null)
-                    OnReadFuseLock(this, new ReadFuseLockEventArgs(FuseLockType.None, ""));
+                OnReadFuseLock?.Invoke(this, new ReadFuseLockEventArgs(FuseLockType.None, ""));
                 return;
             }
 
             for(int i =0;i<types.Length;i++)
-            {
-                if (OnReadFuseLock != null)
-                    OnReadFuseLock(this, new ReadFuseLockEventArgs(types[i], values[i].Trim()));
-            }
+                OnReadFuseLock?.Invoke(this, new ReadFuseLockEventArgs(types[i], values[i].Trim()));
         }
     }
 }

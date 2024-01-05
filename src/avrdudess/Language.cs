@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2018 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2018-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 using System.IO;
@@ -18,8 +16,8 @@ namespace avrdudess
     {
         public static readonly Language Translation = new Language();
 
-        private Dictionary<string, string> languages = new Dictionary<string, string>();
-        private Dictionary<string, string> translations = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> languages = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> translations = new Dictionary<string, string>();
 
         private delegate bool Action<T1, T2>(T1 arg, T2 arg2);
 
@@ -45,16 +43,16 @@ namespace avrdudess
         {
             try
             {
-                string location = AssemblyData.directory + "/Languages/";
+                string location = Path.Combine(AssemblyData.directory, "Languages");
 
                 findLanguages(location);
 
                 // Load the selected language xml
-                readThroughXML(location + Config.Prop.language + ".xml", getTranslation, null);
+                readThroughXML(Path.Combine(location, Config.Prop.language + ".xml"), getTranslation, null);
             }
             catch (Exception ex)
             {
-                MsgBox.error("Error loading languages:{0}{1}", Environment.NewLine, ex.Message);
+                MsgBox.error($"Error loading languages:{Environment.NewLine}{ex.Message}");
             }
         }
 
@@ -75,9 +73,7 @@ namespace avrdudess
 
         private bool getLanguageInfo(XmlReader reader, object data)
         {
-            string name = reader.Name;
-
-            if (name == "name" && reader.Read())
+            if (reader.Name == "name" && reader.Read())
             {
                 string file = (string)data;
                 string languageName = reader.ReadContentAsString();
@@ -90,23 +86,13 @@ namespace avrdudess
 
         private bool getTranslation(XmlReader reader, object data)
         {
-            string name = reader.Name;
-
-            if (name == "string")
+            if (reader.Name == "string")
             {
                 string translationId = reader.GetAttribute("name");
+                if (translations.ContainsKey(translationId))
+                    throw new Exception($"Duplicate translation ID: {translationId}");
                 if (reader.Read())
-                {
-                    string value = reader.ReadContentAsString();
-                    try
-                    {
-                        translations.Add(translationId, value);
-                    }
-                    catch(ArgumentException)
-                    {
-                        throw new Exception(string.Format("Duplicate translation ID: {0}", translationId));
-                    }
-                }
+                    translations.Add(translationId, reader.ReadContentAsString());
             }
 
             return false;
@@ -114,22 +100,20 @@ namespace avrdudess
 
         private void readThroughXML(string file, Action<XmlReader, object> onElement, object data)
         {
-            TextReader tr = new StreamReader(file);
-
-            using (XmlReader reader = XmlReader.Create(tr))
+            using (TextReader tr = new StreamReader(file))
             {
-                while (reader.Read())
+                using (XmlReader reader = XmlReader.Create(tr))
                 {
-                    if (reader.NodeType == XmlNodeType.Element)
+                    while (reader.Read())
                     {
-                        if (onElement(reader, data))
-                            break;
+                        if (reader.NodeType == XmlNodeType.Element)
+                        {
+                            if (onElement(reader, data))
+                                break;
+                        }
                     }
                 }
             }
-
-            if (tr != null)
-                tr.Close();
         }
         
         public string get(string key)

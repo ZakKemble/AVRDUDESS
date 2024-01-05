@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2013 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2013-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System.Collections.Generic;
 
@@ -94,10 +92,7 @@ namespace avrdudess
         {
             get
             {
-                string s = _type;
-                if (s == null)
-                    s = (parent != null) ? ((Programmer)parent).type : "?";
-                return s;
+                return _type ?? ((Programmer)parent)?.type ?? "?";
             }
             private set
             {

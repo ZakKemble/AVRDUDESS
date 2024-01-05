@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2013 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2013-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System.Collections.Generic;
 
@@ -15,7 +13,7 @@ namespace avrdudess
         private int _flash;
         private int _eeprom;
         private string _signature;
-        private List<string> _memoryTypes;
+        private readonly List<string> _memoryTypes;
 
         /*
         Memory types can be called anything, heres a list of all the types that currently appear in avrdude.conf
@@ -50,10 +48,7 @@ namespace avrdudess
         {
             get
             {
-                int s = _flash;
-                if (s == -1)
-                    s = (parent != null) ? ((MCU)parent).flash : 0;
-                return s;
+                return (_flash != -1) ? _flash : ((MCU)parent)?.flash ?? 0;
             }
             private set
             {
@@ -65,10 +60,7 @@ namespace avrdudess
         {
             get
             {
-                int s = _eeprom;
-                if (s == -1)
-                    s = (parent != null) ? ((MCU)parent).eeprom : 0;
-                return s;
+                return (_eeprom != -1) ? _eeprom : ((MCU)parent)?.eeprom ?? 0;
             }
             private set
             {
@@ -80,10 +72,7 @@ namespace avrdudess
         {
             get
             {
-                string s = _signature;
-                if (s == null)
-                    s = (parent != null) ? ((MCU)parent).signature : "?";
-                return s;
+                return _signature ?? ((MCU)parent)?.signature ?? "?";
             }
             private set
             {
@@ -108,11 +97,10 @@ namespace avrdudess
         public MCU(string id, string desc = null, string signature = null, int flash = 0, int eeprom = 0, MCU parent = null, List<string> memoryTypes = null)
             : base(id, desc, parent)
         {
-            if(signature != null)
-                this.signature = signature.ToLower();
+            this.signature = signature?.ToLower();
             this.flash = flash;
             this.eeprom = eeprom;
-            _memoryTypes = (memoryTypes != null) ? memoryTypes : new List<string>();
+            _memoryTypes = memoryTypes ?? new List<string>();
         }
     }
 }

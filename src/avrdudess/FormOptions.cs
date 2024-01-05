@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2014 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2014-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 using System.Collections.Generic;
@@ -101,22 +99,8 @@ namespace avrdudess
             Language.Translation.apply(this);
 
             // If less than half of checkboxes are checked then the first button click should check all, otherwise uncheck all
-
-            int checkedCount = 0;
-            for (int i = 0; i < clbHiddenProgrammers.Items.Count; i++)
-            {
-                if (clbHiddenProgrammers.GetItemChecked(i))
-                    checkedCount++;
-            }
-            checkAllProg = (checkedCount < (clbHiddenProgrammers.Items.Count / 2));
-
-            checkedCount = 0;
-            for (int i = 0; i < clbHiddenMCUs.Items.Count; i++)
-            {
-                if (clbHiddenMCUs.GetItemChecked(i))
-                    checkedCount++;
-            }
-            checkAllMCU = (checkedCount < (clbHiddenMCUs.Items.Count / 2));
+            checkAllProg = clbHiddenProgrammers.CheckedItems.Count < (clbHiddenProgrammers.Items.Count / 2);
+            checkAllMCU = clbHiddenMCUs.CheckedItems.Count < (clbHiddenMCUs.Items.Count / 2);
         }
 
         private void setHiddenCheckBoxes(List<string> hiddenParts, CheckedListBox clb)
@@ -137,18 +121,15 @@ namespace avrdudess
         private List<string> getHiddenCheckBoxes(CheckedListBox clb)
         {
             List<string> hiddenParts = new List<string>();
-            for (int i = 0; i < clb.Items.Count; i++)
-            {
-                if (clb.GetItemChecked(i))
-                    hiddenParts.Add(((Part)clb.Items[i]).id);
-            }
+            foreach (var item in clb.CheckedItems)
+                hiddenParts.Add(((Part)item).id);
             return hiddenParts;
         }
 
         private void hiddenParts_Format(object sender, ListControlConvertEventArgs e)
         {
             Part part = (Part)e.ListItem;
-            e.Value = string.Format("{0} ({1})", part.desc, part.id);
+            e.Value = $"{part.desc} ({part.id})";
         }
 
         private void btnBrowseAvrdude_Click(object sender, EventArgs e)

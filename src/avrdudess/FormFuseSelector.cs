@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2013 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2013-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 using System.Globalization;
@@ -101,11 +99,8 @@ namespace avrdudess
 
         private void bits_Click(object sender, EventArgs e)
         {
-            if (sender is Button)
-            {
-                Button b = (Button)sender;
+            if (sender is Button b)
                 b.Text = (b.Text == "0") ? "1" : "0";
-            }
 
             generateFusesAndLocks();
         }
@@ -130,17 +125,17 @@ namespace avrdudess
             ef = binaryToHex(ef);
             lb = binaryToHex(lb);
             
-            lbLFuse.Text = "0x" + lf;
-            lbHFuse.Text = "0x" + hf;
-            lbEFuse.Text = "0x" + ef;
-            lbLBits.Text = "0x" + lb;
+            lbLFuse.Text = $"0x{lf}";
+            lbHFuse.Text = $"0x{hf}";
+            lbEFuse.Text = $"0x{ef}";
+            lbLBits.Text = $"0x{lb}";
 
             newFuses = new string[] { lf, hf, ef, lb };
         }
 
         private string binaryToHex(string value)
         {
-            return string.Format("{0:X2}", Convert.ToInt32(value, 2));
+            return $"{Convert.ToInt32(value, 2):X2}";
         }
 
         private string hex2binary(string hexValue)
@@ -148,11 +143,7 @@ namespace avrdudess
             int value;
             if (!int.TryParse(hexValue, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out value))
                 value = 0xFF;
-
-            string binary = Convert.ToString(value, 2);
-            binary = binary.PadLeft(8, '0');
-
-            return binary;
+            return Convert.ToString(value, 2).PadLeft(8, '0');
         }
     }
 }

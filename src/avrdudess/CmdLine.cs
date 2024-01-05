@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2013 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2013-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System.Text;
 
@@ -17,8 +15,8 @@ namespace avrdudess
     {
         // NOTE: -u and -C args are added in Avrdude.launch()
 
-        private Form1 mainForm;
-        private StringBuilder sb = new StringBuilder();
+        private readonly Form1 mainForm;
+        private readonly StringBuilder sb = new StringBuilder();
 
         public CmdLine(Form1 mainForm)
         {
@@ -31,10 +29,10 @@ namespace avrdudess
             sb.Length = 0;
             sb.Capacity = 0;
 
-            if (mainForm.prog != null && mainForm.prog.id.Length > 0)
+            if (mainForm.prog?.id.Length > 0)
                 cmdLineOption("c", mainForm.prog.id);
 
-            if (mainForm.mcu != null && mainForm.mcu.id.Length > 0 && addMCU)
+            if (mainForm.mcu?.id.Length > 0 && addMCU)
                 cmdLineOption("p", mainForm.mcu.id);
 
             if (mainForm.port.Length > 0)
@@ -74,7 +72,7 @@ namespace avrdudess
                 sb.Append(mainForm.additionalSettings + " ");
 
             for (int i = 0; i < types.Length; i++)
-                cmdLineOption("U", string.Format("{0}:r:-:h", types[i].GetDescription()));
+                cmdLineOption("U", $"{types[i].GetDescription()}:r:-:h");
             
             return sb.ToString();
         }
@@ -96,7 +94,7 @@ namespace avrdudess
             generateMain();
 
             if (mainForm.additionalSettings.Length > 0)
-                sb.Append(mainForm.additionalSettings + " ");
+                sb.Append($"{mainForm.additionalSettings} ");
 
             makeWriteFuseLock(Avrdude.FuseLockType.Lock, mainForm.lockSetting);
 
@@ -117,10 +115,10 @@ namespace avrdudess
                 cmdLineOption("e");
 
             if (mainForm.additionalSettings.Length > 0)
-                sb.Append(mainForm.additionalSettings + " ");
+                sb.Append($"{mainForm.additionalSettings} ");
 
             if (mainForm.flashFile.Length > 0)
-                cmdLineOption("U", string.Format("flash:{0}:\"{1}\":{2}", mainForm.flashFileOperation, mainForm.flashFile, mainForm.flashFileFormat));
+                cmdLineOption("U", $"flash:{mainForm.flashFileOperation}:\"{mainForm.flashFile}\":{mainForm.flashFileFormat}");
 
             return sb.ToString();
         }
@@ -139,10 +137,10 @@ namespace avrdudess
                 cmdLineOption("e");
 
             if (mainForm.additionalSettings.Length > 0)
-                sb.Append(mainForm.additionalSettings + " ");
+                sb.Append($"{mainForm.additionalSettings} ");
 
             if (mainForm.EEPROMFile.Length > 0)
-                cmdLineOption("U", string.Format("eeprom:{0}:\"{1}\":{2}", mainForm.EEPROMFileOperation, mainForm.EEPROMFile, mainForm.EEPROMFileFormat));
+                cmdLineOption("U", $"eeprom:{mainForm.EEPROMFileOperation}:\"{mainForm.EEPROMFile}\":{mainForm.EEPROMFileFormat}");
 
             return sb.ToString();
         }
@@ -164,13 +162,13 @@ namespace avrdudess
                 cmdLineOption("n");
 
             if (mainForm.additionalSettings.Length > 0)
-                sb.Append(mainForm.additionalSettings + " ");
+                sb.Append($"{mainForm.additionalSettings} ");
 
             if (mainForm.flashFile.Length > 0)
-                cmdLineOption("U", string.Format("flash:{0}:\"{1}\":{2}", mainForm.flashFileOperation, mainForm.flashFile, mainForm.flashFileFormat));
+                cmdLineOption("U", $"flash:{mainForm.flashFileOperation}:\"{mainForm.flashFile}\":{mainForm.flashFileFormat}");
 
             if (mainForm.EEPROMFile.Length > 0)
-                cmdLineOption("U", string.Format("eeprom:{0}:\"{1}\":{2}", mainForm.EEPROMFileOperation, mainForm.EEPROMFile, mainForm.EEPROMFileFormat));
+                cmdLineOption("U", $"eeprom:{mainForm.EEPROMFileOperation}:\"{mainForm.EEPROMFile}\":{mainForm.EEPROMFileFormat}");
 
             if (mainForm.setFuses)
                 addWriteFuses();
@@ -185,7 +183,7 @@ namespace avrdudess
         {
             value = value.Trim();
             if (value.Length > 0)
-                cmdLineOption("U", string.Format("{0}:w:{1}:m", fuseLockType.GetDescription(), value));
+                cmdLineOption("U", $"{fuseLockType.GetDescription()}:w:{value}:m");
         }
 
         private void addWriteFuses()
@@ -209,12 +207,12 @@ namespace avrdudess
 
         private void cmdLineOption(string arg, string val)
         {
-            sb.Append(string.Format("-{0} {1} ", arg, val));
+            sb.Append($"-{arg} {val} ");
         }
 
         private void cmdLineOption(string arg)
         {
-            sb.Append(string.Format("-{0} ", arg));
+            sb.Append($"-{arg} ");
         }
     }
 }

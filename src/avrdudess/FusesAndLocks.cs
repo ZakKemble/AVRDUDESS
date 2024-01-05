@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2013 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2013-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 using System.Collections;
@@ -20,12 +18,12 @@ namespace avrdudess
         private const string FILE_BITS = "bits.xml";
 
         public static readonly FusesList fl = new FusesList();
-        private Hashtable lockbits = new Hashtable();
-        private Hashtable fusebitslo = new Hashtable();
-        private Hashtable fusebitshi = new Hashtable();
-        private Hashtable fusebitsext = new Hashtable();
+        private readonly Hashtable lockbits = new Hashtable();
+        private readonly Hashtable fusebitslo = new Hashtable();
+        private readonly Hashtable fusebitshi = new Hashtable();
+        private readonly Hashtable fusebitsext = new Hashtable();
 
-        private string fileLocation;
+        private readonly string fileLocation;
 
         private FusesList()
         {
@@ -40,60 +38,60 @@ namespace avrdudess
             string low = null;
             string ext = null;
             string lb = null;
-            TextReader tr = null;
 
             try
             {
-                tr = new StreamReader(fileLocation);
-
-                using (XmlReader reader = XmlReader.Create(tr))
+                using (TextReader tr = new StreamReader(fileLocation))
                 {
-                    while (reader.Read())
+                    using (XmlReader reader = XmlReader.Create(tr))
                     {
-                        if (reader.NodeType == XmlNodeType.Element)
+                        while (reader.Read())
                         {
-                            string name = reader.Name;
-
-                            if (name == "mcu")
-                                signature = reader.GetAttribute("signature");
-
-                            reader.Read();
-                            switch (name)
+                            if (reader.NodeType == XmlNodeType.Element)
                             {
-                                case "high":
-                                    high = reader.ReadContentAsString();
-                                    break;
-                                case "low":
-                                    low = reader.ReadContentAsString();
-                                    break;
-                                case "ext":
-                                    ext = reader.ReadContentAsString();
-                                    break;
-                                case "lock":
-                                    lb = reader.ReadContentAsString();
-                                    break;
-                                default:
-                                    break;
+                                string name = reader.Name;
+
+                                if (name == "mcu")
+                                    signature = reader.GetAttribute("signature");
+
+                                reader.Read();
+                                switch (name)
+                                {
+                                    case "high":
+                                        high = reader.ReadContentAsString();
+                                        break;
+                                    case "low":
+                                        low = reader.ReadContentAsString();
+                                        break;
+                                    case "ext":
+                                        ext = reader.ReadContentAsString();
+                                        break;
+                                    case "lock":
+                                        lb = reader.ReadContentAsString();
+                                        break;
+                                    default:
+                                        break;
+                                }
                             }
-                        }
-                        else if (reader.NodeType == XmlNodeType.EndElement)
-                        {
-                            if (reader.Name == "mcu" && signature != null)
+                            else if (reader.NodeType == XmlNodeType.EndElement)
                             {
-                                if (lb != null)
-                                    lockbits.Add(signature, lb);
-                                if (low != null)
-                                    fusebitslo.Add(signature, low);
-                                if (high != null)
-                                    fusebitshi.Add(signature, high);
-                                if (ext != null)
-                                    fusebitsext.Add(signature, ext);
+                                if (reader.Name == "mcu" && signature != null)
+                                {
+                                    if (lb != null)
+                                        lockbits.Add(signature, lb);
+                                    if (low != null)
+                                        fusebitslo.Add(signature, low);
+                                    if (high != null)
+                                        fusebitshi.Add(signature, high);
+                                    if (ext != null)
+                                        fusebitsext.Add(signature, ext);
 
-                                signature = null;
-                                high = null;
-                                low = null;
-                                ext = null;
-                                lb = null;
+                                    signature = null;
+                                    high = null;
+                                    low = null;
+                                    ext = null;
+                                    lb = null;
+                                }
                             }
                         }
                     }
@@ -103,9 +101,6 @@ namespace avrdudess
             {
                 MsgBox.error("_ERRORLOADFUSES", ex.Message);
             }
-
-            if (tr != null)
-                tr.Close();
         }
 
         public bool isSupported(string signature)

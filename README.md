@@ -42,9 +42,3 @@ You can find the output in `./src/avrdudess/bin/Debug/`, or `./src/avrdudess/bin
 Making the Installer:
 ---------------------
 You will need [Inno Setup](https://www.jrsoftware.org/isinfo.php) installed. Once you've used Visual Studio to build the Release version of AVRDUDESS, run `./installer/installer.bat` and the installer exe will appear in the same directory.
-
---------
-
-Zak Kemble
-
-contact@zakkemble.net

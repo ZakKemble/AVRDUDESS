@@ -3,12 +3,12 @@
 
 #define MyAppName "AVRDUDESS"
 #define MyAppDescription "A GUI for AVRDUDE"
-#define MyAppVersion "2.14"
+#define MyAppVersion "2.15"
 #define MyAppPublisher "Zak Kemble"
 #define MyAppURL "https://zakkemble.net/"
 #define MyAppExeName "avrdudess.exe"
 #define MyAppContact "contact@zakkemble.net"
-#define MyAppCopyright "Copyright © 2022 Zak Kemble"
+#define MyAppCopyright "Copyright © 2024 Zak Kemble"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -85,6 +85,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "..\src\avrdudess\bin\Release\avrdudess.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\avrdudess.exe.config"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\avrdude.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\avr-size.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\avrdude.conf"; DestDir: "{app}"; Flags: ignoreversion
@@ -92,21 +93,22 @@ Source: "..\src\avrdudess\bin\Release\config.xml"; DestDir: "{app}"; Flags: igno
 Source: "..\src\avrdudess\bin\Release\presets.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\bits.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\portable.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\Languages\english.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\Languages\polish.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\Languages\chinese-zh_CN.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\croatian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\english.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\Languages\french.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\Languages\russian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\Languages\japanese.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\Languages\italian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\Languages\slovenian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\Languages\hungarian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\Languages\spanish.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\Languages\german.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\Languages\portugues.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\Languages\Traditional_Chinese(Taiwan).xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\Languages\ukraine.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\src\avrdudess\bin\Release\Languages\hungarian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\italian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\japanese.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\polish.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\portugues.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\russian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\slovenian.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\spanish.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\Traditional_Chinese(Taiwan).xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\turkish.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\Languages\ukraine.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
 Source: "..\Changelog.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Credits.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\License.txt"; DestDir: "{app}"; Flags: ignoreversion

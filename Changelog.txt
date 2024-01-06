@@ -1,3 +1,11 @@
+2024-01-06 (v2.15):
+	- Updated AVRDUDE to v7.2
+	- Enabled TLSv1.2 and TLSv1.3 for the update checker
+	- Fix USBasp bit clock setting not restoring after opening
+	- Can now specify exact files for avrdude, config file and avr-size instead of only the directory
+	- Updated Ukrainian, Chinese, Traditional Chinese and Polish translations
+	- Added Croation and Turkish translations
+
 2022-05-11 (v2.14):
 	- Updated AVRDUDE to v7.0
 	- Updated Russian translation

@@ -1,6 +1,6 @@
 # AVRDUDESS - A GUI for AVRDUDE
 
-This is a GUI for AVRDUDE ([https://savannah.nongnu.org/projects/avrdude](https://savannah.nongnu.org/projects/avrdude)).
+This is a GUI for AVRDUDE ([https://github.com/avrdudes/avrdude/](https://github.com/avrdudes/avrdude/)).
 
 [https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/](https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/)
 
@@ -8,7 +8,7 @@ This is a GUI for AVRDUDE ([https://savannah.nongnu.org/projects/avrdude](https:
 
 ## Windows:
 
-Requires .NET Framework 2.0 SP1 or newer. All systems since Windows Vista will have the required version already installed.
+Requires .NET Framework 2.0 SP1 or later. All systems since Windows Vista will have the required version already installed.
 
 ## Linux & macOS:
 
@@ -21,21 +21,21 @@ Has not been tested on macOS, but should work. Might need the `--arch=32` argume
 
 Install Mono (this is the minimum required, you can use `mono-complete` for a full install):
 
-    sudo apt-get install libmono-system-windows-forms4.0-cil
+    sudo apt install libmono-system-windows-forms4.0-cil
 
 On older versions of Ubuntu you might need to use `libmono-winforms2.0-cil` instead.
 
 Install AVRDUDE and AVR Binutils (for avr-size):
 
-    sudo apt-get install avrdude binutils-avr
+    sudo apt install avrdude binutils-avr
 
-Run AVRDUDESS with mono, you might have to run as root (sudo) so that AVRDUDE can access ports if you haven't changed any permissions or rules.d stuff:
+Run AVRDUDESS with Mono, you might have to run as root (sudo) so that AVRDUDE can access ports if you haven't changed any permissions or rules.d stuff:
 
     mono avrdudess.exe
 
 ## Building:
 
-You will need Microsoft Visual Studio 2015 or newer installed (older might work too). Open `./src/avrdudess.sln` and click the 'Start' button at the top and it will build and run AVRDUDESS.\
+You will need Microsoft Visual Studio 2015 or later installed (older might work too). Open `./src/avrdudess.sln` and click the 'Start' button at the top and it will build and run AVRDUDESS.\
 You can find the output in `./src/avrdudess/bin/Debug/`, or `./src/avrdudess/bin/Release/` if you chose to build for Release (the drop down box second from the left of the Start button is where you can choose the configuration).
 
 ## Making the Installer:

@@ -471,6 +471,11 @@ namespace avrdudess
                 return;
 
             string log = outputLogStdErr.ToLower();
+
+            // Issue #80: avrdude 7.1+ outputs USBasp firmware messages as errors instead of warnings
+            // Remove the error message since it confuses things
+            log = log.Replace("error: cannot set sck period", null);
+
             if (log.IndexOf("error") > -1 || log.IndexOf("fail") > -1)
             {
                 OnReadFuseLock?.Invoke(this, new ReadFuseLockEventArgs(FuseLockType.None, ""));

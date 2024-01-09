@@ -138,21 +138,21 @@ namespace avrdudess
 
         private void btnBrowseAvrdude_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Title = Language.Translation.get("avrdude location"); // TODO translate
+            openFileDialog1.Title = Language.Translation.get("_AVRDUDE_LOCATION");
             openFileDialog1.Filter = Util.isWindows() ? "Executable (*.exe)|*.exe|" + Language.Translation.get("_BROWSE_FILTER_ALL") + "|*.*" : "";
             browse(txtAvrdudeLocation);
         }
 
         private void btnBrowseAvrdudeConf_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Title = Language.Translation.get("avrdude config location"); // TODO translate
+            openFileDialog1.Title = Language.Translation.get("_AVRDUDECONF_LOCATION");
             openFileDialog1.Filter = "conf (*.conf)|*.conf|" + Language.Translation.get("_BROWSE_FILTER_ALL")  + "|*.*";
             browse(txtAvrdudeConfLocation);
         }
 
         private void btnBrowseAvrSize_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Title = Language.Translation.get("avr-size location"); // TODO translate
+            openFileDialog1.Title = Language.Translation.get("_AVRSIZE_LOCATION");
             openFileDialog1.Filter = Util.isWindows() ? "Executable (*.exe)|*.exe|" + Language.Translation.get("_BROWSE_FILTER_ALL")  + "|*.*" : "";
             browse(txtAvrSizeLocation);
         }

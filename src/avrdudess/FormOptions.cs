@@ -138,27 +138,26 @@ namespace avrdudess
 
         private void btnBrowseAvrdude_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Title = Language.Translation.get("_AVRDUDE_LOCATION");
-            openFileDialog1.Filter = Util.isWindows() ? "Executable (*.exe)|*.exe|" + Language.Translation.get("_BROWSE_FILTER_ALL") + "|*.*" : "";
-            browse(txtAvrdudeLocation);
+            var filter = Util.isWindows() ? "Executable (*.exe)|*.exe|" + Language.Translation.get("_BROWSE_FILTER_ALL") + "|*.*" : "";
+            browse("_AVRDUDE_LOCATION", filter, txtAvrdudeLocation);
         }
 
         private void btnBrowseAvrdudeConf_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Title = Language.Translation.get("_AVRDUDECONF_LOCATION");
-            openFileDialog1.Filter = "conf (*.conf)|*.conf|" + Language.Translation.get("_BROWSE_FILTER_ALL")  + "|*.*";
-            browse(txtAvrdudeConfLocation);
+            var filter = "conf (*.conf)|*.conf|" + Language.Translation.get("_BROWSE_FILTER_ALL")  + "|*.*";
+            browse("_AVRDUDECONF_LOCATION", filter, txtAvrdudeConfLocation);
         }
 
         private void btnBrowseAvrSize_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Title = Language.Translation.get("_AVRSIZE_LOCATION");
-            openFileDialog1.Filter = Util.isWindows() ? "Executable (*.exe)|*.exe|" + Language.Translation.get("_BROWSE_FILTER_ALL")  + "|*.*" : "";
-            browse(txtAvrSizeLocation);
+            var filter = Util.isWindows() ? "Executable (*.exe)|*.exe|" + Language.Translation.get("_BROWSE_FILTER_ALL")  + "|*.*" : "";
+            browse("_AVRSIZE_LOCATION", filter, txtAvrSizeLocation);
         }
 
-        private void browse(TextBox txt)
+        private void browse(string title, string filter, TextBox txt)
         {
+            openFileDialog1.Title = Language.Translation.get(title);
+            openFileDialog1.Filter = filter;
             openFileDialog1.FileName = Path.GetFileName(txt.Text);
             try
             {

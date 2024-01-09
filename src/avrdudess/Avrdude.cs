@@ -269,7 +269,7 @@ namespace avrdudess
             // If the config file is over 10MB then it's probably not the right one
             if(new FileInfo(conf_loc).Length > 10 * 1024 * 1024)
             {
-                Util.consoleError("Config file {0} is too large", fileName); // TODO translate
+                Util.consoleError("_CONFIG_FILE_TOO_LARGE", fileName);
                 return;
             }
 
@@ -387,7 +387,7 @@ namespace avrdudess
             savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom, memoryTypes);
 
             if (_programmers.Count == 0 && _mcus.Count == 0)
-                Util.consoleError("Nothing was found in this config file, are you sure it's the correct one?"); // TODO translate
+                Util.consoleError("_NOTHING_FOUND_IN_CONFIG_FILE", fileName);
         }
 
         public new bool launch(string args, Action<object> onFinish, object param, OutputTo outputTo = OutputTo.Console)

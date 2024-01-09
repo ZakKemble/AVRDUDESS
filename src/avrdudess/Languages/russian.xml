@@ -85,6 +85,8 @@
 		<string name="READFUSE">Прочитать фьюзы</string>
 		<string name="READLOCKBITS">Чтение LOCK битов</string>
 		<string name="NOSUPPORTEDFUSES">{0} не имеет поддерживаемых фьюзов</string>
+		<string name="CONFIG_FILE_TOO_LARGE">Config file {0} is too large</string>
+		<string name="NOTHING_FOUND_IN_CONFIG_FILE">Nothing was found in config file {0}</string>
 
 		<string name="UPDATE_CHECK">Проверка обновлений ...</string>
 		<string name="UPDATE_FAILED">Ошибка обновления: {0}</string>

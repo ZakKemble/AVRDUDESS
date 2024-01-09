@@ -85,6 +85,8 @@ Użyj tej opcji jeśli chcesz zaprogramować tylko EEPROM</string>
 		<string name="READFUSE">Odczytałem bezpieczniki </string>
 		<string name="READLOCKBITS">Odczytałem bity blokujące</string>
 		<string name="NOSUPPORTEDFUSES">{0} nie posiada obsługiwanych bezpieczników</string>
+		<string name="CONFIG_FILE_TOO_LARGE">Config file {0} is too large</string>
+		<string name="NOTHING_FOUND_IN_CONFIG_FILE">Nothing was found in config file {0}</string>
 
 		<string name="UPDATE_CHECK">Sprawdzam aktualizację...</string>
 		<string name="UPDATE_FAILED">Sprawdzenie nieudane: {0}</string>

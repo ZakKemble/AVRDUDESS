@@ -85,6 +85,8 @@ Verwenden Sie dies, wenn Sie nur das EEPROM aktualisieren wollen.</string>
 		<string name="READFUSE">Lese Sicherungsbytes</string>
 		<string name="READLOCKBITS">Lese Sperrbyte</string>
 		<string name="NOSUPPORTEDFUSES">{0} besitzt keine unterstützte Absicherung</string>
+		<string name="CONFIG_FILE_TOO_LARGE">Config file {0} is too large</string>
+		<string name="NOTHING_FOUND_IN_CONFIG_FILE">Nothing was found in config file {0}</string>
 
 		<string name="UPDATE_CHECK">Prüfen auf Updates...</string>
 		<string name="UPDATE_FAILED">Update-Prüfung fehlgeschlagen: {0}</string>

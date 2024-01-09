@@ -86,6 +86,8 @@ de flash (-D)</string>
 		<string name="READFUSE">Ler fuse</string>
 		<string name="READLOCKBITS">Ler lock bits</string>
 		<string name="NOSUPPORTEDFUSES">{0} não tem nenhum Fuse suportado</string>
+		<string name="CONFIG_FILE_TOO_LARGE">Config file {0} is too large</string>
+		<string name="NOTHING_FOUND_IN_CONFIG_FILE">Nothing was found in config file {0}</string>
 
 		<string name="UPDATE_CHECK">Verificando atualizações...</string>
 		<string name="UPDATE_FAILED">Falha na verificação de atualização: {0}</string>

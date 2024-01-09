@@ -85,6 +85,8 @@ Use this if you only want to update EEPROM</string>
 		<string name="READFUSE">Read fuse</string>
 		<string name="READLOCKBITS">Read lock bits</string>
 		<string name="NOSUPPORTEDFUSES">{0} does not have any supported fuses</string>
+		<string name="CONFIG_FILE_TOO_LARGE">Config file {0} is too large</string>
+		<string name="NOTHING_FOUND_IN_CONFIG_FILE">Nothing was found in config file {0}</string>
 
 		<string name="UPDATE_CHECK">Checking for updates...</string>
 		<string name="UPDATE_FAILED">Update check failed: {0}</string>

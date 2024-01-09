@@ -85,6 +85,8 @@ Utilisez cette option uniquement si vous souhaitez mettre à jour l'EEPROM.</str
 		<string name="READFUSE">Read fuse</string>
 		<string name="READLOCKBITS">Bits de verrouillage en lecture</string>
 		<string name="NOSUPPORTEDFUSES">{0} does not have any supported fuses</string>
+		<string name="CONFIG_FILE_TOO_LARGE">Config file {0} is too large</string>
+		<string name="NOTHING_FOUND_IN_CONFIG_FILE">Nothing was found in config file {0}</string>
 
 		<string name="UPDATE_CHECK">Recherche de mises à jour ...</string>
 		<string name="UPDATE_FAILED">La vérification de la mise à jour a échoué: {0}</string>

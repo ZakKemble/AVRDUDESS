@@ -389,6 +389,8 @@ namespace avrdudess
 
             if (_programmers.Count == 0 && _mcus.Count == 0)
                 Util.consoleError("_NOTHING_FOUND_IN_CONFIG_FILE", fileName);
+            else
+                Util.consoleWriteLine($"Loaded {_programmers.Count} programmers and {_mcus.Count} MCUs"); // TODO translate
         }
 
         public new bool launch(string args, Action<object> onFinish, object param, OutputTo outputTo = OutputTo.Console)

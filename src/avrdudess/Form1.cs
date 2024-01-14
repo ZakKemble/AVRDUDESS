@@ -819,9 +819,9 @@ namespace avrdudess
         private void cbPort_DropDown(object sender, EventArgs e)
         {
             cmbPort.Items.Clear();
+            cmbPort.Items.Add("");
 
-            PlatformID os = Environment.OSVersion.Platform;
-            if (os == PlatformID.Unix || os == PlatformID.MacOSX)
+            if (!Util.isWindows())
             {
                 string[] devPrefixs = new string[]
                 {
@@ -858,7 +858,7 @@ namespace avrdudess
                     }
                 }
             }
-            else // Windows
+            else
             {
                 string[] ports = SerialPort.GetPortNames();
                 foreach (string p in ports)

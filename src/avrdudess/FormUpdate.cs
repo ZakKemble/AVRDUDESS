@@ -34,8 +34,8 @@ namespace avrdudess
                 //{
                     info += string.Format(
                         "v{0} ({1}){2}{3}{4}{5}",
-                        release.version.ToString(),
-                        release.date.ToLocalTime().ToLongDateString(),
+                        release.Version.ToString(),
+                        release.Date.ToLocalTime().ToLongDateString(),
                         Environment.NewLine,
                         release.info,
                         Environment.NewLine,
@@ -50,7 +50,7 @@ namespace avrdudess
             address = updateData.updateAddr;
             this.onSkipVersion = onSkipVersion;
 
-            lblNewVersion.Text = $"{updateData.latest.version} ({updateData.latest.date.ToLocalTime().ToLongDateString()})";
+            lblNewVersion.Text = $"{updateData.Latest.Version} ({updateData.Latest.Date.ToLocalTime().ToLongDateString()})";
         }
 
         private void FormUpdate_Load(object sender, EventArgs e)

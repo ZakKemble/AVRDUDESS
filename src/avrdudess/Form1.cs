@@ -11,7 +11,6 @@ using System.Globalization;
 using System.IO;
 using System.IO.Ports;
 using System.Media;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace avrdudess
@@ -478,46 +477,46 @@ namespace avrdudess
 
             Language.Translation.apply(this);
 
-            // Check for updates
-            if (UpdateCheck.check.needed() && Config.Prop.checkForUpdates)
+            var checker = new UpdateCheck();
+            checker.OnUpdateCheck += Checker_OnUpdateCheck;
+            checker.Run();
+        }
+
+        private void Checker_OnUpdateCheck(object sender, UpdateCheckEventArgs e)
+        {
+            var checker = (UpdateCheck)sender;
+            if(e.State == UpdateCheckState.Begin)
+                Util.consoleWriteLine("_UPDATE_CHECK");
+            else if(e.State == UpdateCheckState.Failed)
+                Util.consoleError("_UPDATE_FAILED", checker.Ex.Message);
+            else if(e.State == UpdateCheckState.Success)
             {
-                Thread t = new Thread(() =>
+                if(!checker.UpdateData.UpdateAvailable())
                 {
-                    Thread.Sleep(5000);
+                    Util.consoleWriteLine("_UPDATE_LATEST");
+                    return;
+                }
 
-                    Util.consoleWriteLine("_UPDATE_CHECK");
+                var latestVersion = checker.UpdateData.Latest.Version;
+                if (Config.Prop.skipVersion == latestVersion)
+                {
+                    Util.consoleWriteLine("_UPDATE_SKIP", latestVersion.ToString());
+                    return;
+                }
 
-                    UpdateData updateData = new UpdateData();
-                    bool checkSuccess = UpdateCheck.check.now(updateData);
-
-                    if (!checkSuccess)
-                        Util.consoleError("_UPDATE_FAILED", UpdateCheck.check.errorMsg);
-                    else if (updateData.updateAvailable())
+                Util.consoleWriteLine("_UPDATE_AVAIL", latestVersion.ToString());
+                BeginInvoke(
+                    new MethodInvoker(() =>
                     {
-                        if (Config.Prop.skipVersion == updateData.latest.version)
-                            Util.consoleWriteLine("_UPDATE_SKIP", updateData.latest.version.ToString());
-                        else
+                        using (FormUpdate fUpdate = new FormUpdate(checker.UpdateData, () =>
                         {
-                            Util.consoleWriteLine("_UPDATE_AVAIL", updateData.latest.version.ToString());
-                            BeginInvoke(
-                                new MethodInvoker(() =>
-                                {
-                                    using (FormUpdate fUpdate = new FormUpdate(updateData, () =>
-                                    {
-                                        Config.Prop.skipVersion = updateData.latest.version;
-                                    }))
-                                    {
-                                        fUpdate.ShowDialog();
-                                    }
-                                })
-                            );
+                            Config.Prop.skipVersion = latestVersion;
+                        }))
+                        {
+                            fUpdate.ShowDialog();
                         }
-                    }
-                    else
-                        Util.consoleWriteLine("_UPDATE_LATEST");
-                });
-                t.IsBackground = true;
-                t.Start();
+                    })
+                );
             }
         }
 

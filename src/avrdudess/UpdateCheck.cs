@@ -8,17 +8,36 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Threading;
 using System.Xml;
 
 namespace avrdudess
 {
+    public enum UpdateCheckState
+    {
+        Delay,
+        Begin,
+        Failed,
+        Success
+    }
+
+    class UpdateCheckEventArgs : EventArgs
+    {
+        public UpdateCheckState State { get; set; }
+
+        public UpdateCheckEventArgs(UpdateCheckState state)
+        {
+            State = state;
+        }
+    }
+
     public class UpdateData
     {
         public Version currentVersion;
         public string updateAddr = "";
         public List<UpdateReleaseData> releases;
 
-        public UpdateReleaseData latest
+        public UpdateReleaseData Latest
         {
             get
             {
@@ -29,7 +48,7 @@ namespace avrdudess
 
                 foreach (UpdateReleaseData release in releases)
                 {
-                    if (lastestRelease == null || release.version.CompareTo(lastestRelease.version) > 0)
+                    if (lastestRelease == null || release.Version.CompareTo(lastestRelease.Version) > 0)
                         lastestRelease = release;
                 }
 
@@ -46,10 +65,10 @@ namespace avrdudess
 #endif
         }
 
-        public bool updateAvailable()
+        public bool UpdateAvailable()
         {
-            UpdateReleaseData latestRelease = latest;
-            return (latestRelease != null && latestRelease.version.CompareTo(currentVersion) > 0);
+            UpdateReleaseData latestRelease = Latest;
+            return (latestRelease != null && latestRelease.Version.CompareTo(currentVersion) > 0);
         }
     }
 
@@ -60,139 +79,137 @@ namespace avrdudess
         public long dateUnix;
         public string info;
 
-        public DateTime date
+        public DateTime Date
         {
-            get
-            {
-                return new DateTime(1970, 1, 1).AddSeconds(dateUnix);
-            }
+            get => new DateTime(1970, 1, 1).AddSeconds(dateUnix);
         }
 
-        public Version version
+        public Version Version
         {
-            get
-            {
-                return new Version(major, minor);
-            }
+            get => new Version(major, minor);
         }
     }
 
     sealed class UpdateCheck
     {
-        private const string UPDATE_ADDR = "https://versions.zakkemble.net/avrdudess2.xml";
+        private static readonly string UPDATE_ADDR = "https://versions.zakkemble.net/avrdudess2.xml";
 
-        public static readonly UpdateCheck check = new UpdateCheck();
-        private long timeNow = 0;
-        public string errorMsg { get; private set; }
+        public Exception Ex { get; private set; }
+        public readonly UpdateData UpdateData = new UpdateData();
 
-        private UpdateCheck() { }
+        private UpdateCheckState _state;
+        public UpdateCheckState State
+        {
+            get => _state;
+            private set
+            {
+                _state = value;
+                OnUpdateCheck?.Invoke(this, new UpdateCheckEventArgs(value));
+            }
+        }
 
-        public bool needed()
+        public event EventHandler<UpdateCheckEventArgs> OnUpdateCheck;
+
+        public UpdateCheck() { }
+
+        public void Run()
+        {
+            if (!Needed() || !Config.Prop.checkForUpdates)
+                return;
+
+            State = UpdateCheckState.Delay;
+            
+            Thread t = new Thread(() =>
+            {
+                Thread.Sleep(5000);
+                State = UpdateCheckState.Begin;
+                try
+                {
+                    Now();
+                    Config.Prop.updateCheck = Util.UnixTimeStamp();
+                    State = UpdateCheckState.Success;
+                }
+                catch (Exception ex)
+                {
+                    Ex = ex;
+                    State = UpdateCheckState.Failed;
+                }
+            });
+            t.IsBackground = true;
+            t.Start();
+        }
+
+        private bool Needed()
         {
 #if DEBUG
             return true;
 #else
-            timeNow = (long)((DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds);
-
             // Check once a day
-            if (timeNow - Config.Prop.updateCheck > TimeSpan.FromDays(1).TotalSeconds)
-                return true;
-
-            return false;
+            return Util.UnixTimeStamp() - Config.Prop.updateCheck > TimeSpan.FromDays(1).TotalSeconds;
 #endif
         }
 
-        private void saveTime()
+        private void Now()
         {
-            Config.Prop.updateCheck = timeNow;
-        }
+            UpdateData.releases = new List<UpdateReleaseData>();
 
-        public bool now(UpdateData updateData)
-        {
-            bool success = false;
-            try
-            {
-                ServicePointManager.SecurityProtocol |= (SecurityProtocolType)(3072 | 12288); // TLSv1.2 (Win7+) | TLSv1.3 (Win11+)
+            ServicePointManager.SecurityProtocol |= (SecurityProtocolType)(3072 | 12288); // TLSv1.2 (Win7+) | TLSv1.3 (Win11+)
 
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(UPDATE_ADDR);
-                request.UserAgent = string.Format("Mozilla/5.0 (compatible; AVRDUDESS VERSION CHECKER {0})", AssemblyData.version.ToString());
-                request.ReadWriteTimeout = 30000;
-                request.Timeout = 30000;
-                request.KeepAlive = false;
-                request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(UPDATE_ADDR);
+            request.UserAgent = $"Mozilla/5.0 (compatible; AVRDUDESS VERSION CHECKER {AssemblyData.version})";
+            request.ReadWriteTimeout = 30000;
+            request.Timeout = 30000;
+            request.KeepAlive = false;
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 #if DEBUG // Getting proxy info is slow, so don't use proxy in debug
-                request.Proxy = null;
+            request.Proxy = null;
 #endif
 
-                updateData.releases = new List<UpdateReleaseData>();
-                UpdateReleaseData release = null;
+            UpdateReleaseData release = null;
 
-                // Do request
-                using (Stream responseStream = request.GetResponse().GetResponseStream())
+            // Do request
+            using (Stream responseStream = request.GetResponse().GetResponseStream())
+            {
+                // XML
+                using (XmlReader reader = XmlReader.Create(responseStream))
                 {
-                    // XML
-                    using (XmlReader reader = XmlReader.Create(responseStream))
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            string name = reader.Name;
+                        string name = reader.Name;
 
-                            if(name == "release")
+                        if(name == "release")
+                        {
+                            if (reader.NodeType == XmlNodeType.Element)
+                                release = new UpdateReleaseData();
+                            else if(reader.NodeType == XmlNodeType.EndElement && release != null)
                             {
-                                if (reader.NodeType == XmlNodeType.Element)
-                                    release = new UpdateReleaseData();
-                                else if(reader.NodeType == XmlNodeType.EndElement && release != null)
-                                {
-                                    updateData.releases.Add(release);
-                                    release = null;
-                                    success = true; // We need at least 1 release entry otherwise something isn't right...
-                                }
+                                UpdateData.releases.Add(release);
+                                release = null;
                             }
-                            else if(reader.NodeType == XmlNodeType.Element)
+                        }
+                        else if(reader.NodeType == XmlNodeType.Element)
+                        {
+                            reader.Read();
+                            if(release == null)
                             {
-                                reader.Read();
-                                if(release == null)
-                                {
-                                    if(name == "updateAddr")
-                                        updateData.updateAddr = reader.ReadContentAsString();
-                                }
-                                else
-                                {
-                                    switch (name)
-                                    {
-                                        case "major":
-                                            release.major = reader.ReadContentAsInt();
-                                            break;
-                                        case "minor":
-                                            release.minor = reader.ReadContentAsInt();
-                                            break;
-                                        case "date":
-                                            release.dateUnix = reader.ReadContentAsLong();
-                                            break;
-                                        case "info":
-                                            release.info = reader.ReadContentAsString();
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
+                                if(name == "updateAddr")
+                                    UpdateData.updateAddr = reader.ReadContentAsString();
                             }
+                            else if(name == "major")
+                                release.major = reader.ReadContentAsInt();
+                            else if(name == "minor")
+                                release.minor = reader.ReadContentAsInt();
+                            else if(name == "date")
+                                release.dateUnix = reader.ReadContentAsLong();
+                            else if(name == "info")
+                                release.info = reader.ReadContentAsString();
                         }
                     }
                 }
-
-                saveTime();
-            }
-            catch (Exception ex)
-            {
-                errorMsg = ex.Message;
-                return false;
             }
 
-            if (!success)
-                errorMsg = Language.Translation.get("_UPDATE_BADXML");
-
-            return success;
+            if(UpdateData.releases.Count == 0)
+                throw new Exception(Language.Translation.get("_UPDATE_BADXML"));
         }
     }
 }

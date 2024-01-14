@@ -80,6 +80,14 @@ namespace avrdudess
             }
         }
 
+        public bool hide
+        {
+            get
+            {
+                return ignore || Config.Prop.hiddenMCUs.Find(x => x == id) != null;
+            }
+        }
+
         public List<string> memoryTypes
         {
             get

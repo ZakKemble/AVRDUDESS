@@ -562,17 +562,8 @@ namespace avrdudess
             programmers.Clear();
             mcus.Clear();
 
-            foreach (Programmer prog in avrdude.programmers)
-            {
-                if (!prog.hide && Config.Prop.hiddenProgrammers.Find(x => x == prog.id) == null)
-                    programmers.Add(prog);
-            }
-
-            foreach (MCU mcu in avrdude.mcus)
-            {
-                if (!mcu.hide && Config.Prop.hiddenMCUs.Find(x => x == mcu.id) == null)
-                    mcus.Add(mcu);
-            }
+            programmers.AddRange(avrdude.programmers.FindAll(p => !p.hide));
+            mcus.AddRange(avrdude.mcus.FindAll(p => !p.hide));
 
             // Add default
             programmers.Insert(0, new Programmer("", Language.Translation.get("_SELECTPROG")));
@@ -750,21 +741,24 @@ namespace avrdudess
             */
         }
 
-        // Found MCU
         private void avrdude_OnDetectedMCU(object sender, DetectedMCUEventArgs e)
         {
-            if (e.mcu != null)
+            if (!string.IsNullOrEmpty(e.signature))
             {
-                Util.consoleWriteLine("_DETECTSUCCESS", e.mcu.signature, e.mcu.desc);
-                Invoke(new MethodInvoker(() =>
+                MCU m = mcus.Find(s => s.signature == e.signature);
+                if (m != null)
                 {
-                    // Select the MCU that was found
-                    cmbMCU.SelectedItem = e.mcu;
-                }));
+                    Util.consoleWriteLine("_DETECTSUCCESS", m.signature, m.desc);
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        cmbMCU.SelectedItem = m;
+                    }));
+                }
+                else
+                    Util.consoleError("_UNKNOWNSIG", e.signature);
             }
             else
             {
-                // Failed to detect MCU, show log so we can see what went wrong
                 Util.consoleWarning("_DETECTFAIL");
                 Util.consoleWriteLine();
                 Util.consoleWriteLine(avrdude.log);

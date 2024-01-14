@@ -100,6 +100,14 @@ namespace avrdudess
             }
         }
 
+        public bool hide
+        {
+            get
+            {
+                return ignore || Config.Prop.hiddenProgrammers.Find(x => x == id) != null;
+            }
+        }
+
         public Programmer(string id, string desc = null, Programmer parent = null)
             : base(id, desc, parent)
         {

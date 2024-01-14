@@ -16,11 +16,11 @@ namespace avrdudess
 {
     class DetectedMCUEventArgs : EventArgs
     {
-        public MCU mcu { get; set; }
+        public string signature { get; set; }
 
-        public DetectedMCUEventArgs(MCU m)
+        public DetectedMCUEventArgs(string s)
         {
-            mcu = m;
+            signature = s;
         }
     }
 
@@ -121,6 +121,7 @@ namespace avrdudess
         public event EventHandler<ReadFuseLockEventArgs> OnReadFuseLock;
 
         private static readonly Regex strArrSplitRegex = new Regex("\"[\\s]*,[\\s]*\"");
+        private static readonly Regex extractDevSigRegex = new Regex("signature = 0x([0-9a-fA-F]{6})", RegexOptions.IgnoreCase);
 
         #region Getters and setters
 
@@ -419,44 +420,11 @@ namespace avrdudess
 
         public void detectMCU(string args)
         {
-            launch(args, detectComplete, null, OutputTo.Memory);
-        }
-
-        // Got MCU info
-        private void detectComplete(object param)
-        {
-            string log = outputLogStdErr.ToLower();
-
-            // Look for string
-            int pos = log.IndexOf("device signature");
-            if (pos > -1)
-            {
-                // Remove upto "device signature" line
-                log = log.Substring(pos);
-
-                int sigStart = log.IndexOf("0x"); // Look for signature hex value
-                if (sigStart > -1)
-                {
-                    // Get the 6 hex digits
-                    string detectedSignature = log.Substring(sigStart + 2, 6);
-
-                    // Look for MCU with same signature
-                    MCU m = mcus.Find(s => s.signature == detectedSignature);
-
-                    if (m != null) // Found
-                        OnDetectedMCU?.Invoke(this, new DetectedMCUEventArgs(m));
-                    else // Not found
-                    {
-                        // TODO: dont write to console here, run event callback and let that deal with it
-                        //m = new MCU(null, null, detectedSignature);
-                        Util.consoleError("_UNKNOWNSIG", detectedSignature);
-                    }
-
-                    return;
-                }
-            }
-
-            OnDetectedMCU?.Invoke(this, new DetectedMCUEventArgs(null));
+            launch(args, (object _) => {
+                var match = extractDevSigRegex.Match(outputLogStdErr);
+                string detectedSignature = match.Groups[1].Value;
+                OnDetectedMCU?.Invoke(this, new DetectedMCUEventArgs(detectedSignature));
+            }, null, OutputTo.Memory);
         }
 
         public void readFusesLock(string args, FuseLockType[] types)

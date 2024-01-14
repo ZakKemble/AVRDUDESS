@@ -13,7 +13,7 @@ namespace avrdudess
         public string id { get; private set; }
         private string _desc;
         protected Part parent;
-        public bool hide { get; private set; }
+        public bool ignore { get; private set; }
 
         public string desc
         {
@@ -36,7 +36,7 @@ namespace avrdudess
             this.parent = parent;
 
             // Part is a common value thing or deprecated
-            hide = id.StartsWith(".") || (desc?.ToLower().StartsWith("deprecated") ?? false);
+            ignore = id.StartsWith(".") || (desc?.ToLower().StartsWith("deprecated") ?? false);
         }
 
         public int CompareTo(object other)

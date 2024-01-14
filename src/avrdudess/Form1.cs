@@ -58,6 +58,8 @@ namespace avrdudess
             }
             set
             {
+                if (value == null)
+                    return;
                 Programmer p = programmers.Find(s => s.id == value.id);
                 if (p != null)
                     cmbProg.SelectedItem = p;
@@ -77,6 +79,8 @@ namespace avrdudess
             }
             set
             {
+                if (value == null)
+                    return;
                 MCU m = mcus.Find(s => s.id == value.id);
                 if (m != null)
                     cmbMCU.SelectedItem = m;
@@ -555,6 +559,9 @@ namespace avrdudess
         // Update programmer and MCU combo boxes with only the non-hidden parts
         private void updateProgMCUComboBoxes()
         {
+            var origMCU = mcu;
+            var origProg = prog;
+
             setComboBoxDataSource(cmbMCU, null, "");
             setComboBoxDataSource(cmbProg, null, "");
 
@@ -575,6 +582,9 @@ namespace avrdudess
             setComboBoxDataSource(cmbProg, programmers, "desc");
             cmbProg.SelectedIndexChanged -= cmbProg_SelectedIndexChanged;
             cmbProg.SelectedIndexChanged += cmbProg_SelectedIndexChanged;
+
+            mcu = origMCU;
+            prog = origProg;
         }
 
         // Set combo box data source etc

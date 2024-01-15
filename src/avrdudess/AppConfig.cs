@@ -1,13 +1,10 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2014 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2014-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Xml.Serialization;
 
@@ -41,8 +38,8 @@ namespace avrdudess
         public string avrSizeLoc; // avr-size location
         public Point windowLocation; // For persistent window location across sessions
         public string language; // Language to use
-        public List<string> hiddenMCUs; // List of MCU IDs to hide from drop down list
-        public List<string> hiddenProgrammers; // List of programmer IDs to hide from drop down list
+        public HashSetD<string> hiddenMCUs; // List of MCU IDs to hide from drop down list
+        public HashSetD<string> hiddenProgrammers; // List of programmer IDs to hide from drop down list
         public PresetData previousSettings; // Settings from when the program was last closed
         public bool usePreviousSettings; // Enable saving settings when closing
         public Size windowSize; // For persistent window size across sessions
@@ -76,8 +73,8 @@ namespace avrdudess
             avrdudeConfLoc = "";
             avrSizeLoc = "";
             language = "english";
-            hiddenMCUs = new List<string>();
-            hiddenProgrammers = new List<string>();
+            hiddenMCUs = new HashSetD<string>();
+            hiddenProgrammers = new HashSetD<string>();
             previousSettings = new PresetData();
             usePreviousSettings = true;
             checkForUpdates = true;

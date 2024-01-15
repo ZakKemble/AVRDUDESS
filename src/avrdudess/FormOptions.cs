@@ -54,13 +54,13 @@ namespace avrdudess
             set { cbLanguage.SelectedValue = value; }
         }
 
-        public List<string> hiddenProgrammers
+        public HashSetD<string> hiddenProgrammers
         {
             get { return getHiddenCheckBoxes(clbHiddenProgrammers); }
             set { setHiddenCheckBoxes(value, clbHiddenProgrammers); }
         }
 
-        public List<string> hiddenMCUs
+        public HashSetD<string> hiddenMCUs
         {
             get { return getHiddenCheckBoxes(clbHiddenMCUs); }
             set { setHiddenCheckBoxes(value, clbHiddenMCUs); }
@@ -107,26 +107,17 @@ namespace avrdudess
             checkAllMCU = clbHiddenMCUs.CheckedItems.Count < (clbHiddenMCUs.Items.Count / 2);
         }
 
-        private void setHiddenCheckBoxes(List<string> hiddenParts, CheckedListBox clb)
+        private void setHiddenCheckBoxes(HashSetD<string> hiddenParts, CheckedListBox clb)
         {
-            foreach (string hidden in hiddenParts)
-            {
-                for (int i = 0; i < clb.Items.Count; i++)
-                {
-                    if (((Part)clb.Items[i]).id == hidden)
-                    {
-                        clb.SetItemChecked(i, true);
-                        break;
-                    }
-                }
-            }
+            for (int i = 0; i < clb.Items.Count; i++)
+                clb.SetItemChecked(i, hiddenParts.Contains(((Part)clb.Items[i]).id));
         }
 
-        private List<string> getHiddenCheckBoxes(CheckedListBox clb)
+        private HashSetD<string> getHiddenCheckBoxes(CheckedListBox clb)
         {
-            List<string> hiddenParts = new List<string>();
-            foreach (var item in clb.CheckedItems)
-                hiddenParts.Add(((Part)item).id);
+            HashSetD<string> hiddenParts = new HashSetD<string>();
+            foreach (Part item in clb.CheckedItems)
+                hiddenParts.Add(item.id);
             return hiddenParts;
         }
 

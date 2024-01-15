@@ -105,6 +105,7 @@
       <DependentUpon>FormUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="FusesAndLocks.cs" />
+    <Compile Include="HashSetD.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="MCU.cs" />
     <Compile Include="MemTypeFile.cs" />

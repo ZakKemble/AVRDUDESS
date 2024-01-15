@@ -104,7 +104,7 @@ namespace avrdudess
         {
             get
             {
-                return ignore || Config.Prop.hiddenProgrammers.Find(x => x == id) != null;
+                return ignore || Config.Prop.hiddenProgrammers.Contains(id);
             }
         }
 

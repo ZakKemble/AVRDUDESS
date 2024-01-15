@@ -84,7 +84,7 @@ namespace avrdudess
         {
             get
             {
-                return ignore || Config.Prop.hiddenMCUs.Find(x => x == id) != null;
+                return ignore || Config.Prop.hiddenMCUs.Contains(id);
             }
         }
 

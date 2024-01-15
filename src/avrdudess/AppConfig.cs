@@ -102,7 +102,7 @@ namespace avrdudess
                 // Probably failed to load config file
             }
             else if (Prop.configVersion > CONFIG_VERSION)
-                MsgBox.warning("Configuration file version ({0}) is newer than expected ({1}), things might not work properly...", Prop.configVersion, CONFIG_VERSION);
+                MsgBox.warning($"Configuration file version ({Prop.configVersion}) is newer than expected ({CONFIG_VERSION}), things might not work properly...");
         }
     }
 }

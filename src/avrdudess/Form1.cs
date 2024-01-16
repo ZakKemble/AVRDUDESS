@@ -154,10 +154,10 @@ namespace avrdudess
 
         public string flashFileFormat
         {
-            get { return ((FileFormat)cmbFlashFormat.SelectedItem).id; }
+            get => ((FileFormat)cmbFlashFormat.SelectedItem).Id;
             set
             {
-                FileFormat f = Avrdude.fileFormats.Find(s => s.id == value);
+                var f = Avrdude.fileFormats.Find(s => s.Id == value);
                 if (f != null)
                     cmbFlashFormat.SelectedItem = f;
             }
@@ -185,10 +185,10 @@ namespace avrdudess
 
         public string EEPROMFileFormat
         {
-            get { return ((FileFormat)cmbEEPROMFormat.SelectedItem).id; }
+            get => ((FileFormat)cmbEEPROMFormat.SelectedItem).Id;
             set
             {
-                FileFormat f = Avrdude.fileFormats.Find(s => s.id == value);
+                var f = Avrdude.fileFormats.Find(s => s.Id == value);
                 if (f != null)
                     cmbEEPROMFormat.SelectedItem = f;
             }
@@ -262,19 +262,28 @@ namespace avrdudess
         {
             InitializeComponent();
 
+            var lbl = new Label
+            {
+                Name = "lblLoading",
+                Text = "L o a d i n g . . .",
+                Location = new Point(0, 0),
+                Size = new Size(Width, rtxtConsole.Top),
+                Font = new Font(Font.FontFamily, 20, FontStyle.Bold),
+                AutoSize = false,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
+                Cursor = Cursors.WaitCursor,
+                //BackColor = Color.Red,
+                //Dock = DockStyle.Fill
+            };
+            Controls.Add(lbl);
+            lbl.BringToFront();
+
             if (args.Length > 0)
                 presetToLoad = args[0];
 
             programmers = new List<Programmer>();
             mcus = new List<MCU>();
-
-            // Load saved configuration and translations
-            // TODO Need to be careful here, if an uncaught exception happens then the program
-            // will just close without a JIT error message thing.
-            // Having these in Form1_Load() causes some static things to not load their translations
-            // like in Avrdude.fileFormats.
-            Config.Load();
-            Language.Translation.load();
 
             Icon = AssemblyData.icon;
 
@@ -283,6 +292,10 @@ namespace avrdudess
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Config.Load();
+            Language.Translation.load();
+            Avrdude.fileFormats.ForEach(x => x.ApplyTranslation());
+
             setWindowTitle();
 
             //MaximumSize = new Size(Size.Width, int.MaxValue);
@@ -322,15 +335,13 @@ namespace avrdudess
             cmdLine = new CmdLine(this);
             avrdude = new Avrdude();
             avrsize = new Avrsize();
+            presets = new Presets();
 
             avrdude.OnProcessStart += avrdude_OnProcessStart;
             avrdude.OnProcessEnd += avrdude_OnProcessEnd;
             avrdude.OnVersionChange += avrdude_OnVersionChange;
             avrdude.OnDetectedMCU += avrdude_OnDetectedMCU;
             avrdude.OnReadFuseLock += Avrdude_OnReadFuseLock;
-
-            avrdude.load();
-            avrsize.load();
 
             // Setup memory files/usage bars
             // Flash
@@ -364,8 +375,6 @@ namespace avrdudess
             gbEEPROMFile.DragEnter += event_DragEnter;
             gbEEPROMFile.DragDrop += event_DragDrop;
 
-            updateProgMCUComboBoxes();
-
             // USBasp frequency settings
             cmbUSBaspFreq.Hide();
             setComboBoxDataSource(cmbUSBaspFreq, Avrdude.USBaspFreqs, "name");
@@ -374,8 +383,8 @@ namespace avrdudess
             cmbUSBaspFreq.Top = txtBitClock.Top;
 
             // Flash & EEPROM file formats
-            setComboBoxDataSource(cmbFlashFormat, Avrdude.fileFormats, "desc");
-            setComboBoxDataSource(cmbEEPROMFormat, Avrdude.fileFormats, "desc");
+            setComboBoxDataSource(cmbFlashFormat, Avrdude.fileFormats, "Desc");
+            setComboBoxDataSource(cmbEEPROMFormat, Avrdude.fileFormats, "Desc");
 
             // Verbosity levels
             cmdVerbose.Items.Clear();
@@ -431,26 +440,8 @@ namespace avrdudess
             ToolTipCmdLine.UseFading = false;
             ToolTipCmdLine.SetToolTip(txtCmdLine, txtCmdLine.Text);
 
-            // Load saved presets
-            presets = new Presets();
-            presets.Load();
-            presets.SetDataSource(cmbPresets);
-
             // Enable/disable tool tips based on saved config
             ToolTips.Active = Config.Prop.toolTips;
-
-            // If a preset has not been specified by the command line then use the last used preset
-            // Credits:
-            // Uwe Tanger (specifying preset in command line)
-            if (presetToLoad == null)
-            {
-                cmbPresets.SelectedItem = presets.Items.Find(s => s.name == "Default");
-                loadPresetData(Config.Prop.previousSettings);
-            }
-            else
-            {
-                cmbPresets.SelectedItem = presets.Items.Find(s => s.name == presetToLoad) ?? presets.Items.Find(s => s.name == "Default");
-            }
 
             // Force update control enabled states and generate cmd line after loading preset data
             event_controlChanged(null, EventArgs.Empty);
@@ -484,6 +475,39 @@ namespace avrdudess
             var checker = new UpdateCheck();
             checker.OnUpdateCheck += Checker_OnUpdateCheck;
             checker.Run();
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            Refresh();
+
+            if (Portable.IsPortable)
+                Util.consoleWriteLine("Running in portable mode", Color.HotPink); // TODO translate
+
+            avrdude.load();
+            avrsize.load();
+
+            updateProgMCUComboBoxes();
+
+            presets.Load();
+            presets.SetDataSource(cmbPresets);
+
+            // If a preset has not been specified by the command line then use the last used preset
+            // Credits:
+            // Uwe Tanger (specifying preset in command line)
+            if (presetToLoad == null)
+            {
+                cmbPresets.SelectedItem = presets.Items.Find(s => s.name == "Default");
+                loadPresetData(Config.Prop.previousSettings);
+            }
+            else
+            {
+                cmbPresets.SelectedItem = presets.Items.Find(s => s.name == presetToLoad) ?? presets.Items.Find(s => s.name == "Default");
+            }
+
+            var c = Controls.Find("lblLoading", false);
+            if(c.Length > 0)
+                Controls.Remove(c[0]);
         }
 
         private void Checker_OnUpdateCheck(object sender, UpdateCheckEventArgs e)
@@ -1493,7 +1517,7 @@ namespace avrdudess
             // Persist window location across sessions
             // Credits:
             // gl.tter
-            if (WindowState == FormWindowState.Normal)
+            if (WindowState == FormWindowState.Normal && Config.Prop != null)
                 Config.Prop.windowLocation = Location;
         }
 

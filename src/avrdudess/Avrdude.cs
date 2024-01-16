@@ -80,13 +80,13 @@ namespace avrdudess
 
         public static readonly List<FileFormat> fileFormats = new List<FileFormat>()
         {
-            new FileFormat("a", Language.Translation.get("_FILEFMT_AUTO")),
-            new FileFormat("i", Language.Translation.get("_FILEFMT_HEX")),
-            new FileFormat("s", Language.Translation.get("_FILEFMT_SREC")),
-            new FileFormat("r", Language.Translation.get("_FILEFMT_BIN")),
-            new FileFormat("d", Language.Translation.get("_FILEFMT_DECR")),
-            new FileFormat("h", Language.Translation.get("_FILEFMT_HEXR")),
-            new FileFormat("b", Language.Translation.get("_FILEFMT_BINR"))
+            new FileFormat("a", "_FILEFMT_AUTO"),
+            new FileFormat("i", "_FILEFMT_HEX"),
+            new FileFormat("s", "_FILEFMT_SREC"),
+            new FileFormat("r", "_FILEFMT_BIN"),
+            new FileFormat("d", "_FILEFMT_DECR"),
+            new FileFormat("h", "_FILEFMT_HEXR"),
+            new FileFormat("b", "_FILEFMT_BINR")
         };
         
         // TODO change this to include all memory types?

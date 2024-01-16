@@ -519,7 +519,7 @@ namespace avrdudess
                 Util.consoleError("_UPDATE_FAILED", checker.Ex.Message);
             else if (e.State == UpdateCheckState.Success)
             {
-                if (!checker.UpdateData.UpdateAvailable())
+                if (!checker.UpdateData.UpdateAvailable)
                 {
                     Util.consoleWriteLine("_UPDATE_LATEST");
                     return;

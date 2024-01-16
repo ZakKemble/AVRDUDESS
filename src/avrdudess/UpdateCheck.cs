@@ -9,11 +9,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading;
-using System.Xml;
+using System.Xml.Serialization;
 
 namespace avrdudess
 {
-    public enum UpdateCheckState
+    enum UpdateCheckState
     {
         Delay,
         Begin,
@@ -31,28 +31,49 @@ namespace avrdudess
         }
     }
 
+
+    [XmlRoot("version")]
     public class UpdateData
     {
-        public Version currentVersion;
+        public int major;
+        public int minor;
+        public long date;
         public string updateAddr = "";
-        public List<UpdateReleaseData> releases;
 
-        public UpdateReleaseData Latest
+        [XmlArray("releases")]
+        [XmlArrayItem("release")]
+        public List<UpdateReleaseEntry> releases = new List<UpdateReleaseEntry>();
+
+        [XmlIgnore]
+        public Version currentVersion;
+
+        [XmlIgnore]
+        public UpdateReleaseEntry Latest
         {
             get
             {
                 if (releases == null)
                     return null;
 
-                UpdateReleaseData lastestRelease = null;
+                UpdateReleaseEntry lastestRelease = null;
 
-                foreach (UpdateReleaseData release in releases)
+                releases.ForEach(release => 
                 {
                     if (lastestRelease == null || release.Version.CompareTo(lastestRelease.Version) > 0)
                         lastestRelease = release;
-                }
+                });
 
                 return lastestRelease; // This will be null if releases list is empty
+            }
+        }
+
+        [XmlIgnore]
+        public bool UpdateAvailable
+        {
+            get
+            {
+                UpdateReleaseEntry latestRelease = Latest;
+                return (latestRelease != null && latestRelease.Version.CompareTo(currentVersion) > 0);
             }
         }
 
@@ -64,26 +85,22 @@ namespace avrdudess
             currentVersion = new Version(AssemblyData.version.Major, AssemblyData.version.Minor);
 #endif
         }
-
-        public bool UpdateAvailable()
-        {
-            UpdateReleaseData latestRelease = Latest;
-            return (latestRelease != null && latestRelease.Version.CompareTo(currentVersion) > 0);
-        }
     }
 
-    public class UpdateReleaseData
+    public class UpdateReleaseEntry
     {
         public int major;
         public int minor;
-        public long dateUnix;
+        public long date;
         public string info;
 
+        [XmlIgnore]
         public DateTime Date
         {
-            get => new DateTime(1970, 1, 1).AddSeconds(dateUnix);
+            get => new DateTime(1970, 1, 1).AddSeconds(date);
         }
 
+        [XmlIgnore]
         public Version Version
         {
             get => new Version(major, minor);
@@ -95,7 +112,7 @@ namespace avrdudess
         private const string UPDATE_ADDR = "https://versions.zakkemble.net/avrdudess2.xml";
 
         public Exception Ex { get; private set; }
-        public readonly UpdateData UpdateData = new UpdateData();
+        public UpdateData UpdateData = new UpdateData();
 
         private UpdateCheckState _state;
         public UpdateCheckState State
@@ -151,7 +168,7 @@ namespace avrdudess
 
         private void Now()
         {
-            UpdateData.releases = new List<UpdateReleaseData>();
+            UpdateData.releases = new List<UpdateReleaseEntry>();
 
             ServicePointManager.SecurityProtocol |= (SecurityProtocolType)(3072 | 12288); // TLSv1.2 (Win7+) | TLSv1.3 (Win11+)
 
@@ -165,48 +182,8 @@ namespace avrdudess
             request.Proxy = null;
 #endif
 
-            UpdateReleaseData release = null;
-
-            // Do request
             using (Stream responseStream = request.GetResponse().GetResponseStream())
-            {
-                // XML
-                using (XmlReader reader = XmlReader.Create(responseStream))
-                {
-                    while (reader.Read())
-                    {
-                        string name = reader.Name;
-
-                        if(name == "release")
-                        {
-                            if (reader.NodeType == XmlNodeType.Element)
-                                release = new UpdateReleaseData();
-                            else if(reader.NodeType == XmlNodeType.EndElement && release != null)
-                            {
-                                UpdateData.releases.Add(release);
-                                release = null;
-                            }
-                        }
-                        else if(reader.NodeType == XmlNodeType.Element)
-                        {
-                            reader.Read();
-                            if(release == null)
-                            {
-                                if(name == "updateAddr")
-                                    UpdateData.updateAddr = reader.ReadContentAsString();
-                            }
-                            else if(name == "major")
-                                release.major = reader.ReadContentAsInt();
-                            else if(name == "minor")
-                                release.minor = reader.ReadContentAsInt();
-                            else if(name == "date")
-                                release.dateUnix = reader.ReadContentAsLong();
-                            else if(name == "info")
-                                release.info = reader.ReadContentAsString();
-                        }
-                    }
-                }
-            }
+                UpdateData = (UpdateData)new XmlSerializer(typeof(UpdateData)).Deserialize(responseStream);
 
             if(UpdateData.releases.Count == 0)
                 throw new Exception(Language.Translation.get("_UPDATE_BADXML"));

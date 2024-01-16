@@ -29,21 +29,21 @@ namespace avrdudess
             lblCurrentVersion.Text = updateData.currentVersion.ToString();
 
             string info = "";
-            foreach (UpdateReleaseData release in updateData.releases)
+            updateData.releases.ForEach(x =>
             {
-                //if (release.version.CompareTo(updateData.currentVersion) > 0) // Only show change logs for newer versions
+                //if (x.version.CompareTo(updateData.currentVersion) > 0) // Only show change logs for newer versions
                 //{
-                    info += string.Format(
-                        "v{0} ({1}){2}{3}{4}{5}",
-                        release.Version.ToString(),
-                        release.Date.ToLocalTime().ToLongDateString(),
-                        Environment.NewLine,
-                        release.info,
-                        Environment.NewLine,
-                        Environment.NewLine
-                        );
+                info += string.Format(
+                    "v{0} ({1}){2}{3}{4}{5}",
+                    x.Version.ToString(),
+                    x.Date.ToLocalTime().ToLongDateString(),
+                    Environment.NewLine,
+                    x.info,
+                    Environment.NewLine,
+                    Environment.NewLine
+                    );
                 //}
-            }
+            });
 
             address = updateData.updateAddr;
 

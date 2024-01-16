@@ -12,10 +12,11 @@ namespace avrdudess
     public partial class FormUpdate : Form
     {
         private readonly string address;
-        private readonly Action onSkipVersion;
         private Timer tmr;
 
-        public FormUpdate(UpdateData updateData, Action onSkipVersion)
+        public event EventHandler OnSkipVersion;
+
+        public FormUpdate(UpdateData updateData)
         {
             InitializeComponent();
 
@@ -44,12 +45,10 @@ namespace avrdudess
                 //}
             }
 
+            address = updateData.updateAddr;
+
             // Make sure end lines are in the correct format (probably not needed...)
             txtUpdateInfo.Text = info.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
-
-            address = updateData.updateAddr;
-            this.onSkipVersion = onSkipVersion;
-
             lblNewVersion.Text = $"{updateData.Latest.Version} ({updateData.Latest.Date.ToLocalTime().ToLongDateString()})";
         }
 
@@ -87,7 +86,7 @@ namespace avrdudess
 
         private void btnSkip_Click(object sender, EventArgs e)
         {
-            onSkipVersion?.Invoke();
+            OnSkipVersion?.Invoke(this, new EventArgs());
             Close();
         }
 

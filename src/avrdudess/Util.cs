@@ -21,9 +21,6 @@ namespace System.Runtime.CompilerServices
 
 namespace avrdudess
 {
-    // Action without parameters doesn't seem to be a thing in .NET 2.0
-    public delegate void Action();
-
     static class Util
     {
         private static RichTextBox console;
@@ -34,13 +31,14 @@ namespace avrdudess
             try
             {
                 if (c.InvokeRequired)
-                    c.Invoke(new Action(() => action(c)));
+                    c.Invoke(action, new object[] { c });
                 else
                     action(c);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                // Hmm, this might cause a stack overflow if the exception is coming from the console control
+                consoleError(ex.Message);
             }
         }
 

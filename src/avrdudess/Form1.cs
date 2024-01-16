@@ -489,13 +489,13 @@ namespace avrdudess
         private void Checker_OnUpdateCheck(object sender, UpdateCheckEventArgs e)
         {
             var checker = (UpdateCheck)sender;
-            if(e.State == UpdateCheckState.Begin)
+            if (e.State == UpdateCheckState.Begin)
                 Util.consoleWriteLine("_UPDATE_CHECK");
-            else if(e.State == UpdateCheckState.Failed)
+            else if (e.State == UpdateCheckState.Failed)
                 Util.consoleError("_UPDATE_FAILED", checker.Ex.Message);
-            else if(e.State == UpdateCheckState.Success)
+            else if (e.State == UpdateCheckState.Success)
             {
-                if(!checker.UpdateData.UpdateAvailable())
+                if (!checker.UpdateData.UpdateAvailable())
                 {
                     Util.consoleWriteLine("_UPDATE_LATEST");
                     return;
@@ -512,11 +512,9 @@ namespace avrdudess
                 BeginInvoke(
                     new MethodInvoker(() =>
                     {
-                        using (FormUpdate fUpdate = new FormUpdate(checker.UpdateData, () =>
+                        using (FormUpdate fUpdate = new FormUpdate(checker.UpdateData))
                         {
-                            Config.Prop.skipVersion = latestVersion;
-                        }))
-                        {
+                            fUpdate.OnSkipVersion += (object s, EventArgs e2) => Config.Prop.skipVersion = latestVersion;
                             fUpdate.ShowDialog();
                         }
                     })

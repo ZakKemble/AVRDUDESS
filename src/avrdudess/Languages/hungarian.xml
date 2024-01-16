@@ -112,6 +112,7 @@ Használja ezt, ha csak az EEPROM -ot akarja írni.</string>
 		<string name="BROWSE_FILTER_ALL">Minden fájl (*.*)</string>
 		<string name="BROWSE_FILTER_HEX">HEX fájlok (*.hex)</string>
 		<string name="BROWSE_FILTER_EEP">EEPROM fájlok (*.eep)</string>
+		<string name="BROWSE_FILTER_XML">XML files (*.xml)</string>
 
 		<!-- Preset manager form -->
 		<string name="TITLE_PRESETMGR">Konfiguráció szerkesztő</string>

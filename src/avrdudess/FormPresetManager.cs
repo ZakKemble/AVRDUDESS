@@ -35,15 +35,15 @@ namespace avrdudess
             reloadExportList();
  
             // Export
-            saveFileDialog1.Filter = "XML files (*.xml)|*.xml";
-            saveFileDialog1.Filter += "|All files (*.*)|*.*";
+            saveFileDialog1.Filter = Language.Translation.get("_BROWSE_FILTER_XML")  + "|*.xml";
+            saveFileDialog1.Filter += "|" + Language.Translation.get("_BROWSE_FILTER_ALL") + "|*.*";
             saveFileDialog1.CheckFileExists = false;
             saveFileDialog1.FileName = "presets.xml";
             saveFileDialog1.Title = Language.Translation.get("_SAVEDIALOG_EXPORT");
 
             // Import
-            openFileDialog1.Filter = "XML files (*.xml)|*.xml";
-            openFileDialog1.Filter += "|All files (*.*)|*.*";
+            openFileDialog1.Filter = Language.Translation.get("_BROWSE_FILTER_XML") + "|*.xml";
+            openFileDialog1.Filter += "|" + Language.Translation.get("_BROWSE_FILTER_ALL") + "|*.*";
             openFileDialog1.FileName = "";
             openFileDialog1.Title = Language.Translation.get("_OPENDIALOG_IMPORT");
 

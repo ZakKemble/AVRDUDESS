@@ -111,6 +111,7 @@ Utilisez cette option uniquement si vous souhaitez mettre à jour l'EEPROM.</str
 		<string name="BROWSE_FILTER_ALL">Tous les fichiers (*.*)</string>
 		<string name="BROWSE_FILTER_HEX"> Fichiers hexadécimaux (*.hex)</string>
 		<string name="BROWSE_FILTER_EEP">Fichiers EEPROM (*.eep)</string>
+		<string name="BROWSE_FILTER_XML">XML files (*.xml)</string>
 
 		<!-- Preset manager form -->
 		<string name="TITLE_PRESETMGR">Gestionnaire de préréglages</string>

@@ -111,6 +111,7 @@ Sem lahko tudi povlečeš datoteko</string>
 		<string name="BROWSE_FILTER_ALL">Vse datoteke (*.*)</string>
 		<string name="BROWSE_FILTER_HEX">Hex datoteke (*.hex)</string>
 		<string name="BROWSE_FILTER_EEP">EEPROM datoteke (*.eep)</string>
+		<string name="BROWSE_FILTER_XML">XML files (*.xml)</string>
 
 		<!-- Preset manager form -->
 		<string name="TITLE_PRESETMGR">Urejevalnik presetov</string>

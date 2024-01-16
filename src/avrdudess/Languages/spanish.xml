@@ -111,6 +111,7 @@ Usa esto si únicamente quieres actualizar la EEPROM</string>
 		<string name="BROWSE_FILTER_ALL">Todos los archivos (*.*)</string>
 		<string name="BROWSE_FILTER_HEX">Archivos hexadecimales (*.hex)</string>
 		<string name="BROWSE_FILTER_EEP">Archivos EEPROM (*.eep)</string>
+		<string name="BROWSE_FILTER_XML">XML files (*.xml)</string>
 
 		<!-- Preset manager form -->
 		<string name="TITLE_PRESETMGR">Gestor de prestaciones</string>

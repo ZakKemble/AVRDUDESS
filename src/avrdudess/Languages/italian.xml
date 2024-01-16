@@ -111,6 +111,7 @@ Usa questo se vuoi solo aggiornare l'EEPROM</string>
 		<string name="BROWSE_FILTER_ALL">Tutti i files (*.*)</string>
 		<string name="BROWSE_FILTER_HEX">Hex files (*.hex)</string>
 		<string name="BROWSE_FILTER_EEP">EEPROM files (*.eep)</string>
+		<string name="BROWSE_FILTER_XML">XML files (*.xml)</string>
 
 		<!-- Preset manager form -->
 		<string name="TITLE_PRESETMGR">Gestore Preset</string>

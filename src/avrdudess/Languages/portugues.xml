@@ -112,6 +112,7 @@ de flash (-D)</string>
 		<string name="BROWSE_FILTER_ALL">Todos os arquivos (*.*)</string>
 		<string name="BROWSE_FILTER_HEX">Arquivos Hex (*.hex)</string>
 		<string name="BROWSE_FILTER_EEP">Arquivos EEPROM (*.eep)</string>
+		<string name="BROWSE_FILTER_XML">XML files (*.xml)</string>
 
 		<!-- Preset manager form -->
 		<string name="TITLE_PRESETMGR">Gerenciador de Preset</string>

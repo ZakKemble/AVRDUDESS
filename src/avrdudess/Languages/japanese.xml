@@ -111,6 +111,7 @@ EEPROMのみを更新する場合に使用します</string>
 		<string name="BROWSE_FILTER_ALL">すべてのファイル (*.*)</string>
 		<string name="BROWSE_FILTER_HEX">Hexファイル (*.hex)</string>
 		<string name="BROWSE_FILTER_EEP">EEPROMファイル (*.eep)</string>
+		<string name="BROWSE_FILTER_XML">XML files (*.xml)</string>
 
 		<!-- Preset manager form -->
 		<string name="TITLE_PRESETMGR">プリセットマネージャー</string>

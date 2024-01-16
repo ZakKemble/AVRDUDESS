@@ -111,6 +111,7 @@
 		<string name="BROWSE_FILTER_ALL">Все файлы (*. *)</string>
 		<string name="BROWSE_FILTER_HEX">Шестнадцатеричные файлы (* .hex)</string>
 		<string name="BROWSE_FILTER_EEP">Файлы EEPROM (* .eep)</string>
+		<string name="BROWSE_FILTER_XML">XML files (*.xml)</string>
 
 		<!-- Форма менеджера пресетов -->
 		<string name="TITLE_PRESETMGR">Редактор настроек МК</string>

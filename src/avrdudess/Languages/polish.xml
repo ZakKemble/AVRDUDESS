@@ -111,6 +111,7 @@ Użyj tej opcji jeśli chcesz zaprogramować tylko EEPROM</string>
 		<string name="BROWSE_FILTER_ALL">Wszystkie pliki (*.*)</string>
 		<string name="BROWSE_FILTER_HEX">Pliki hex (*.hex)</string>
 		<string name="BROWSE_FILTER_EEP">Pliki EEPROM (*.eep)</string>
+		<string name="BROWSE_FILTER_XML">XML files (*.xml)</string>
 
 		<!-- Preset manager form -->
 		<string name="TITLE_PRESETMGR">Menedżer profili</string>

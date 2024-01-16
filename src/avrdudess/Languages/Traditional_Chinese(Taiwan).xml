@@ -111,6 +111,7 @@
 		<string name="BROWSE_FILTER_ALL">所有檔案 (*.*)</string>
 		<string name="BROWSE_FILTER_HEX">Hex 檔案 (*.hex)</string>
 		<string name="BROWSE_FILTER_EEP">EEPROM 檔案 (*.eep)</string>
+		<string name="BROWSE_FILTER_XML">XML files (*.xml)</string>
 
 		<!-- Preset manager form -->
 		<string name="TITLE_PRESETMGR">預設檔管理器</string>

@@ -111,6 +111,7 @@ Bunu yalnızca EEPROM'u güncellemek istiyorsanız kullanın</string>
 		<string name="BROWSE_FILTER_ALL">Tüm dosyalar (*.*)</string>
 		<string name="BROWSE_FILTER_HEX">Hex dosyaları (*.hex)</string>
 		<string name="BROWSE_FILTER_EEP">EEPROM dosyaları (*.eep)</string>
+		<string name="BROWSE_FILTER_XML">XML files (*.xml)</string>
 
 		<!-- Preset manager form -->
 		<string name="TITLE_PRESETMGR">Hazır Ayar Yöneticisi</string>

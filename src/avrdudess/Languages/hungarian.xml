@@ -184,8 +184,6 @@ Használja ezt, ha csak az EEPROM -ot akarja írni.</string>
 		<!-- Errors and things -->
 		<string name="XMLWRITEERROR">Hiba történt a mentés közben {0}:
 {1}</string>
-		<string name="XMLCOPYERROR">Nem sikerült a(z) {0} sablon másolása az AppData mappába:
-{1}</string>
 		<string name="EXECMISSING">{0} hiányzik!</string>
 		<string name="EXECFAIL">Nem lehet elindítani a folyamatot: {0}</string>
 		<string name="UNKNOWNSIG">Ismeretlen azonosító {0}</string>

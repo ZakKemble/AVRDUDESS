@@ -183,8 +183,6 @@
 		<!-- Errors and things -->
 		<string name="XMLWRITEERROR">发生错误，尝试写入 {0}:
 {1}</string>
-		<string name="XMLCOPYERROR">复制 {0} 模板到应用数据出错:
-{1}</string>
 		<string name="EXECMISSING">{0} 丢失</string>
 		<string name="EXECFAIL">无法启动进程: {0}</string>
 		<string name="UNKNOWNSIG">未知签名 {0}</string>

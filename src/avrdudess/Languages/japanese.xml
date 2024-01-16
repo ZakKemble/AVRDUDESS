@@ -183,8 +183,6 @@ EEPROMのみを更新する場合に使用します</string>
 		<!-- Errors and things -->
 		<string name="XMLWRITEERROR">{0} を保存しようとしてエラーが発生しました:
 {1}</string>
-		<string name="XMLCOPYERROR">{0} テンプレートをAppDataにコピーできませんでした:
-{1}</string>
 		<string name="EXECMISSING">{0} がありません！</string>
 		<string name="EXECFAIL">プロセスを開始できません: {0}</string>
 		<string name="UNKNOWNSIG">不明な署名 {0}</string>

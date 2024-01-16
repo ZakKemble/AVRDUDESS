@@ -183,8 +183,6 @@
 		<!-- Errors and things -->
 		<string name="XMLWRITEERROR">嘗試保存 {0} 時出錯:
 {1}</string>
-		<string name="XMLCOPYERROR">複製模板 {0} 到AppData失敗:
-{1}</string>
 		<string name="EXECMISSING">{0} 遺失</string>
 		<string name="EXECFAIL">無法啟動進程: {0}</string>
 		<string name="UNKNOWNSIG">未知簽章 {0}</string>

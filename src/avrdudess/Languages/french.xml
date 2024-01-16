@@ -183,8 +183,6 @@ Utilisez cette option uniquement si vous souhaitez mettre à jour l'EEPROM.</str
 		<!-- Errors and things -->
 		<string name="XMLWRITEERROR">Une erreur s'est produite lors de la tentative d'enregistrement de {0}:
 {1}</string>
-		<string name="XMLCOPYERROR">Échec de la copie du modèle {0} vers AppData:
-{1}</string>
 		<string name="EXECMISSING">{0} est manquant!</string>
 		<string name="EXECFAIL">Impossible de démarrer le processus: {0}</string>
 		<string name="UNKNOWNSIG">Signature inconnue {0}</string>

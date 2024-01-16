@@ -186,8 +186,6 @@ der AVR-SIZE.exe Datei</string>
 		<!-- Errors and things -->
 		<string name="XMLWRITEERROR">Beim Versuch zu speichern ist ein Fehler aufgetreten {0}:
 {1}</string>
-		<string name="XMLCOPYERROR">Kopieren der Vorlage {0} in AppData ist fehlgeschlagen:
-{1}</string>
 		<string name="EXECMISSING">{0} fehlt!</string>
 		<string name="EXECFAIL">Prozess kann nicht gestartet werden: {0}</string>
 		<string name="UNKNOWNSIG">Unbekannte Signatur {0}</string>

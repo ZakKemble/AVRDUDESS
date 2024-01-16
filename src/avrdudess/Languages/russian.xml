@@ -183,8 +183,6 @@
 		<!-- Ошибки и прочее -->
 		<string name="XMLWRITEERROR">Произошла ошибка при попытке сохранить {0}:
 {1}</string>
-		<string name="XMLCOPYERROR">Не удалось скопировать шаблон {0} в AppData:
-{1}</string>
 		<string name="EXECMISSING">{0} отсутствует!</string>
 		<string name="EXECFAIL">Невозможно запустить процесс: {0}</string>
 		<string name="UNKNOWNSIG">Неизвестная сигнатура {0}</string>

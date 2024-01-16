@@ -183,8 +183,6 @@ Sem lahko tudi povlečeš datoteko</string>
 		<!-- Errors and things -->
 		<string name="XMLWRITEERROR">Napaka pri poskusu shranjevanja {0}:
 {1}</string>
-		<string name="XMLCOPYERROR">Napaka pri kopiranju predloge {0} v AppData:
-{1}</string>
 		<string name="EXECMISSING">{0} manjka!</string>
 		<string name="EXECFAIL">Ne morem zagnati procesa: {0}</string>
 		<string name="UNKNOWNSIG">Neznan podpis {0}</string>

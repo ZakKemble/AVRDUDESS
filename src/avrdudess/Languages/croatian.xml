@@ -182,8 +182,6 @@ Odaberite ako samo želite ažurirate EEPROM</string>
 		<!-- Errors and things -->
 		<string name="XMLWRITEERROR">Greška kod spremanja {0}:
 {1}</string>
-		<string name="XMLCOPYERROR">Greška kod kopiranja obrasca {0} u AppData:
-{1}</string>
 		<string name="EXECMISSING">Nedostaje {0}!</string>
 		<string name="EXECFAIL">Ne mogu pokrenuti proces: {0}</string>
 		<string name="UNKNOWNSIG">Nepoznat potpis {0}</string>

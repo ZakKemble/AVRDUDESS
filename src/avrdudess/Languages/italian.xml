@@ -183,8 +183,6 @@ Usa questo se vuoi solo aggiornare l'EEPROM</string>
 		<!-- Errors and things -->
 		<string name="XMLWRITEERROR">Errore provando a salvare {0}:
 {1}</string>
-		<string name="XMLCOPYERROR">Fallito copiare {0} template su AppData:
-{1}</string>
 		<string name="EXECMISSING">{0} è mancante!</string>
 		<string name="EXECFAIL">Non posso avviare il processo: {0}</string>
 		<string name="UNKNOWNSIG">Firma sconosciuta {0}</string>

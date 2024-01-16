@@ -185,8 +185,6 @@ na inicialização</string>
 		<!-- Errors and things -->
 		<string name="XMLWRITEERROR">Ocorreu um erro ao tentar salvar {0}:
 {1}</string>
-		<string name="XMLCOPYERROR">Falha ao copiar o modelo {0} para AppData:
-{1}</string>
 		<string name="EXECMISSING">{0} está faltando!</string>
 		<string name="EXECFAIL">Incapaz de iniciar o processo: {0}</string>
 		<string name="UNKNOWNSIG">Assinatura desconhecida {0}</string>

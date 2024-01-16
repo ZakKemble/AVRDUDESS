@@ -183,8 +183,6 @@ Use this if you only want to update EEPROM</string>
 		<!-- Errors and things -->
 		<string name="XMLWRITEERROR">An error occurred trying to save {0}:
 {1}</string>
-		<string name="XMLCOPYERROR">Failed to copy {0} template to AppData:
-{1}</string>
 		<string name="EXECMISSING">{0} is missing!</string>
 		<string name="EXECFAIL">Unable to start process: {0}</string>
 		<string name="UNKNOWNSIG">Unknown signature {0}</string>

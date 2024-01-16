@@ -183,8 +183,6 @@ Usa esto si únicamente quieres actualizar la EEPROM</string>
 		<!-- Errors and things -->
 		<string name="XMLWRITEERROR">Ha ocurrido un error al intentar guardar {0}:
 {1}</string>
-		<string name="XMLCOPYERROR">Error al copiar plantilla {0} a AppData:
-{1}</string>
 		<string name="EXECMISSING">¡Falta {0}!</string>
 		<string name="EXECFAIL">No se puede iniciar proceso: {0}</string>
 		<string name="UNKNOWNSIG">Firma desconocida {0}</string>

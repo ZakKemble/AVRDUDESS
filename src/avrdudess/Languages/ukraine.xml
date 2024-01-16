@@ -183,8 +183,6 @@
 		<!-- Errors -->
 		<string name="XMLWRITEERROR">Помилка при збереженні {0}:
 {1}</string>
-		<string name="XMLCOPYERROR">не вдається зкопіювати шаблон {0} в AppData:
-{1}</string>
 		<string name="EXECMISSING">{0} відсутній!</string>
 		<string name="EXECFAIL">Неможливо запустити виконання: {0}</string>
 		<string name="UNKNOWNSIG">Невідомий підпис {0}</string>

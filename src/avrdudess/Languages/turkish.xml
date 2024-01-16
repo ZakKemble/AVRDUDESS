@@ -183,8 +183,6 @@ Bunu yalnızca EEPROM'u güncellemek istiyorsanız kullanın</string>
 		<!-- Errors and things -->
 		<string name="XMLWRITEERROR">{0} kaydedilmeye çalışılırken bir hata oluştu:
 {1}</string>
-		<string name="XMLCOPYERROR">{0} şablonu AppData'ya kopyalanamadı:
-{1}</string>
 		<string name="EXECMISSING">{0} eksik!</string>
 		<string name="EXECFAIL">İşlem başlatılamıyor: {0}</string>
 		<string name="UNKNOWNSIG">Bilinmeyen imza {0}</string>

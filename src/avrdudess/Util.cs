@@ -109,13 +109,7 @@ namespace avrdudess
 
         public static void consoleClear()
         {
-            if (console != null)
-            {
-                console.InvokeIfRequired(c =>
-                {
-                    c.Clear();
-                });
-            }
+            console?.InvokeIfRequired(c => c.Clear());
         }
 
         public static string fileSizeFormat(int value)
@@ -129,8 +123,7 @@ namespace avrdudess
                 len /= 1024;
             }
 
-            string result = string.Format("{0:0} {1}", (int)len, sizes[order]);
-            return result;
+            return $"{(int)len} {sizes[order]}";
         }
 
         public static void AppendText(this RichTextBox box, string text, Color color)

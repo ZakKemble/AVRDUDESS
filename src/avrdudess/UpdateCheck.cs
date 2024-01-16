@@ -90,9 +90,9 @@ namespace avrdudess
         }
     }
 
-    sealed class UpdateCheck
+    class UpdateCheck
     {
-        private static readonly string UPDATE_ADDR = "https://versions.zakkemble.net/avrdudess2.xml";
+        private const string UPDATE_ADDR = "https://versions.zakkemble.net/avrdudess2.xml";
 
         public Exception Ex { get; private set; }
         public readonly UpdateData UpdateData = new UpdateData();

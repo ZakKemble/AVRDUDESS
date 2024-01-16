@@ -25,13 +25,13 @@ namespace avrdudess
         {
             // TODO presets.presets should be a BindingList<T>, but at the moment its a List<T> so we have to manually refresh the data
             clbExport.DataSource = null;
-            clbExport.DataSource = new BindingSource(presets.presets, null);
+            clbExport.DataSource = new BindingSource(presets.Items, null);
             clbExport.DisplayMember = "name";
         }
 
         private void FormPresetManager_Load(object sender, EventArgs e)
         {
-            presets.setDataSource(cmbPresets);
+            presets.SetDataSource(cmbPresets);
             reloadExportList();
  
             // Export
@@ -83,13 +83,13 @@ namespace avrdudess
                 }
 
                 // Check for existing presets with the same name
-                PresetData existingPreset = presets.presets.Find(s => s.name == name);
+                PresetData existingPreset = presets.Items.Find(s => s.name == name);
                 if (existingPreset != null)
                 {
                     if (MsgBox.confirm("_OVERWRITEPRESET", name) != DialogResult.OK)
                         continue;
 
-                    presets.remove(existingPreset);
+                    presets.Remove(existingPreset);
                 }
 
                 break;
@@ -99,11 +99,11 @@ namespace avrdudess
             newPreset.name = name;
 
             // Add new preset
-            presets.add(newPreset);
-            presets.save();
+            presets.Add(newPreset);
+            presets.Save();
 
             // Select the new preset
-            PresetData p = presets.presets.Find(s => s.name == name);
+            PresetData p = presets.Items.Find(s => s.name == name);
             if (p != null)
                 cmbPresets.SelectedItem = p;
 
@@ -113,11 +113,10 @@ namespace avrdudess
         private void btnDelete_Click(object sender, EventArgs e)
         {
             List<PresetData> toDelete = new List<PresetData>();
-            foreach (var item in clbExport.CheckedItems)
+            foreach (PresetData item in clbExport.CheckedItems)
             {
-                PresetData p = (PresetData)item;
-                if (p.name != "Default")
-                    toDelete.Add(p);
+                if (item.name != "Default")
+                    toDelete.Add(item);
             }
 
             if (toDelete.Count > 0)
@@ -125,8 +124,8 @@ namespace avrdudess
                 if (MsgBox.confirm("_DELETEPRESETS", toDelete.Count) == DialogResult.OK)
                 {
                     foreach(PresetData p in toDelete)
-                        presets.remove(p);
-                    presets.save();
+                        presets.Remove(p);
+                    presets.Save();
                     reloadExportList();
                 }
             }
@@ -157,20 +156,20 @@ namespace avrdudess
                     }
 
                     // Check for existing presets with the same name
-                    p = presets.presets.Find(s => s.name == name);
+                    p = presets.Items.Find(s => s.name == name);
                     if (p != null)
                     {
                         if (MsgBox.confirm("_PRESETALREADYEXISTS") != DialogResult.OK)
                             continue;
 
-                        presets.remove(p);
+                        presets.Remove(p);
                     }
 
                     break;
                 }
 
                 selectedPreset.name = name;
-                presets.save();
+                presets.Save();
 
                 reloadExportList();
             }
@@ -191,10 +190,10 @@ namespace avrdudess
                     string name = selectedPreset.name;
                     selectedPreset.copyFrom(currentSettings);
                     selectedPreset.name = name;
-                    presets.save();
+                    presets.Save();
 
                     // Select the new preset
-                    PresetData p = presets.presets.Find(s => s.name == selectedPreset.name);
+                    PresetData p = presets.Items.Find(s => s.name == selectedPreset.name);
                     if (p != null)
                         cmbPresets.SelectedItem = p;
 
@@ -207,19 +206,18 @@ namespace avrdudess
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                Presets export = new Presets(saveFileDialog1.FileName, true);
+                Presets export = new Presets(saveFileDialog1.FileName);
 
-                foreach (var item in clbExport.CheckedItems)
+                foreach (PresetData item in clbExport.CheckedItems)
                 {
-                    PresetData p = (PresetData)item;
-                    if (p != null)
+                    if (item != null)
                     {
-                        export.add(p);
-                        Util.consoleWriteLine("_EXPORTINGPRESETS", p.name);
+                        export.Add(item);
+                        Util.consoleWriteLine("_EXPORTINGPRESETS", item.name);
                     }
                 }
 
-                export.save();
+                export.Save();
 
                 Util.consoleWriteLine("_EXPORTCOMPLETE");
             }
@@ -229,25 +227,25 @@ namespace avrdudess
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                Presets import = new Presets(openFileDialog1.FileName, true);
-                import.load();
+                Presets import = new Presets(openFileDialog1.FileName);
+                import.Load();
 
-                foreach(PresetData newPreset in import.presets)
+                foreach(PresetData newPreset in import.Items)
                 {
                     Util.consoleWriteLine("_IMPORTINGPRESETS", newPreset.name);
 
                     // If the imported preset name already exists then add the time in hex to the name
-                    if (presets.presets.Find(s => s.name == newPreset.name) != null)
+                    if (presets.Items.Find(s => s.name == newPreset.name) != null)
                     {
                         string oldName = newPreset.name;
                         newPreset.name = $"{newPreset.name} {DateTime.UtcNow.Ticks:X16}";
                         Util.consoleWarning("_IMPORTALREADYEXISTS", oldName, newPreset.name);
                     }
                     
-                    presets.add(newPreset);
+                    presets.Add(newPreset);
                 }
 
-                presets.save();
+                presets.Save();
                 reloadExportList();
 
                 Util.consoleWriteLine("_IMPORTCOMPLETE");

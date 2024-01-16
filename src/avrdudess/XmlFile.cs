@@ -1,10 +1,8 @@
-﻿/*
- * Project: AVRDUDESS - A GUI for AVRDUDE
- * Author: Zak Kemble, contact@zakkemble.net
- * Copyright: (C) 2013 by Zak Kemble
- * License: GNU GPL v3 (see License.txt)
- * Web: https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
- */
+﻿// AVRDUDESS - A GUI for AVRDUDE
+// https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
+// https://github.com/ZakKemble/AVRDUDESS
+// Copyright (C) 2013-2024, Zak Kemble
+// GNU GPL v3 (see License.txt)
 
 using System;
 using System.IO;
@@ -12,134 +10,38 @@ using System.Xml.Serialization;
 
 namespace avrdudess
 {
-    public abstract class XmlFile<T>
+    public class XmlFile<T>
     {
-        private const string FILE_PORTABLE = "portable.txt";
+        public string FilePath { get; private set; }
 
-        protected string fileLocation { get; private set; }
-        private string name;
-        abstract protected object data { get; set; }
-
-        private bool isPortable()
+        public XmlFile(string fileName, bool isFullPath = false)
         {
-            string path = Path.Combine(AssemblyData.directory, FILE_PORTABLE);
-
-            try
-            {
-                using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-                {
-                    byte[] buffer = new byte[1];
-                    int n = fs.Read(buffer, 0, 1);
-                    if (n == 1 && buffer[0] == 'Y')
-                        return true;
-                }
-            }
-            catch(Exception)
-            {
-                // Failed to open or something, run in non-portable mode
-            }
-
-            return false;
-        }
-
-        public XmlFile(string fileName, string name, bool customFileLocation)
-        {
-            this.name = name;
-
-            if (customFileLocation) // Used for importing/exporting presets XML (a bit hacky)
-                fileLocation = fileName;
-            else if(isPortable()) // Portable mode will only read/write from the application directory
-                fileLocation = Path.Combine(AssemblyData.directory, fileName);
+            if (isFullPath) // For importing/exporting presets
+                FilePath = fileName;
+            else if (Portable.IsPortable) // Use same directory as .exe when in portable mode
+                FilePath = Path.Combine(AssemblyData.directory, fileName);
             else
             {
-                // Where the file should be
-                fileLocation = makePath(Environment.SpecialFolder.ApplicationData, fileName);
-
-                // If file exists then we don't need to copy the template
-                if (!File.Exists(fileLocation))
-                {
-                    // Copy template if we can find it
-
-                    string[] locations = new string[]
-                    {
-                        makePath(Environment.SpecialFolder.CommonApplicationData, fileName), // CommonAppData
-                        Path.Combine(AssemblyData.directory, fileName), // Program .exe directory
-                        Path.Combine(Directory.GetCurrentDirectory(), fileName) // Working directory
-                    };
-
-                    foreach (string location in locations)
-                    {
-                        if (File.Exists(location))
-                        {
-                            copyTemplate(location);
-                            break;
-                        }
-                    }
-
-                    // If template wasn't found then a new file will be created later
-                }
+                // Users\[USERNAME]\AppData\Roaming\AVRDUDESS\
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                path = Path.Combine(path, AssemblyData.title);
+                FilePath = Path.Combine(path, fileName);
             }
         }
 
-        private string makePath(Environment.SpecialFolder folder, string fileName)
+        public void Write(T obj)
         {
-            string path = Path.Combine(Environment.GetFolderPath(folder), AssemblyData.title);
-            path = Path.Combine(path, fileName);
-            return path;
+            Directory.CreateDirectory(Path.GetDirectoryName(FilePath));
+            using (TextWriter tw = new StreamWriter(FilePath, false))
+                new XmlSerializer(typeof(T)).Serialize(tw, obj);
         }
 
-        private void copyTemplate(string source)
+        public T Read()
         {
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(fileLocation));
-                File.Copy(source, fileLocation);
-            }
-            catch (Exception ex)
-            {
-                MsgBox.error("_XMLCOPYERROR", name, ex.Message);
-            }
-        }
-
-        protected void write()
-        {
-            TextWriter tw = null;
-
-            // TODO: move these try-catches somewhere outside this class?
-            try
-            {
-                // Make sure directory exists
-                Directory.CreateDirectory(Path.GetDirectoryName(fileLocation));
-
-                tw = new StreamWriter(fileLocation, false);
-                new XmlSerializer(data.GetType()).Serialize(tw, data);
-            }
-            catch (Exception ex)
-            {
-                MsgBox.error("_XMLWRITEERROR", name, ex.Message);
-            }
-
-            if (tw != null)
-                tw.Close();
-        }
-
-        protected void read()
-        {
-            data = default(T);
-            TextReader tr = null;
-            try
-            {
-                tr = new StreamReader(fileLocation);
-                data = (T)new XmlSerializer(typeof(T)).Deserialize(tr);
-            }
-            catch (Exception ex)
-            {
-                // No translation here since we might have a read error while loading config.xml or the translation file itself
-                MsgBox.error("An error occurred trying to load {0}:{1}{2}", name, Environment.NewLine, ex.Message);
-            }
-
-            if (tr != null)
-                tr.Close();
+            T obj = default;
+            using (TextReader tr = new StreamReader(FilePath))
+                obj = (T)new XmlSerializer(typeof(T)).Deserialize(tr);
+            return obj;
         }
     }
 }

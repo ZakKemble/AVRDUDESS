@@ -4,6 +4,7 @@
 // Copyright (C) 2013-2024, Zak Kemble
 // GNU GPL v3 (see License.txt)
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -12,43 +13,30 @@ using System.Xml.Serialization;
 
 namespace avrdudess
 {
-    public class Presets : XmlFile<List<PresetData>>
+    public class Presets
     {
         private const string FILE_PRESETS = "presets.xml";
+        private readonly XmlFile<BindingList<PresetData>> xmlFile;
+        private BindingList<PresetData> presetList = new BindingList<PresetData>();
+        private readonly bool isImport = false;
 
-        private BindingList<PresetData> presetList;
-        private bool customFileLocation;
-
-        protected override object data
+        public List<PresetData> Items
         {
-            get { return presetList; }
-            set
-            {
-                if (value != null)
-                    presetList = new BindingList<PresetData>((List<PresetData>)value);
-            }
-        }
-        
-        // TODO This should return a readonly list... ???
-        public List<PresetData> presets
-        {
-            get { return new List<PresetData>(presetList); }
+            get => new List<PresetData>(presetList);
         }
 
-        public Presets(string xmlFile = FILE_PRESETS)
-            : base(xmlFile, "presets", false)
+        public Presets()
         {
-            presetList = new BindingList<PresetData>();
+            xmlFile = new XmlFile<BindingList<PresetData>>(FILE_PRESETS);
         }
 
-        public Presets(string xmlFile, bool customFileLocation)
-            : base(xmlFile, "presets", customFileLocation)
+        public Presets(string file)
         {
-            this.customFileLocation = customFileLocation;
-            presetList = new BindingList<PresetData>();
+            xmlFile = new XmlFile<BindingList<PresetData>>(file, true);
+            isImport = true;
         }
 
-        public void setDataSource(ComboBox cb)
+        public void SetDataSource(ComboBox cb)
         {
             // Create new instances of BindingSource here instead of using a single class property otherwise
             // all the preset combo boxes (on Form1 and FormPresetManager) will change selection with each other
@@ -63,22 +51,20 @@ namespace avrdudess
             cb.SelectedIndex = -1;
         }
 
-        // New preset
-        public void add(PresetData preset)
+        public void Add(PresetData preset)
         {
             presetList.Add(preset);
-            bumpDefault();
+            BumpDefault();
         }
 
-        // Delete preset
-        public void remove(PresetData preset)
+        public void Remove(PresetData preset)
         {
             presetList.Remove(preset);
-            bumpDefault();
+            BumpDefault();
         }
 
         // Make sure default is at the top
-        private void bumpDefault()
+        private void BumpDefault()
         {
             // I'm assuming the order of the new List is same as the BindingList...
 
@@ -91,29 +77,36 @@ namespace avrdudess
             }
         }
 
-        // Save presets
-        public void save()
+        public void Save()
         {
-            write();
+            try
+            {
+                xmlFile.Write(presetList);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.error("_XMLWRITEERROR", "presets", ex.Message);
+            }
         }
 
-        // Load presets
-        public void load()
+        public void Load()
         {
-            if (!customFileLocation)
+            try
             {
-                // If file doesn't exist then make it
-                if (!File.Exists(fileLocation))
-                {
-                    add(new PresetData("Default"));
-                    save();
-                }
+                presetList = xmlFile.Read();
+            }
+            catch (Exception ex)
+            {
+                if (isImport || ex.GetType() != typeof(FileNotFoundException))
+                    MsgBox.error($"An error occurred trying to load presets:{Environment.NewLine}{ex.Message}"); // TODO translate
             }
 
-            // Load presets from XML
-            read();
-            if (presetList == null) // Failed to load
+            if (presetList == null)
+            {
                 presetList = new BindingList<PresetData>();
+                if(!isImport)
+                    Add(new PresetData("Default"));
+            }
         }
     }
 

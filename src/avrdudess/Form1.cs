@@ -273,7 +273,7 @@ namespace avrdudess
             // will just close without a JIT error message thing.
             // Having these in Form1_Load() causes some static things to not load their translations
             // like in Avrdude.fileFormats.
-            Config.Prop.load();
+            Config.Load();
             Language.Translation.load();
 
             Icon = AssemblyData.icon;
@@ -365,7 +365,7 @@ namespace avrdudess
             gbEEPROMFile.DragDrop += event_DragDrop;
 
             updateProgMCUComboBoxes();
-            
+
             // USBasp frequency settings
             cmbUSBaspFreq.Hide();
             setComboBoxDataSource(cmbUSBaspFreq, Avrdude.USBaspFreqs, "name");
@@ -433,8 +433,8 @@ namespace avrdudess
 
             // Load saved presets
             presets = new Presets();
-            presets.load();
-            presets.setDataSource(cmbPresets);
+            presets.Load();
+            presets.SetDataSource(cmbPresets);
 
             // Enable/disable tool tips based on saved config
             ToolTips.Active = Config.Prop.toolTips;
@@ -444,12 +444,12 @@ namespace avrdudess
             // Uwe Tanger (specifying preset in command line)
             if (presetToLoad == null)
             {
-                cmbPresets.SelectedItem = presets.presets.Find(s => s.name == "Default");
+                cmbPresets.SelectedItem = presets.Items.Find(s => s.name == "Default");
                 loadPresetData(Config.Prop.previousSettings);
             }
             else
             {
-                cmbPresets.SelectedItem = presets.presets.Find(s => s.name == presetToLoad) ?? presets.presets.Find(s => s.name == "Default");
+                cmbPresets.SelectedItem = presets.Items.Find(s => s.name == presetToLoad) ?? presets.Items.Find(s => s.name == "Default");
             }
 
             // Force update control enabled states and generate cmd line after loading preset data
@@ -1476,7 +1476,7 @@ namespace avrdudess
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Config.Prop.previousSettings = Config.Prop.usePreviousSettings ? makePresetData("") : new PresetData();
-            Config.Prop.save();
+            Config.Save();
         }
 
         // Open the presets manager form

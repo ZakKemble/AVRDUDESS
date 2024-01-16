@@ -50,7 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppConfig.cs" />
     <Compile Include="Avr-size.cs" />
     <Compile Include="Avrdude.cs" />
     <Compile Include="CmdLine.cs" />
@@ -110,6 +109,7 @@
     <Compile Include="MCU.cs" />
     <Compile Include="MemTypeFile.cs" />
     <Compile Include="Part.cs" />
+    <Compile Include="Portable.cs" />
     <Compile Include="Presets.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Programmer.cs" />

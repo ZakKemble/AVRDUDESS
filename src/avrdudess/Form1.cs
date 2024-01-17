@@ -482,7 +482,7 @@ namespace avrdudess
             Refresh();
 
             if (Portable.IsPortable)
-                Util.consoleWriteLine("Running in portable mode", Color.HotPink); // TODO translate
+                Util.consoleWriteLine("_IN_PORTABLE_MODE", Color.HotPink);
 
             avrdude.load();
             avrsize.load();

@@ -87,6 +87,7 @@ EEPROMのみを更新する場合に使用します</string>
 		<string name="CONFIG_FILE_TOO_LARGE">Config file {0} is too large</string>
 		<string name="NOTHING_FOUND_IN_CONFIG_FILE">Nothing was found in config file {0}</string>
 		<string name="CONFIG_LOADED_PROGS_MCUS">Loaded {0} programmers and {1} MCUs</string>
+		<string name="IN_PORTABLE_MODE">Running in portable mode</string>
 
 		<string name="UPDATE_CHECK">アップデートの確認...</string>
 		<string name="UPDATE_FAILED">更新チェックに失敗しました: {0}</string>

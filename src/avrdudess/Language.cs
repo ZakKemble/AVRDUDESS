@@ -9,46 +9,134 @@ using System.IO;
 using System.Xml;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace avrdudess
 {
+    [XmlRoot("languages")]
+    public class LanguagesMeta
+    {
+        public struct SupportedEntry
+        {
+            [XmlAttribute] public string name;
+            [XmlAttribute] public string ename;
+            [XmlAttribute] public string file;
+        }
+
+#if DEBUG
+        public struct KeyEntry
+        {
+            [XmlAttribute] public string name;
+        }
+#endif
+
+        [XmlArray("supported")]
+        [XmlArrayItem("x")]
+        public List<SupportedEntry> Supported = new List<SupportedEntry>();
+
+#if DEBUG
+        [XmlArray("keys")]
+        [XmlArrayItem("k")]
+        public List<KeyEntry> Expectedkeys = new List<KeyEntry>();
+#endif
+    }
+
+    [XmlRoot("translation")]
+    public class TranslationData
+    {
+        public struct TranslationEntry
+        {
+            [XmlAttribute] public string name;
+            [XmlText] public string str;
+        }
+
+        [XmlArray("data")]
+        [XmlArrayItem("string")]
+        public List<TranslationEntry> Translations = new List<TranslationEntry>();
+    }
+
     class Language
     {
+        private const string FILE_META = "_meta.xml";
+
         public static readonly Language Translation = new Language();
 
         private readonly Dictionary<string, string> languages = new Dictionary<string, string>();
         private readonly Dictionary<string, string> translations = new Dictionary<string, string>();
+#if DEBUG
+        private readonly HashSetD<string> expectedKeys = new HashSetD<string>();
+#endif
 
-        private delegate bool Action<T1, T2>(T1 arg, T2 arg2);
+        public Dictionary<string, string> Languages
+        {
+            get => languages;
+        }
+
+        public string this[string key]
+        {
+            get => get(key);
+        }
 
         private Language()
         {
 
         }
 
-        public void apply(Control root, bool isFirst = true)
+        public void Apply(Control root, bool isFirst = true)
         {
             if (isFirst)
                 root.Text = Translation.get(root.Text);
 
             foreach (Control control in root.Controls)
             {
-                control.Text = Translation.get(control.Text);
+                control.Text = Translation[control.Text];
                 if (control.Controls != null)
-                    apply(control, false);
+                    Apply(control, false);
             }
         }
 
-        public void load()
+        private void LoadMeta(string langsDir)
         {
+            var metaFile = Path.Combine(langsDir, FILE_META);
+            var metaData = new XmlFile<LanguagesMeta>(metaFile).Read();
+            metaData.Supported.ForEach(t => languages.Add(t.file, $"{t.name} ({t.ename})"));
+#if DEBUG
+            metaData.Expectedkeys.ForEach(t => expectedKeys.Add(t.name));
+#endif
+        }
+
+        private void LoadLanguage(string langsDir, string language)
+        {
+            var langFile = Path.Combine(langsDir, language + ".xml");
+            var langData = new XmlFile<TranslationData>(langFile).Read();
+            langData.Translations.ForEach(t =>
+            {
+                if (translations.ContainsKey(t.name))
+                    throw new Exception($"Duplicate translation key: {t.name}");
+                translations.Add(t.name, t.str);
+            });
+#if DEBUG
+            foreach (var k in expectedKeys.Keys)
+            {
+                if (!translations.ContainsKey(k))
+                    Util.consoleWarning($"Missing translation key: {k}");
+            }
+
+            foreach (var k in translations.Keys)
+            {
+                if (!expectedKeys.Contains(k))
+                    Util.consoleWarning($"Unexpected translation key: {k}");
+            }
+#endif
+        }
+
+        public void Load()
+        {
+            var langsDir = Path.Combine(AssemblyData.directory, "Languages");
             try
             {
-                string location = Path.Combine(AssemblyData.directory, "Languages");
-
-                findLanguages(location);
-
-                // Load the selected language xml
-                readThroughXML(Path.Combine(location, Config.Prop.language + ".xml"), getTranslation, null);
+                LoadMeta(langsDir);
+                LoadLanguage(langsDir, Config.Prop.language);
             }
             catch (Exception ex)
             {
@@ -56,67 +144,7 @@ namespace avrdudess
             }
         }
 
-        // Loop through all .xml files in directory and search for the <name> tag
-        private void findLanguages(string location)
-        {
-            string[] languageFiles = Directory.GetFiles(location);
-
-            foreach (string file in languageFiles)
-            {
-                if (file.EndsWith(".xml"))
-                {
-                    string languageId = Path.GetFileNameWithoutExtension(file);
-                    readThroughXML(file, getLanguageInfo, languageId);
-                }
-            }
-        }
-
-        private bool getLanguageInfo(XmlReader reader, object data)
-        {
-            if (reader.Name == "name" && reader.Read())
-            {
-                string file = (string)data;
-                string languageName = reader.ReadContentAsString();
-                languages.Add(file, languageName);
-                return true; // We've found what we're looking for, stop reading XML file
-            }
-
-            return false;
-        }
-
-        private bool getTranslation(XmlReader reader, object data)
-        {
-            if (reader.Name == "string")
-            {
-                string translationId = reader.GetAttribute("name");
-                if (translations.ContainsKey(translationId))
-                    throw new Exception($"Duplicate translation ID: {translationId}");
-                if (reader.Read())
-                    translations.Add(translationId, reader.ReadContentAsString());
-            }
-
-            return false;
-        }
-
-        private void readThroughXML(string file, Action<XmlReader, object> onElement, object data)
-        {
-            using (TextReader tr = new StreamReader(file))
-            {
-                using (XmlReader reader = XmlReader.Create(tr))
-                {
-                    while (reader.Read())
-                    {
-                        if (reader.NodeType == XmlNodeType.Element)
-                        {
-                            if (onElement(reader, data))
-                                break;
-                        }
-                    }
-                }
-            }
-        }
-        
-        public string get(string key)
+        public string get(string key) // TODO get -> Get (use indexer instead?)
         {
             string str;
 
@@ -129,11 +157,6 @@ namespace avrdudess
             // \n, \r and \r\n all seem to work fine in message boxes and text boxes
 
             return str;
-        }
-
-        public Dictionary<string, string> getLanguages()
-        {
-            return languages;
         }
     }
 }

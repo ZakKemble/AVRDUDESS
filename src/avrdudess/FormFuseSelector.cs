@@ -50,7 +50,7 @@ namespace avrdudess
 
         private void FormFusesAndLocks_Load(object sender, EventArgs e)
         {
-            Language.Translation.apply(this);
+            Language.Translation.Apply(this);
 
             Left += 200;
         }

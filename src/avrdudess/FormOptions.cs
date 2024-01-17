@@ -80,7 +80,7 @@ namespace avrdudess
 
             Icon = AssemblyData.icon;
 
-            Dictionary<string, string> langs = Language.Translation.getLanguages();
+            Dictionary<string, string> langs = Language.Translation.Languages;
             cbLanguage.Items.Clear();
             if (langs.Count > 0)
             {
@@ -100,7 +100,7 @@ namespace avrdudess
 
         private void FormOptions_Load(object sender, EventArgs e)
         {
-            Language.Translation.apply(this);
+            Language.Translation.Apply(this);
 
             // If less than half of checkboxes are checked then the first button click should check all, otherwise uncheck all
             checkAllProg = clbHiddenProgrammers.CheckedItems.Count < (clbHiddenProgrammers.Items.Count / 2);

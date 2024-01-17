@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<languages>
+	<supported>
+		<x name="简体中文" ename="Simplified Chinese" file="chinese-zh_CN" />
+		<x name="Hrvatski" ename="Croation" file="croatian" />
+		<x name="English" ename="English" file="english" />
+		<x name="Français" ename="French" file="french" />
+		<x name="Deutsch" ename="German" file="german" />
+		<x name="Magyar" ename="Hungarian" file="hungarian" />
+		<x name="Italiano" ename="Italian" file="italian" />
+		<x name="日本語" ename="Japanese" file="japanese" />
+		<x name="Polski" ename="Polish" file="polish" />
+		<x name="Português" ename="Portuguese" file="portugues" />
+		<x name="Русский" ename="Russian" file="russian" />
+		<x name="Slovenščina" ename="Slovenian" file="slovenian" />
+		<x name="Español" ename="Spanish" file="spanish" />
+		<x name="正體中文,台灣" ename="Traditional Chinese,Taiwan" file="Traditional_Chinese(Taiwan)" />
+		<x name="Türkçe" ename="Turkish" file="turkish" />
+		<x name="Українська" ename="Ukrainian" file="ukraine" />
+	</supported>
+	<keys>
+		<k name="TOOLTIP_MCU" />
+		<k name="TOOLTIP_PROGRAMMER" />
+		<k name="TOOLTIP_PORT" />
+		<k name="TOOLTIP_BAUDRATE" />
+		<k name="TOOLTIP_BITCLOCK" />
+		<k name="TOOLTIP_FLASHFILE" />
+		<k name="TOOLTIP_EEPROMFILE" />
+		<k name="TOOLTIP_FORCE" />
+		<k name="TOOLTIP_NOVERIFY" />
+		<k name="TOOLTIP_NOERASE" />
+		<k name="TOOLTIP_ERASEBOTH" />
+		<k name="TOOLTIP_NOWRITE" />
+		<k name="TOOLTIP_LOWFUSE" />
+		<k name="TOOLTIP_HIGHFUSE" />
+		<k name="TOOLTIP_EXFUSE" />
+		<k name="TOOLTIP_LOCKBITS" />
+		<k name="TOOLTIP_ONLYFLASH" />
+		<k name="TOOLTIP_ONLYEEPROM" />
+		<k name="TOOLTIP_WRITEFUSES" />
+		<k name="TOOLTIP_WRITELOCK" />
+		<k name="TOOLTIP_READFUSES" />
+		<k name="TOOLTIP_READLOCK" />
+		<k name="TOOLTIP_WRITEFUSESPROG" />
+		<k name="TOOLTIP_WRITELOCKPROG" />
+		<k name="GO" />
+		<k name="WRITE" />
+		<k name="READ" />
+		<k name="VERIFY" />
+		<k name="GRP_PROGRAMMER" />
+		<k name="PORT" />
+		<k name="BAUDRATE" />
+		<k name="BITCLOCK" />
+		<k name="GRP_FLASH" />
+		<k name="FORMAT" />
+		<k name="GRP_EEPROM" />
+		<k name="GRP_OPTIONS" />
+		<k name="FORCE" />
+		<k name="DISVERIFY" />
+		<k name="DISFLASHERASE" />
+		<k name="ERASEFLASHEEP" />
+		<k name="DONOTWRITE" />
+		<k name="VERBOSITY" />
+		<k name="GRP_MCU" />
+		<k name="FLASHSZ" />
+		<k name="EEPROMSZ" />
+		<k name="DETECT" />
+		<k name="GRP_PRESET" />
+		<k name="PRESETMGR" />
+		<k name="GRP_FUSELOCK" />
+		<k name="SETFUSES" />
+		<k name="FUSESETTINGS" />
+		<k name="SETLOCK" />
+		<k name="BITSELECTOR" />
+		<k name="DOPROGRAM" />
+		<k name="DOSTOP" />
+		<k name="BTN_OPTIONS" />
+		<k name="GRP_ADDCMDARGS" />
+		<k name="MCUNOTFOUND" />
+		<k name="PROGNOTFOUND" />
+		<k name="STATUSRUNNING" />
+		<k name="STATUSREADY" />
+		<k name="DETECTSUCCESS" />
+		<k name="DETECTFAIL" />
+		<k name="AVRDUDEKILLED" />
+		<k name="ABOUT" />
+		<k name="SELECTPROG" />
+		<k name="SELECTMCU" />
+		<k name="FUSELOCKREADFAIL" />
+		<k name="READINGFUSES" />
+		<k name="READINGLOCKBITS" />
+		<k name="WRITINGINGFUSES" />
+		<k name="WRITINGINGLOCKBITS" />
+		<k name="READHFUSE" />
+		<k name="READLFUSE" />
+		<k name="READEFUSE" />
+		<k name="READFUSE" />
+		<k name="READLOCKBITS" />
+		<k name="NOSUPPORTEDFUSES" />
+		<k name="CONFIG_FILE_TOO_LARGE" />
+		<k name="NOTHING_FOUND_IN_CONFIG_FILE" />
+		<k name="CONFIG_LOADED_PROGS_MCUS" />
+
+		<k name="UPDATE_CHECK" />
+		<k name="UPDATE_FAILED" />
+		<k name="UPDATE_AVAIL" />
+		<k name="UPDATE_LATEST" />
+		<k name="UPDATE_SKIP" />
+		<k name="UPDATE_BADXML" />
+
+		<k name="FILEFMT_AUTO" />
+		<k name="FILEFMT_HEX" />
+		<k name="FILEFMT_SREC" />
+		<k name="FILEFMT_BIN" />
+		<k name="FILEFMT_DECR" />
+		<k name="FILEFMT_HEXR" />
+		<k name="FILEFMT_BINR" />
+
+		<k name="BROWSE_OPEN_FLASH" />
+		<k name="BROWSE_SAVE_FLASH" />
+		<k name="BROWSE_OPEN_EEPROM" />
+		<k name="BROWSE_SAVE_EEPROM" />
+		<k name="BROWSE_FILTER_ALL" />
+		<k name="BROWSE_FILTER_HEX" />
+		<k name="BROWSE_FILTER_EEP" />
+		<k name="BROWSE_FILTER_XML" />
+
+		<k name="TITLE_PRESETMGR" />
+		<k name="RENAME" />
+		<k name="OVERWRITE" />
+		<k name="SAVENEWPRESET" />
+		<k name="EXPORT" />
+		<k name="IMPORT" />
+		<k name="DELETE" />
+		<k name="CLOSE" />
+		<k name="EXPORTIMGPORTDELETE" />
+		<k name="SAVEDIALOG_EXPORT" />
+		<k name="OPENDIALOG_IMPORT" />
+		<k name="NEWPRESETNAME" />
+		<k name="CANTUSEDEFAULT" />
+		<k name="OVERWRITEPRESET" />
+		<k name="DELETEPRESETS" />
+		<k name="PRESETALREADYEXISTS" />
+		<k name="CANTOVERWRITEDEFAULT" />
+		<k name="PRESETOVERWRITE" />
+		<k name="EXPORTINGPRESETS" />
+		<k name="EXPORTCOMPLETE" />
+		<k name="IMPORTINGPRESETS" />
+		<k name="IMPORTALREADYEXISTS" />
+		<k name="IMPORTCOMPLETE" />
+
+		<k name="UPDATEAVAILABLE" />
+		<k name="CURRENTVERSION" />
+		<k name="NEWVERSION" />
+		<k name="BTN_UPDATE" />
+		<k name="BTN_SKIPVERSION" />
+		<k name="BTN_LATER" />
+
+		<k name="TITLE_FUSEANDLOCKBITS" />
+		<k name="ERRORLOADFUSES" />
+		<k name="UNSUPPMCU" />
+		<k name="GRP_LOCKBITS" />
+		<k name="GRP_FUSEBITS" />
+		<k name="LOCKBITS" />
+
+		<k name="TITLE_OPTIONS" />
+		<k name="GRP_FILELOCATIONS" />
+		<k name="GRP_OTHER" />
+		<k name="GRP_HIDEPROGS" />
+		<k name="GRP_HIDEMCUS" />
+		<k name="LANGUAGE" />
+		<k name="SHOWTOOLTIPS" />
+		<k name="USEPREVSETTINGS" />
+		<k name="AVRDUDE_LOCATION" />
+		<k name="AVRDUDECONF_LOCATION" />
+		<k name="AVRSIZE_LOCATION" />
+		<k name="CHECKFORUPDATES" />
+		<k name="CHK_UNCHK_ALL" />
+
+		<k name="OK" />
+		<k name="CANCEL" />
+		<k name="ERRORUC" />
+		<k name="WARNINGUC" />
+		<k name="SUCCESSUC" />
+		<k name="ERROR" />
+		<k name="WARNING" />
+		<k name="NOTICE" />
+		<k name="CONFIRM" />
+
+		<k name="XMLWRITEERROR" />
+		<k name="EXECMISSING" />
+		<k name="EXECFAIL" />
+		<k name="UNKNOWNSIG" />
+		<k name="AVRCONFMISSING" />
+		<k name="AVRCONFREADERROR" />
+	</keys>
+</languages>

@@ -228,6 +228,9 @@
     <Content Include="Languages\turkish.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Languages\_meta.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\btn_donate_LG.png" />
     <ContentWithTargetPath Include="Files\avr-size.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

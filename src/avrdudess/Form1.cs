@@ -293,7 +293,7 @@ namespace avrdudess
         private void Form1_Load(object sender, EventArgs e)
         {
             Config.Load();
-            Language.Translation.load();
+            Language.Translation.Load();
             Avrdude.fileFormats.ForEach(x => x.ApplyTranslation());
 
             setWindowTitle();
@@ -470,7 +470,7 @@ namespace avrdudess
             cbEraseFlashEEPROM.CheckedChanged += event_controlChanged;
             txtAdditional.TextChanged += event_controlChanged;
 
-            Language.Translation.apply(this);
+            Language.Translation.Apply(this);
 
             var checker = new UpdateCheck();
             checker.OnUpdateCheck += Checker_OnUpdateCheck;

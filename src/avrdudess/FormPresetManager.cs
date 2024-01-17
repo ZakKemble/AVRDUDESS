@@ -47,7 +47,7 @@ namespace avrdudess
             openFileDialog1.FileName = "";
             openFileDialog1.Title = Language.Translation.get("_OPENDIALOG_IMPORT");
 
-            Language.Translation.apply(this);
+            Language.Translation.Apply(this);
         }
 
         private string performTextInputDialog(string title, string prefillText)

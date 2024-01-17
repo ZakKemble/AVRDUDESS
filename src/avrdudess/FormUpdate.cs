@@ -54,7 +54,7 @@ namespace avrdudess
 
         private void FormUpdate_Load(object sender, EventArgs e)
         {
-            Language.Translation.apply(this);
+            Language.Translation.Apply(this);
 
             // 2 second timer so that a button is not accidentally clicked when the form pops up
             tmr = new Timer();

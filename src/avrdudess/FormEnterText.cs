@@ -26,7 +26,7 @@ namespace avrdudess
 
         private void FormEnterText_Load(object sender, System.EventArgs e)
         {
-            Language.Translation.apply(this);
+            Language.Translation.Apply(this);
         }
     }
 }

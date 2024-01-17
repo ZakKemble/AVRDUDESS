@@ -46,46 +46,25 @@ namespace avrdudess
 
         public int flash
         {
-            get
-            {
-                return (_flash != -1) ? _flash : ((MCU)parent)?.flash ?? 0;
-            }
-            private set
-            {
-                _flash = value;
-            }
+            get => (_flash != -1) ? _flash : ((MCU)parent)?.flash ?? 0;
+            private set => _flash = value;
         }
 
         public int eeprom
         {
-            get
-            {
-                return (_eeprom != -1) ? _eeprom : ((MCU)parent)?.eeprom ?? 0;
-            }
-            private set
-            {
-                _eeprom = value;
-            }
+            get => (_eeprom != -1) ? _eeprom : ((MCU)parent)?.eeprom ?? 0;
+            private set => _eeprom = value;
         }
 
         public string signature
         {
-            get
-            {
-                return _signature ?? ((MCU)parent)?.signature ?? "?";
-            }
-            private set
-            {
-                _signature = value;
-            }
+            get => _signature ?? ((MCU)parent)?.signature ?? "?";
+            private set => _signature = value;
         }
 
         public bool hide
         {
-            get
-            {
-                return ignore || Config.Prop.hiddenMCUs.Contains(id);
-            }
+            get => ignore || Config.Prop.hiddenMCUs.Contains(id);
         }
 
         public List<string> memoryTypes

@@ -471,15 +471,15 @@ namespace avrdudess
             txtAdditional.TextChanged += event_controlChanged;
 
             Language.Translation.Apply(this);
-
-            var checker = new UpdateCheck();
-            checker.OnUpdateCheck += Checker_OnUpdateCheck;
-            checker.Run();
         }
 
         private void Form1_Shown(object sender, EventArgs e)
         {
             Refresh();
+
+            var checker = new UpdateCheck();
+            checker.OnUpdateCheck += Checker_OnUpdateCheck;
+            checker.Run();
 
             if (Portable.IsPortable)
                 Util.consoleWriteLine("_IN_PORTABLE_MODE", Color.HotPink);

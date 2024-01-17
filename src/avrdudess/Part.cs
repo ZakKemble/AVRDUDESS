@@ -17,14 +17,8 @@ namespace avrdudess
 
         public string desc
         {
-            get
-            {
-                return _desc ?? parent?.desc ?? "?";
-            }
-            private set
-            {
-                _desc = value;
-            }
+            get => _desc ?? parent?.desc ?? "?";
+            private set => _desc = value;
         }
 
         public Part(string id, string desc, Part parent)

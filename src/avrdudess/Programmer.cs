@@ -90,22 +90,13 @@ namespace avrdudess
 
         public string type
         {
-            get
-            {
-                return _type ?? ((Programmer)parent)?.type ?? "?";
-            }
-            private set
-            {
-                _type = value;
-            }
+            get => _type ?? ((Programmer)parent)?.type ?? "?";
+            private set => _type = value;
         }
 
         public bool hide
         {
-            get
-            {
-                return ignore || Config.Prop.hiddenProgrammers.Contains(id);
-            }
+            get => ignore || Config.Prop.hiddenProgrammers.Contains(id);
         }
 
         public Programmer(string id, string desc = null, Programmer parent = null)

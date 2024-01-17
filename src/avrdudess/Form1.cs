@@ -776,14 +776,11 @@ namespace avrdudess
         {
             if (!string.IsNullOrEmpty(e.signature))
             {
-                MCU m = mcus.Find(s => s.signature == e.signature);
+                MCU m = mcus.Find(s => s.signature == e.signature && !s.IgnoreOnDetect);
                 if (m != null)
                 {
                     Util.consoleWriteLine("_DETECTSUCCESS", m.signature, m.desc);
-                    Invoke(new MethodInvoker(() =>
-                    {
-                        cmbMCU.SelectedItem = m;
-                    }));
+                    Invoke(new MethodInvoker(() => cmbMCU.SelectedItem = m));
                 }
                 else
                     Util.consoleError("_UNKNOWNSIG", e.signature);

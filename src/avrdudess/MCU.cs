@@ -67,6 +67,14 @@ namespace avrdudess
             get => ignore || Config.Prop.hiddenMCUs.Contains(id);
         }
 
+        // https://github.com/ZakKemble/AVRDUDESS/issues/81
+        // Ignore ATA661xx parts. They're combo chips that have the
+        // same signature as the standalone microcontroller
+        public bool IgnoreOnDetect
+        {
+            get => id.StartsWith("ata661");
+        }
+
         public List<string> memoryTypes
         {
             get

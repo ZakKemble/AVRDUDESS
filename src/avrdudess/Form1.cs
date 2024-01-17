@@ -918,7 +918,7 @@ namespace avrdudess
 
             // Hide/show USBasp frequency/bit clock boxes
 
-            if (prog != null && prog.id == "usbasp") // USBasp has been selected
+            if (prog != null && prog.id.StartsWith("usbasp"))
             {
                 if (txtBitClock.Visible)
                 {

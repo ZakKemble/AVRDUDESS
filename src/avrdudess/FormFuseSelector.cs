@@ -5,6 +5,7 @@
 // GNU GPL v3 (see License.txt)
 
 using System;
+using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -59,12 +60,9 @@ namespace avrdudess
         {
             Text = string.Format(Language.Translation.get("_TITLE_FUSEANDLOCKBITS"), mcu.desc, mcu.signature.ToUpper());
 
-            lblCarefulNow.Visible = !FusesList.fl.isSupported(mcu.signature);
-
-            string[] lfd = FusesList.fl.getLfuse(mcu.signature).Split(',');
-            string[] hfd = FusesList.fl.getHfuse(mcu.signature).Split(',');
-            string[] efd = FusesList.fl.getEfuse(mcu.signature).Split(',');
-            string[] lbd = FusesList.fl.getLockBits(mcu.signature).Split(',');
+            var supported = FusesList.fl.Items.ContainsKey(mcu.signature);
+            var bitNames = supported ? FusesList.fl.Items[mcu.signature] : new FusesList.FuseBitNames();
+            lblCarefulNow.Visible = !supported;
 
             string lf = hex2binary(fuses[0]);
             string hf = hex2binary(fuses[1]);
@@ -73,20 +71,20 @@ namespace avrdudess
 
             for (int i = 7; i >= 0; i--)
             {
-                btnLFuse[i].Text = lf.Substring(7 - i, 1);
-                btnHFuse[i].Text = hf.Substring(7 - i, 1);
-                btnEFuse[i].Text = ef.Substring(7 - i, 1);
+                btnLFuse[i].Enabled = (bitNames.lfd[i] != "");
+                btnHFuse[i].Enabled = (bitNames.hfd[i] != "");
+                btnEFuse[i].Enabled = (bitNames.efd[i] != "");
+                cbLBits[i].Enabled = (bitNames.lbd[i] != "");
+
+                SetBtnState(btnLFuse[i], lf.Substring(7 - i, 1) == "1");
+                SetBtnState(btnHFuse[i], hf.Substring(7 - i, 1) == "1");
+                SetBtnState(btnEFuse[i], ef.Substring(7 - i, 1) == "1");
                 cbLBits[i].Checked = (lb.Substring(7 - i, 1) == "0");
 
-                lbLB[i].Text = lbd[i];
-                lbLF[i].Text = lfd[i];
-                lbHF[i].Text = hfd[i];
-                lbEF[i].Text = efd[i];
-
-                btnLFuse[i].Enabled = (lfd[i] != "");
-                btnHFuse[i].Enabled = (hfd[i] != "");
-                btnEFuse[i].Enabled = (efd[i] != "");
-                cbLBits[i].Enabled = (lbd[i] != "");
+                lbLB[i].Text = bitNames.lbd[i];
+                lbLF[i].Text = bitNames.lfd[i];
+                lbHF[i].Text = bitNames.hfd[i];
+                lbEF[i].Text = bitNames.efd[i];
             }
 
             generateFusesAndLocks();
@@ -97,10 +95,16 @@ namespace avrdudess
             return null;
         }
 
+        private void SetBtnState(Button btn, bool state)
+        {
+            btn.Text = state ? "1" : "0";
+            btn.BackColor = state && btn.Enabled ? Color.LightGreen : default;
+        }
+
         private void bits_Click(object sender, EventArgs e)
         {
             if (sender is Button b)
-                b.Text = (b.Text == "0") ? "1" : "0";
+                SetBtnState(b, b.Text != "1");
 
             generateFusesAndLocks();
         }

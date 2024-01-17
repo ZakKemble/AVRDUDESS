@@ -13,6 +13,7 @@ namespace avrdudess
     public class XmlFile<T>
     {
         public string FilePath { get; private set; }
+        private readonly XmlSerializer serializer = new XmlSerializer(typeof(T));
 
         public XmlFile(string fileName, bool isFullPath = false)
         {
@@ -33,14 +34,14 @@ namespace avrdudess
         {
             Directory.CreateDirectory(Path.GetDirectoryName(FilePath));
             using (TextWriter tw = new StreamWriter(FilePath, false))
-                new XmlSerializer(typeof(T)).Serialize(tw, obj);
+                serializer.Serialize(tw, obj);
         }
 
         public T Read()
         {
             T obj = default;
             using (TextReader tr = new StreamReader(FilePath))
-                obj = (T)new XmlSerializer(typeof(T)).Deserialize(tr);
+                obj = (T)serializer.Deserialize(tr);
             return obj;
         }
     }

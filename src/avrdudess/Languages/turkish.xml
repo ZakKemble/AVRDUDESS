@@ -3,7 +3,7 @@
 	<data>
 
 		<!-- Main form -->
-		<string name="TOOLTIP_MCU">Programlanacak mikroişlemci</string>
+		<string name="TOOLTIP_MCU">Programlanacak Mikrodenetleyici</string>
 		<string name="TOOLTIP_PROGRAMMER">Programlayıcı</string>
 		<string name="TOOLTIP_PORT">COM/LPT/USB bağlantı noktasını ayarla</string>
 		<string name="TOOLTIP_BAUDRATE">Bağlantı noktası iletişim hızı</string>
@@ -48,7 +48,7 @@ Bunu yalnızca EEPROM'u güncellemek istiyorsanız kullanın</string>
 		<string name="ERASEFLASHEEP">Flaşı ve EEPROM'u sil (-e)</string>
 		<string name="DONOTWRITE">Yazma (-n)</string>
 		<string name="VERBOSITY">Ayrıntı</string>
-		<string name="GRP_MCU">Mikroişlemci (-p)</string>
+		<string name="GRP_MCU">Mikrodenetleyici (-p)</string>
 		<string name="FLASHSZ">Flaş:</string>
 		<string name="EEPROMSZ">EEPROM:</string>
 		<string name="DETECT">Detect</string>
@@ -63,31 +63,31 @@ Bunu yalnızca EEPROM'u güncellemek istiyorsanız kullanın</string>
 		<string name="DOSTOP">Dur</string>
 		<string name="BTN_OPTIONS">Seçenekler</string>
 		<string name="GRP_ADDCMDARGS">Ek parametreler</string>
-		<string name="MCUNOTFOUND">Mikroişlemci '{0}' bulunamadı</string>
+		<string name="MCUNOTFOUND">Mikrodenetleyici '{0}' bulunamadı</string>
 		<string name="PROGNOTFOUND">'{0}' programlayıcısı bulunamadı</string>
 		<string name="STATUSRUNNING">AVRDUDE çalışıyor...</string>
 		<string name="STATUSREADY">Hazır</string>
 		<string name="DETECTSUCCESS">Tespit edildi {0} = {1}</string>
-		<string name="DETECTFAIL">Mikroişlemci algılanamıyor</string>
+		<string name="DETECTFAIL">Mikrodenetleyici algılanamıyor</string>
 		<string name="AVRDUDEKILLED">AVRDUDE çöktü</string>
 		<string name="ABOUT">Hakkında</string>
 		<string name="SELECTPROG">Bir programlayıcı seçin...</string>
-		<string name="SELECTMikroişlemci">Bir mikroişlemci seçin...</string>
+		<string name="SELECTMCU">Bir Mikrodenetleyici seçin...</string>
 		<string name="FUSELOCKREADFAIL">Sigortalar/kilit bitleri okunamıyor</string>
 		<string name="READINGFUSES">Sigortalar okunuyor...</string>
 		<string name="READINGLOCKBITS">Kilit bitleri okunuyor...</string>
 		<string name="WRITINGINGFUSES">Sigortalar yazılıyor...</string>
-		<string name="WRITINGINGLOCKBITS">Writing lock bits...</string>
+		<string name="WRITINGINGLOCKBITS">Kilit bitleri yazılıyor...</string>
 		<string name="READHFUSE">Yüksek (High) sigorta oku</string>
 		<string name="READLFUSE">Düşük sigorta (Low) oku</string>
 		<string name="READEFUSE">Genişletilmiş (Extended) sigorta oku</string>
 		<string name="READFUSE">Sigorta oku</string>
 		<string name="READLOCKBITS">Kilit bitleri oku</string>
 		<string name="NOSUPPORTEDFUSES">{0} desteklenen herhangi bir sigortaya sahip değil</string>
-		<string name="CONFIG_FILE_TOO_LARGE">Config file {0} is too large</string>
-		<string name="NOTHING_FOUND_IN_CONFIG_FILE">Nothing was found in config file {0}</string>
-		<string name="CONFIG_LOADED_PROGS_MCUS">Loaded {0} programmers and {1} MCUs</string>
-		<string name="IN_PORTABLE_MODE">Running in portable mode</string>
+		<string name="CONFIG_FILE_TOO_LARGE">Yapılandırma dosyası {0} çok büyük</string>
+		<string name="NOTHING_FOUND_IN_CONFIG_FILE">{0} yapılandırma dosyasında hiçbir şey bulunamadı</string>
+		<string name="CONFIG_LOADED_PROGS_MCUS">{0} programcı ve {1} Mikrodenetleyici yüklendi</string>
+		<string name="IN_PORTABLE_MODE">Taşınabilir modda çalıştırma</string>
 
 		<string name="UPDATE_CHECK">Güncellemeler kontrol ediliyor...</string>
 		<string name="UPDATE_FAILED">Güncelleme kontrolü başarısız oldu: {0}</string>
@@ -150,7 +150,7 @@ Bunu yalnızca EEPROM'u güncellemek istiyorsanız kullanın</string>
 		<string name="TITLE_FUSEANDLOCKBITS">Sigorta &amp; kilit bitleri: {0} ({1})</string>
 		<string name="ERRORLOADFUSES">Sigortalar yüklenmeye çalışılırken bir hata oluştu:
 {0}</string>
-		<string name="UNSUPPMikroişlemci">Uyarı: Desteklenmeyen Mikroişlemci</string>
+		<string name="UNSUPPMCU">Uyarı: Desteklenmeyen Mikrodenetleyici</string>
 		<string name="GRP_LOCKBITS">Kilit bitleri</string>
 		<string name="GRP_FUSEBITS">Sigorta bitleri</string>
 		<string name="LOCKBITS">KİLİT bitleri</string>
@@ -160,7 +160,7 @@ Bunu yalnızca EEPROM'u güncellemek istiyorsanız kullanın</string>
 		<string name="GRP_FILELOCATIONS">Dosya konumları (otomatik algılanması için boş bırakın)</string>
 		<string name="GRP_OTHER">Diğer</string>
 		<string name="GRP_HIDEPROGS">Programlayıcıları gizle</string>
-		<string name="GRP_HIDEMCUS">Mikroişlemcileri gizle</string>
+		<string name="GRP_HIDEMCUS">Mikrodenetleyicileri gizle</string>
 		<string name="LANGUAGE">Dil</string>
 		<string name="SHOWTOOLTIPS">Araç ipuçlarını göster</string>
 		<string name="USEPREVSETTINGS">Başlangıçta önceki ayarları yükle</string>

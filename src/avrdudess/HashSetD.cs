@@ -19,7 +19,7 @@ namespace avrdudess
         public HashSetD() { }
 
         public void Add(T item) { dict[item] = true; }
-        public void Add(List<T> items)
+        public void AddRange(List<T> items)
         {
             items.ForEach(x =>
             {

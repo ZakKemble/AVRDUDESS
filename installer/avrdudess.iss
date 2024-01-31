@@ -3,7 +3,7 @@
 
 #define MyAppName "AVRDUDESS"
 #define MyAppDescription "A GUI for AVRDUDE"
-#define MyAppVersion "2.15"
+#define MyAppVersion "2.16"
 #define MyAppPublisher "Zak Kemble"
 #define MyAppURL "https://zakkemble.net/"
 #define MyAppExeName "avrdudess.exe"

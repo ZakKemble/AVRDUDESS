@@ -73,7 +73,7 @@
 		<string name="ABOUT">關於</string>
 		<string name="SELECTPROG">選擇燒錄器...</string>
 		<string name="SELECTMCU">選擇MCU...</string>
-		<string name="FUSEREADFAIL">無法讀取熔絲位/加密位</string>
+		<string name="FUSELOCKREADFAIL">無法讀取熔絲位/加密位</string>
 		<string name="READINGFUSES">讀取熔絲位...</string>
 		<string name="READINGLOCKBITS">讀取加密位...</string>
 		<string name="WRITINGINGFUSES">寫入熔絲位...</string>

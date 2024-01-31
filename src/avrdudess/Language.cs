@@ -23,18 +23,16 @@ namespace avrdudess
             [XmlAttribute] public string file;
         }
 
-#if DEBUG
-        public struct KeyEntry
-        {
-            [XmlAttribute] public string name;
-        }
-#endif
-
         [XmlArray("supported")]
         [XmlArrayItem("x")]
         public List<SupportedEntry> Supported = new List<SupportedEntry>();
 
 #if DEBUG
+        public struct KeyEntry
+        {
+            [XmlAttribute] public string name;
+        }
+
         [XmlArray("keys")]
         [XmlArrayItem("k")]
         public List<KeyEntry> Expectedkeys = new List<KeyEntry>();
@@ -115,19 +113,6 @@ namespace avrdudess
                     throw new Exception($"Duplicate translation key: {t.name}");
                 translations.Add(t.name, t.str);
             });
-#if DEBUG
-            foreach (var k in expectedKeys.Keys)
-            {
-                if (!translations.ContainsKey(k))
-                    Util.consoleWarning($"Missing translation key: {k}");
-            }
-
-            foreach (var k in translations.Keys)
-            {
-                if (!expectedKeys.Contains(k))
-                    Util.consoleWarning($"Unexpected translation key: {k}");
-            }
-#endif
         }
 
         public void Load()
@@ -142,6 +127,10 @@ namespace avrdudess
             {
                 MsgBox.error($"Error loading languages:{Environment.NewLine}{ex.Message}");
             }
+
+#if DEBUG
+            Debug(langsDir);
+#endif
         }
 
         public string get(string key) // TODO get -> Get (use indexer instead?)
@@ -158,5 +147,41 @@ namespace avrdudess
 
             return str;
         }
+
+#if DEBUG
+        // Process all translation files and make sure they all have the translations keys as defined in _meta.xml
+        private void Debug(string langsDir)
+        {
+            foreach (var l in languages)
+            {
+                var dbgTranslations = new Dictionary<string, string>();
+                var file = $"{l.Key}.xml";
+
+                Util.consoleWarning($"{file}: Checking...");
+
+                var langFile = Path.Combine(langsDir, file);
+                var langData = new XmlFile<TranslationData>(langFile).Read();
+                langData.Translations.ForEach(t =>
+                {
+                    if (dbgTranslations.ContainsKey(t.name))
+                        Util.consoleError($"{file}: Duplicate translation key: {t.name}");
+                    else
+                        dbgTranslations.Add(t.name, t.str);
+                });
+
+                foreach (var k in expectedKeys.Keys)
+                {
+                    if (!dbgTranslations.ContainsKey(k))
+                        Util.consoleError($"{file}: Missing translation key: {k}");
+                }
+
+                foreach (var k in dbgTranslations.Keys)
+                {
+                    if (!expectedKeys.Contains(k))
+                        Util.consoleError($"{file}: Unexpected translation key: {k}");
+                }
+            }
+        }
+#endif
     }
 }

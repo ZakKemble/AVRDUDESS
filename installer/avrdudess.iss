@@ -79,26 +79,36 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "turkish"; MessagesFile: "compiler:Languages\Turkish.isl"
 Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
+[Types]
+Name: "full"; Description: "Full installation"
+Name: "compact"; Description: "Compact installation"
+Name: "custom"; Description: "Custom installation"; Flags: iscustom
+
+[Components]
+Name: "main"; Description: "AVRDUDESS"; Types: full compact custom; Flags: fixed
+Name: "avrdude"; Description: "avrdude (v7.3 x86 mingw)"; Types: full
+Name: "avrsize"; Description: "avr-size"; Types: full
+
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "..\src\avrdudess\bin\Release\avrdudess.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\avrdudess.exe.config"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\avrdude.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\avr-size.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\avrdude.conf"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "..\src\avrdudess\bin\Release\config.xml"; DestDir: "{userappdata}\{#MyAppName}"; Flags: ignoreversion onlyifdoesntexist uninsneveruninstall
-Source: "..\src\avrdudess\bin\Release\presets.xml"; DestDir: "{userappdata}\{#MyAppName}"; Flags: ignoreversion onlyifdoesntexist uninsneveruninstall
-Source: "..\src\avrdudess\bin\Release\bits.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\portable.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\avrdudess\bin\Release\Languages\*.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion
-Source: "..\Changelog.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Credits.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\License.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\TODO.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\avrdudess\bin\Release\avrdudess.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: main
+Source: "..\src\avrdudess\bin\Release\avrdudess.exe.config"; DestDir: "{app}"; Flags: ignoreversion; Components: main
+Source: "..\src\avrdudess\bin\Release\avrdude.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: avrdude
+Source: "..\src\avrdudess\bin\Release\avrdude.conf"; DestDir: "{app}"; Flags: ignoreversion; Components: avrdude
+Source: "..\src\avrdudess\bin\Release\avr-size.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: avrsize
+;Source: "..\src\avrdudess\bin\Release\config.xml"; DestDir: "{userappdata}\{#MyAppName}"; Flags: ignoreversion onlyifdoesntexist uninsneveruninstall; Components: main
+Source: "..\src\avrdudess\bin\Release\presets.xml"; DestDir: "{userappdata}\{#MyAppName}"; Flags: ignoreversion onlyifdoesntexist uninsneveruninstall; Components: main
+Source: "..\src\avrdudess\bin\Release\bits.xml"; DestDir: "{app}"; Flags: ignoreversion; Components: main
+Source: "..\src\avrdudess\bin\Release\portable.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: main
+Source: "..\src\avrdudess\bin\Release\Languages\*.xml"; DestDir: "{app}\Languages"; Flags: ignoreversion; Components: main
+Source: "..\Changelog.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: main
+Source: "..\Credits.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: main
+Source: "..\License.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: main
+Source: "..\README.md"; DestDir: "{app}"; Flags: ignoreversion; Components: main
+Source: "..\TODO.txt"; DestDir: "{app}"; Flags: ignoreversion; Components: main
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [InstallDelete]

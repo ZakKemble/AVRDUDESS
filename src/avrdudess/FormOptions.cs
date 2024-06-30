@@ -91,11 +91,19 @@ namespace avrdudess
 
             clbHiddenProgrammers.Items.Clear();
             clbHiddenProgrammers.DataSource = new BindingSource(programmers, null);
-            clbHiddenProgrammers.Format += hiddenParts_Format;
+            clbHiddenProgrammers.Format += (object _, ListControlConvertEventArgs e) =>
+            {
+                Part part = (Part)e.ListItem;
+                e.Value = $"{part.id} -- ({part.desc})";
+            };
 
             clbHiddenMCUs.Items.Clear();
             clbHiddenMCUs.DataSource = new BindingSource(mcus, null);
-            clbHiddenMCUs.Format += hiddenParts_Format;
+            clbHiddenMCUs.Format += (object _, ListControlConvertEventArgs e) =>
+            {
+                Part part = (Part)e.ListItem;
+                e.Value = $"{part.desc} ({part.id})";
+            };
         }
 
         private void FormOptions_Load(object sender, EventArgs e)
@@ -119,12 +127,6 @@ namespace avrdudess
             foreach (Part item in clb.CheckedItems)
                 hiddenParts.Add(item.id);
             return hiddenParts;
-        }
-
-        private void hiddenParts_Format(object sender, ListControlConvertEventArgs e)
-        {
-            Part part = (Part)e.ListItem;
-            e.Value = $"{part.desc} ({part.id})";
         }
 
         private void btnBrowseAvrdude_Click(object sender, EventArgs e)

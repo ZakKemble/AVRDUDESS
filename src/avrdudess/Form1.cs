@@ -470,6 +470,12 @@ namespace avrdudess
             cbEraseFlashEEPROM.CheckedChanged += event_controlChanged;
             txtAdditional.TextChanged += event_controlChanged;
 
+            cmbProg.Format += (object _, ListControlConvertEventArgs eArgs) =>
+            {
+                Programmer part = (Programmer)eArgs.ListItem;
+                eArgs.Value = part.id == "" ? part.desc : $"{part.id} -- ({part.desc})";
+            };
+
             Language.Translation.Apply(this);
         }
 
@@ -601,7 +607,7 @@ namespace avrdudess
             setComboBoxDataSource(cmbMCU, mcus, "desc");
             cmbMCU.SelectedIndexChanged -= cmbMCU_SelectedIndexChanged;
             cmbMCU.SelectedIndexChanged += cmbMCU_SelectedIndexChanged;
-            setComboBoxDataSource(cmbProg, programmers, "desc");
+            setComboBoxDataSource(cmbProg, programmers, "");
             cmbProg.SelectedIndexChanged -= cmbProg_SelectedIndexChanged;
             cmbProg.SelectedIndexChanged += cmbProg_SelectedIndexChanged;
 

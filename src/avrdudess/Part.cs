@@ -4,11 +4,9 @@
 // Copyright (C) 2013-2024, Zak Kemble
 // GNU GPL v3 (see License.txt)
 
-using System;
-
 namespace avrdudess
 {
-    public class Part : IComparable
+    public class Part
     {
         public string id { get; private set; }
         private string _desc;
@@ -31,11 +29,6 @@ namespace avrdudess
 
             // Part is a common value thing or deprecated
             ignore = id.StartsWith(".") || (desc?.ToLower().StartsWith("deprecated") ?? false);
-        }
-
-        public int CompareTo(object other)
-        {
-            return desc.CompareTo(((Part)other).desc);
         }
     }
 }

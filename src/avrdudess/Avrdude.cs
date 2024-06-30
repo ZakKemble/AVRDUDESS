@@ -160,9 +160,8 @@ namespace avrdudess
 
             loadConfig(Config.Prop.avrdudeConfLoc);
 
-            // Sort alphabetically
-            _programmers.Sort();
-            _mcus.Sort();
+            _programmers.Sort((t1, t2) => t1.id.CompareTo(t2.id));
+            _mcus.Sort((t1, t2) => t1.desc.CompareTo(t2.desc));
         }
 
         // Get AVRDUDE version

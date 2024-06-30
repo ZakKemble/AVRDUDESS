@@ -473,7 +473,7 @@ namespace avrdudess
             cmbProg.Format += (object _, ListControlConvertEventArgs eArgs) =>
             {
                 Programmer part = (Programmer)eArgs.ListItem;
-                eArgs.Value = part.id == "" ? part.desc : $"{part.id} -- ({part.desc})";
+                eArgs.Value = part.id == "" ? part.desc : $"{part.id} . . . ({part.desc})";
             };
 
             Language.Translation.Apply(this);

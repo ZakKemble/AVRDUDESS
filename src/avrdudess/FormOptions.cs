@@ -94,7 +94,7 @@ namespace avrdudess
             clbHiddenProgrammers.Format += (object _, ListControlConvertEventArgs e) =>
             {
                 Part part = (Part)e.ListItem;
-                e.Value = $"{part.id} -- ({part.desc})";
+                e.Value = $"{part.id} . . . ({part.desc})";
             };
 
             clbHiddenMCUs.Items.Clear();

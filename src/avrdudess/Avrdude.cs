@@ -294,6 +294,7 @@ namespace avrdudess
             int flash = -1;
             int eeprom = -1;
             List<string> memoryTypes = new List<string>();
+            bool valid = false;
 
             ParseMemType memType = ParseMemType.None;
             bool isProgrammer = false;
@@ -305,10 +306,8 @@ namespace avrdudess
                 bool lineProgrammer = s.StartsWith("programmer");
                 bool linePart = s.StartsWith("part");
 
-                if(lineProgrammer || linePart)
+                if (lineProgrammer || linePart)
                 {
-                    savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom, memoryTypes);
-
                     parentId = null;
                     id = null;
                     desc = null;
@@ -317,6 +316,7 @@ namespace avrdudess
                     eeprom = -1;
                     memoryTypes = new List<string>(); // NOTE: Don't use .Clear(), the List<> is being referenced by the new MCU object created in savePart()
                     memType = ParseMemType.None;
+                    valid = true;
 
                     // Get parent ID
                     string[] parts = s.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -326,8 +326,12 @@ namespace avrdudess
                     isProgrammer = lineProgrammer;
                 }
                 else if (s == ";")
-                    memType = ParseMemType.None;
-                else
+                {
+                    if(valid)
+                        savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom, memoryTypes);
+                    valid = false;
+                }
+                else if (valid)
                 {
                     int pos = s.IndexOf('=');
                     if (pos > 0)
@@ -383,8 +387,6 @@ namespace avrdudess
                     }
                 }
             }
-
-            savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom, memoryTypes);
 
             if (_programmers.Count == 0 && _mcus.Count == 0)
                 Util.consoleError("_NOTHING_FOUND_IN_CONFIG_FILE", fileName);

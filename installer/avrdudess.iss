@@ -3,7 +3,7 @@
 
 #define MyAppName "AVRDUDESS"
 #define MyAppDescription "A GUI for AVRDUDE"
-#define MyAppVersion "2.17"
+#define MyAppVersion "2.18"
 #define MyAppPublisher "Zak Kemble"
 #define MyAppURL "https://zakkemble.net/"
 #define MyAppExeName "avrdudess.exe"
@@ -86,7 +86,7 @@ Name: "custom"; Description: "Custom installation"; Flags: iscustom
 
 [Components]
 Name: "main"; Description: "AVRDUDESS"; Types: full compact custom; Flags: fixed
-Name: "avrdude"; Description: "avrdude (v7.3 x86 mingw)"; Types: full
+Name: "avrdude"; Description: "avrdude (v8.0 x86)"; Types: full
 Name: "avrsize"; Description: "avr-size"; Types: full
 
 [Tasks]

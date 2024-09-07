@@ -1,3 +1,9 @@
+2024-09-07 (v2.18):
+	- Updated AVRDUDE to v8.0
+	- Show both programmer ID and name in dropdown box
+	- Show real bit clock in USBasp frequency dropdown box
+	- Fix some avrdude config parse bugs
+
 2024-02-12 (v2.17):
 	- Updated AVRDUDE to v7.3
 	- Fix ambiguity error with old versions of .NET Framework

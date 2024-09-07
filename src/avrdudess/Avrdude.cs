@@ -60,22 +60,24 @@ namespace avrdudess
         private const string FILE_AVRDUDE = "avrdude";
         private const string FILE_AVRDUDECONF = "avrdude.conf";
 
+        // USBasp uses -B to specify clock time in microseconds, which is rounded down to the next supported frequency
+        // eg. 0.5us = 2MHz, rounded down to 1.5MHz
         public static readonly List<UsbAspFreq> USBaspFreqs = new List<UsbAspFreq>()
         {
             // Must be in order from highest to lowest
             new UsbAspFreq("Default (375 KHz)"),
-            new UsbAspFreq("1.5 MHz", "0.5", 1500000),
-            new UsbAspFreq("750 KHz", "1.0", 750000),
-            new UsbAspFreq("375 KHz", "2.0", 375000),
-            new UsbAspFreq("187.5 KHz", "4.0", 187500),
-            new UsbAspFreq("93.75 KHz", "8.0", 93750),
-            new UsbAspFreq("32 KHz", "20.96", 32000),
-            new UsbAspFreq("16 KHz", "46.88", 16000),
-            new UsbAspFreq("8 KHz", "93.75", 8000),
-            new UsbAspFreq("4 KHz", "187.5", 4000),
-            new UsbAspFreq("2 KHz", "375.0", 2000),
-            new UsbAspFreq("1 KHz", "750.0", 1000),
-            new UsbAspFreq("500 Hz", "1500.0", 500),
+            new UsbAspFreq("1.5 MHz (0.66)", "0.66", 1500000),
+            new UsbAspFreq("750 KHz (1.33)", "1.33", 750000),
+            new UsbAspFreq("375 KHz (2.66)", "2.66", 375000),
+            new UsbAspFreq("187.5 KHz (5.33)", "5.33", 187500),
+            new UsbAspFreq("93.75 KHz (10.66)", "10.66", 93750),
+            new UsbAspFreq("32 KHz (31.25)", "31.25", 32000),
+            new UsbAspFreq("16 KHz (62.5)", "62.5", 16000),
+            new UsbAspFreq("8 KHz (125)", "125", 8000),
+            new UsbAspFreq("4 KHz (250)", "250", 4000),
+            new UsbAspFreq("2 KHz (500)", "500", 2000),
+            new UsbAspFreq("1 KHz (1000)", "1000", 1000),
+            new UsbAspFreq("500 Hz (2000)", "2000", 500),
         };
 
         public static readonly List<FileFormat> fileFormats = new List<FileFormat>()

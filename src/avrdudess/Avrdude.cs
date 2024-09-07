@@ -110,7 +110,8 @@ namespace avrdudess
         {
             None,
             Flash,
-            Eeprom
+            Eeprom,
+            Unknown
         }
 
         private readonly List<Programmer> _programmers;
@@ -327,9 +328,14 @@ namespace avrdudess
                 }
                 else if (s == ";")
                 {
-                    if(valid)
-                        savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom, memoryTypes);
-                    valid = false;
+                    if (memType != ParseMemType.None)
+                        memType = ParseMemType.None;
+                    else
+                    {
+                        if (valid)
+                            savePart(isProgrammer, parentId, id, desc, signature, flash, eeprom, memoryTypes);
+                        valid = false;
+                    }
                 }
                 else if (valid)
                 {
@@ -350,7 +356,7 @@ namespace avrdudess
                             // Remove 0x and spaces from signature (0xAA 0xAA 0xAA -> AAAAAA)
                             signature = signature.Replace("0x", "").Replace(" ", "");
                         }
-                        else if (key == "size" && memType != ParseMemType.None)
+                        else if (key == "size" && memType != ParseMemType.None && memType != ParseMemType.Unknown)
                         {
                             // Parse to int
                             int memTmp = 0;
@@ -366,8 +372,6 @@ namespace avrdudess
                                 flash = memTmp;
                             else if (memType == ParseMemType.Eeprom)
                                 eeprom = memTmp;
-
-                            memType = ParseMemType.None;
                         }
                     }
                     else if (s.StartsWith("memory")) // Found memory section
@@ -381,6 +385,8 @@ namespace avrdudess
                                 memType = ParseMemType.Flash;
                             else if (mem == "eeprom")
                                 memType = ParseMemType.Eeprom;
+                            else
+                                memType = ParseMemType.Unknown;
 
                             memoryTypes.Add(mem);
                         }

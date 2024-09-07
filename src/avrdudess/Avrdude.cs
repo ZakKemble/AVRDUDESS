@@ -121,7 +121,7 @@ namespace avrdudess
         public event EventHandler<ReadFuseLockEventArgs> OnReadFuseLock;
 
         private static readonly Regex strArrSplitRegex = new Regex("\"[\\s]*,[\\s]*\"");
-        private static readonly Regex extractDevSigRegex = new Regex("signature = 0x([0-9a-fA-F]{6})", RegexOptions.IgnoreCase);
+        private static readonly Regex extractDevSigRegex = new Regex("signature = (?:0x)?([0-9a-fA-F]{2}\\s*[0-9a-fA-F]{2}\\s*[0-9a-fA-F]{2})", RegexOptions.IgnoreCase);
 
         #region Getters and setters
 
@@ -425,7 +425,7 @@ namespace avrdudess
         {
             launch(args, (object _) => {
                 var match = extractDevSigRegex.Match(outputLogStdErr);
-                string detectedSignature = match.Groups[1].Value;
+                string detectedSignature = match.Groups[1].Value.Replace(" ", "").ToLower();
                 OnDetectedMCU?.Invoke(this, new DetectedMCUEventArgs(detectedSignature));
             }, null, OutputTo.Memory);
         }

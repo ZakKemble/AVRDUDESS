@@ -433,8 +433,17 @@ namespace avrdudess
             launch(args, (object _) => {
                 var detectedSignature = "";
                 var sigIdx = outputLogStdErr.IndexOf("signature = ");
+
                 if (sigIdx != -1 && outputLogStdErr.Length > sigIdx + 12 + 8)
                     detectedSignature = outputLogStdErr.Substring(sigIdx + 12, 8).Replace(" ", "").Replace("0x", "").ToLower();
+                else
+                {
+                    // AVRDUDE v8.0 doesn't print out a signature if everything was successful
+                    // Probably safe to assume it's an ATmega8 - see CmdLine.genReadSig()
+                    if (!outputLogStdErr.ToLower().Contains("error"))
+                        detectedSignature = "1e9307";
+                }
+
                 OnDetectedMCU?.Invoke(this, new DetectedMCUEventArgs(detectedSignature));
             }, null, OutputTo.Memory);
         }

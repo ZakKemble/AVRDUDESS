@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<translation>
+	<data>
+
+		<!-- Main form -->
+		<string name="TOOLTIP_MCU">프로그래밍할 MCU</string>
+		<string name="TOOLTIP_PROGRAMMER">프로그래머</string>
+		<string name="TOOLTIP_PORT">COM/LPT/USB 포트 설정</string>
+		<string name="TOOLTIP_BAUDRATE">포트 보 레이트</string>
+		<string name="TOOLTIP_BITCLOCK">비트 클럭 주기(us)</string>
+		<string name="TOOLTIP_FLASHFILE">Hex 파일 (.hex)
+여기에 파일을 끌어다 놓을 수 있습니다</string>
+		<string name="TOOLTIP_EEPROMFILE">EEPROM 파일 (.eep)
+여기에 파일을 끌어다 놓을 수 있습니다</string>
+		<string name="TOOLTIP_FORCE">시그니처 검사 건너뛰기</string>
+		<string name="TOOLTIP_NOVERIFY">쓰기 후 확인하지 않기</string>
+		<string name="TOOLTIP_NOERASE">쓰기 전에 플래시 지우지 않음
+EEPROM만 업데이트하고 싶은 경우 사용</string>
+		<string name="TOOLTIP_ERASEBOTH">플래시와 EEPROM 모두 지우기</string>
+		<string name="TOOLTIP_NOWRITE">아무것도 쓰지 않기, AVRDUDE 디버깅용</string>
+		<string name="TOOLTIP_LOWFUSE">Low 퓨즈</string>
+		<string name="TOOLTIP_HIGHFUSE">High 퓨즈</string>
+		<string name="TOOLTIP_EXFUSE">확장 퓨즈</string>
+		<string name="TOOLTIP_LOCKBITS">잠금 비트</string>
+		<string name="TOOLTIP_ONLYFLASH">플래시만 읽기/쓰기/검사</string>
+		<string name="TOOLTIP_ONLYEEPROM">EEPROM만 읽기/쓰기/검사</string>
+		<string name="TOOLTIP_WRITEFUSES">퓨즈 쓰기</string>
+		<string name="TOOLTIP_WRITELOCK">잠금 비트 쓰기</string>
+		<string name="TOOLTIP_READFUSES">퓨즈 읽기</string>
+		<string name="TOOLTIP_READLOCK">잠금 비트 읽기</string>
+		<string name="TOOLTIP_WRITEFUSESPROG">프로그래밍 할 때 퓨즈 쓰기</string>
+		<string name="TOOLTIP_WRITELOCKPROG">프로그래밍 할 때 잠금 비트 쓰기</string>
+		<string name="GO">실행</string>
+		<string name="WRITE">쓰기</string>
+		<string name="READ">읽기</string>
+		<string name="VERIFY">검사</string>
+		<string name="GRP_PROGRAMMER">프로그래머 (-c)</string>
+		<string name="PORT">포트 (-P)</string>
+		<string name="BAUDRATE">보 레이트 (-b)</string>
+		<string name="BITCLOCK">비트 클럭 (-B)</string>
+		<string name="GRP_FLASH">플래시</string>
+		<string name="FORMAT">포맷</string>
+		<string name="GRP_EEPROM">EEPROM</string>
+		<string name="GRP_OPTIONS">설정</string>
+		<string name="FORCE">강제 (-F)</string>
+		<string name="DISVERIFY">검사 안함 (-V)</string>
+		<string name="DISFLASHERASE">플래시 지우지 않음 (-D)</string>
+		<string name="ERASEFLASHEEP">플래시와 EEPROM 지우기 (-e)</string>
+		<string name="DONOTWRITE">쓰지 않기 (-n)</string>
+		<string name="VERBOSITY">상세 정보</string>
+		<string name="GRP_MCU">MCU (-p)</string>
+		<string name="FLASHSZ">플래시:</string>
+		<string name="EEPROMSZ">EEPROM:</string>
+		<string name="DETECT">자동 감지</string>
+		<string name="GRP_PRESET">프리셋</string>
+		<string name="PRESETMGR">프리셋 관리</string>
+		<string name="GRP_FUSELOCK">퓨즈 &amp;&amp; 잠금 비트</string>
+		<string name="SETFUSES">퓨즈 설정</string>
+		<string name="FUSESETTINGS">퓨즈 설정</string>
+		<string name="SETLOCK">잠금 비트 설정</string>
+		<string name="BITSELECTOR">비트 선택기</string>
+		<string name="DOPROGRAM">프로그래밍 하기!</string>
+		<string name="DOSTOP">정지</string>
+		<string name="BTN_OPTIONS">설정</string>
+		<string name="GRP_ADDCMDARGS">추가적인 명령줄 인수</string>
+		<string name="MCUNOTFOUND">MCU '{0}'를 찾지 못함</string>
+		<string name="PROGNOTFOUND">프로그래머 '{0}'를 찾지 못함</string>
+		<string name="STATUSRUNNING">AVRDUDE 실행 중...</string>
+		<string name="STATUSREADY">준비</string>
+		<string name="DETECTSUCCESS">{0} = {1}</string>
+		<string name="DETECTFAIL">MCU 감지 실패</string>
+		<string name="AVRDUDEKILLED">AVRDUDE가 종료됨</string>
+		<string name="ABOUT">정보</string>
+		<string name="SELECTPROG">프로그래머를 선택하세요...</string>
+		<string name="SELECTMCU">MCU를 선택하세요...</string>
+		<string name="FUSELOCKREADFAIL">퓨즈 또는 잠금 비트 읽기 실패</string>
+		<string name="READINGFUSES">퓨즈 읽는 중...</string>
+		<string name="READINGLOCKBITS">잠금 비트 읽는 중...</string>
+		<string name="WRITINGINGFUSES">퓨즈 쓰는 중...</string>
+		<string name="WRITINGINGLOCKBITS">잠금 비트 쓰는 중...</string>
+		<string name="READHFUSE">High 퓨즈 읽기</string>
+		<string name="READLFUSE">Low 퓨즈 읽기</string>
+		<string name="READEFUSE">확장 퓨즈 읽기</string>
+		<string name="READFUSE">퓨즈 읽기</string>
+		<string name="READLOCKBITS">잠금 비트 읽기</string>
+		<string name="NOSUPPORTEDFUSES">{0} 에 지원되는 퓨즈가 없습니다.</string>
+		<string name="CONFIG_FILE_TOO_LARGE">설정 파일{0}이 너무 큽니다.</string>
+		<string name="NOTHING_FOUND_IN_CONFIG_FILE">설정 파일 {0}에 아무것도 없습니다.</string>
+		<string name="CONFIG_LOADED_PROGS_MCUS">{0}개의 프로그래머와 {1}개의 MCU 불러옴</string>
+		<string name="IN_PORTABLE_MODE">포터블 모드에서 실행 중</string>
+
+		<string name="UPDATE_CHECK">업데이트 확인 중...</string>
+		<string name="UPDATE_FAILED">업데이트 확인 실패: {0}</string>
+		<string name="UPDATE_AVAIL">업데이트 가능: v{0}</string>
+		<string name="UPDATE_LATEST">최신 버전입니다 :)</string>
+		<string name="UPDATE_SKIP">{0} 버전을 건너뜁니다</string>
+		<string name="UPDATE_BADXML">업데이트 XML에 릴리스 항목이 없습니다.</string>
+
+		<string name="FILEFMT_AUTO">자동 (쓰기 전용)</string>
+		<string name="FILEFMT_HEX">Intel Hex</string>
+		<string name="FILEFMT_SREC">Motorola S-record</string>
+		<string name="FILEFMT_BIN">Raw binary</string>
+		<string name="FILEFMT_DECR">Decimal (읽기 전용)</string>
+		<string name="FILEFMT_HEXR">Hexadecimal (읽기 전용)</string>
+		<string name="FILEFMT_BINR">Binary (읽기 전용)</string>
+
+		<string name="BROWSE_OPEN_FLASH">플래시 파일 열기</string>
+		<string name="BROWSE_SAVE_FLASH">플래시 파일 저장</string>
+		<string name="BROWSE_OPEN_EEPROM">EEPROM 파일 열기</string>
+		<string name="BROWSE_SAVE_EEPROM">EEPROM 파일 저장</string>
+		<string name="BROWSE_FILTER_ALL">모든 파일 (*.*)</string>
+		<string name="BROWSE_FILTER_HEX">Hex 파일 (*.hex)</string>
+		<string name="BROWSE_FILTER_EEP">EEPROM 파일 (*.eep)</string>
+		<string name="BROWSE_FILTER_XML">XML 파일 (*.xml)</string>
+
+		<!-- Preset manager form -->
+		<string name="TITLE_PRESETMGR">프리셋 관리자</string>
+		<string name="RENAME">이름 바꾸기</string>
+		<string name="OVERWRITE">덮어쓰기</string>
+		<string name="SAVENEWPRESET">새 프리셋 저장...</string>
+		<string name="EXPORT">내보내기</string>
+		<string name="IMPORT">가져오기</string>
+		<string name="DELETE">삭제</string>
+		<string name="CLOSE">닫기</string>
+		<string name="EXPORTIMGPORTDELETE">내보내기/가져오기/삭제</string>
+		<string name="SAVEDIALOG_EXPORT">프리셋 내보내기</string>
+		<string name="OPENDIALOG_IMPORT">프리셋 가져오기</string>
+		<string name="NEWPRESETNAME">새 프리셋 이름</string>
+		<string name="CANTUSEDEFAULT">'Default' 이름 사용 불가</string>
+		<string name="OVERWRITEPRESET">'{0}'를 덮어쓰기 하시겠습니까?</string>
+		<string name="DELETEPRESETS">{0}개의 프리셋을 삭제할까요?</string>
+		<string name="PRESETALREADYEXISTS">같은 이름의 프리셋이 있습니다. 덮어쓸까요?</string>
+		<string name="CANTOVERWRITEDEFAULT">'Default' 덮어쓰기 불가</string>
+		<string name="PRESETOVERWRITE">현재 설정을'{0}'에 쓸까요?</string>
+		<string name="EXPORTINGPRESETS">'{0}' 내보내기 중...</string>
+		<string name="EXPORTCOMPLETE">프리셋 내보내기 완료</string>
+		<string name="IMPORTINGPRESETS">'{0}' 불러오는 중...</string>
+		<string name="IMPORTALREADYEXISTS">'{0}'은 이미 존재합니다. '{1}'로 이름을 변경합니다</string>
+		<string name="IMPORTCOMPLETE">불러오기 완료</string>
+
+		<!-- Update form -->
+		<string name="UPDATEAVAILABLE">업데이트 가능</string>
+		<string name="CURRENTVERSION">현재 버전:</string>
+		<string name="NEWVERSION">새 버전:</string>
+		<string name="BTN_UPDATE">업데이트</string>
+		<string name="BTN_SKIPVERSION">건너뛰기</string>
+		<string name="BTN_LATER">나중에</string>
+
+		<!-- Fuse editor form -->
+		<string name="TITLE_FUSEANDLOCKBITS">Fuse &amp; lock bits: {0} ({1})</string>
+		<string name="ERRORLOADFUSES">퓨즈 불러오는 중 오류 발생:
+{0}</string>
+		<string name="UNSUPPMCU">경고: 미지원 MCU</string>
+		<string name="GRP_LOCKBITS">잠금 비트</string>
+		<string name="GRP_FUSEBITS">퓨즈 비트</string>
+		<string name="LOCKBITS">잠금 비트</string>
+
+		<!-- Options form -->
+		<string name="TITLE_OPTIONS">설정</string>
+		<string name="GRP_FILELOCATIONS">파일 위치 (빈칸으로 두면 자동 감지)</string>
+		<string name="GRP_OTHER">기타</string>
+		<string name="GRP_HIDEPROGS">프로그래머 숨김</string>
+		<string name="GRP_HIDEMCUS">MCU 숨김</string>
+		<string name="LANGUAGE">언어</string>
+		<string name="SHOWTOOLTIPS">툴팁 표시</string>
+		<string name="USEPREVSETTINGS">시작할 때 이전 설정 불러오기</string>
+		<string name="AVRDUDE_LOCATION">avrdude 위치</string>
+		<string name="AVRDUDECONF_LOCATION">avrdude 설정 파일 위치</string>
+		<string name="AVRSIZE_LOCATION">avr-size 위치</string>
+		<string name="CHECKFORUPDATES">시작할 때 업데이트 확인</string>
+		<string name="CHK_UNCHK_ALL">모두 선택/해제</string>
+
+		<!-- General stuff -->
+		<string name="OK">확인</string>
+		<string name="CANCEL">취소</string>
+		<string name="ERRORUC">오류</string>
+		<string name="WARNINGUC">경고</string>
+		<string name="SUCCESSUC">성공</string>
+		<string name="ERROR">오류</string>
+		<string name="WARNING">경고</string>
+		<string name="NOTICE">알림</string>
+		<string name="CONFIRM">확인</string>
+
+		<!-- Errors and things -->
+		<string name="XMLWRITEERROR">{0} 저장 중 오류:
+{1}</string>
+		<string name="EXECMISSING">{0} 가 없습니다!</string>
+		<string name="EXECFAIL">프로세스 {0}를 시작할 수 없습니다: </string>
+		<string name="UNKNOWNSIG">알 수 없는 시그니처 {0}</string>
+		<string name="AVRCONFMISSING">{0} 가 없습니다!</string>
+		<string name="AVRCONFREADERROR">{0}를 읽을 수 없음:
+{1}</string>
+
+	</data>
+</translation>

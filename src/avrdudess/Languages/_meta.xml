@@ -9,6 +9,7 @@
 		<x name="Magyar" ename="Hungarian" file="hungarian" />
 		<x name="Italiano" ename="Italian" file="italian" />
 		<x name="日本語" ename="Japanese" file="japanese" />
+		<x name="한국어" ename="Korean" file="korean" />
 		<x name="Polski" ename="Polish" file="polish" />
 		<x name="Português" ename="Portuguese" file="portugues" />
 		<x name="Русский" ename="Russian" file="russian" />

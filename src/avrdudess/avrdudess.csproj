@@ -228,6 +228,9 @@
     <Content Include="Languages\turkish.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Languages\korean.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Languages\_meta.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -18,6 +18,7 @@
 		<x name="正體中文,台灣" ename="Traditional Chinese,Taiwan" file="Traditional_Chinese(Taiwan)" />
 		<x name="Türkçe" ename="Turkish" file="turkish" />
 		<x name="Українська" ename="Ukrainian" file="ukraine" />
+		<x name="Čeština" ename="Czech" file="czech" />
 	</supported>
 	<keys>
 		<k name="TOOLTIP_MCU" />

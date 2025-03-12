@@ -231,6 +231,9 @@
     <Content Include="Languages\korean.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Languages\czech.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Languages\_meta.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<translation>
+    <metadata>
+        <translator>Martin Pihrt</translator>
+        <year>2025</year>
+        <language>Čeština</language>
+    </metadata>
+	<data>
+
+		<!-- Main form -->
+		<string name="TOOLTIP_MCU">Procesor pro programování</string>
+		<string name="TOOLTIP_PROGRAMMER">Programátor</string>
+		<string name="TOOLTIP_PORT">Výběr připojení Vašeho programátoru COM/LPT/USB</string>
+		<string name="TOOLTIP_BAUDRATE">Rychlost komunikace v Baudech</string>
+		<string name="TOOLTIP_BITCLOCK">Rychlost hodin v mikrosekundách</string>
+		<string name="TOOLTIP_FLASHFILE">Hex soubor (.hex)
+Zde můžete také přetahovat soubory</string>
+		<string name="TOOLTIP_EEPROMFILE">EEPROM soubor (.eep)
+Zde můžete také přetahovat soubory</string>
+		<string name="TOOLTIP_FORCE">Přeskočit kontrolu podpisu procesoru (nebude brán zřetel na správný typ procesoru)</string>
+		<string name="TOOLTIP_NOVERIFY">Po zápisu neověřovat obsah paměti s nahrávanými daty</string>
+		<string name="TOOLTIP_NOERASE">Před zápisem flash paměť nemazat
+Toto použijte, pokud chcete aktualizovat pouze EEPROM paměť</string>
+		<string name="TOOLTIP_ERASEBOTH">Vymazat FLASH paměť i EEPROM paměť</string>
+		<string name="TOOLTIP_NOWRITE">Nic nezapisovat, používá se pro ladění v AVRDUDE</string>
+		<string name="TOOLTIP_LOWFUSE">LOW pojistka</string>
+		<string name="TOOLTIP_HIGHFUSE">HIGH pojistka</string>
+		<string name="TOOLTIP_EXFUSE">EXTEND pojistka</string>
+		<string name="TOOLTIP_LOCKBITS">Uzamykací bity</string>
+		<string name="TOOLTIP_ONLYFLASH">Zapisovat/číst/ověřovat jenom FLASH paměť</string>
+		<string name="TOOLTIP_ONLYEEPROM">Zapisovat/číst/ověřovat jenom EEPROM paměť</string>
+		<string name="TOOLTIP_WRITEFUSES">Zapsat pojistky</string>
+		<string name="TOOLTIP_WRITELOCK">Zapsat uzamykací bity</string>
+		<string name="TOOLTIP_READFUSES">Číst pojistky</string>
+		<string name="TOOLTIP_READLOCK">Číst uzamykací bity</string>
+		<string name="TOOLTIP_WRITEFUSESPROG">Při programování procesoru zapsat i pojistky</string>
+		<string name="TOOLTIP_WRITELOCKPROG">Při programování procesoru zapsat i uzamykací bity</string>
+		<string name="GO">Start</string>
+		<string name="WRITE">Zapsat</string>
+		<string name="READ">Číst</string>
+		<string name="VERIFY">Ověřit</string>
+		<string name="GRP_PROGRAMMER">Programátor (-c)</string>
+		<string name="PORT">Připojení (-P)</string>
+		<string name="BAUDRATE">Rychlost Baud (-b)</string>
+		<string name="BITCLOCK">Rychlost hodin (-B)</string>
+		<string name="GRP_FLASH">FLASH</string>
+		<string name="FORMAT">Formát</string>
+		<string name="GRP_EEPROM">EEPROM</string>
+		<string name="GRP_OPTIONS">Nastavení</string>
+		<string name="FORCE">Vnutit (-F)</string>
+		<string name="DISVERIFY">Zakázat ověření (-V)</string>
+		<string name="DISFLASHERASE">Zakázat vymazání flash (-D)</string>
+		<string name="ERASEFLASHEEP">Vymazat všechny paměti (-e)</string>
+		<string name="DONOTWRITE">Nezapisovat (-n)</string>
+		<string name="VERBOSITY">Výřečnost</string>
+		<string name="GRP_MCU">Procesor (-p)</string>
+		<string name="FLASHSZ">Flash:</string>
+		<string name="EEPROMSZ">EEPROM:</string>
+		<string name="DETECT">Rozpoznat procesor automaticky</string>
+		<string name="GRP_PRESET">Přednastavení</string>
+		<string name="PRESETMGR">Správce</string>
+		<string name="GRP_FUSELOCK">Pojistky a uzamykací bity</string>
+		<string name="SETFUSES">Nastavit pojistky při zápisu</string>
+		<string name="FUSESETTINGS">Nastavení pojistek</string>
+		<string name="SETLOCK">Nastavit zámek při zápisu</string>
+		<string name="BITSELECTOR">Označovač bitů</string>
+		<string name="DOPROGRAM">PROGRAMOVAT!</string>
+		<string name="DOSTOP">Stop</string>
+		<string name="BTN_OPTIONS">Nastavení</string>
+		<string name="GRP_ADDCMDARGS">Další argumenty příkazového řádku</string>
+		<string name="MCUNOTFOUND">Procesor '{0}' nenalezen</string>
+		<string name="PROGNOTFOUND">Programátor '{0}' nenalezen</string>
+		<string name="STATUSRUNNING">AVRDUDE právě běží...</string>
+		<string name="STATUSREADY">Připraven</string>
+		<string name="DETECTSUCCESS">Detekováno {0} = {1}</string>
+		<string name="DETECTFAIL">Nelze načíst typ procesoru</string>
+		<string name="AVRDUDEKILLED">AVRDUDE byl ukončen</string>
+		<string name="ABOUT">O programu</string>
+		<string name="SELECTPROG">Výběr programátoru...</string>
+		<string name="SELECTMCU">Výběr procesoru...</string>
+		<string name="FUSELOCKREADFAIL">Nelze přečíst pojistky/uzamykací bity</string>
+		<string name="READINGFUSES">Čtení pojistek...</string>
+		<string name="READINGLOCKBITS">Čtení uzamykacích bitů...</string>
+		<string name="WRITINGINGFUSES">Zapisování pojistek...</string>
+		<string name="WRITINGINGLOCKBITS">Zapisování uzamykacích bitů...</string>
+		<string name="READHFUSE">Čtení pojistky HIGH</string>
+		<string name="READLFUSE">Čtení pojistky LOW</string>
+		<string name="READEFUSE">Čtení pojistky EXTENDED</string>
+		<string name="READFUSE">Číst pojistky</string>
+		<string name="READLOCKBITS">Číst uzamykací bity</string>
+		<string name="NOSUPPORTEDFUSES">{0} nemá žádné podporované pojistky</string>
+		<string name="CONFIG_FILE_TOO_LARGE">Konfigurační soubor {0} je moc velký</string>
+		<string name="NOTHING_FOUND_IN_CONFIG_FILE">V konfiguračním souboru nebylo nic nalezeno {0}</string>
+		<string name="CONFIG_LOADED_PROGS_MCUS">Nahráno {0} programátorů a {1} procesorů</string>
+		<string name="IN_PORTABLE_MODE">Běží v přenosném režimu</string>
+
+		<string name="UPDATE_CHECK">Kontrola aktualizace...</string>
+		<string name="UPDATE_FAILED">Chyba při kontrole aktualizace: {0}</string>
+		<string name="UPDATE_AVAIL">Byla nalezena dostupná aktualizace: v{0}</string>
+		<string name="UPDATE_LATEST">Výborně, máte aktuální verzi :)</string>
+		<string name="UPDATE_SKIP">Rozhodli jste se přeskočit verzi {0}</string>
+		<string name="UPDATE_BADXML">Aktualizace XML neobsahuje položky vydání</string>
+
+		<string name="FILEFMT_AUTO">Auto (pouze zápis)</string>
+		<string name="FILEFMT_HEX">Intel Hex</string>
+		<string name="FILEFMT_SREC">Motorola S-record</string>
+		<string name="FILEFMT_BIN">Raw binary</string>
+		<string name="FILEFMT_DECR">Decimální (pouze čtení)</string>
+		<string name="FILEFMT_HEXR">Hexadecimální (pouze čtení)</string>
+		<string name="FILEFMT_BINR">Binární (pouze čtení)</string>
+
+		<string name="BROWSE_OPEN_FLASH">Načíst flash soubor</string>
+		<string name="BROWSE_SAVE_FLASH">Uložit flash soubor</string>
+		<string name="BROWSE_OPEN_EEPROM">Načíst EEPROM soubor</string>
+		<string name="BROWSE_SAVE_EEPROM">Uložit EEPROM soubor</string>
+		<string name="BROWSE_FILTER_ALL">Všechny soubory (*.*)</string>
+		<string name="BROWSE_FILTER_HEX">Hex soubory (*.hex)</string>
+		<string name="BROWSE_FILTER_EEP">EEPROM soubory (*.eep)</string>
+		<string name="BROWSE_FILTER_XML">XML soubory (*.xml)</string>
+
+		<!-- Preset manager form -->
+		<string name="TITLE_PRESETMGR">Správce přednastavení</string>
+		<string name="RENAME">Přejmenovat</string>
+		<string name="OVERWRITE">Přepsat</string>
+		<string name="SAVENEWPRESET">Uložit nové přednastavení...</string>
+		<string name="EXPORT">Export</string>
+		<string name="IMPORT">Import</string>
+		<string name="DELETE">Smazat</string>
+		<string name="CLOSE">Zavřít</string>
+		<string name="EXPORTIMGPORTDELETE">Export/Import/Mazání</string>
+		<string name="SAVEDIALOG_EXPORT">Exportovat přednastavení</string>
+		<string name="OPENDIALOG_IMPORT">Importovat přednastavení</string>
+		<string name="NEWPRESETNAME">Jméno nového přednastavení</string>
+		<string name="CANTUSEDEFAULT">Nelze použít jméno 'Default'</string>
+		<string name="OVERWRITEPRESET">Přepsat '{0}'?</string>
+		<string name="DELETEPRESETS">Smazat {0} přednastavení?</string>
+		<string name="PRESETALREADYEXISTS">Přednastavení s tímto názvem již existuje, přepsat?</string>
+		<string name="CANTOVERWRITEDEFAULT">Nemohu přepsat 'Default'</string>
+		<string name="PRESETOVERWRITE">Přepsat '{0}' s aktuálním nastavením?</string>
+		<string name="EXPORTINGPRESETS">Exportuji '{0}'...</string>
+		<string name="EXPORTCOMPLETE">Export přednastavení je kompletní</string>
+		<string name="IMPORTINGPRESETS">Importování '{0}'...</string>
+		<string name="IMPORTALREADYEXISTS">'{0}' již existuje, přejmenuji ho na '{1}'</string>
+		<string name="IMPORTCOMPLETE">Import přednastavení je kompletní</string>
+
+		<!-- Update form -->
+		<string name="UPDATEAVAILABLE">Dostupná aktualizace</string>
+		<string name="CURRENTVERSION">Aktuální verze:</string>
+		<string name="NEWVERSION">Nová verze:</string>
+		<string name="BTN_UPDATE">Aktualizovat</string>
+		<string name="BTN_SKIPVERSION">Přeskočit verzi</string>
+		<string name="BTN_LATER">Později</string>
+
+		<!-- Fuse editor form -->
+		<string name="TITLE_FUSEANDLOCKBITS">Pojistky a uzamykací bity: {0} ({1})</string>
+		<string name="ERRORLOADFUSES">Při pokusu o zavedení pojistek došlo k chybě:
+{0}</string>
+		<string name="UNSUPPMCU">Varování: Nepodporovaný procesor</string>
+		<string name="GRP_LOCKBITS">Uzamykací bity</string>
+		<string name="GRP_FUSEBITS">Pojistkové bity</string>
+		<string name="LOCKBITS">Pojistkové bity</string>
+
+		<!-- Options form -->
+		<string name="TITLE_OPTIONS">Nastavení</string>
+		<string name="GRP_FILELOCATIONS">Umístění souborů (nechte prázdné, aby se zjistilo automaticky)</string>
+		<string name="GRP_OTHER">Ostatní</string>
+		<string name="GRP_HIDEPROGS">Schovat programátory</string>
+		<string name="GRP_HIDEMCUS">Schovat procesory</string>
+		<string name="LANGUAGE">Jazyk</string>
+		<string name="SHOWTOOLTIPS">Zobrazit nápovědu</string>
+		<string name="USEPREVSETTINGS">Načíst předchozí nastavení při spuštění</string>
+		<string name="AVRDUDE_LOCATION">avrdude umístění</string>
+		<string name="AVRDUDECONF_LOCATION">umístění konfigurace avrdude</string>
+		<string name="AVRSIZE_LOCATION">umístění velikosti avr</string>
+		<string name="CHECKFORUPDATES">Zkontrolovat aktualizace při spuštění</string>
+		<string name="CHK_UNCHK_ALL">Zaškrtnutí/zrušení všech</string>
+
+		<!-- General stuff -->
+		<string name="OK">OK</string>
+		<string name="CANCEL">Zrušit</string>
+		<string name="ERRORUC">CHYBA</string>
+		<string name="WARNINGUC">VAROVÁNÍ</string>
+		<string name="SUCCESSUC">ÚSPĚCH</string>
+		<string name="ERROR">Chyba</string>
+		<string name="WARNING">Varování</string>
+		<string name="NOTICE">Upozornění</string>
+		<string name="CONFIRM">Potvrzení</string>
+
+		<!-- Errors and things -->
+		<string name="XMLWRITEERROR">Při pokusu o uložení došlo k chybě {0}:
+{1}</string>
+		<string name="EXECMISSING">{0} chybí!</string>
+		<string name="EXECFAIL">Proces nelze spustit: {0}</string>
+		<string name="UNKNOWNSIG">Neznámý podpis {0}</string>
+		<string name="AVRCONFMISSING">{0} chybí!</string>
+		<string name="AVRCONFREADERROR">Nelze číst {0}:
+{1}</string>
+
+	</data>
+</translation>

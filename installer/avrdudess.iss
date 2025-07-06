@@ -3,12 +3,12 @@
 
 #define MyAppName "AVRDUDESS"
 #define MyAppDescription "A GUI for AVRDUDE"
-#define MyAppVersion "2.18"
+#define MyAppVersion "2.19"
 #define MyAppPublisher "Zak Kemble"
 #define MyAppURL "https://zakkemble.net/"
 #define MyAppExeName "avrdudess.exe"
 #define MyAppContact "contact@zakkemble.net"
-#define MyAppCopyright "Copyright © 2024 Zak Kemble"
+#define MyAppCopyright "Copyright © 2025 Zak Kemble"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.

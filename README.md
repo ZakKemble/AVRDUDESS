@@ -33,6 +33,10 @@ Run AVRDUDESS with Mono, you might have to run as root (sudo) so that AVRDUDE ca
 
     mono avrdudess.exe
 
+## Updating AVRDUDE
+
+The latest AVRDUDE can be downloaded from [https://github.com/avrdudes/avrdude/releases](https://github.com/avrdudes/avrdude/releases). In AVRDUDESS click on the options button and fill in the `avrdude` and `avrdude.conf` boxes with the locations of the new files by clicking on the `...` browse buttons.
+
 ## Building
 
 You will need Microsoft Visual Studio 2015 or later installed (older might work too). Open `./src/avrdudess.sln` and click the 'Start' button at the top and it will build and run AVRDUDESS.\

@@ -72,7 +72,7 @@ namespace avrdudess
         // same signature as the standalone microcontroller
         public bool IgnoreOnDetect
         {
-            get => id.StartsWith("ata661");
+            get => id.StartsWith("ata661") || id.StartsWith("a661");
         }
 
         public List<string> memoryTypes

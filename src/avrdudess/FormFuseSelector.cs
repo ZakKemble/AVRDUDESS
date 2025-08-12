@@ -1,7 +1,7 @@
 ﻿// AVRDUDESS - A GUI for AVRDUDE
 // https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/
 // https://github.com/ZakKemble/AVRDUDESS
-// Copyright (C) 2013-2024, Zak Kemble
+// Copyright (C) 2013-2025, Zak Kemble
 // GNU GPL v3 (see License.txt)
 
 using System;
@@ -15,7 +15,7 @@ namespace avrdudess
     // Simone Chifari (Fuse selector)
     public partial class FormFuseSelector : Form
     {
-        private readonly CheckBox[] cbLBits;
+        private readonly Button[] btnLockBits;
         private readonly Button[] btnLFuse;
         private readonly Button[] btnHFuse;
         private readonly Button[] btnEFuse;
@@ -31,7 +31,7 @@ namespace avrdudess
 
             Icon = AssemblyData.icon;
 
-            cbLBits = new CheckBox[] { cbLB0, cbLB1, cbLB2, cbLB3, cbLB4, cbLB5, cbLB6, cbLB7 };
+            btnLockBits = new Button[] { btnLockBit0, btnLockBit1, btnLockBit2, btnLockBit3, btnLockBit4, btnLockBit5, btnLockBit6, btnLockBit7 };
             btnLFuse = new Button[] { btnLF0, btnLF1, btnLF2, btnLF3, btnLF4, btnLF5, btnLFuse6, btnLFuse7 };
             btnHFuse = new Button[] { btnHF0, btnHF1, btnHF2, btnHF3, btnHF4, btnHF5, btnHF6, btnHF7 };
             btnEFuse = new Button[] { btnEF0, btnEF1, btnEF2, btnEF3, btnEF4, btnEF5, btnEF6, btnEF7 };
@@ -45,7 +45,7 @@ namespace avrdudess
                 btnLFuse[i].Click += bits_Click;
                 btnHFuse[i].Click += bits_Click;
                 btnEFuse[i].Click += bits_Click;
-                cbLBits[i].Click += bits_Click;
+                btnLockBits[i].Click += bits_Click;
             }
         }
 
@@ -74,12 +74,12 @@ namespace avrdudess
                 btnLFuse[i].Enabled = (bitNames.lfd[i] != "");
                 btnHFuse[i].Enabled = (bitNames.hfd[i] != "");
                 btnEFuse[i].Enabled = (bitNames.efd[i] != "");
-                cbLBits[i].Enabled = (bitNames.lbd[i] != "");
+                btnLockBits[i].Enabled = (bitNames.lbd[i] != "");
 
                 SetBtnState(btnLFuse[i], lf.Substring(7 - i, 1) == "1");
                 SetBtnState(btnHFuse[i], hf.Substring(7 - i, 1) == "1");
                 SetBtnState(btnEFuse[i], ef.Substring(7 - i, 1) == "1");
-                cbLBits[i].Checked = (lb.Substring(7 - i, 1) == "0");
+                SetBtnState(btnLockBits[i], lb.Substring(7 - i, 1) == "1");
 
                 lbLB[i].Text = bitNames.lbd[i];
                 lbLF[i].Text = bitNames.lfd[i];
@@ -121,7 +121,7 @@ namespace avrdudess
                 lf += btnLFuse[i].Text;
                 hf += btnHFuse[i].Text;
                 ef += btnEFuse[i].Text;
-                lb += (cbLBits[i].Checked == true) ? 0 : 1;
+                lb += btnLockBits[i].Text;
             }
 
             lf = binaryToHex(lf);

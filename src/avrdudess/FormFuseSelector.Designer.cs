@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnLockBit7 = new System.Windows.Forms.Button();
+            this.btnLockBit6 = new System.Windows.Forms.Button();
+            this.btnLockBit5 = new System.Windows.Forms.Button();
+            this.btnLockBit4 = new System.Windows.Forms.Button();
+            this.btnLockBit3 = new System.Windows.Forms.Button();
+            this.btnLockBit2 = new System.Windows.Forms.Button();
+            this.btnLockBit1 = new System.Windows.Forms.Button();
+            this.btnLockBit0 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.lbLBits = new System.Windows.Forms.Label();
             this.lbLB7 = new System.Windows.Forms.Label();
@@ -39,14 +47,6 @@
             this.lbLB2 = new System.Windows.Forms.Label();
             this.lbLB1 = new System.Windows.Forms.Label();
             this.lbLB0 = new System.Windows.Forms.Label();
-            this.cbLB7 = new System.Windows.Forms.CheckBox();
-            this.cbLB6 = new System.Windows.Forms.CheckBox();
-            this.cbLB5 = new System.Windows.Forms.CheckBox();
-            this.cbLB4 = new System.Windows.Forms.CheckBox();
-            this.cbLB3 = new System.Windows.Forms.CheckBox();
-            this.cbLB2 = new System.Windows.Forms.CheckBox();
-            this.cbLB1 = new System.Windows.Forms.CheckBox();
-            this.cbLB0 = new System.Windows.Forms.CheckBox();
             this.grpFuses = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -111,6 +111,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnLockBit7);
+            this.groupBox1.Controls.Add(this.btnLockBit6);
+            this.groupBox1.Controls.Add(this.btnLockBit5);
+            this.groupBox1.Controls.Add(this.btnLockBit4);
+            this.groupBox1.Controls.Add(this.btnLockBit3);
+            this.groupBox1.Controls.Add(this.btnLockBit2);
+            this.groupBox1.Controls.Add(this.btnLockBit1);
+            this.groupBox1.Controls.Add(this.btnLockBit0);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.lbLBits);
             this.groupBox1.Controls.Add(this.lbLB7);
@@ -121,20 +129,84 @@
             this.groupBox1.Controls.Add(this.lbLB2);
             this.groupBox1.Controls.Add(this.lbLB1);
             this.groupBox1.Controls.Add(this.lbLB0);
-            this.groupBox1.Controls.Add(this.cbLB7);
-            this.groupBox1.Controls.Add(this.cbLB6);
-            this.groupBox1.Controls.Add(this.cbLB5);
-            this.groupBox1.Controls.Add(this.cbLB4);
-            this.groupBox1.Controls.Add(this.cbLB3);
-            this.groupBox1.Controls.Add(this.cbLB2);
-            this.groupBox1.Controls.Add(this.cbLB1);
-            this.groupBox1.Controls.Add(this.cbLB0);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(732, 69);
+            this.groupBox1.Size = new System.Drawing.Size(732, 73);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "_GRP_LOCKBITS";
+            // 
+            // btnLockBit7
+            // 
+            this.btnLockBit7.Location = new System.Drawing.Point(32, 41);
+            this.btnLockBit7.Name = "btnLockBit7";
+            this.btnLockBit7.Size = new System.Drawing.Size(25, 21);
+            this.btnLockBit7.TabIndex = 92;
+            this.btnLockBit7.Text = "btnLockBit";
+            this.btnLockBit7.UseVisualStyleBackColor = true;
+            // 
+            // btnLockBit6
+            // 
+            this.btnLockBit6.Location = new System.Drawing.Point(111, 41);
+            this.btnLockBit6.Name = "btnLockBit6";
+            this.btnLockBit6.Size = new System.Drawing.Size(25, 21);
+            this.btnLockBit6.TabIndex = 91;
+            this.btnLockBit6.Text = "btnLockBit";
+            this.btnLockBit6.UseVisualStyleBackColor = true;
+            // 
+            // btnLockBit5
+            // 
+            this.btnLockBit5.Location = new System.Drawing.Point(190, 41);
+            this.btnLockBit5.Name = "btnLockBit5";
+            this.btnLockBit5.Size = new System.Drawing.Size(25, 21);
+            this.btnLockBit5.TabIndex = 90;
+            this.btnLockBit5.Text = "btnLockBit";
+            this.btnLockBit5.UseVisualStyleBackColor = true;
+            // 
+            // btnLockBit4
+            // 
+            this.btnLockBit4.Location = new System.Drawing.Point(269, 41);
+            this.btnLockBit4.Name = "btnLockBit4";
+            this.btnLockBit4.Size = new System.Drawing.Size(25, 21);
+            this.btnLockBit4.TabIndex = 89;
+            this.btnLockBit4.Text = "btnLockBit";
+            this.btnLockBit4.UseVisualStyleBackColor = true;
+            // 
+            // btnLockBit3
+            // 
+            this.btnLockBit3.Location = new System.Drawing.Point(348, 41);
+            this.btnLockBit3.Name = "btnLockBit3";
+            this.btnLockBit3.Size = new System.Drawing.Size(25, 21);
+            this.btnLockBit3.TabIndex = 88;
+            this.btnLockBit3.Text = "btnLockBit";
+            this.btnLockBit3.UseVisualStyleBackColor = true;
+            // 
+            // btnLockBit2
+            // 
+            this.btnLockBit2.Location = new System.Drawing.Point(427, 41);
+            this.btnLockBit2.Name = "btnLockBit2";
+            this.btnLockBit2.Size = new System.Drawing.Size(25, 21);
+            this.btnLockBit2.TabIndex = 87;
+            this.btnLockBit2.Text = "btnLockBit";
+            this.btnLockBit2.UseVisualStyleBackColor = true;
+            // 
+            // btnLockBit1
+            // 
+            this.btnLockBit1.Location = new System.Drawing.Point(506, 41);
+            this.btnLockBit1.Name = "btnLockBit1";
+            this.btnLockBit1.Size = new System.Drawing.Size(25, 21);
+            this.btnLockBit1.TabIndex = 86;
+            this.btnLockBit1.Text = "btnLockBit";
+            this.btnLockBit1.UseVisualStyleBackColor = true;
+            // 
+            // btnLockBit0
+            // 
+            this.btnLockBit0.Location = new System.Drawing.Point(585, 41);
+            this.btnLockBit0.Name = "btnLockBit0";
+            this.btnLockBit0.Size = new System.Drawing.Size(25, 21);
+            this.btnLockBit0.TabIndex = 85;
+            this.btnLockBit0.Text = "btnLockBit";
+            this.btnLockBit0.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -156,7 +228,7 @@
             // 
             // lbLB7
             // 
-            this.lbLB7.Location = new System.Drawing.Point(3, 24);
+            this.lbLB7.Location = new System.Drawing.Point(4, 23);
             this.lbLB7.Name = "lbLB7";
             this.lbLB7.Size = new System.Drawing.Size(79, 15);
             this.lbLB7.TabIndex = 15;
@@ -165,7 +237,7 @@
             // 
             // lbLB6
             // 
-            this.lbLB6.Location = new System.Drawing.Point(82, 24);
+            this.lbLB6.Location = new System.Drawing.Point(83, 23);
             this.lbLB6.Name = "lbLB6";
             this.lbLB6.Size = new System.Drawing.Size(79, 15);
             this.lbLB6.TabIndex = 14;
@@ -174,7 +246,7 @@
             // 
             // lbLB5
             // 
-            this.lbLB5.Location = new System.Drawing.Point(161, 24);
+            this.lbLB5.Location = new System.Drawing.Point(162, 23);
             this.lbLB5.Name = "lbLB5";
             this.lbLB5.Size = new System.Drawing.Size(79, 15);
             this.lbLB5.TabIndex = 13;
@@ -183,7 +255,7 @@
             // 
             // lbLB4
             // 
-            this.lbLB4.Location = new System.Drawing.Point(240, 24);
+            this.lbLB4.Location = new System.Drawing.Point(241, 23);
             this.lbLB4.Name = "lbLB4";
             this.lbLB4.Size = new System.Drawing.Size(79, 15);
             this.lbLB4.TabIndex = 12;
@@ -192,7 +264,7 @@
             // 
             // lbLB3
             // 
-            this.lbLB3.Location = new System.Drawing.Point(319, 24);
+            this.lbLB3.Location = new System.Drawing.Point(320, 23);
             this.lbLB3.Name = "lbLB3";
             this.lbLB3.Size = new System.Drawing.Size(79, 15);
             this.lbLB3.TabIndex = 11;
@@ -201,7 +273,7 @@
             // 
             // lbLB2
             // 
-            this.lbLB2.Location = new System.Drawing.Point(398, 24);
+            this.lbLB2.Location = new System.Drawing.Point(399, 23);
             this.lbLB2.Name = "lbLB2";
             this.lbLB2.Size = new System.Drawing.Size(79, 15);
             this.lbLB2.TabIndex = 10;
@@ -210,7 +282,7 @@
             // 
             // lbLB1
             // 
-            this.lbLB1.Location = new System.Drawing.Point(477, 24);
+            this.lbLB1.Location = new System.Drawing.Point(478, 23);
             this.lbLB1.Name = "lbLB1";
             this.lbLB1.Size = new System.Drawing.Size(79, 15);
             this.lbLB1.TabIndex = 9;
@@ -219,84 +291,12 @@
             // 
             // lbLB0
             // 
-            this.lbLB0.Location = new System.Drawing.Point(556, 24);
+            this.lbLB0.Location = new System.Drawing.Point(557, 23);
             this.lbLB0.Name = "lbLB0";
             this.lbLB0.Size = new System.Drawing.Size(79, 15);
             this.lbLB0.TabIndex = 8;
             this.lbLB0.Text = "lbLockBits";
             this.lbLB0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cbLB7
-            // 
-            this.cbLB7.AutoSize = true;
-            this.cbLB7.Location = new System.Drawing.Point(37, 47);
-            this.cbLB7.Name = "cbLB7";
-            this.cbLB7.Size = new System.Drawing.Size(15, 14);
-            this.cbLB7.TabIndex = 7;
-            this.cbLB7.UseVisualStyleBackColor = true;
-            // 
-            // cbLB6
-            // 
-            this.cbLB6.AutoSize = true;
-            this.cbLB6.Location = new System.Drawing.Point(116, 47);
-            this.cbLB6.Name = "cbLB6";
-            this.cbLB6.Size = new System.Drawing.Size(15, 14);
-            this.cbLB6.TabIndex = 6;
-            this.cbLB6.UseVisualStyleBackColor = true;
-            // 
-            // cbLB5
-            // 
-            this.cbLB5.AutoSize = true;
-            this.cbLB5.Location = new System.Drawing.Point(195, 47);
-            this.cbLB5.Name = "cbLB5";
-            this.cbLB5.Size = new System.Drawing.Size(15, 14);
-            this.cbLB5.TabIndex = 5;
-            this.cbLB5.UseVisualStyleBackColor = true;
-            // 
-            // cbLB4
-            // 
-            this.cbLB4.AutoSize = true;
-            this.cbLB4.Location = new System.Drawing.Point(274, 47);
-            this.cbLB4.Name = "cbLB4";
-            this.cbLB4.Size = new System.Drawing.Size(15, 14);
-            this.cbLB4.TabIndex = 4;
-            this.cbLB4.UseVisualStyleBackColor = true;
-            // 
-            // cbLB3
-            // 
-            this.cbLB3.AutoSize = true;
-            this.cbLB3.Location = new System.Drawing.Point(353, 47);
-            this.cbLB3.Name = "cbLB3";
-            this.cbLB3.Size = new System.Drawing.Size(15, 14);
-            this.cbLB3.TabIndex = 3;
-            this.cbLB3.UseVisualStyleBackColor = true;
-            // 
-            // cbLB2
-            // 
-            this.cbLB2.AutoSize = true;
-            this.cbLB2.Location = new System.Drawing.Point(432, 47);
-            this.cbLB2.Name = "cbLB2";
-            this.cbLB2.Size = new System.Drawing.Size(15, 14);
-            this.cbLB2.TabIndex = 2;
-            this.cbLB2.UseVisualStyleBackColor = true;
-            // 
-            // cbLB1
-            // 
-            this.cbLB1.AutoSize = true;
-            this.cbLB1.Location = new System.Drawing.Point(511, 47);
-            this.cbLB1.Name = "cbLB1";
-            this.cbLB1.Size = new System.Drawing.Size(15, 14);
-            this.cbLB1.TabIndex = 1;
-            this.cbLB1.UseVisualStyleBackColor = true;
-            // 
-            // cbLB0
-            // 
-            this.cbLB0.AutoSize = true;
-            this.cbLB0.Location = new System.Drawing.Point(590, 47);
-            this.cbLB0.Name = "cbLB0";
-            this.cbLB0.Size = new System.Drawing.Size(15, 14);
-            this.cbLB0.TabIndex = 0;
-            this.cbLB0.UseVisualStyleBackColor = true;
             // 
             // grpFuses
             // 
@@ -354,7 +354,7 @@
             this.grpFuses.Controls.Add(this.lbHFuse2);
             this.grpFuses.Controls.Add(this.lbHFuse1);
             this.grpFuses.Controls.Add(this.lbHFuse0);
-            this.grpFuses.Location = new System.Drawing.Point(12, 87);
+            this.grpFuses.Location = new System.Drawing.Point(12, 91);
             this.grpFuses.Name = "grpFuses";
             this.grpFuses.Size = new System.Drawing.Size(732, 180);
             this.grpFuses.TabIndex = 1;
@@ -850,7 +850,7 @@
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(570, 273);
+            this.btnOK.Location = new System.Drawing.Point(570, 278);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(84, 25);
             this.btnOK.TabIndex = 2;
@@ -860,7 +860,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(660, 273);
+            this.btnCancel.Location = new System.Drawing.Point(660, 278);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(84, 25);
             this.btnCancel.TabIndex = 3;
@@ -872,7 +872,7 @@
             this.lblCarefulNow.AutoSize = true;
             this.lblCarefulNow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCarefulNow.ForeColor = System.Drawing.Color.Red;
-            this.lblCarefulNow.Location = new System.Drawing.Point(12, 274);
+            this.lblCarefulNow.Location = new System.Drawing.Point(14, 278);
             this.lblCarefulNow.Name = "lblCarefulNow";
             this.lblCarefulNow.Size = new System.Drawing.Size(130, 20);
             this.lblCarefulNow.TabIndex = 4;
@@ -884,7 +884,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(758, 306);
+            this.ClientSize = new System.Drawing.Size(758, 311);
             this.Controls.Add(this.lblCarefulNow);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -898,7 +898,6 @@
             this.Text = "Fuse & lock bits :";
             this.Load += new System.EventHandler(this.FormFusesAndLocks_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.grpFuses.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -908,14 +907,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox cbLB0;
-        private System.Windows.Forms.CheckBox cbLB7;
-        private System.Windows.Forms.CheckBox cbLB6;
-        private System.Windows.Forms.CheckBox cbLB5;
-        private System.Windows.Forms.CheckBox cbLB4;
-        private System.Windows.Forms.CheckBox cbLB3;
-        private System.Windows.Forms.CheckBox cbLB2;
-        private System.Windows.Forms.CheckBox cbLB1;
         private System.Windows.Forms.Label lbLB0;
         private System.Windows.Forms.Label lbLB7;
         private System.Windows.Forms.Label lbLB6;
@@ -984,5 +975,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblCarefulNow;
+        private System.Windows.Forms.Button btnLockBit7;
+        private System.Windows.Forms.Button btnLockBit6;
+        private System.Windows.Forms.Button btnLockBit5;
+        private System.Windows.Forms.Button btnLockBit4;
+        private System.Windows.Forms.Button btnLockBit3;
+        private System.Windows.Forms.Button btnLockBit2;
+        private System.Windows.Forms.Button btnLockBit1;
+        private System.Windows.Forms.Button btnLockBit0;
     }
 }

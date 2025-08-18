@@ -31,33 +31,6 @@
     <programmer>avr109</programmer>
     <mcu>m32u4</mcu>
     <port>COM1</port>
-    <baud>57600</baud>
-    <bitclock />
-    <flashFile />
-    <flashFormat>a</flashFormat>
-    <flashOp>w</flashOp>
-    <EEPROMFile />
-    <EEPROMFormat>a</EEPROMFormat>
-    <EEPROMOp>w</EEPROMOp>
-    <force>false</force>
-    <disableVerify>false</disableVerify>
-    <disableFlashErase>false</disableFlashErase>
-    <eraseFlashAndEEPROM>false</eraseFlashAndEEPROM>
-    <doNotWrite>false</doNotWrite>
-    <lfuse>0xFF</lfuse>
-    <hfuse>0xD8</hfuse>
-    <efuse>0xCB</efuse>
-    <setFuses>false</setFuses>
-    <lockBits>0xFF</lockBits>
-    <setLock>false</setLock>
-    <additional />
-    <verbosity>0</verbosity>
-    <name>Arduino Leonardo (ATmega32U4)</name>
-  </Preset>
-  <Preset>
-    <programmer>avr109</programmer>
-    <mcu>m32u4</mcu>
-    <port>COM1</port>
     <baud>115200</baud>
     <bitclock />
     <flashFile />
@@ -79,7 +52,7 @@
     <setLock>false</setLock>
     <additional />
     <verbosity>0</verbosity>
-    <name>Arduino Pro Micro (ATmega32U4)</name>
+    <name>Arduino Leonardo / Pro Micro (ATmega32U4)</name>
   </Preset>
   <Preset>
     <programmer>arduino</programmer>

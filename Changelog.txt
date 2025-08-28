@@ -1,3 +1,9 @@
+2025-08-28 (v2.20):
+	- Fix some MCUs being detected as ATA661xx parts (again)
+	- Fix inverted lock bits in bit selector
+	- Add missing SPIEN bit in bit selector for ATmega48
+	- Add presets for Arduino Leonardo and Arduino Pro Micro
+
 2025-07-06 (v2.19):
 	- Update AVRDUDE to v8.1
 	- Fix detecting ATmega8
@@ -15,7 +21,7 @@
 
 2024-01-31 (v2.16):
 	- Fix fuse read failure with USBasp running old firmware
-	- Fix some MCUs being detected as AT661xx parts
+	- Fix some MCUs being detected as ATA661xx parts
 	- USBasp bit clock selector now shows for USBasp clones
 	- Updated Turkish and Polish translations
 	- Performance improvements

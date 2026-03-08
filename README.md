@@ -33,6 +33,20 @@ Run AVRDUDESS with Mono, you might have to run as root (sudo) so that AVRDUDE ca
 
     mono avrdudess.exe
 
+## Installing on Fedora
+
+Install Mono 
+
+    sudo dnf install mono-core mono-winforms
+
+Install AVRDUDE and AVR Binutils (for avr-size):
+
+    sudo dnf install avrdude avr-binutils
+
+Run AVRDUDESS with Mono, you might have to run as root (sudo) so that AVRDUDE can access ports if you haven't changed any permissions or rules.d stuff:
+
+    mono avrdudess.exe
+
 ## Updating AVRDUDE
 
 The latest AVRDUDE can be downloaded from [https://github.com/avrdudes/avrdude/releases](https://github.com/avrdudes/avrdude/releases). In AVRDUDESS click on the options button and fill in the `avrdude` and `avrdude.conf` boxes with the locations of the new files by clicking on the `...` browse buttons.

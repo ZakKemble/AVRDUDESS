@@ -17,7 +17,7 @@ Only supported up to macOS Mojave since later macOS versions have removed suppor
 
     mono --arch=32 avrdudess.exe
 
-## Installing on Ubuntu and Arch Linux
+## Installing on Ubuntu, Arch Linux and Fedora
 
 ### Ubuntu
 
@@ -30,6 +30,10 @@ On older versions of Ubuntu you might need to use `libmono-winforms2.0-cil` inst
 ### Arch Linux 
 
     sudo pacman -S mono avrdude avr-binutils
+
+### Fedora
+
+    sudo dnf install mono-core mono-winforms avrdude avr-binutils
 
 ## Running AVRDUDESS
 

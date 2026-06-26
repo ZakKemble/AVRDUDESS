@@ -17,29 +17,23 @@ Only supported up to macOS Mojave since later macOS versions have removed suppor
 
     mono --arch=32 avrdudess.exe
 
-## Installing on Ubuntu 18.04 and later
+## Installing on Ubuntu and Arch Linux
 
-Install Mono (this is the minimum required, you can use `mono-complete` for a full install):
+### Ubuntu
 
-    sudo apt install libmono-system-windows-forms4.0-cil
+    sudo apt install libmono-system-windows-forms4.0-cil avrdude binutils-avr
+
+`libmono-system-windows-forms4.0-cil` is the minimum required, you can use `mono-complete` for a full install.
 
 On older versions of Ubuntu you might need to use `libmono-winforms2.0-cil` instead.
 
-Install AVRDUDE and AVR Binutils (for avr-size):
-
-    sudo apt install avrdude binutils-avr
-
-Run AVRDUDESS with Mono, you might have to run as root (sudo) so that AVRDUDE can access ports if you haven't changed any permissions or rules.d stuff:
-
-    mono avrdudess.exe
-
-## Installing on Arch Linux
-
-Install Mono, AVRDUDE, and AVR Binutils (for avr-size):
+### Arch Linux 
 
     sudo pacman -S mono avrdude avr-binutils
 
-Run AVRDUDESS with Mono, you might have to run as root (sudo) so that AVRDUDE can access ports if you haven't changed any permissions or rules.d stuff:
+## Running AVRDUDESS
+
+Run AVRDUDESS with Mono, you might have to run as root (`sudo`) so that AVRDUDE can access ports if you haven't changed any permissions or rules.d stuff:
 
     mono avrdudess.exe
 

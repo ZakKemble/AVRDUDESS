@@ -58,8 +58,12 @@ namespace avrdudess
             if (mainForm.additionalSettings.Length > 0)
                 sb.Append(mainForm.additionalSettings + " ");
 
-            // AVRDUDE needs -p defined to work, so just set m8
-            cmdLineOption("p", "m8");
+            // AVRDUDE needs -p defined to work. Use the selected MCU if present,
+            // otherwise fall back to m8.
+            if (mainForm.mcu?.id.Length > 0)
+                cmdLineOption("p", mainForm.mcu.id);
+            else
+                cmdLineOption("p", "m8");
 
             return sb.ToString();
         }

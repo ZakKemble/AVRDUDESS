@@ -232,6 +232,42 @@ namespace avrdudess
             set { txtEFuse.Text = value; }
         }
 
+        public string fuse3
+        {
+            get { return txtFuse3.Text; }
+            set { txtFuse3.Text = value; }
+        }
+
+        public string fuse4
+        {
+            get { return txtFuse4.Text; }
+            set { txtFuse4.Text = value; }
+        }
+
+        public string fuse5
+        {
+            get { return txtFuse5.Text; }
+            set { txtFuse5.Text = value; }
+        }
+
+        public string fuse6
+        {
+            get { return txtFuse6.Text; }
+            set { txtFuse6.Text = value; }
+        }
+
+        public string fuse7
+        {
+            get { return txtFuse7.Text; }
+            set { txtFuse7.Text = value; }
+        }
+
+        public string fuse8
+        {
+            get { return txtFuse8.Text; }
+            set { txtFuse8.Text = value; }
+        }
+
         public bool setLock
         {
             get { return cbSetLock.Checked; }
@@ -410,6 +446,12 @@ namespace avrdudess
                 { txtLFuse, "_TOOLTIP_LOWFUSE" },
                 { txtHFuse, "_TOOLTIP_HIGHFUSE" },
                 { txtEFuse, "_TOOLTIP_EXFUSE" },
+                { txtFuse3, "_TOOLTIP_FUSE3" },
+                { txtFuse4, "_TOOLTIP_FUSE4" },
+                { txtFuse5, "_TOOLTIP_FUSE5" },
+                { txtFuse6, "_TOOLTIP_FUSE6" },
+                { txtFuse7, "_TOOLTIP_FUSE7" },
+                { txtFuse8, "_TOOLTIP_FUSE8" },
                 { txtLock, "_TOOLTIP_LOCKBITS" },
                 { btnFlashGo, "_TOOLTIP_ONLYFLASH" },
                 { btnEEPROMGo, "_TOOLTIP_ONLYEEPROM" },
@@ -454,6 +496,12 @@ namespace avrdudess
             txtHFuse.TextChanged += event_controlChanged;
             txtLFuse.TextChanged += event_controlChanged;
             txtEFuse.TextChanged += event_controlChanged;
+            txtFuse3.TextChanged += event_controlChanged;
+            txtFuse4.TextChanged += event_controlChanged;
+            txtFuse5.TextChanged += event_controlChanged;
+            txtFuse6.TextChanged += event_controlChanged;
+            txtFuse7.TextChanged += event_controlChanged;
+            txtFuse8.TextChanged += event_controlChanged;
             txtBitClock.TextChanged += event_controlChanged;
             txtBaudRate.TextChanged += event_controlChanged;
             cmbPort.TextChanged += event_controlChanged;
@@ -681,6 +729,42 @@ namespace avrdudess
                         txtLFuse.Text = fuse;
                         Util.consoleSuccess("_READFUSE");
                         break;
+                    case Avrdude.FuseLockType.Fuse0:
+                        txtLFuse.Text = fuse;
+                        Util.consoleSuccess("_READFUSE0");
+                        break;
+                    case Avrdude.FuseLockType.Fuse1:
+                        txtHFuse.Text = fuse;
+                        Util.consoleSuccess("_READFUSE1");
+                        break;
+                    case Avrdude.FuseLockType.Fuse2:
+                        txtEFuse.Text = fuse;
+                        Util.consoleSuccess("_READFUSE2");
+                        break;
+                    case Avrdude.FuseLockType.Fuse3:
+                        txtFuse3.Text = fuse;
+                        Util.consoleSuccess("_READFUSE3");
+                        break;
+                    case Avrdude.FuseLockType.Fuse4:
+                        txtFuse4.Text = fuse;
+                        Util.consoleSuccess("_READFUSE4");
+                        break;
+                    case Avrdude.FuseLockType.Fuse5:
+                        txtFuse5.Text = fuse;
+                        Util.consoleSuccess("_READFUSE5");
+                        break;
+                    case Avrdude.FuseLockType.Fuse6:
+                        txtFuse6.Text = fuse;
+                        Util.consoleSuccess("_READFUSE6");
+                        break;
+                    case Avrdude.FuseLockType.Fuse7:
+                        txtFuse7.Text = fuse;
+                        Util.consoleSuccess("_READFUSE7");
+                        break;
+                    case Avrdude.FuseLockType.Fuse8:
+                        txtFuse8.Text = fuse;
+                        Util.consoleSuccess("_READFUSE8");
+                        break;
                     case Avrdude.FuseLockType.Lock:
                         txtLock.Text = fuse;
                         Util.consoleSuccess("_READLOCKBITS");
@@ -824,9 +908,15 @@ namespace avrdudess
 
             if (mcu != null)
             {
-                txtLFuse.Enabled = mcu.memoryTypes.Contains("lfuse") || mcu.memoryTypes.Contains("fuse");
-                txtHFuse.Enabled = mcu.memoryTypes.Contains("hfuse");
-                txtEFuse.Enabled = mcu.memoryTypes.Contains("efuse");
+                txtLFuse.Enabled = mcu.memoryTypes.Contains("lfuse") || mcu.memoryTypes.Contains("fuse") || mcu.memoryTypes.Contains("fuse0");
+                txtHFuse.Enabled = mcu.memoryTypes.Contains("hfuse") || mcu.memoryTypes.Contains("fuse1");
+                txtEFuse.Enabled = mcu.memoryTypes.Contains("efuse") || mcu.memoryTypes.Contains("fuse2");
+                txtFuse3.Enabled = mcu.memoryTypes.Contains("fuse3");
+                txtFuse4.Enabled = mcu.memoryTypes.Contains("fuse4");
+                txtFuse5.Enabled = mcu.memoryTypes.Contains("fuse5");
+                txtFuse6.Enabled = mcu.memoryTypes.Contains("fuse6");
+                txtFuse7.Enabled = mcu.memoryTypes.Contains("fuse7");
+                txtFuse8.Enabled = mcu.memoryTypes.Contains("fuse8");
             }
         }
 
@@ -1342,6 +1432,24 @@ namespace avrdudess
                 types.Add(Avrdude.FuseLockType.Efuse);
             if (mcu.memoryTypes.Contains("fuse"))
                 types.Add(Avrdude.FuseLockType.Fuse);
+            if (mcu.memoryTypes.Contains("fuse0"))
+                types.Add(Avrdude.FuseLockType.Fuse0);
+            if (mcu.memoryTypes.Contains("fuse1"))
+                types.Add(Avrdude.FuseLockType.Fuse1);
+            if (mcu.memoryTypes.Contains("fuse2"))
+                types.Add(Avrdude.FuseLockType.Fuse2);
+            if (mcu.memoryTypes.Contains("fuse3"))
+                types.Add(Avrdude.FuseLockType.Fuse3);
+            if (mcu.memoryTypes.Contains("fuse4"))
+                types.Add(Avrdude.FuseLockType.Fuse4);
+            if (mcu.memoryTypes.Contains("fuse5"))
+                types.Add(Avrdude.FuseLockType.Fuse5);
+            if (mcu.memoryTypes.Contains("fuse6"))
+                types.Add(Avrdude.FuseLockType.Fuse6);
+            if (mcu.memoryTypes.Contains("fuse7"))
+                types.Add(Avrdude.FuseLockType.Fuse7);
+            if (mcu.memoryTypes.Contains("fuse8"))
+                types.Add(Avrdude.FuseLockType.Fuse8);
 
             if (types.Count == 0)
                 Util.consoleError("_NOSUPPORTEDFUSES", mcu.desc);

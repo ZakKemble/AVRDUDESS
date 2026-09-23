@@ -37,6 +37,12 @@
             this.txtHFuse = new System.Windows.Forms.TextBox();
             this.txtLFuse = new System.Windows.Forms.TextBox();
             this.txtEFuse = new System.Windows.Forms.TextBox();
+            this.txtFuse3 = new System.Windows.Forms.TextBox();
+            this.txtFuse4 = new System.Windows.Forms.TextBox();
+            this.txtFuse5 = new System.Windows.Forms.TextBox();
+            this.txtFuse6 = new System.Windows.Forms.TextBox();
+            this.txtFuse7 = new System.Windows.Forms.TextBox();
+            this.txtFuse8 = new System.Windows.Forms.TextBox();
             this.cmbPresets = new System.Windows.Forms.ComboBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -73,6 +79,12 @@
             this.btnFlashBrowse = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnWriteLock = new System.Windows.Forms.Button();
             this.btnWriteFuses = new System.Windows.Forms.Button();
@@ -179,40 +191,91 @@
             // btnProgram
             // 
             this.btnProgram.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProgram.Location = new System.Drawing.Point(6, 356);
+            this.btnProgram.Location = new System.Drawing.Point(18, 420);
             this.btnProgram.Name = "btnProgram";
             this.btnProgram.Size = new System.Drawing.Size(176, 23);
-            this.btnProgram.TabIndex = 8;
+            this.btnProgram.TabIndex = 40;
             this.btnProgram.Text = "_DOPROGRAM";
             this.btnProgram.UseVisualStyleBackColor = true;
             this.btnProgram.Click += new System.EventHandler(this.btnProgram_Click);
             // 
             // txtHFuse
             // 
-            this.txtHFuse.Location = new System.Drawing.Point(32, 42);
+            this.txtHFuse.Location = new System.Drawing.Point(77, 16);
             this.txtHFuse.Name = "txtHFuse";
-            this.txtHFuse.Size = new System.Drawing.Size(43, 20);
+            this.txtHFuse.Size = new System.Drawing.Size(40, 20);
             this.txtHFuse.TabIndex = 1;
             this.txtHFuse.Tag = "";
             this.txtHFuse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
             // 
             // txtLFuse
             // 
-            this.txtLFuse.Location = new System.Drawing.Point(32, 16);
+            this.txtLFuse.Location = new System.Drawing.Point(20, 16);
             this.txtLFuse.Name = "txtLFuse";
-            this.txtLFuse.Size = new System.Drawing.Size(43, 20);
+            this.txtLFuse.Size = new System.Drawing.Size(40, 20);
             this.txtLFuse.TabIndex = 0;
             this.txtLFuse.Tag = "";
             this.txtLFuse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
             // 
             // txtEFuse
             // 
-            this.txtEFuse.Location = new System.Drawing.Point(32, 68);
+            this.txtEFuse.Location = new System.Drawing.Point(135, 16);
             this.txtEFuse.Name = "txtEFuse";
-            this.txtEFuse.Size = new System.Drawing.Size(43, 20);
+            this.txtEFuse.Size = new System.Drawing.Size(40, 20);
             this.txtEFuse.TabIndex = 2;
             this.txtEFuse.Tag = "";
             this.txtEFuse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
+            // 
+            // txtFuse3
+            // 
+            this.txtFuse3.Location = new System.Drawing.Point(20, 42);
+            this.txtFuse3.Name = "txtFuse3";
+            this.txtFuse3.Size = new System.Drawing.Size(40, 20);
+            this.txtFuse3.TabIndex = 3;
+            this.txtFuse3.Tag = "";
+            this.txtFuse3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
+            // 
+            // txtFuse4
+            // 
+            this.txtFuse4.Location = new System.Drawing.Point(77, 42);
+            this.txtFuse4.Name = "txtFuse4";
+            this.txtFuse4.Size = new System.Drawing.Size(40, 20);
+            this.txtFuse4.TabIndex = 4;
+            this.txtFuse4.Tag = "";
+            this.txtFuse4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
+            // 
+            // txtFuse5
+            // 
+            this.txtFuse5.Location = new System.Drawing.Point(136, 42);
+            this.txtFuse5.Name = "txtFuse5";
+            this.txtFuse5.Size = new System.Drawing.Size(40, 20);
+            this.txtFuse5.TabIndex = 5;
+            this.txtFuse5.Tag = "";
+            this.txtFuse5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
+            // 
+            // txtFuse6
+            // 
+            this.txtFuse6.Location = new System.Drawing.Point(20, 68);
+            this.txtFuse6.Name = "txtFuse6";
+            this.txtFuse6.Size = new System.Drawing.Size(40, 20);
+            this.txtFuse6.TabIndex = 6;
+            this.txtFuse6.Tag = "";
+            // 
+            // txtFuse7
+            // 
+            this.txtFuse7.Location = new System.Drawing.Point(77, 68);
+            this.txtFuse7.Name = "txtFuse7";
+            this.txtFuse7.Size = new System.Drawing.Size(40, 20);
+            this.txtFuse7.TabIndex = 7;
+            this.txtFuse7.Tag = "";
+            // 
+            // txtFuse8
+            // 
+            this.txtFuse8.Location = new System.Drawing.Point(136, 68);
+            this.txtFuse8.Name = "txtFuse8";
+            this.txtFuse8.Size = new System.Drawing.Size(40, 20);
+            this.txtFuse8.TabIndex = 8;
+            this.txtFuse8.Tag = "";
             // 
             // cmbPresets
             // 
@@ -229,10 +292,10 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(80, 65);
+            this.linkLabel1.Location = new System.Drawing.Point(90, 124);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(95, 13);
-            this.linkLabel1.TabIndex = 6;
+            this.linkLabel1.TabIndex = 12;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "_FUSESETTINGS";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
@@ -349,11 +412,11 @@
             this.txtCmdLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCmdLine.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCmdLine.Location = new System.Drawing.Point(6, 385);
+            this.txtCmdLine.Location = new System.Drawing.Point(18, 449);
             this.txtCmdLine.Name = "txtCmdLine";
             this.txtCmdLine.ReadOnly = true;
-            this.txtCmdLine.Size = new System.Drawing.Size(431, 20);
-            this.txtCmdLine.TabIndex = 12;
+            this.txtCmdLine.Size = new System.Drawing.Size(606, 20);
+            this.txtCmdLine.TabIndex = 44;
             this.txtCmdLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_KeyDown);
             // 
             // gbEEPROMFile
@@ -606,6 +669,12 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.label18);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Controls.Add(this.btnWriteLock);
             this.groupBox4.Controls.Add(this.btnWriteFuses);
@@ -619,20 +688,80 @@
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.btnReadFuses);
             this.groupBox4.Controls.Add(this.linkLabel1);
-            this.groupBox4.Controls.Add(this.txtHFuse);
             this.groupBox4.Controls.Add(this.txtLFuse);
+            this.groupBox4.Controls.Add(this.txtHFuse);
             this.groupBox4.Controls.Add(this.txtEFuse);
+            this.groupBox4.Controls.Add(this.txtFuse3);
+            this.groupBox4.Controls.Add(this.txtFuse4);
+            this.groupBox4.Controls.Add(this.txtFuse5);
+            this.groupBox4.Controls.Add(this.txtFuse6);
+            this.groupBox4.Controls.Add(this.txtFuse7);
+            this.groupBox4.Controls.Add(this.txtFuse8);
             this.groupBox4.Location = new System.Drawing.Point(0, 178);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(182, 172);
+            this.groupBox4.Size = new System.Drawing.Size(182, 227);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "_GRP_FUSELOCK";
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(119, 71);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(13, 13);
+            this.label13.TabIndex = 66;
+            this.label13.Text = "8";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(5, 71);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(13, 13);
+            this.label17.TabIndex = 65;
+            this.label17.Text = "6";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(62, 71);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(13, 13);
+            this.label18.TabIndex = 64;
+            this.label18.Text = "7";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(119, 45);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(13, 13);
+            this.label4.TabIndex = 60;
+            this.label4.Text = "5";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(5, 45);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(13, 13);
+            this.label5.TabIndex = 59;
+            this.label5.Text = "3";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(62, 45);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(13, 13);
+            this.label12.TabIndex = 58;
+            this.label12.Text = "4";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 97);
+            this.label1.Location = new System.Drawing.Point(6, 149);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(20, 13);
             this.label1.TabIndex = 57;
@@ -640,20 +769,20 @@
             // 
             // btnWriteLock
             // 
-            this.btnWriteLock.Location = new System.Drawing.Point(132, 92);
+            this.btnWriteLock.Location = new System.Drawing.Point(132, 144);
             this.btnWriteLock.Name = "btnWriteLock";
             this.btnWriteLock.Size = new System.Drawing.Size(43, 23);
-            this.btnWriteLock.TabIndex = 9;
+            this.btnWriteLock.TabIndex = 15;
             this.btnWriteLock.Text = "_WRITE";
             this.btnWriteLock.UseVisualStyleBackColor = true;
             this.btnWriteLock.Click += new System.EventHandler(this.btnWriteLock_Click);
             // 
             // btnWriteFuses
             // 
-            this.btnWriteFuses.Location = new System.Drawing.Point(132, 14);
+            this.btnWriteFuses.Location = new System.Drawing.Point(93, 94);
             this.btnWriteFuses.Name = "btnWriteFuses";
-            this.btnWriteFuses.Size = new System.Drawing.Size(43, 23);
-            this.btnWriteFuses.TabIndex = 4;
+            this.btnWriteFuses.Size = new System.Drawing.Size(81, 23);
+            this.btnWriteFuses.TabIndex = 10;
             this.btnWriteFuses.Text = "_WRITE";
             this.btnWriteFuses.UseVisualStyleBackColor = true;
             this.btnWriteFuses.Click += new System.EventHandler(this.btnWriteFuses_Click);
@@ -662,10 +791,10 @@
             // 
             this.btnFuseSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFuseSelector.Location = new System.Drawing.Point(6, 143);
+            this.btnFuseSelector.Location = new System.Drawing.Point(6, 195);
             this.btnFuseSelector.Name = "btnFuseSelector";
             this.btnFuseSelector.Size = new System.Drawing.Size(170, 23);
-            this.btnFuseSelector.TabIndex = 11;
+            this.btnFuseSelector.TabIndex = 17;
             this.btnFuseSelector.Text = "_BITSELECTOR";
             this.btnFuseSelector.UseVisualStyleBackColor = true;
             this.btnFuseSelector.Click += new System.EventHandler(this.btnFuseSelector_Click);
@@ -673,29 +802,29 @@
             // cbSetLock
             // 
             this.cbSetLock.AutoSize = true;
-            this.cbSetLock.Location = new System.Drawing.Point(83, 121);
+            this.cbSetLock.Location = new System.Drawing.Point(6, 173);
             this.cbSetLock.Name = "cbSetLock";
             this.cbSetLock.Size = new System.Drawing.Size(81, 17);
-            this.cbSetLock.TabIndex = 10;
+            this.cbSetLock.TabIndex = 16;
             this.cbSetLock.Text = "_SETLOCK";
             this.cbSetLock.UseVisualStyleBackColor = true;
             // 
             // cbSetFuses
             // 
             this.cbSetFuses.AutoSize = true;
-            this.cbSetFuses.Location = new System.Drawing.Point(81, 43);
+            this.cbSetFuses.Location = new System.Drawing.Point(8, 123);
             this.cbSetFuses.Name = "cbSetFuses";
             this.cbSetFuses.Size = new System.Drawing.Size(88, 17);
-            this.cbSetFuses.TabIndex = 5;
+            this.cbSetFuses.TabIndex = 11;
             this.cbSetFuses.Text = "_SETFUSES";
             this.cbSetFuses.UseVisualStyleBackColor = true;
             // 
             // btnReadLock
             // 
-            this.btnReadLock.Location = new System.Drawing.Point(83, 92);
+            this.btnReadLock.Location = new System.Drawing.Point(83, 144);
             this.btnReadLock.Name = "btnReadLock";
             this.btnReadLock.Size = new System.Drawing.Size(43, 23);
-            this.btnReadLock.TabIndex = 8;
+            this.btnReadLock.TabIndex = 14;
             this.btnReadLock.Text = "_READ";
             this.btnReadLock.UseVisualStyleBackColor = true;
             this.btnReadLock.Click += new System.EventHandler(this.btnReadLock_Click);
@@ -703,7 +832,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 71);
+            this.label10.Location = new System.Drawing.Point(119, 19);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(14, 13);
             this.label10.TabIndex = 32;
@@ -711,17 +840,17 @@
             // 
             // txtLock
             // 
-            this.txtLock.Location = new System.Drawing.Point(32, 94);
+            this.txtLock.Location = new System.Drawing.Point(32, 146);
             this.txtLock.Name = "txtLock";
             this.txtLock.Size = new System.Drawing.Size(43, 20);
-            this.txtLock.TabIndex = 7;
+            this.txtLock.TabIndex = 13;
             this.txtLock.Tag = "";
             this.txtLock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHex_KeyPress);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 19);
+            this.label9.Location = new System.Drawing.Point(5, 19);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(13, 13);
             this.label9.TabIndex = 32;
@@ -730,7 +859,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 44);
+            this.label8.Location = new System.Drawing.Point(62, 19);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(15, 13);
             this.label8.TabIndex = 31;
@@ -738,10 +867,10 @@
             // 
             // btnReadFuses
             // 
-            this.btnReadFuses.Location = new System.Drawing.Point(83, 14);
+            this.btnReadFuses.Location = new System.Drawing.Point(6, 94);
             this.btnReadFuses.Name = "btnReadFuses";
-            this.btnReadFuses.Size = new System.Drawing.Size(43, 23);
-            this.btnReadFuses.TabIndex = 3;
+            this.btnReadFuses.Size = new System.Drawing.Size(81, 23);
+            this.btnReadFuses.TabIndex = 9;
             this.btnReadFuses.Text = "_READ";
             this.btnReadFuses.UseVisualStyleBackColor = true;
             this.btnReadFuses.Click += new System.EventHandler(this.btnReadFuses_Click);
@@ -815,10 +944,10 @@
             // btnAbout
             // 
             this.btnAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAbout.Location = new System.Drawing.Point(411, 356);
+            this.btnAbout.Location = new System.Drawing.Point(598, 420);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(26, 23);
-            this.btnAbout.TabIndex = 11;
+            this.btnAbout.TabIndex = 43;
             this.btnAbout.Text = "?";
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
@@ -826,10 +955,10 @@
             // btnForceStop
             // 
             this.btnForceStop.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnForceStop.Location = new System.Drawing.Point(188, 356);
+            this.btnForceStop.Location = new System.Drawing.Point(200, 420);
             this.btnForceStop.Name = "btnForceStop";
             this.btnForceStop.Size = new System.Drawing.Size(75, 23);
-            this.btnForceStop.TabIndex = 9;
+            this.btnForceStop.TabIndex = 41;
             this.btnForceStop.Text = "_DOSTOP";
             this.btnForceStop.UseVisualStyleBackColor = true;
             this.btnForceStop.Click += new System.EventHandler(this.btnForceStop_Click);
@@ -839,10 +968,10 @@
             this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox7.Controls.Add(this.txtAdditional);
-            this.groupBox7.Location = new System.Drawing.Point(0, 357);
+            this.groupBox7.Location = new System.Drawing.Point(6, 356);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(182, 48);
-            this.groupBox7.TabIndex = 7;
+            this.groupBox7.Size = new System.Drawing.Size(431, 48);
+            this.groupBox7.TabIndex = 13;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "_GRP_ADDCMDARGS";
             // 
@@ -852,7 +981,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAdditional.Location = new System.Drawing.Point(6, 19);
             this.txtAdditional.Name = "txtAdditional";
-            this.txtAdditional.Size = new System.Drawing.Size(168, 20);
+            this.txtAdditional.Size = new System.Drawing.Size(417, 20);
             this.txtAdditional.TabIndex = 0;
             // 
             // statusBar1
@@ -861,7 +990,7 @@
             this.tssStatus,
             this.toolStripStatusLabel1,
             this.tssTooltip});
-            this.statusBar1.Location = new System.Drawing.Point(0, 586);
+            this.statusBar1.Location = new System.Drawing.Point(0, 640);
             this.statusBar1.Name = "statusBar1";
             this.statusBar1.Size = new System.Drawing.Size(644, 22);
             this.statusBar1.TabIndex = 37;
@@ -993,10 +1122,10 @@
             // btnOptions
             // 
             this.btnOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOptions.Location = new System.Drawing.Point(330, 356);
+            this.btnOptions.Location = new System.Drawing.Point(517, 420);
             this.btnOptions.Name = "btnOptions";
             this.btnOptions.Size = new System.Drawing.Size(75, 23);
-            this.btnOptions.TabIndex = 10;
+            this.btnOptions.TabIndex = 42;
             this.btnOptions.Text = "_BTN_OPTIONS";
             this.btnOptions.UseVisualStyleBackColor = true;
             this.btnOptions.Click += new System.EventHandler(this.btnOptions_Click);
@@ -1010,7 +1139,7 @@
             this.rtxtConsole.ContextMenuStrip = this.contextMenuStrip1;
             this.rtxtConsole.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtxtConsole.ForeColor = System.Drawing.Color.White;
-            this.rtxtConsole.Location = new System.Drawing.Point(12, 420);
+            this.rtxtConsole.Location = new System.Drawing.Point(12, 474);
             this.rtxtConsole.Name = "rtxtConsole";
             this.rtxtConsole.ReadOnly = true;
             this.rtxtConsole.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
@@ -1030,15 +1159,11 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox7);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
-            this.splitContainer1.Panel1.Controls.Add(this.btnProgram);
-            this.splitContainer1.Panel1.Controls.Add(this.txtCmdLine);
-            this.splitContainer1.Panel1.Controls.Add(this.btnOptions);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox5);
             this.splitContainer1.Panel1.Controls.Add(this.gbEEPROMFile);
-            this.splitContainer1.Panel1.Controls.Add(this.btnAbout);
             this.splitContainer1.Panel1.Controls.Add(this.gbFlashFile);
-            this.splitContainer1.Panel1.Controls.Add(this.btnForceStop);
             this.splitContainer1.Panel1MinSize = 440;
             // 
             // splitContainer1.Panel2
@@ -1046,9 +1171,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.groupBox9);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox4);
-            this.splitContainer1.Panel2.Controls.Add(this.groupBox7);
             this.splitContainer1.Panel2MinSize = 0;
-            this.splitContainer1.Size = new System.Drawing.Size(630, 410);
+            this.splitContainer1.Size = new System.Drawing.Size(630, 408);
             this.splitContainer1.SplitterDistance = 440;
             this.splitContainer1.TabIndex = 38;
             // 
@@ -1056,8 +1180,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnForceStop;
-            this.ClientSize = new System.Drawing.Size(644, 608);
+            this.ClientSize = new System.Drawing.Size(644, 662);
+            this.Controls.Add(this.btnProgram);
+            this.Controls.Add(this.txtCmdLine);
+            this.Controls.Add(this.btnOptions);
+            this.Controls.Add(this.btnAbout);
+            this.Controls.Add(this.btnForceStop);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.rtxtConsole);
             this.Controls.Add(this.statusBar1);
@@ -1097,7 +1225,6 @@
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1112,9 +1239,18 @@
         private System.Windows.Forms.CheckBox cbForce;
         private System.Windows.Forms.CheckBox cbNoVerify;
         private System.Windows.Forms.Button btnProgram;
-        private System.Windows.Forms.TextBox txtHFuse;
+        // Reused for fuse0
         private System.Windows.Forms.TextBox txtLFuse;
+        // Reused for fuse1
+        private System.Windows.Forms.TextBox txtHFuse;
+        // Reused for fuse2
         private System.Windows.Forms.TextBox txtEFuse;
+        private System.Windows.Forms.TextBox txtFuse3;
+        private System.Windows.Forms.TextBox txtFuse4;
+        private System.Windows.Forms.TextBox txtFuse5;
+        private System.Windows.Forms.TextBox txtFuse6;
+        private System.Windows.Forms.TextBox txtFuse7;
+        private System.Windows.Forms.TextBox txtFuse8;
         private System.Windows.Forms.ComboBox cmbPresets;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -1193,6 +1329,12 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Label lblSig;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
     }
 }
 

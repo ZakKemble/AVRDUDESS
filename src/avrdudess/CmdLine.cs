@@ -194,6 +194,24 @@ namespace avrdudess
                     makeWriteFuseLock(Avrdude.FuseLockType.Efuse, mainForm.exFuse);
                 if (mcu.memoryTypes.Contains("fuse"))
                     makeWriteFuseLock(Avrdude.FuseLockType.Fuse, mainForm.lowFuse);
+                if (mcu.memoryTypes.Contains("fuse0"))
+                    makeWriteFuseLock(Avrdude.FuseLockType.Fuse0, mainForm.lowFuse);
+                if (mcu.memoryTypes.Contains("fuse1"))
+                    makeWriteFuseLock(Avrdude.FuseLockType.Fuse1, mainForm.highFuse);
+                if (mcu.memoryTypes.Contains("fuse2"))
+                    makeWriteFuseLock(Avrdude.FuseLockType.Fuse2, mainForm.exFuse);
+                if (mcu.memoryTypes.Contains("fuse3"))
+                    makeWriteFuseLock(Avrdude.FuseLockType.Fuse3, mainForm.fuse3);
+                if (mcu.memoryTypes.Contains("fuse4"))
+                    makeWriteFuseLock(Avrdude.FuseLockType.Fuse4, mainForm.fuse4);
+                if (mcu.memoryTypes.Contains("fuse5"))
+                    makeWriteFuseLock(Avrdude.FuseLockType.Fuse5, mainForm.fuse5);
+                if (mcu.memoryTypes.Contains("fuse6"))
+                    makeWriteFuseLock(Avrdude.FuseLockType.Fuse6, mainForm.fuse6);
+                if (mcu.memoryTypes.Contains("fuse7"))
+                    makeWriteFuseLock(Avrdude.FuseLockType.Fuse7, mainForm.fuse7);
+                if (mcu.memoryTypes.Contains("fuse8"))
+                    makeWriteFuseLock(Avrdude.FuseLockType.Fuse8, mainForm.fuse8);
             }
 
             // TODO what if MCU doesnt have any of these fuses?

@@ -18,9 +18,15 @@ You can also drag and drop files here</string>
 Use this if you only want to update EEPROM</string>
 		<string name="TOOLTIP_ERASEBOTH">Erase both flash and EEPROM</string>
 		<string name="TOOLTIP_NOWRITE">Don't write anything, used for debugging AVRDUDE</string>
-		<string name="TOOLTIP_LOWFUSE">Low fuse</string>
-		<string name="TOOLTIP_HIGHFUSE">High fuse</string>
-		<string name="TOOLTIP_EXFUSE">Extended fuse</string>
+		<string name="TOOLTIP_LOWFUSE">Low fuse / Fuse byte 0</string>
+		<string name="TOOLTIP_HIGHFUSE">High fuse / Fuse byte 1</string>
+		<string name="TOOLTIP_EXFUSE">Extended fuse / Fuse byte 2</string>
+		<string name="TOOLTIP_FUSE3">Fuse byte 3</string>
+		<string name="TOOLTIP_FUSE4">Fuse byte 4</string>
+		<string name="TOOLTIP_FUSE5">Fuse byte 5</string>
+		<string name="TOOLTIP_FUSE6">Fuse byte 6</string>
+		<string name="TOOLTIP_FUSE7">Fuse byte 7</string>
+		<string name="TOOLTIP_FUSE8">Fuse byte 8</string>
 		<string name="TOOLTIP_LOCKBITS">Lock bits</string>
 		<string name="TOOLTIP_ONLYFLASH">Only write/read/verify flash</string>
 		<string name="TOOLTIP_ONLYEEPROM">Only write/read/verify EEPROM</string>
@@ -82,6 +88,15 @@ Use this if you only want to update EEPROM</string>
 		<string name="READLFUSE">Read low fuse</string>
 		<string name="READEFUSE">Read extended fuse</string>
 		<string name="READFUSE">Read fuse</string>
+		<string name="READFUSE0">Read Fuse byte 0</string>
+		<string name="READFUSE1">Read Fuse byte 1</string>
+		<string name="READFUSE2">Read Fuse byte 2</string>
+		<string name="READFUSE3">Read Fuse byte 3</string>
+		<string name="READFUSE4">Read Fuse byte 4</string>
+		<string name="READFUSE5">Read Fuse byte 5</string>
+		<string name="READFUSE6">Read Fuse byte 6</string>
+		<string name="READFUSE7">Read Fuse byte 7</string>
+		<string name="READFUSE8">Read Fuse byte 8</string>
 		<string name="READLOCKBITS">Read lock bits</string>
 		<string name="NOSUPPORTEDFUSES">{0} does not have any supported fuses</string>
 		<string name="CONFIG_FILE_TOO_LARGE">Config file {0} is too large</string>

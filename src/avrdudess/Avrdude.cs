@@ -104,6 +104,27 @@ namespace avrdudess
             Efuse,
             [Description("fuse")]
             Fuse,
+
+            // numbered fuses for XMEGA and others
+            [Description("fuse0")]
+            Fuse0,
+            [Description("fuse1")]
+            Fuse1,
+            [Description("fuse2")]
+            Fuse2,
+            [Description("fuse3")]
+            Fuse3,
+            [Description("fuse4")]
+            Fuse4,
+            [Description("fuse5")]
+            Fuse5,
+            [Description("fuse6")]
+            Fuse6,
+            [Description("fuse7")]
+            Fuse7,
+            [Description("fuse8")]
+            Fuse8,
+
             [Description("lock")]
             Lock
         }
